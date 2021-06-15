@@ -1,0 +1,15 @@
+{
+  "name": "kirkclarke.com",
+  "version": "2.0.0",
+  "description": "",
+  "main": "index.json",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "keywords": [],
+  "author": "Kirk Clarke",
+  "license": "ISC",
+  "dependencies": {}
+}
