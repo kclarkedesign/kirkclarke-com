@@ -2,16 +2,16 @@
   "name": "kirkclarke.com",
   "version": "2.0.0",
   "description": "",
-  "main": "index.json",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel index.html",
-    "build": "parcel build index.html",
-    "build-images": "cross-var cpy \"src/images/*\" $npm_package_config_paths_dist/images"
+    "build-images": "cross-var cpy \"src/images/*\" $npm_package_config_paths_dist/images",
+    "start": "nodemon -e js,html -- server.js"
   },
   "config": {
     "paths": {
-      "dist": "dist"
+      "dist": "dist",
+      "public": "public"
     }
   },
   "keywords": [],
@@ -19,9 +19,11 @@
   "license": "ISC",
   "private": true,
   "dependencies": {
-    "cross-var": "^1.1.0"
+    "cross-var": "^1.1.0",
+    "express": "^4.17.1"
   },
   "devDependencies": {
+    "nodemon": "^2.0.12",
     "webpack": "^5.39.0",
     "webpack-cli": "^4.7.2"
   }
