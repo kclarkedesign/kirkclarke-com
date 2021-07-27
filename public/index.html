@@ -2,18 +2,25 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Kirk Clarke | Web (UI/UX) Designer & Engineer, Tech Coach"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kirk Clarke | Web (UI/UX) Designer & Engineer</title>
 
+    <style type="text/css">:root{--blue:#007bff;--indigo:#6610f2;--purple:#6f42c1;--pink:#e83e8c;--red:#dc3545;--orange:#fd7e14;--yellow:#ffc107;--green:#28a745;--teal:#20c997;--cyan:#17a2b8;--white:#fff;--gray:#6c757d;--gray-dark:#343a40;--primary:#007bff;--secondary:#6c757d;--success:#28a745;--info:#17a2b8;--warning:#ffc107;--danger:#dc3545;--light:#f8f9fa;--dark:#343a40;--breakpoint-xs:0;--breakpoint-sm:576px;--breakpoint-md:768px;--breakpoint-lg:992px;--breakpoint-xl:1200px;--font-family-sans-serif:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--font-family-monospace:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}*,::after,::before{box-sizing:border-box}html{font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}article,aside,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;text-align:left;background-color:#fff}h1,h2,h3,h4,h5,h6{margin-top:0;margin-bottom:.5rem}p{margin-top:0;margin-bottom:1rem}small{font-size:80%}a{color:#007bff;text-decoration:none;background-color:transparent}img{vertical-align:middle;border-style:none}svg{overflow:hidden;vertical-align:middle}.h1,.h2,.h3,.h4,.h5,.h6,h1,h2,h3,h4,h5,h6{margin-bottom:.5rem;font-weight:500;line-height:1.2}.h1,h1{font-size:2.5rem}.h2,h2{font-size:2rem}.small,small{font-size:80%;font-weight:400}.img-fluid{max-width:100%;height:auto}.col,.col-1,.col-10,.col-11,.col-12,.col-2,.col-3,.col-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-auto,.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-auto,.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-auto,.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-auto,.col-xl,.col-xl-1,.col-xl-10,.col-xl-11,.col-xl-12,.col-xl-2,.col-xl-3,.col-xl-4,.col-xl-5,.col-xl-6,.col-xl-7,.col-xl-8,.col-xl-9,.col-xl-auto{position:relative;width:100%;padding-right:15px;padding-left:15px}.flex-row{-ms-flex-direction:row!important;flex-direction:row!important}.justify-content-between{-ms-flex-pack:justify!important;justify-content:space-between!important}.align-items-center{-ms-flex-align:center!important;align-items:center!important}.align-self-center{-ms-flex-item-align:center!important;align-self:center!important}.text-center{text-align:center!important}</style>
+
+
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"></noscript>
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
-    />
-    <link
+      media="all"
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     />
     <link
+      media="all"
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.3.0/font-awesome-animation.min.css"
     />
@@ -22,9 +29,25 @@
         --color-celadon: #98dfaf;
         --color-dark: #191919;
         --color-white: #ffffff;
+        --color-celedon-contrast: #585858; /* Davys Grey */
       }
       html {
         scroll-behavior: smooth;
+      }
+
+      /** Accessibility **/
+      /* Text meant only for screen readers. */
+      .sr-text {
+        border: 0;
+        clip: rect(1px, 1px, 1px, 1px);
+        clip-path: inset(50%);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+        word-wrap: normal !important;
       }
       nav {
         display: flex;
@@ -40,7 +63,7 @@
         color: #545c52;
       }
       .nav-link {
-        color: #fff;
+        color: var(--color-celedon-contrast);
         font-weight: bold;
         font-size: 1.5em;
         margin: 0 0.5em;
@@ -63,6 +86,7 @@
       }
       .welcome__subtitle {
         color: var(--color-celadon);
+        font-size: 1.5rem;
       }
       .welcome__down,
       .welcome__down a {
@@ -171,7 +195,7 @@
       >
         <div class="navbar-brand">
           <a href="#"
-            ><svg
+            ><span class="sr-text">Kirk Clarke's personal portfolio</span><svg
               id="Layer_1"
               class="brand"
               data-name="Layer 1"
@@ -233,23 +257,24 @@
           <h1 class="welcome__title">
             I'm Kirk and I'd like to&nbsp;help&nbsp;you
           </h1>
-          <h4 class="welcome__subtitle">
+          <h2 class="welcome__subtitle">
             Web (UI/UX) Designer &&nbsp;Engineer
-          </h4>
+          </h2>
           <p class="sites pt-1">
             <a
               href="https://github.com/kclarkedesign"
               target="_blank"
               class="site-link site-link--sm"
               title="Github"
+              rel="noopener"
               ><i class="fab fa-github"></i
             ></a>
 
-            <a
-              href="https://www.linkedin.com/in/kclarke/"
+            <a href="https://www.linkedin.com/in/kclarke/"
               target="_blank"
               class="site-link site-link--sm"
               title="Linkedin"
+              rel="noopener"
               ><i class="fab fa-linkedin"></i
             ></a>
 
@@ -258,6 +283,7 @@
               target="_blank"
               class="site-link site-link--sm"
               title="freeCodeCamp"
+              rel="noopener"
               ><i class="fab fa-free-code-camp"></i
             ></a>
 
@@ -266,15 +292,16 @@
               target="_blank"
               class="site-link site-link--sm"
               title="Medium"
+              rel="noopener"
               ><i class="fab fa-medium"></i
             ></a>
           </p>
-          <h6 class="welcome__down">
+          <h2 class="welcome__down">
             <a href="#projects"
-              ><small
+              ><span class="sr-text">Continue scrolling for my projects and more</span><small
                 ><i class="fas fa-chevron-down faa-float animated"></i></small
             ></a>
-          </h6>
+          </h2>
         </div>
       </section>
       <section id="projects" class="anchor text-center p-sm-5 pb-5">
@@ -282,10 +309,10 @@
           <!-- Add in icons or bar for language, labs/experiments (upper right). Might need popup/overlay to explain -->
           <article class="project-tile">
             <div class="cat-container cat-container--vertical">
-              <a title="Experiment"><i class="cat fa-flask fas"></i></a>
-              <a title="Sass (SCSS)"><i class="cat fa-sass fab"></i></a>
-              <a title="Angular (11)"><i class="cat fa-angular fab"></i></a>
-              <a title="API (RAWG Video Games Database API)"
+              <span title="Experiment"><i class="cat fa-flask fas"></i></span>
+              <span title="Sass (SCSS)"><i class="cat fa-sass fab"></i></span>
+              <span title="Angular (11)"><i class="cat fa-angular fab"></i></span>
+              <span title="API (RAWG Video Games Database API)"
                 ><i class="cat fa-cog fas"></i
               ></a>
             </div>
@@ -293,10 +320,13 @@
               class="profile-link d-block"
               href="/ng-video-game-db/"
               target="_blank"
+              rel="noopener"
               ><img
                 src="./images/thumb-project-ngvideogamedb.jpg"
                 class="img-fluid"
                 alt="Markdown Previewer"
+                width="900"
+                height="800"
               />
               <div class="project-title">Angular Video Game Database</div></a
             >
@@ -306,10 +336,13 @@
               class="project-link"
               href="https://www.92y.org/support/your-impact"
               target="_blank"
+              rel="noopener"
               ><img
                 src="./images/thumb-impact-report-2020.jpg"
                 class="img-fluid"
                 alt="92Y Impact Report companion website"
+                width="900"
+                height="900"
               />
               <div class="project-title">
                 92Y Impact Report Companion Website
@@ -321,27 +354,33 @@
               class="project-link"
               href="https://www.92y.org/exhibits/virtual"
               target="_blank"
+              rel="noopener"
               ><img
                 src="./images/thumb-works-in-progress.jpg"
                 class="img-fluid"
                 alt="92Y Virtual Exhibitions"
+                width="900"
+                height="900"
               />
               <div class="project-title">92Y Virtual Exhibitions</div></a
             >
           </article>
           <article class="project-tile">
             <!-- <div class="cat-container cat-container--vertical">
-      			<a title="Challenge"><i class="fas fa-pencil-ruler"></i></a>
-      			<a title="JavaScript"><i class="fab fa-js"></i></a>
+      			<span title="Challenge"><i class="fas fa-pencil-ruler"></i></span>
+      			<span title="JavaScript"><i class="fab fa-js"></i></span>
       		</div> -->
             <a
               class="project-link"
               href="https://createwithkirk.teachable.com/"
               target="_blank"
+              rel="noopener"
               ><img
                 src="./images/thumb-create-with-kirk.jpg"
                 class="img-fluid"
                 alt="Free Course & Consulting Website"
+                width="900"
+                height="900"
               />
               <div class="project-title">
                 Free Course & Consulting Website
@@ -350,8 +389,8 @@
           </article>
           <article class="project-tile">
             <div class="cat-container cat-container--vertical">
-              <a title="Challenge"><i class="cat fas fa-pencil-ruler"></i></a>
-              <a title="Social Post (Instagram)"
+              <span title="Challenge"><i class="cat fas fa-pencil-ruler"></i></span>
+              <span title="Social Post (Instagram)"
                 ><i class="cat fab fa-instagram"></i
               ></a>
             </div>
@@ -359,10 +398,13 @@
               class="project-link"
               href="https://www.instagram.com/p/CDc4d7ipwnZ/"
               target="_blank"
+              rel="noopener"
               ><img
                 src="./images/thumb-daily-ui-13-direct-messaging.jpg"
                 class="img-fluid"
                 alt="Daily UI Challenge #13 &mdash; Direct Messaging"
+                width="900"
+                height="900"
               />
               <div class="project-title">
                 Daily UI Challenge #13 &mdash;Direct&nbsp;Messaging
@@ -371,36 +413,42 @@
           </article>
           <article class="project-tile">
             <div class="cat-container cat-container--vertical">
-              <a title="Experiment"><i class="cat fa-flask fas"></i></a>
+              <span title="Experiment"><i class="cat fa-flask fas"></i></span>
               <!-- <i class="cat fa-html5 fab"></i> -->
-              <!-- <a title="React"><i class="cat fa-react fab"></i></a> -->
+              <!-- <span title="React"><i class="cat fa-react fab"></i></span> -->
             </div>
             <a
               class="project-link"
               href="https://codepen.io/kclarkedesign/full/eYZpveX"
               target="_blank"
+              rel="noopener"
               ><img
                 src="./images/thumb-project-form.jpg"
                 class="img-fluid"
                 alt="FCC Project: Survey Form"
+                width="900"
+                height="900"
               />
               <div class="project-title">FCC Project: Survey Form</div></a
             >
           </article>
           <article class="project-tile">
             <div class="cat-container cat-container--vertical">
-              <a title="Experiment"><i class="cat fa-flask fas"></i></a>
+              <span title="Experiment"><i class="cat fa-flask fas"></i></span>
               <!-- <i class="cat fa-html5 fab"></i> -->
-              <!-- <a title="React"><i class="cat fa-react fab"></i></a> -->
+              <!-- <span title="React"><i class="cat fa-react fab"></i></span> -->
             </div>
             <a
               class="profile-link d-block"
               href="https://codepen.io/kclarkedesign/full/NWNNyZe"
               target="_blank"
+              rel="noopener"
               ><img
                 src="./images/thumb-project-landing-pg.jpg"
                 class="img-fluid"
                 alt="FCC Project: Product Landing Page"
+                width="900"
+                height="900"
               />
               <div class="project-title">
                 FCC Project: Product Landing Page
@@ -409,18 +457,21 @@
           </article>
           <article class="project-tile">
             <div class="cat-container cat-container--vertical">
-              <a title="Experiment"><i class="cat fa-flask fas"></i></a>
-              <a title="Sass (SCSS)"><i class="cat fa-sass fab"></i></a>
-              <a title="React"><i class="cat fa-react fab"></i></a>
+              <span title="Experiment"><i class="cat fa-flask fas"></i></span>
+              <span title="Sass (SCSS)"><i class="cat fa-sass fab"></i></span>
+              <span title="React"><i class="cat fa-react fab"></i></span>
             </div>
             <a
               class="profile-link d-block"
               href="https://codepen.io/kclarkedesign/full/xxVgXmm"
               target="_blank"
+              rel="noopener"
               ><img
                 src="./images/thumb-project-random-quote-machine.jpg"
                 class="img-fluid"
                 alt="FCC Project: Random Quote Machine"
+                width="900"
+                height="900"
               />
               <div class="project-title">
                 FCC Project: Random Quote Machine
@@ -429,18 +480,21 @@
           </article>
           <article class="project-tile">
             <div class="cat-container cat-container--vertical">
-              <a title="Experiment"><i class="cat fa-flask fas"></i></a>
-              <a title="Sass (SCSS)"><i class="cat fa-sass fab"></i></a>
-              <a title="React"><i class="cat fa-react fab"></i></a>
+              <span title="Experiment"><i class="cat fa-flask fas"></i></span>
+              <span title="Sass (SCSS)"><i class="cat fa-sass fab"></i></span>
+              <span title="React"><i class="cat fa-react fab"></i></span>
             </div>
             <a
               class="profile-link d-block"
               href="https://codepen.io/kclarkedesign/full/QWNpbww"
               target="_blank"
+              rel="noopener"
               ><img
                 src="./images/thumb-project-markdown-previewer.jpg"
                 class="img-fluid"
                 alt="FCC Project: Markdown Previewer"
+                width="900"
+                height="900"
               />
               <div class="project-title">
                 FCC Project: Markdown Previewer
@@ -449,36 +503,42 @@
           </article>
           <article class="project-tile">
             <div class="cat-container cat-container--vertical">
-              <a title="Experiment"><i class="cat fa-flask fas"></i></a>
-              <a title="Sass (SCSS)"><i class="cat fa-sass fab"></i></a>
-              <a title="React"><i class="cat fa-react fab"></i></a>
+              <span title="Experiment"><i class="cat fa-flask fas"></i></span>
+              <span title="Sass (SCSS)"><i class="cat fa-sass fab"></i></span>
+              <span title="React"><i class="cat fa-react fab"></i></span>
             </div>
             <a
               class="profile-link d-block"
               href="https://codepen.io/kclarkedesign/full/NWNjxWy"
               target="_blank"
+              rel="noopener"
               ><img
                 src="./images/thumb-project-drum-machine.jpg"
                 class="img-fluid"
                 alt="FCC Project: Drum Machine"
+                width="900"
+                height="900"
               />
               <div class="project-title">FCC Project: Drum Machine</div></a
             >
           </article>
           <article class="project-tile">
             <div class="cat-container cat-container--vertical">
-              <a title="Experiment"><i class="cat fa-flask fas"></i></a>
-              <a title="Sass (SCSS)"><i class="cat fa-sass fab"></i></a>
-              <a title="React"><i class="cat fa-react fab"></i></a>
+              <span title="Experiment"><i class="cat fa-flask fas"></i></span>
+              <span title="Sass (SCSS)"><i class="cat fa-sass fab"></i></span>
+              <span title="React"><i class="cat fa-react fab"></i></span>
             </div>
             <a
               class="profile-link d-block"
               href="https://codepen.io/kclarkedesign/full/zYqwmqK"
               target="_blank"
+              rel="noopener"
               ><img
                 src="./images/thumb-project-js-calculator.jpg"
                 class="img-fluid"
                 alt="FCC Project: JavaScript Calculator"
+                width="900"
+                height="900"
               />
               <div class="project-title">
                 FCC Project: JavaScript Calculator
@@ -487,36 +547,42 @@
           </article>
           <article class="project-tile">
             <div class="cat-container cat-container--vertical">
-              <a title="Experiment"><i class="cat fa-flask fas"></i></a>
-              <a title="Sass (SCSS)"><i class="cat fa-sass fab"></i></a>
-              <a title="React"><i class="cat fa-react fab"></i></a>
+              <span title="Experiment"><i class="cat fa-flask fas"></i></span>
+              <span title="Sass (SCSS)"><i class="cat fa-sass fab"></i></span>
+              <span title="React"><i class="cat fa-react fab"></i></span>
             </div>
             <a
               class="profile-link d-block"
               href="https://codepen.io/kclarkedesign/full/vYGZzGN"
               target="_blank"
+              rel="noopener"
               ><img
                 src="./images/thumb-project-pomodoro-clock.jpg"
                 class="img-fluid"
                 alt="FCC Project: Pomodoro Clock"
+                width="900"
+                height="900"
               />
               <div class="project-title">FCC Project: Pomodoro Clock</div></a
             >
           </article>
           <article class="project-tile">
             <div class="cat-container cat-container--vertical">
-              <a title="JavaScript"><i class="cat fab fa-js"></i></a>
-              <a title="PHP"><i class="cat fab fa-php"></i></a>
-              <a title="WordPress"><i class="cat fab fa-wordpress"></i></a>
+              <span title="JavaScript"><i class="cat fab fa-js"></i></span>
+              <span title="PHP"><i class="cat fab fa-php"></i></span>
+              <span title="WordPress"><i class="cat fab fa-wordpress"></i></span>
             </div>
             <a
               class="profile-link d-block"
               href="https://campaign.law.columbia.edu/"
               target="_blank"
+              rel="noopener"
               ><img
                 src="./images/thumb-campaign-for-columbia-law.jpg"
                 class="img-fluid"
                 alt="Campaign for Columbia Law: A Force in the World"
+                width="900"
+                height="900"
               />
               <div class="project-title">
                 Campaign for Columbia Law: A Force in the World
@@ -532,6 +598,7 @@
             target="_blank"
             class="site-link"
             title="Github"
+            rel="noopener"
             ><i class="fab fa-github"></i
           ></a>
 
@@ -540,6 +607,7 @@
             target="_blank"
             class="site-link"
             title="Linkedin"
+            rel="noopener"
             ><i class="fab fa-linkedin"></i
           ></a>
 
@@ -548,6 +616,7 @@
             target="_blank"
             class="site-link"
             title="freeCodeCamp"
+            rel="noopener"
             ><i class="fab fa-free-code-camp"></i
           ></a>
           <a
@@ -555,6 +624,7 @@
             target="_blank"
             class="site-link"
             title="Medium"
+            rel="noopener"
             ><i class="fab fa-medium"></i
           ></a>
           <a
@@ -562,6 +632,7 @@
             target="_blank"
             class="site-link"
             title="Volunteer Work (Catchafire.org)"
+            rel="noopener"
             ><i class="fas fa-hands-helping"></i
           ></a>
         </p>

@@ -2,15 +2,22 @@ var pkg = require("./package.json");
 var pkgPaths = pkg.config.paths;
 
 const http = require("http");
+const https = require("https");
 const fs = require("fs");
 // const url = require("url");
 const path = require("path");
+const certPath = path.resolve("C:\\Users\\Kirk\\AppData\\Local\\mkcert\\");
 // const express = require("express");
 // let app = express();
 const hostname = "localhost";
 const port = 5000;
 
-const server = http.createServer((req, res) => {
+const httpsConfig = {
+  key: fs.readFileSync(path.resolve(certPath, "localhost+1-key.pem")),
+  cert: fs.readFileSync(path.resolve(certPath, "localhost+1.pem")),
+};
+
+const server = https.createServer(httpsConfig, (req, res) => {
   // parse URL
   let pathname = req.url;
 
@@ -64,5 +71,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(port, hostname, () => {
-  console.log(`Server is listening at http://${hostname}:${port}/`);
+  console.log(`Server is listening at https://${hostname}:${port}/`);
 });
