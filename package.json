@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-images": "cross-var cpy \"src/images/*\" $npm_package_config_paths_dist/images",
+    "build-images": "cross-var cpy \"public/images/*\" $npm_package_config_paths_dist/images",
+    "build-index-html": "cross-var cpy \"public/index.html*\" $npm_package_config_paths_dist/",
     "start": "nodemon -e js,html -- server.js"
   },
   "config": {
