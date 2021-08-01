@@ -1,14 +1,10 @@
-var pkg = require("./package.json");
-var pkgPaths = pkg.config.paths;
+const pkg = require("./package.json");
+const pkgPaths = pkg.config.paths;
 
-const http = require("http");
 const https = require("https");
 const fs = require("fs");
-// const url = require("url");
 const path = require("path");
 const certPath = path.resolve("C:\\Users\\Kirk\\AppData\\Local\\mkcert\\");
-// const express = require("express");
-// let app = express();
 const hostname = "localhost";
 const port = 5000;
 
