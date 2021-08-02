@@ -258,6 +258,14 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.3.0/font-awesome-animation.min.css"
     />
+
+    <link
+      rel="preload"
+      href="./css/lecture.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="./css/lecture.css" /></noscript>
     <style>
       :root {
         --color-celadon: #98dfaf;
@@ -428,7 +436,7 @@
         class="nav pl-3 align-items-center justify-content-between"
       >
         <div class="navbar-brand">
-          <a href="#"
+          <a href="/"
             ><span class="sr-text">Kirk Clarke's personal portfolio</span
             ><svg
               id="Layer_1"
@@ -540,14 +548,27 @@
           </h2>
         </div>
       </section> -->
-      <section class="lecture">
-        <div role="navigation" class="course-sidebar"></div>
-        <div role="main" class="">
-          <div class="lecture-section">
+      <section class="lecture lecture-layout pt-sm-5">
+        <div role="navigation" class="course-sidebar">
+          <div class="sidebar-header p-3">
+            <h2>Free beginners guide to coding: Learn HTML fast</h2>
+          </div>
+        </div>
+        <div role="main" class="p-3">
+          <div class="lecture__section p-1">
+            <h2 class="lection__heading">Getting Started</h2>
             <p>
               The goal of this guide is to give anyone the ability to understand
               and effectively code with HTML confidently, and as painlessly as
               possible.
+            </p>
+            <p>
+              <span style="color: rgb(32, 33, 36)"
+                >And before you begin, I want you to forget everything you think
+                you know about coding and say to yourself, "I CAN DO THIS!, I
+                WILL DO THIS!". I sincerely want you to believe in yourself as
+                much as I believe in you.</span
+              >
             </p>
           </div>
         </div>

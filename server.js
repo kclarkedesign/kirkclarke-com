@@ -39,17 +39,17 @@ const server = https.createServer(httpsConfig, (req, res) => {
     ".doc": "application/msword",
   };
 
-  fs.stat(pathname, function (err, stats) {
-    if (fs.statSync(pathname).isDirectory()) {
-      pathname = pkgPaths.public + "/index.html";
-    } else if (
-      fs.statSync(pathname).isFile() &&
-      ext == ".html" &&
-      !pathname.match(".html$")
-    ) {
-      pathname = pathname + ext;
-    }
+  if (fs.statSync(pathname).isDirectory()) {
+    pathname = pkgPaths.public + "/index.html";
+  } else if (
+    !pathname.match("^/images") &&
+    ext == ".html" &&
+    !pathname.match(".html$")
+  ) {
+    pathname = pathname + ext;
+  }
 
+  fs.stat(pathname, function (err, stats) {
     if (err) {
       res.statusCode = 404;
       res.end(`File ${pathname} not found!`);
