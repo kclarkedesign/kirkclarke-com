@@ -14,17 +14,14 @@ const httpsConfig = {
 };
 
 const server = https.createServer(httpsConfig, (req, res) => {
-  // parse URL
-  let pathname = req.url;
-
-  // modify GET requests for images to include public path
-  if (req.url.match("^/images")) pathname = pkgPaths.public + pathname;
-
-  console.log(`${req.method} ${pathname}`);
+  // parse URL & modify GET requests for files to include public path
+  let pathname = `${pkgPaths.public}${req.url}`;
 
   // based on the URL path, extract the file extention. e.g. .js, .doc, ...
   const ext =
     path.parse(pathname).ext == "" ? ".html" : path.parse(pathname).ext;
+
+  console.log(`${req.method} ${pathname}`);
 
   // maps file extention to MIME types
   const map = {
@@ -43,14 +40,21 @@ const server = https.createServer(httpsConfig, (req, res) => {
   };
 
   fs.stat(pathname, function (err, stats) {
+    if (fs.statSync(pathname).isDirectory()) {
+      pathname = pkgPaths.public + "/index.html";
+    } else if (
+      fs.statSync(pathname).isFile() &&
+      ext == ".html" &&
+      !pathname.match(".html$")
+    ) {
+      pathname = pathname + ext;
+    }
+
     if (err) {
       res.statusCode = 404;
       res.end(`File ${pathname} not found!`);
       return;
     }
-
-    if (fs.statSync(pathname).isDirectory())
-      pathname = pkgPaths.public + pathname + "index.html";
 
     fs.readFile(pathname, (err, data) => {
       if (err) {
