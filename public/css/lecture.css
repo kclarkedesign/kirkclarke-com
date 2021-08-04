@@ -1,3 +1,10 @@
+.section-list {
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
 .lecture {
   display: flex;
   flex-direction: row;
