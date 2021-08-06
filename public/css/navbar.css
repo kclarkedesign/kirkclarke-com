@@ -1,0 +1,16 @@
+/* Navbar */
+.navbar-nav .hamburger {
+  display: none;
+  color: #191919;
+  padding: 8px 16px;
+  font-size: 1.5em;
+}
+
+@media screen and (max-width: 767px) {
+  .navbar-nav a {
+    display: none;
+  }
+  .navbar-nav .hamburger {
+    display: block;
+  }
+}

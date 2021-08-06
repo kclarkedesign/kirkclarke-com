@@ -24,6 +24,13 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.3.0/font-awesome-animation.min.css"
     />
+    <link
+      rel="preload"
+      href="./css/navbar.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="./css/navbar.css" /></noscript>
     <style>
       :root {
         --color-celadon: #98dfaf;
@@ -239,6 +246,13 @@
           <a href="/#projects" class="nav-link">Projects</a>
           <a href="/#profiles" class="nav-link">Profiles</a>
           <a href="/course-template.html" class="nav-link">Course</a>
+          <a
+            href="javascript:void(0);"
+            class="hamburger"
+            onclick="myFunction()"
+          >
+            <i class="fa fa-bars"></i>
+          </a>
         </div>
       </nav>
     </header>
