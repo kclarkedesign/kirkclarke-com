@@ -14,11 +14,48 @@
     display: block;
   }
 }
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  height: 52px;
+  padding: 0;
+  min-width: 334px;
+}
 
-.course-nav {
-  max-width: 50vw;
+@media screen and (max-width: 767px) {
+  .navbar-brand {
+    max-width: calc(100% - 54px);
+    margin-right: 0;
+    width: 100%;
+    min-width: unset;
+  }
+}
+.navbar-brand__link {
+  float: left;
+  min-width: 38px;
+  margin-right: 10px;
+}
+
+.course-nav-link {
+  width: 100%;
   white-space: nowrap;
-  text-align: left;
+  float: left;
   overflow: hidden;
   text-overflow: ellipsis;
+  padding: 0 10px;
+  height: 52px;
+  align-items: center;
+  display: flex;
+  border-left: 1px solid;
+  border-right: 1px solid;
+  color: #191919;
+}
+
+@media screen and (min-width: 374px) {
+  .course-nav-link {
+    justify-content: center;
+  }
+}
+.course-nav-link__text {
+  padding-left: 10px;
 }
