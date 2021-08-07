@@ -14,3 +14,11 @@
     display: block;
   }
 }
+
+.course-nav {
+  max-width: 50vw;
+  white-space: nowrap;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
