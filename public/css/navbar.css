@@ -51,6 +51,14 @@
   color: #191919;
 }
 
+.course-nav-link:hover {
+  text-decoration: none;
+  background-color: #191919;
+  color: #fff;
+  border-left: 1px solid #191919;
+  border-right: 1px solid #191919;
+}
+
 @media screen and (min-width: 374px) {
   .course-nav-link {
     justify-content: center;
