@@ -1,7 +1,31 @@
+html {
+  overflow: hidden;
+}
+
+blockquote {
+  padding: 10px 20px;
+  margin: 0 0 20px;
+  font-size: 17.5px;
+  border-left: 5px solid #eee;
+}
+
+pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  color: #333;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
 .section-heading {
   padding: 16px;
   font-size: 1.2em;
-  background-color: #191919;
+  background-color: var(--erie-black);
   color: #ffffff;
   margin-bottom: 0;
 }
@@ -35,7 +59,7 @@
 }
 
 .section-item__link:hover {
-  color: #3a3e49;
+  color: var(--charcoal);
   text-decoration: none;
   background-color: #98dfaf;
 }
@@ -46,7 +70,7 @@
   /* flex-wrap: wrap; */
   width: 100%;
   min-height: unset;
-  height: calc(100vh);
+  height: calc(100vh - 72px);
   overflow: hidden;
 }
 @media screen and (max-width: 767px) {
@@ -55,8 +79,14 @@
   }
 }
 
+.lecture__heading {
+  font-weight: bold;
+}
+
 .course-main {
   padding: 1rem 2rem !important;
+  overflow-y: auto;
+  width: 100%;
 }
 
 .course-sidebar {
@@ -92,4 +122,75 @@
 .course-section {
   padding: 0;
   background-color: #747c92;
+}
+.lecture__section {
+  max-width: 780px;
+}
+
+.lecture__section-heading {
+  border-top: 1px dotted #34344a;
+  padding-top: 1.25em;
+  margin-top: 1.25em;
+}
+
+/** Code Example **/
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+}
+.code-viewer {
+  margin-bottom: 1em;
+}
+.code-viewer .hljs {
+  padding: 0.5em 1em;
+}
+/* .code-viewer code {
+  white-space: pre;
+} */
+.code-viewer-label {
+  background: var(--erie-black);
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  color: #ddd;
+  font-size: 11px;
+  margin-bottom: -3px;
+  padding: 0.5em 1em;
+  text-transform: uppercase;
+}
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: var(--light-periwinkle);
+  background: var(--charcoal);
+}
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst {
+  color: #e06c75;
+}
+/** **/
+.practice-callout {
+  padding: 1em;
+  background: #f7f7f7;
+  border: 3px solid var(--color-celadon);
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: normal;
+  line-height: 30px;
+}
+
+.practice-callout a {
+  color: var(--charcoal);
+  border-bottom: 1.25px dotted;
+  text-decoration: none;
+}
+
+.practice-callout a:hover {
+  border-bottom-style: solid;
 }
