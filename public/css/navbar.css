@@ -44,6 +44,7 @@
   text-overflow: ellipsis;
   padding: 0 10px;
   height: 52px;
+  justify-content: center;
   align-items: center;
   display: flex;
   border-left: 1px solid;
@@ -60,9 +61,15 @@
   border-right: 1px solid #191919;
 }
 
-@media screen and (min-width: 374px) {
+/* @media screen and (min-width: 374px) {
   .course-nav-link {
     justify-content: center;
+  }
+} */
+
+@media screen and (min-width: 767px) {
+  .course-nav-link {
+    display: none;
   }
 }
 .course-nav-link__text {

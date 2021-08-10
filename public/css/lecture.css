@@ -47,7 +47,7 @@
   width: 100%;
   min-height: unset;
   height: calc(100vh);
-  overflow-y: auto;
+  overflow: hidden;
 }
 @media screen and (max-width: 767px) {
   .lecture {
@@ -68,19 +68,24 @@
   padding-right: 0px;
   position: -webkit-sticky;
   position: sticky;
-  overflow: auto;
   display: inline-block;
   flex: 0 0 auto;
   height: 100%;
   top: 0;
+  overflow-y: auto;
 }
 
 @media screen and (max-width: 767px) {
   .course-sidebar {
-    height: 50px;
+    height: 0;
     width: 100%;
-    position: fixed;
-    display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .course-sidebar.sidebar-open {
+    display: inline-block;
+    height: 70vh;
   }
 }
 
