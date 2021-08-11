@@ -41,7 +41,7 @@ pre {
 
 .current-item a {
   border-right: 10px solid hsl(139deg 53% 74%);
-  color: #98dfaf;
+  color: var(--color-celadon);
   font-weight: bold;
   background-color: hsl(0deg 0% 0% / 50%);
 }
@@ -61,7 +61,7 @@ pre {
 .section-item__link:hover {
   color: var(--charcoal);
   text-decoration: none;
-  background-color: #98dfaf;
+  background-color: var(--color-celadon);
 }
 
 .lecture {
@@ -147,14 +147,15 @@ code {
 .code-viewer .hljs {
   padding: 0.5em 1em;
 }
-/* .code-viewer code {
-  white-space: pre;
-} */
+.code-viewer code {
+  /* white-space: pre; */
+  white-space: pre-line;
+}
 .code-viewer-label {
   background: var(--erie-black);
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
-  color: #ddd;
+  color: var(--color-celadon);
   font-size: 11px;
   margin-bottom: -3px;
   padding: 0.5em 1em;

@@ -490,7 +490,7 @@
         <div class="navbar-nav flex-row">
           <a href="/#projects" class="nav-link">Projects</a>
           <a href="/#profiles" class="nav-link">Profiles</a>
-          <a href="/course-template.html" class="nav-link">Course</a>
+          <a href="/getting-started.html" class="nav-link">Course</a>
           <a href="javascript:void(0);" class="hamburger" onclick="myFunction()"
             ><span class="sr-text">Main menu</span>
             <i class="fa fa-bars"></i>
@@ -509,13 +509,16 @@
               Learn to code HTML from scratch
             </h3>
             <ul class="section-list">
-              <li class="section-item current-item">
-                <a href="#" class="section-item__link">
+              <li class="section-item">
+                <a href="./getting-started.html" class="section-item__link">
                   <span class="lecture-name">Getting Started</span>
                 </a>
               </li>
               <li class="section-item">
-                <a href="#" class="section-item__link">
+                <a
+                  href="./common-elements-attributes.html"
+                  class="section-item__link"
+                >
                   <span class="lecture-name"
                     >Common Elements and Attributes</span
                   >
@@ -531,15 +534,18 @@
                   >
                 </a>
               </li>
-              <li class="section-item">
-                <a href="#" class="section-item__link">
+              <li class="section-item current-item">
+                <a href="./current-item.html" class="section-item__link">
                   <span class="lecture-name"
                     >Bonus: Add some flair! (A CSS Introduction)</span
                   >
                 </a>
               </li>
               <li class="section-item">
-                <a href="#" class="section-item__link">
+                <a
+                  href="./free-mini-cheatsheet.html"
+                  class="section-item__link"
+                >
                   <span class="lecture-name"
                     >FREE DOWNLOAD: Beginner HTML & CSS Mini-Cheatsheet</span
                   >
@@ -549,218 +555,36 @@
           </div>
         </div>
         <div role="main" class="course-main p-3">
-          <h2 class="lecture__title">Getting Started</h2>
+          <h2 class="lecture__title">
+            Bonus: Add some flair! (A CSS Introduction)
+          </h2>
           <div class="lecture__section p-1">
-            <p>
-              The goal of this guide is to give anyone the ability to understand
-              and effectively code with HTML confidently, and as painlessly as
-              possible.
-            </p>
-            <p>
-              <span style="color: rgb(32, 33, 36)"
-                >And before you begin, I want you to forget everything you think
-                you know about coding and say to yourself, "I CAN DO THIS!, I
-                WILL DO THIS!". I sincerely want you to believe in yourself as
-                much as I believe in you.</span
-              >
-            </p>
-            <p><strong>Now let's do this!</strong></p>
+            <h1>You've done it!</h1>
+            <h2>
+              Let's take a moment and look at the milestones you've crushed.
+              Learned what HTML is, wrote your own code, and built a web page
+              using all of your new knowledge. Take a moment to pat yourself on
+              the back and get ready to continue on!
+            </h2>
           </div>
           <!--/ lecture__section -->
           <!-- <h1 class="section-title">The Basics</h1> -->
           <div class="lecture__section p-1">
-            <h2 class="lecture__section-heading">What is HTML?</h2>
+            <h2 class="lecture__section-heading">
+              In this bonus section. Take your first HTML document and give it
+              some CSS styling!
+            </h2>
+            <p>A quick overview of CSS:</p>
             <p>
-              HTML stands for <strong>Hypertext Markup Language</strong> and it
-              is the primary way to interact with web page code. If you can name
-              a website or web page, I guarantee it uses HTML somehow. And by
-              the end of this lecture, you will understand the following:
-            </p>
-            <ol>
-              <li>
-                HTML is the standard way to manipulate and give meaning to text
-                and other parts of a web page.
-              </li>
-              <li>
-                HTML has a few common terms to remember. Two of those terms are
-                <strong><em>tags </em></strong>and<em>
-                  <strong>elements</strong>.</em
-                >
-              </li>
-              <li>
-                HTML markup refers to the building blocks (i.e. elements and
-                tags) of web pages.
-              </li>
-              <li>
-                As you markup/build your page, you are speaking in the web
-                browser's language, telling it what to display.
-              </li>
-            </ol>
-          </div>
-          <!--/ lecture__section -->
-          <div class="lecture__section p-1">
-            <h2 class="lecture__section-heading">An HTML Element in action</h2>
-            <p>
-              An HTML element is a marker that defines what happens next within
-              a page. Elements are created when you combine content with HTML
-              tags. As shown below, we're using the bold tags
-              <code>&lt;b&gt;</code> and <code>&lt;/b&gt;</code> to make content
-              between them bold. The <code>&lt;b&gt;</code> is the
-              <strong>start t</strong><strong>ag</strong>, which tells the
-              browser to make everything following it bold until it sees the
-              <code>&lt;/b&gt;</code> <strong>end tag </strong>which completes
-              the bold HTML element.
-            </p>
-            <p style="margin-top: 1em">
-              Example: Using the HTML bold tags to make some text bold
-            </p>
-            <div
-              data-code-viewer=""
-              data-code-viewer-code="Get started with <b>HTML</b> today"
-              data-code-viewer-language="html"
-            >
-              <div class="code-viewer">
-                <div class="code-viewer-label">html</div>
-                <code class="html hljs xml"
-                  >Get started with
-                  <span class="hljs-tag"
-                    >&lt;<span class="hljs-name">b</span>&gt;</span
-                  >HTML<span class="hljs-tag"
-                    >&lt;/<span class="hljs-name">b</span>&gt;</span
-                  >
-                  today</code
-                >
-              </div>
-            </div>
-            <p>Results in &hellip;</p>
-            <h3 style="margin-top: 1em">
-              <blockquote style="margin-top: 1em">
-                Get started with <strong>HTML</strong> today
-              </blockquote>
-            </h3>
-            <p>This is an example of a bold HTML element in all its' glory!</p>
-            <div class="practice-callout">
-              If you're feeling confident, try replicating the example by
-              <a
-                href="https://codepen.io/kclarkedesign/pen/oNbyrME?editors=1000"
-                rel="noopener"
-                target="_blank"
-                ><strong>giving it a shot yourself!</strong></a
+              If you don't have a text editor, you can type along using
+              <strong
+                ><a
+                  href="https://codepen.io/kclarkedesign/pen/KKVEvdQ?editors=1100"
+                  target="_blank"
+                  >this code editor</a
+                >.</strong
               >
-              Though if you don't understand what's going or can't get it
-              working, don't worry! You'll get the idea soon enough.
-            </div>
-          </div>
-          <!--/ lecture__section -->
-          <div class="lecture__section p-1">
-            <h2 class="lecture__section-heading">Visualizing the structure</h2>
-            <p>
-              Let us go over one way to visualize and remember how to structure
-              HTML. I always recommend trying to use something physical you're
-              familiar with to build a mental model/picture of what's going on
-              in your code.
             </p>
-            <h3 class="">
-              <strong>The<em> "Wrapping"</em> Concept</strong>
-            </h3>
-            <figure class="o-figure">
-              <img
-                src="https://www.filepicker.io/api/file/KHtYpq0SpuoW1wPgidZC"
-                class="img-responsive"
-                alt="animated example of the wrapping concept, a box is drawn surrounding the text 'HTML'"
-                loading="lazy"
-                width="600"
-                height="136"
-              />
-            </figure>
-
-            <p>
-              In the <em>Wrapping</em> concept, HTML elements can be thought of
-              as boxes or containers that surround and hold text (or other HTML
-              elements). Thus, only the things that are wrapped are effected by
-              the HTML element. So let's apply this concept to the following
-              sentence and "wrap" some of the text with the <em>bold </em> html
-              element.
-            </p>
-            <div
-              data-code-viewer=""
-              data-code-viewer-code="Get started with HTML today"
-              data-code-viewer-language="html"
-            >
-              <div class="code-viewer">
-                <div class="code-viewer-label">html</div>
-                <code class="html hljs xml">Get started with HTML today</code>
-              </div>
-            </div>
-            <p>
-              First, we'll start our wrap right before the text "HTML" by adding
-              the first part of our bold element. This first part can be
-              referred to as the start tag. Which essentially opens the bold
-              element.
-            </p>
-            <div
-              data-code-viewer=""
-              data-code-viewer-code="Get started with <b>HTML today"
-              data-code-viewer-language="html"
-            >
-              <div class="code-viewer">
-                <div class="code-viewer-label">html</div>
-                <code class="html hljs xml"
-                  >Get started with
-                  <span class="hljs-tag"
-                    >&lt;<span class="hljs-name">b</span>&gt;</span
-                  >HTML today</code
-                >
-              </div>
-            </div>
-            <p>
-              Next up we'll close the bold element with an end tag. Which looks
-              like the start tag except with a forward slash (/) added in.
-            </p>
-            <div
-              data-code-viewer=""
-              data-code-viewer-code="Get started with <b>HTML</b> today"
-              data-code-viewer-language="html"
-            >
-              <div class="code-viewer">
-                <div class="code-viewer-label">html</div>
-                <code class="html hljs xml"
-                  >Get started with
-                  <span class="hljs-tag"
-                    >&lt;<span class="hljs-name">b</span>&gt;</span
-                  >HTML<span class="hljs-tag"
-                    >&lt;/<span class="hljs-name">b</span>&gt;</span
-                  >
-                  today</code
-                >
-              </div>
-            </div>
-            <p>
-              In doing so, we close and complete the element, creating an
-              invisible box that wraps around the text in between the two tags
-              of our element. Most common HTML elements have a start and end tag
-              (a.k.a. opening and closing tags), that work like the following:
-            </p>
-            <pre>
-This sentence has &lt;start&gt;some Text&lt;/end&gt; I want to manipulate.
-</pre
-            >
-            <p>
-              And generally speaking, if the element you want to use requires an
-              end tag and you don't use it, then everything following the start
-              tag that can be affected will be affected.
-            </p>
-            <div class="practice-callout">
-              Now here's another opportunity
-              <a
-                href="https://codepen.io/kclarkedesign/pen/JjGmGyO?editors=1000"
-                rel="noopener"
-                target="_blank"
-                ><strong>to try it yourself!</strong></a
-              >
-              Though if it isn't making sense or you're not sure about
-              something, stay positive! I promise it will all make sense soon.
-            </div>
           </div>
           <!--/ lecture__section -->
         </div>

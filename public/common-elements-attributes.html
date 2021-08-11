@@ -490,7 +490,7 @@
         <div class="navbar-nav flex-row">
           <a href="/#projects" class="nav-link">Projects</a>
           <a href="/#profiles" class="nav-link">Profiles</a>
-          <a href="/course-template.html" class="nav-link">Course</a>
+          <a href="/getting-started.html" class="nav-link">Course</a>
           <a href="javascript:void(0);" class="hamburger" onclick="myFunction()"
             ><span class="sr-text">Main menu</span>
             <i class="fa fa-bars"></i>
@@ -509,13 +509,16 @@
               Learn to code HTML from scratch
             </h3>
             <ul class="section-list">
-              <li class="section-item current-item">
-                <a href="#" class="section-item__link">
+              <li class="section-item">
+                <a href="./getting-started.html" class="section-item__link">
                   <span class="lecture-name">Getting Started</span>
                 </a>
               </li>
-              <li class="section-item">
-                <a href="#" class="section-item__link">
+              <li class="section-item current-item">
+                <a
+                  href="./common-elements-attributes.html"
+                  class="section-item__link"
+                >
                   <span class="lecture-name"
                     >Common Elements and Attributes</span
                   >
@@ -532,14 +535,17 @@
                 </a>
               </li>
               <li class="section-item">
-                <a href="#" class="section-item__link">
+                <a href="./bonus-css-intro.html" class="section-item__link">
                   <span class="lecture-name"
                     >Bonus: Add some flair! (A CSS Introduction)</span
                   >
                 </a>
               </li>
               <li class="section-item">
-                <a href="#" class="section-item__link">
+                <a
+                  href="./free-mini-cheatsheet.html"
+                  class="section-item__link"
+                >
                   <span class="lecture-name"
                     >FREE DOWNLOAD: Beginner HTML & CSS Mini-Cheatsheet</span
                   >
@@ -549,218 +555,328 @@
           </div>
         </div>
         <div role="main" class="course-main p-3">
-          <h2 class="lecture__title">Getting Started</h2>
+          <h2 class="lecture__title">Common Elements and Attributes</h2>
           <div class="lecture__section p-1">
             <p>
-              The goal of this guide is to give anyone the ability to understand
-              and effectively code with HTML confidently, and as painlessly as
-              possible.
+              Wow! Look how far you've come. You're well on you way to becoming
+              proficient with HTML. And before we continue be sure to repeat our
+              mantra. Say to yourself or aloud; "I CAN DO THIS!, I WILL DO
+              THIS!" Now say it one more time!!
             </p>
+            <p>All finished? Great! <strong>let's move on!</strong></p>
             <p>
-              <span style="color: rgb(32, 33, 36)"
-                >And before you begin, I want you to forget everything you think
-                you know about coding and say to yourself, "I CAN DO THIS!, I
-                WILL DO THIS!". I sincerely want you to believe in yourself as
-                much as I believe in you.</span
-              >
+              This lecture is all about common tags and a new HTML coding term
+              called <em><strong>attributes</strong>.</em> If you feel stuck or
+              unsure about something, leave a comment!<br />
             </p>
-            <p><strong>Now let's do this!</strong></p>
           </div>
           <!--/ lecture__section -->
           <!-- <h1 class="section-title">The Basics</h1> -->
           <div class="lecture__section p-1">
-            <h2 class="lecture__section-heading">What is HTML?</h2>
+            <h2 class="lecture__section-heading">
+              Common Elements (and their tags)
+            </h2>
             <p>
-              HTML stands for <strong>Hypertext Markup Language</strong> and it
-              is the primary way to interact with web page code. If you can name
-              a website or web page, I guarantee it uses HTML somehow. And by
-              the end of this lecture, you will understand the following:
+              You'll realize that you can accomplish a lot with these basic HTML
+              elements. <br /><strong>NOTE: *</strong> = elements that have a
+              corresponding end (closing) tag.
             </p>
-            <ol>
+            <ul>
               <li>
-                HTML is the standard way to manipulate and give meaning to text
-                and other parts of a web page.
+                <strong>Heading</strong>, sized in order of largest to smallest,
+                defined by using <code class="language-html">&lt;h1&gt;</code>,
+                <code class="language-html">&lt;h2&gt;</code>,
+                <code class="language-html">&lt;h3&gt;</code>,
+                <code class="language-html">&lt;h4&gt;</code>,
+                <code class="language-html">&lt;h5&gt;</code>,
+                <code class="language-html">&lt;h6&gt;</code> tags.*
               </li>
               <li>
-                HTML has a few common terms to remember. Two of those terms are
-                <strong><em>tags </em></strong>and<em>
-                  <strong>elements</strong>.</em
-                >
+                <strong>Paragraph</strong>, defined by using the
+                <code>&lt;p&gt;</code> tag.*
               </li>
               <li>
-                HTML markup refers to the building blocks (i.e. elements and
-                tags) of web pages.
+                <strong>Italic</strong> or <strong>Emphasis</strong>, defined by
+                using <code>&lt;i&gt;</code> or <code>&lt;em&gt;</code> tags.*
               </li>
               <li>
-                As you markup/build your page, you are speaking in the web
-                browser's language, telling it what to display.
+                <strong>Bold</strong> or <strong>Strong</strong>, defined by
+                using <code>&lt;b&gt;</code> or
+                <code>&lt;strong&gt;</code> tags.*
               </li>
-            </ol>
-          </div>
-          <!--/ lecture__section -->
-          <div class="lecture__section p-1">
-            <h2 class="lecture__section-heading">An HTML Element in action</h2>
-            <p>
-              An HTML element is a marker that defines what happens next within
-              a page. Elements are created when you combine content with HTML
-              tags. As shown below, we're using the bold tags
-              <code>&lt;b&gt;</code> and <code>&lt;/b&gt;</code> to make content
-              between them bold. The <code>&lt;b&gt;</code> is the
-              <strong>start t</strong><strong>ag</strong>, which tells the
-              browser to make everything following it bold until it sees the
-              <code>&lt;/b&gt;</code> <strong>end tag </strong>which completes
-              the bold HTML element.
-            </p>
+              <li>
+                <strong>Anchor </strong>(or "a" tag), links web pages and
+                content together, defined by using the
+                <code>&lt;a&gt;</code> tag.*
+              </li>
+              <li>
+                <strong>Unordered List</strong> and
+                <strong>List item</strong> defined by using
+                <code>&lt;ul&gt;</code> and <code>&lt;li&gt;</code> tags.*
+              </li>
+              <li>
+                <strong>Ordered List</strong> and
+                <strong>List item</strong> defined by using
+                <code>&lt;ol&gt;</code> and <code>&lt;li&gt;</code> tags.*
+              </li>
+              <li>
+                <strong>Division</strong>, defined by using the
+                <code>&lt;div&gt;</code> tag.*
+              </li>
+              <li>
+                <strong>Image</strong>, defined by using the
+                <code>&lt;img&gt;</code> tag.
+              </li>
+              <li>
+                <strong>Horizontal Rule</strong>, a simple separator, defined by
+                using the <code>&lt;hr&gt;</code> tag.
+              </li>
+              <li>
+                <strong>Span</strong>, an inline container used to mark up only
+                a part of a text, or document, defined by using the
+                <code>&lt;span&gt;</code> tag.*
+              </li>
+              <li>
+                <strong>Line break</strong>, a single line break, defined by
+                using the <code>&lt;br&gt;</code> tag.
+              </li>
+            </ul>
             <p style="margin-top: 1em">
-              Example: Using the HTML bold tags to make some text bold
+              Example: Some common elements in action
             </p>
             <div
               data-code-viewer=""
-              data-code-viewer-code="Get started with <b>HTML</b> today"
+              data-code-viewer-code="<h1>Let's see what common tags can do!</h1>
+<h2>While there are many more tags, these will take you very far.</h2>
+<p>Paragraph tags come in handy while writing multiple sentences and you need to break it up.</p>
+<p>If you've ever used google docs, microsoft word or wrote an email, chances are <i>HTML was being used</i></p>
+<hr>
+<ul>
+  <li>Unordered lists are also know as <b>bulleted lists</b></li>
+  <li>List items should only be used inside unordered or ordered list tags</li>
+</ul>
+<div>
+  <h6>A Division or &quot;Div&quot; is a main way to separate content and elements in a page.</h6>
+  <p>We'll go over how powerful divs are as they can be one of the main ways to create different layouts.</p>
+</div>"
               data-code-viewer-language="html"
             >
               <div class="code-viewer">
                 <div class="code-viewer-label">html</div>
                 <code class="html hljs xml"
-                  >Get started with
+                  ><span class="hljs-tag"
+                    >&lt;<span class="hljs-name">h1</span>&gt;</span
+                  >Let's see what common tags can do!<span class="hljs-tag"
+                    >&lt;/<span class="hljs-name">h1</span>&gt;</span
+                  >
+                  <span class="hljs-tag"
+                    >&lt;<span class="hljs-name">h2</span>&gt;</span
+                  >While there are many more tags, these will take you very
+                  far.<span class="hljs-tag"
+                    >&lt;/<span class="hljs-name">h2</span>&gt;</span
+                  >
+                  <span class="hljs-tag"
+                    >&lt;<span class="hljs-name">p</span>&gt;</span
+                  >Paragraph tags come in handy while writing multiple sentences
+                  and you need to break it up.<span class="hljs-tag"
+                    >&lt;/<span class="hljs-name">p</span>&gt;</span
+                  >
+                  <span class="hljs-tag"
+                    >&lt;<span class="hljs-name">p</span>&gt;</span
+                  >If you've ever used google docs, microsoft word or wrote an
+                  email, chances are
+                  <span class="hljs-tag"
+                    >&lt;<span class="hljs-name">i</span>&gt;</span
+                  >HTML was being used<span class="hljs-tag"
+                    >&lt;/<span class="hljs-name">i</span>&gt;</span
+                  ><span class="hljs-tag"
+                    >&lt;/<span class="hljs-name">p</span>&gt;</span
+                  >
+                  <span class="hljs-tag"
+                    >&lt;<span class="hljs-name">hr</span>&gt;</span
+                  >
+                  <span class="hljs-tag"
+                    >&lt;<span class="hljs-name">ul</span>&gt;</span
+                  >
+                  <span class="hljs-tag"
+                    >&lt;<span class="hljs-name">li</span>&gt;</span
+                  >Unordered lists are also know as
                   <span class="hljs-tag"
                     >&lt;<span class="hljs-name">b</span>&gt;</span
-                  >HTML<span class="hljs-tag"
+                  >bulleted lists<span class="hljs-tag"
                     >&lt;/<span class="hljs-name">b</span>&gt;</span
+                  ><span class="hljs-tag"
+                    >&lt;/<span class="hljs-name">li</span>&gt;</span
                   >
-                  today</code
+                  <span class="hljs-tag"
+                    >&lt;<span class="hljs-name">li</span>&gt;</span
+                  >List items should only be used inside unordered or ordered
+                  list tags<span class="hljs-tag"
+                    >&lt;/<span class="hljs-name">li</span>&gt;</span
+                  >
+                  <span class="hljs-tag"
+                    >&lt;/<span class="hljs-name">ul</span>&gt;</span
+                  >
+                  <span class="hljs-tag"
+                    >&lt;<span class="hljs-name">div</span>&gt;</span
+                  >
+                  <span class="hljs-tag"
+                    >&lt;<span class="hljs-name">h6</span>&gt;</span
+                  >A Division or "Div" is a main way to separate content and
+                  elements in a page.<span class="hljs-tag"
+                    >&lt;/<span class="hljs-name">h6</span>&gt;</span
+                  >
+                  <span class="hljs-tag"
+                    >&lt;<span class="hljs-name">p</span>&gt;</span
+                  >We'll go over how powerful divs are as they can be one of the
+                  main ways to create different layouts.<span class="hljs-tag"
+                    >&lt;/<span class="hljs-name">p</span>&gt;</span
+                  >
+                  <span class="hljs-tag"
+                    >&lt;/<span class="hljs-name">div</span>&gt;</span
+                  ></code
                 >
               </div>
             </div>
             <p>Results in &hellip;</p>
-            <h3 style="margin-top: 1em">
-              <blockquote style="margin-top: 1em">
-                Get started with <strong>HTML</strong> today
-              </blockquote>
-            </h3>
-            <p>This is an example of a bold HTML element in all its' glory!</p>
+            <blockquote>
+              <h1>Let's see what common tags can do!</h1>
+              <h2>
+                While there are many more tags, these will take you very far.
+              </h2>
+              Paragraph tags come in handy while writing multiple sentences and
+              you need to break it up.
+              <br />
+              If you've ever used google docs, microsoft word or wrote an email,
+              chances are <i>HTML was being used</i>
+              <br />
+              <hr />
+              <ul>
+                <li>
+                  Unordered lists are also know as
+                  <strong>bulleted lists</strong>
+                </li>
+                <li>
+                  List items should only be used inside unordered or ordered
+                  list tags
+                </li>
+              </ul>
+              <div>
+                <h6>
+                  A Division or "Div" is a main way to separate content and
+                  elements in a page.
+                </h6>
+                We'll go over how powerful divs are as they can be one of the
+                main ways to create different layouts.
+                <br />
+              </div>
+            </blockquote>
             <div class="practice-callout">
-              If you're feeling confident, try replicating the example by
+              Now let's code, try
               <a
-                href="https://codepen.io/kclarkedesign/pen/oNbyrME?editors=1000"
-                rel="noopener"
+                href="https://codepen.io/kclarkedesign/pen/xxZQEzr?editors=1000"
                 target="_blank"
-                ><strong>giving it a shot yourself!</strong></a
-              >
-              Though if you don't understand what's going or can't get it
-              working, don't worry! You'll get the idea soon enough.
+                rel="noopener"
+                ><strong>working with common elements</strong></a
+              >!
             </div>
           </div>
           <!--/ lecture__section -->
           <div class="lecture__section p-1">
-            <h2 class="lecture__section-heading">Visualizing the structure</h2>
+            <h2 class="lecture__section-heading">Attributes</h2>
             <p>
-              Let us go over one way to visualize and remember how to structure
-              HTML. I always recommend trying to use something physical you're
-              familiar with to build a mental model/picture of what's going on
-              in your code.
+              HTML elements have additional options called
+              <em>attributes</em> that help you expand on what your markup can
+              do. You can add one or more attributes to the start/opening tag of
+              HTML elements:
             </p>
-            <h3 class="">
-              <strong>The<em> "Wrapping"</em> Concept</strong>
-            </h3>
-            <figure class="o-figure">
-              <img
-                src="https://www.filepicker.io/api/file/KHtYpq0SpuoW1wPgidZC"
-                class="img-responsive"
-                alt="animated example of the wrapping concept, a box is drawn surrounding the text 'HTML'"
-                loading="lazy"
-                width="600"
-                height="136"
-              />
-            </figure>
-
-            <p>
-              In the <em>Wrapping</em> concept, HTML elements can be thought of
-              as boxes or containers that surround and hold text (or other HTML
-              elements). Thus, only the things that are wrapped are effected by
-              the HTML element. So let's apply this concept to the following
-              sentence and "wrap" some of the text with the <em>bold </em> html
-              element.
-            </p>
-            <div
-              data-code-viewer=""
-              data-code-viewer-code="Get started with HTML today"
-              data-code-viewer-language="html"
-            >
-              <div class="code-viewer">
-                <div class="code-viewer-label">html</div>
-                <code class="html hljs xml">Get started with HTML today</code>
-              </div>
-            </div>
-            <p>
-              First, we'll start our wrap right before the text "HTML" by adding
-              the first part of our bold element. This first part can be
-              referred to as the start tag. Which essentially opens the bold
-              element.
-            </p>
-            <div
-              data-code-viewer=""
-              data-code-viewer-code="Get started with <b>HTML today"
-              data-code-viewer-language="html"
-            >
-              <div class="code-viewer">
-                <div class="code-viewer-label">html</div>
-                <code class="html hljs xml"
-                  >Get started with
-                  <span class="hljs-tag"
-                    >&lt;<span class="hljs-name">b</span>&gt;</span
-                  >HTML today</code
-                >
-              </div>
-            </div>
-            <p>
-              Next up we'll close the bold element with an end tag. Which looks
-              like the start tag except with a forward slash (/) added in.
-            </p>
-            <div
-              data-code-viewer=""
-              data-code-viewer-code="Get started with <b>HTML</b> today"
-              data-code-viewer-language="html"
-            >
-              <div class="code-viewer">
-                <div class="code-viewer-label">html</div>
-                <code class="html hljs xml"
-                  >Get started with
-                  <span class="hljs-tag"
-                    >&lt;<span class="hljs-name">b</span>&gt;</span
-                  >HTML<span class="hljs-tag"
-                    >&lt;/<span class="hljs-name">b</span>&gt;</span
-                  >
-                  today</code
-                >
-              </div>
-            </div>
-            <p>
-              In doing so, we close and complete the element, creating an
-              invisible box that wraps around the text in between the two tags
-              of our element. Most common HTML elements have a start and end tag
-              (a.k.a. opening and closing tags), that work like the following:
-            </p>
-            <pre>
-This sentence has &lt;start&gt;some Text&lt;/end&gt; I want to manipulate.
+            <pre style="margin-bottom: 2em; margin-top: -10px">
+&lt;tag attribute="..."&gt;some text&lt;/tag&gt;
 </pre
             >
             <p>
-              And generally speaking, if the element you want to use requires an
-              end tag and you don't use it, then everything following the start
-              tag that can be affected will be affected.
+              Some common HTML elements such as the <code>&lt;a&gt;</code> and
+              <code>&lt;img&gt;</code> tags have unique attributes:
             </p>
-            <div class="practice-callout">
-              Now here's another opportunity
+            <ul>
+              <li>
+                The <code>&lt;a&gt;</code> tag has the
+                <code>href</code> (<strong>H</strong>ypertext
+                <strong>REF</strong>erence) attribute which specifies which page
+                or file to link to. And the <code>target</code> attribute which
+                sets how you want it to open (same window, new window, etc).
+                More info on the
+                <a
+                  href="https://www.w3schools.com/tags/att_a_target.asp"
+                  target="_blank"
+                  ><strong>target attribute</strong></a
+                >.
+                <blockquote>
+                  Example:
+                  <code class="break-code"
+                    >&lt;a href="https://createwithkirk.teachable.com"
+                    target="_blank" &gt;School Homepage&lt;/a&gt;</code
+                  ><br />Results in:
+                  <a href="https://createwithkirk.teachable.com" target="_blank"
+                    >School Homepage</a
+                  >
+                </blockquote>
+              </li>
+              <li>
+                The <code>&lt;img&gt;</code> tag (used to add images to a page)
+                has the required attributes
+                <code>src</code> (<strong>s</strong>ou<strong>r</strong
+                ><strong>c</strong>e) which specifies the image to display and
+                <code>alt</code> (<strong>alt</strong>ernate text) which is the
+                text that shows when the image cannot be displayed (or
+                <em>broken</em>).
+                <blockquote>
+                  Example:
+                  <code class="break-code"
+                    >&lt;img src="https://bit.ly/attributes-example-img"
+                    alt="Example image"&gt;</code
+                  ><br />
+                  Results in:
+                  <img
+                    src="https://bit.ly/attributes-example-img"
+                    alt="Example image"
+                  /><br />
+                  or when broken: <img src="" alt="Example image" />
+                </blockquote>
+              </li>
+            </ul>
+            <div class="practice-callout mb-3">
+              Now it's your turn, let's see
               <a
-                href="https://codepen.io/kclarkedesign/pen/JjGmGyO?editors=1000"
-                rel="noopener"
+                href="https://codepen.io/kclarkedesign/pen/JjGmexK?editors=1000"
                 target="_blank"
-                ><strong>to try it yourself!</strong></a
-              >
-              Though if it isn't making sense or you're not sure about
-              something, stay positive! I promise it will all make sense soon.
+                ><strong>what you can do</strong></a
+              >.
             </div>
+            <p>
+              NOTE: Some attributes can be used by any HTML element, known as
+              <em>Global Attributes</em>. The following global attributes are
+              also used heavily by another important web language, named CSS.
+              For more info, check out this
+              <a
+                href="https://www.w3schools.com/css/css_intro.asp"
+                target="_blank"
+                ><strong>CSS introduction</strong></a
+              >.
+            </p>
+            <ul>
+              <li>
+                <code>style</code> - Defines CSS styles directly on an element.
+              </li>
+              <li>
+                <code>id</code> - Defines a unique ID for a single element
+                within a page.
+              </li>
+              <li>
+                <code>class</code> - Defines one or more CSS classes for an
+                element.
+              </li>
+            </ul>
           </div>
           <!--/ lecture__section -->
         </div>
