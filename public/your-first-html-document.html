@@ -265,7 +265,13 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.3.0/font-awesome-animation.min.css"
     />
-
+    <link
+      rel="preload"
+      href="./css/vs2015.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="./css/vs2015.min.css" /></noscript>
     <link
       rel="preload"
       href="./css/lecture.css"
@@ -583,6 +589,7 @@
               <strong
                 ><a
                   href="https://codepen.io/kclarkedesign/pen/KKVEvdQ?editors=1100"
+                  rel="noopener"
                   target="_blank"
                   >this code editor</a
                 >.</strong
@@ -649,7 +656,10 @@
               <code>&lt;title&gt;</code> element which controls the text found
               in your browser's tab.<br /><br /><img
                 src="data:image/png;base64,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"
-                alt=""
+                alt="Screenshot of a browser tab with a title"
+                width="260"
+                height="69"
+                style="height: auto"
               /><br />
             </p>
             <p>Enter whatever you like or use "My first HTML document".</p>
@@ -767,11 +777,7 @@ This HTML document marks a new beginning for me. In a short amount of time I've 
       </section>
     </main>
     <footer class="text-center p-4">&copy; 2021 Kirk Clarke</footer>
-
-    <script
-      defer="defer"
-      src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"
-      type="text/javascript"
-    ></script>
+    <script src="./js/highlight.min.js"></script>
+    <script src="./js/code-viewer.js" type="text/javascript"></script>
   </body>
 </html>

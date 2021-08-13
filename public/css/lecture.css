@@ -102,6 +102,7 @@ pre {
   padding: 1rem 2rem !important;
   overflow-y: auto;
   width: 100%;
+  background: var(--light);
 }
 
 .course-sidebar {
@@ -163,11 +164,10 @@ code {
   padding: 0.5em 1em;
 }
 .code-viewer code {
-  /* white-space: pre; */
-  white-space: pre-line;
+  white-space: pre;
 }
 .code-viewer-label {
-  background: var(--erie-black);
+  background: var(--charcoal);
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   color: var(--color-celadon);
@@ -180,15 +180,19 @@ code {
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  color: var(--light-periwinkle);
-  background: var(--charcoal);
+  /* color: var(--light-periwinkle);
+  background: var(--charcoal); */
 }
 .hljs-section,
 .hljs-name,
 .hljs-selector-tag,
 .hljs-deletion,
 .hljs-subst {
-  color: #e06c75;
+  color: #ff848e;
+}
+.hljs-comment,
+.hljs-quote {
+  color: #63bd54;
 }
 /** **/
 .practice-callout {

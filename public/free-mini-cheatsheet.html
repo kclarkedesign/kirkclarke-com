@@ -265,7 +265,13 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.3.0/font-awesome-animation.min.css"
     />
-
+    <link
+      rel="preload"
+      href="./css/vs2015.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="./css/vs2015.min.css" /></noscript>
     <link
       rel="preload"
       href="./css/lecture.css"
@@ -622,11 +628,7 @@
       </section>
     </main>
     <footer class="text-center p-4">&copy; 2021 Kirk Clarke</footer>
-
-    <script
-      defer="defer"
-      src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"
-      type="text/javascript"
-    ></script>
+    <script src="./js/highlight.min.js"></script>
+    <script src="./js/code-viewer.js" type="text/javascript"></script>
   </body>
 </html>

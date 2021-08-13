@@ -265,7 +265,13 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.3.0/font-awesome-animation.min.css"
     />
-
+    <link
+      rel="preload"
+      href="./css/vs2015.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="./css/vs2015.min.css" /></noscript>
     <link
       rel="preload"
       href="./css/lecture.css"
@@ -660,84 +666,7 @@
   <p>We'll go over how powerful divs are as they can be one of the main ways to create different layouts.</p>
 </div>"
               data-code-viewer-language="html"
-            >
-              <div class="code-viewer">
-                <div class="code-viewer-label">html</div>
-                <code class="html hljs xml"
-                  ><span class="hljs-tag"
-                    >&lt;<span class="hljs-name">h1</span>&gt;</span
-                  >Let's see what common tags can do!<span class="hljs-tag"
-                    >&lt;/<span class="hljs-name">h1</span>&gt;</span
-                  >
-                  <span class="hljs-tag"
-                    >&lt;<span class="hljs-name">h2</span>&gt;</span
-                  >While there are many more tags, these will take you very
-                  far.<span class="hljs-tag"
-                    >&lt;/<span class="hljs-name">h2</span>&gt;</span
-                  >
-                  <span class="hljs-tag"
-                    >&lt;<span class="hljs-name">p</span>&gt;</span
-                  >Paragraph tags come in handy while writing multiple sentences
-                  and you need to break it up.<span class="hljs-tag"
-                    >&lt;/<span class="hljs-name">p</span>&gt;</span
-                  >
-                  <span class="hljs-tag"
-                    >&lt;<span class="hljs-name">p</span>&gt;</span
-                  >If you've ever used google docs, microsoft word or wrote an
-                  email, chances are
-                  <span class="hljs-tag"
-                    >&lt;<span class="hljs-name">i</span>&gt;</span
-                  >HTML was being used<span class="hljs-tag"
-                    >&lt;/<span class="hljs-name">i</span>&gt;</span
-                  ><span class="hljs-tag"
-                    >&lt;/<span class="hljs-name">p</span>&gt;</span
-                  >
-                  <span class="hljs-tag"
-                    >&lt;<span class="hljs-name">hr</span>&gt;</span
-                  >
-                  <span class="hljs-tag"
-                    >&lt;<span class="hljs-name">ul</span>&gt;</span
-                  >
-                  <span class="hljs-tag"
-                    >&lt;<span class="hljs-name">li</span>&gt;</span
-                  >Unordered lists are also know as
-                  <span class="hljs-tag"
-                    >&lt;<span class="hljs-name">b</span>&gt;</span
-                  >bulleted lists<span class="hljs-tag"
-                    >&lt;/<span class="hljs-name">b</span>&gt;</span
-                  ><span class="hljs-tag"
-                    >&lt;/<span class="hljs-name">li</span>&gt;</span
-                  >
-                  <span class="hljs-tag"
-                    >&lt;<span class="hljs-name">li</span>&gt;</span
-                  >List items should only be used inside unordered or ordered
-                  list tags<span class="hljs-tag"
-                    >&lt;/<span class="hljs-name">li</span>&gt;</span
-                  >
-                  <span class="hljs-tag"
-                    >&lt;/<span class="hljs-name">ul</span>&gt;</span
-                  >
-                  <span class="hljs-tag"
-                    >&lt;<span class="hljs-name">div</span>&gt;</span
-                  >
-                  <span class="hljs-tag"
-                    >&lt;<span class="hljs-name">h6</span>&gt;</span
-                  >A Division or "Div" is a main way to separate content and
-                  elements in a page.<span class="hljs-tag"
-                    >&lt;/<span class="hljs-name">h6</span>&gt;</span
-                  >
-                  <span class="hljs-tag"
-                    >&lt;<span class="hljs-name">p</span>&gt;</span
-                  >We'll go over how powerful divs are as they can be one of the
-                  main ways to create different layouts.<span class="hljs-tag"
-                    >&lt;/<span class="hljs-name">p</span>&gt;</span
-                  >
-                  <span class="hljs-tag"
-                    >&lt;/<span class="hljs-name">div</span>&gt;</span
-                  ></code
-                >
-              </div>
-            </div>
+            ></div>
             <p>Results in &hellip;</p>
             <blockquote>
               <h1>Let's see what common tags can do!</h1>
@@ -833,12 +762,12 @@
                 <blockquote>
                   Example:
                   <code class="break-code"
-                    >&lt;img src="https://bit.ly/attributes-example-img"
+                    >&lt;img src="./images/HTML-attribute-concept.gif"
                     alt="Example image"&gt;</code
                   ><br />
                   Results in:
                   <img
-                    src="https://bit.ly/attributes-example-img"
+                    src="./images/HTML-attribute-concept.gif"
                     alt="Example image"
                   /><br />
                   or when broken: <img src="" alt="Example image" />
@@ -849,6 +778,7 @@
               Now it's your turn, let's see
               <a
                 href="https://codepen.io/kclarkedesign/pen/JjGmexK?editors=1000"
+                rel="noopener"
                 target="_blank"
                 ><strong>what you can do</strong></a
               >.
@@ -860,6 +790,7 @@
               For more info, check out this
               <a
                 href="https://www.w3schools.com/css/css_intro.asp"
+                rel="noopener"
                 target="_blank"
                 ><strong>CSS introduction</strong></a
               >.
@@ -883,11 +814,7 @@
       </section>
     </main>
     <footer class="text-center p-4">&copy; 2021 Kirk Clarke</footer>
-
-    <script
-      defer="defer"
-      src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"
-      type="text/javascript"
-    ></script>
+    <script src="./js/highlight.min.js"></script>
+    <script src="./js/code-viewer.js" type="text/javascript"></script>
   </body>
 </html>
