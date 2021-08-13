@@ -10,7 +10,7 @@
     <title>Kirk Clarke | Web (UI/UX) Designer & Engineer</title>
 
     <link
-      rel="preload"
+      rel="stylesheet preload"
       href="./css/base.css"
       as="style"
       onload="this.onload=null;this.rel='stylesheet'"
@@ -245,7 +245,7 @@
     </style>
 
     <link
-      rel="preload"
+      rel="stylesheet preload"
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
       as="style"
       onload="this.onload=null;this.rel='stylesheet'"
@@ -266,21 +266,21 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.3.0/font-awesome-animation.min.css"
     />
     <link
-      rel="preload"
+      rel="stylesheet preload"
       href="./css/vs2015.min.css"
       as="style"
       onload="this.onload=null;this.rel='stylesheet'"
     />
     <noscript><link rel="stylesheet" href="./css/vs2015.min.css" /></noscript>
     <link
-      rel="preload"
+      rel="stylesheet preload"
       href="./css/lecture.css"
       as="style"
       onload="this.onload=null;this.rel='stylesheet'"
     />
     <noscript><link rel="stylesheet" href="./css/lecture.css" /></noscript>
     <link
-      rel="preload"
+      rel="stylesheet preload"
       href="./css/navbar.css"
       as="style"
       onload="this.onload=null;this.rel='stylesheet'"
@@ -486,21 +486,26 @@
           <a
             class="course-nav-link js-toggle"
             data-toggle="course-sidebar"
-            href="#"
+            href="javascript:void(0);"
           >
             <i class="fas fa-list-ul"></i>
             <span class="course-nav-link__text">Course Overview</span></a
           >
         </div>
 
-        <div class="navbar-nav flex-row">
-          <a href="/#projects" class="nav-link">Projects</a>
-          <a href="/#profiles" class="nav-link">Profiles</a>
-          <a href="/getting-started.html" class="nav-link">Course</a>
-          <a href="javascript:void(0);" class="hamburger" onclick="myFunction()"
+        <div class="main-nav navbar-nav">
+          <a
+            href="javascript:void(0);"
+            class="hamburger js-toggle"
+            data-toggle="main-nav__links"
             ><span class="sr-text">Main menu</span>
             <i class="fa fa-bars"></i>
           </a>
+          <div class="main-nav__links">
+            <a href="/#projects" class="nav-link">Projects</a>
+            <a href="/#profiles" class="nav-link">Profiles</a>
+            <a href="/getting-started.html" class="nav-link">Course</a>
+          </div>
         </div>
       </nav>
     </header>
@@ -779,6 +784,7 @@ This sentence has &lt;start&gt;some Text&lt;/end&gt; I want to manipulate.
       </section>
     </main>
     <footer class="text-center p-4">&copy; 2021 Kirk Clarke</footer>
+    <script src="./js/toggle.js"></script>
     <script src="./js/highlight.min.js"></script>
     <script src="./js/code-viewer.js" type="text/javascript"></script>
   </body>

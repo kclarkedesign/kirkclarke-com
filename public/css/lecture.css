@@ -119,6 +119,7 @@ pre {
   height: 100%;
   top: 0;
   overflow-y: auto;
+  transition: 0.3s height ease-in-out;
 }
 
 @media screen and (max-width: 767px) {
@@ -129,7 +130,7 @@ pre {
 }
 
 @media screen and (max-width: 767px) {
-  .course-sidebar.sidebar-open {
+  .course-sidebar.is-open {
     display: inline-block;
     height: 70vh;
   }
