@@ -1,4 +1,5 @@
 const TOGGLE_BTN_SELECTOR = ".js-toggle";
+const NAV_LINK_SELECTOR = ".nav-link";
 const TOGGLE_NAV_CLASS = "is-open";
 
 function toggleClass($elem, className) {
@@ -18,6 +19,17 @@ function toggleNavClass($elem) {
   }
 }
 
+function handleMainNavLinks(nodes, event, callback) {
+  nodes.forEach((node, index) => {
+    node.addEventListener(event, function () {
+      node.parentElement.previousSibling.previousSibling.classList.remove(
+        TOGGLE_NAV_CLASS
+      );
+      node.parentElement.classList.remove(TOGGLE_NAV_CLASS);
+    });
+  });
+}
+
 const $elems = document.querySelectorAll(TOGGLE_BTN_SELECTOR);
 
 $elems.forEach((element) => {
@@ -26,3 +38,7 @@ $elems.forEach((element) => {
     toggleClass(element, TOGGLE_NAV_CLASS);
   });
 });
+
+const $navLinkElems = document.querySelectorAll(NAV_LINK_SELECTOR);
+
+handleMainNavLinks($navLinkElems, "click");

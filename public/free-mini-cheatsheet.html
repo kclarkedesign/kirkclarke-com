@@ -4,10 +4,14 @@
     <meta charset="UTF-8" />
     <meta
       name="description"
-      content="Kirk Clarke | Web (UI/UX) Designer & Engineer, Tech Coach"
+      content="Use this free cheatsheet to help you master the basics of HTML & CSS!"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kirk Clarke | Web (UI/UX) Designer & Engineer</title>
+    <title>
+      FREE DOWNLOAD: Beginner HTML & CSS Mini-Cheatsheet - Free beginners guide
+      to coding: Learn HTML fast || Kirk Clarke | Web (UI/UX) Designer &
+      Engineer
+    </title>
 
     <link
       rel="stylesheet preload"
@@ -252,17 +256,17 @@
     />
     <noscript
       ><link
-        rel="stylesheet"
+        rel="stylesheet preload"
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
     /></noscript>
     <link
       media="all"
-      rel="stylesheet"
+      rel="stylesheet preload"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     />
     <link
       media="all"
-      rel="stylesheet"
+      rel="stylesheet preload"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.3.0/font-awesome-animation.min.css"
     />
     <link
@@ -437,10 +441,7 @@
   </head>
   <body>
     <header>
-      <nav
-        id="navbar"
-        class="nav pl-3 align-items-center justify-content-between"
-      >
+      <nav id="navbar" class="nav align-items-center justify-content-between">
         <div class="navbar-brand">
           <a class="navbar-brand__link" href="/"
             ><span class="sr-text">Kirk Clarke's personal portfolio</span
@@ -493,14 +494,20 @@
           >
         </div>
 
-        <div class="navbar-nav flex-row">
-          <a href="/#projects" class="nav-link">Projects</a>
-          <a href="/#profiles" class="nav-link">Profiles</a>
-          <a href="/getting-started.html" class="nav-link">Course</a>
-          <a href="javascript:void(0);" class="hamburger" onclick="myFunction()"
+        <div class="main-nav navbar-nav">
+          <a
+            href="javascript:void(0);"
+            class="hamburger js-toggle"
+            data-toggle="main-nav__links"
             ><span class="sr-text">Main menu</span>
             <i class="fa fa-bars"></i>
+            <i class="fa fa-times"></i>
           </a>
+          <div class="main-nav__links">
+            <a href="/#projects" class="nav-link">Projects</a>
+            <a href="/#profiles" class="nav-link">Profiles</a>
+            <a href="/getting-started.html" class="nav-link">Course</a>
+          </div>
         </div>
       </nav>
     </header>
@@ -628,6 +635,7 @@
       </section>
     </main>
     <footer class="text-center p-4">&copy; 2021 Kirk Clarke</footer>
+    <script src="./js/toggle.js"></script>
     <script src="./js/highlight.min.js"></script>
     <script src="./js/code-viewer.js" type="text/javascript"></script>
   </body>

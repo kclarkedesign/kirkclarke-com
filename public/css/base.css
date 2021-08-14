@@ -12,9 +12,9 @@
   width: 1px;
   word-wrap: normal !important;
 }
+.lecture img,
 .img-responsive {
   max-width: 100%;
-
   height: auto;
 }
 
@@ -23,4 +23,12 @@
   --erie-black: #191919;
   --charcoal: #383c47;
   --light-periwinkle: #cbd3e2;
+}
+
+dl,
+ol,
+ul {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-left: 1em;
 }

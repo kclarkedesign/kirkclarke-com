@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta
       name="description"
-      content="Kirk Clarke | Web (UI/UX) Designer & Engineer, Tech Coach"
+      content="Portfolio and course created by Kirk Clarke, a Web (UI/UX) Designer & Engineer, Tech Coach"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kirk Clarke | Web (UI/UX) Designer & Engineer</title>
@@ -16,12 +16,12 @@
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"></noscript>
     <link
       media="all"
-      rel="stylesheet"
+      rel="stylesheet preload"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     />
     <link
       media="all"
-      rel="stylesheet"
+      rel="stylesheet preload"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.3.0/font-awesome-animation.min.css"
     />
     <link
@@ -31,6 +31,14 @@
       onload="this.onload=null;this.rel='stylesheet'"
     />
     <noscript><link rel="stylesheet" href="./css/navbar.css" /></noscript>
+    <link
+      rel="stylesheet preload"
+      href="./css/base.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="./css/base.css" /></noscript>
+    
     <style>
       :root {
         --color-celadon: #98dfaf;
@@ -198,11 +206,12 @@
     <header>
       <nav
         id="navbar"
-        class="nav pl-3 align-items-center justify-content-between"
+        class="nav align-items-center justify-content-between"
       >
         <div class="navbar-brand">
-          <a href="/"
-            ><span class="sr-text">Kirk Clarke's personal portfolio</span><svg
+          <a class="navbar-brand__link" href="/"
+            ><span class="sr-text">Kirk Clarke's personal portfolio</span
+            ><svg
               id="Layer_1"
               class="brand"
               data-name="Layer 1"
@@ -242,17 +251,20 @@
               <rect class="cls-2" width="327.68" height="327.69"></rect></svg
           ></a>
         </div>
-        <div class="navbar-nav flex-row">
-          <a href="/#projects" class="nav-link">Projects</a>
-          <a href="/#profiles" class="nav-link">Profiles</a>
-          <a href="/getting-started.html" class="nav-link">Course</a>
+        <div class="main-nav navbar-nav">
           <a
             href="javascript:void(0);"
-            class="hamburger"
-            onclick="myFunction()"
-          >
+            class="hamburger js-toggle"
+            data-toggle="main-nav__links"
+            ><span class="sr-text">Main menu</span>
             <i class="fa fa-bars"></i>
+            <i class="fa fa-times"></i>
           </a>
+          <div class="main-nav__links">
+            <a href="/#projects" class="nav-link">Projects</a>
+            <a href="/#profiles" class="nav-link">Profiles</a>
+            <a href="/getting-started.html" class="nav-link">Course</a>
+          </div>
         </div>
       </nav>
     </header>
@@ -654,7 +666,7 @@
       </section>
     </main>
     <footer class="text-center p-4">&copy; 2021 Kirk Clarke</footer>
-
+    <script src="./js/toggle.js"></script>
     <script
       defer="defer"
       src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"

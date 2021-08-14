@@ -132,7 +132,7 @@ pre {
 @media screen and (max-width: 767px) {
   .course-sidebar.is-open {
     display: inline-block;
-    height: 70vh;
+    height: 60vh;
   }
 }
 
@@ -219,4 +219,23 @@ code {
 [data-pdfviewer] {
   height: 80vh;
   height: calc(100vh - 100px);
+}
+
+.sidebar-header {
+  background-color: var(--color-celadon);
+}
+
+.sidebar-header h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+@media screen and (orientation: landscape) {
+  .lecture {
+    height: calc(100vh - 36px);
+  }
+
+  footer.p-4 {
+    padding: 5px !important;
+  }
 }
