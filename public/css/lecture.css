@@ -35,7 +35,7 @@ pre {
   margin: 0;
   padding: 0;
   list-style-type: none;
-  border-top: 1px solid #d7dadb;
+  /* border-top: 1px solid #d7dadb; */
   border-bottom: 1px solid #d7dadb;
 }
 
@@ -56,12 +56,13 @@ pre {
   display: block;
   /* color: var(--color-dark); */
   color: #ffffff;
+  border-right: 10px solid var(--erie-black);
 }
 
 .section-item__link:hover {
-  color: var(--charcoal);
+  color: var(--color-celadon);
   text-decoration: none;
-  background-color: var(--color-celadon);
+  background-color: hsl(0deg 0% 0% / 50%);
 }
 .lecture-name {
   max-width: 80%;
