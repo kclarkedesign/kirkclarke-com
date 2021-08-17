@@ -23,7 +23,7 @@ const server = https.createServer(httpsConfig, (req, res) => {
 
   console.log(`${req.method} ${pathname}`);
 
-  // maps file extention to MIME types
+  // maps file extension to MIME types
   const map = {
     ".ico": "image/x-icon",
     ".html": "text/html",
