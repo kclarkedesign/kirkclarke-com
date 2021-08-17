@@ -1,6 +1,9 @@
+const NAVBAR_ID_SELECTOR = "#navbar";
 const TOGGLE_BTN_SELECTOR = ".js-toggle";
 const NAV_LINK_SELECTOR = ".nav-link";
 const TOGGLE_NAV_CLASS = "is-open";
+// const TOGGLE_MENU_CLASS = "menu-open";
+// const navBar = document.querySelector(NAVBAR_ID_SELECTOR);
 
 function toggleClass($elem, className) {
   $elemTarget = document.querySelector(`.${$elem.dataset.toggle}`);
@@ -14,8 +17,10 @@ function toggleClass($elem, className) {
 function toggleNavClass($elem) {
   if ($elem.classList.value.includes(TOGGLE_NAV_CLASS)) {
     $elem.classList.remove(TOGGLE_NAV_CLASS);
+    // navBar.classList.remove(TOGGLE_MENU_CLASS);
   } else {
     $elem.classList.add(TOGGLE_NAV_CLASS);
+    // navBar.classList.add(TOGGLE_MENU_CLASS);
   }
 }
 
