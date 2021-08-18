@@ -435,7 +435,10 @@
       }
 
       footer {
-        padding: 2vh;
+        padding: 1.25vh;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
       }
     </style>
   </head>
@@ -636,7 +639,18 @@
         </div>
       </section>
     </main>
-    <footer class="text-center p-4">&copy; 2021 Kirk Clarke</footer>
+    <footer class="global-footer bg-white text-center">
+      &copy; 2021 Kirk Clarke
+      <a
+        class="pl-1 pr-1"
+        href="https://www.paypal.com/paypalme/KirkClarke"
+        rel="noopener"
+        target="_blank"
+        style="white-space: nowrap; color: var(--green)"
+        ><i class="fab fa-fw fa-paypal" aria-hidden="true"></i>&nbsp;Buy me a
+        tea!</a
+      >
+    </footer>
     <script src="./js/toggle.js"></script>
     <script src="./js/highlight.min.js"></script>
     <script src="./js/code-viewer.js" type="text/javascript"></script>

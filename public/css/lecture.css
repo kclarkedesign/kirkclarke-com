@@ -2,6 +2,14 @@ html {
   overflow: hidden;
 }
 
+html,
+body {
+  height: 100%;
+}
+body {
+  position: relative;
+}
+
 blockquote {
   padding: 10px 20px;
   margin: 0 0 20px;
@@ -100,7 +108,7 @@ pre {
 }
 
 .course-main {
-  padding: 1rem 2rem !important;
+  padding: 1rem 2.5rem 4rem !important;
   overflow-y: auto;
   width: 100%;
   background: var(--light);
@@ -238,7 +246,7 @@ code {
 
 @media screen and (orientation: landscape) {
   .lecture {
-    height: calc(100vh - 36px);
+    height: calc(100vh - 43px);
   }
 
   footer.p-4 {
