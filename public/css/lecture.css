@@ -230,6 +230,17 @@ code {
   color: #ffffff;
 }
 
+.course-main .btn-continue {
+  padding: 0.375rem 0.75rem;
+  background-color: #98dfaf;
+  border-color: #98dfaf;
+}
+
+.course-main .btn-continue:hover {
+  background-color: #a1edb9;
+  border-color: #a1edb9;
+}
+
 [data-pdfviewer] {
   height: 80vh;
   height: calc(100vh - 100px);
