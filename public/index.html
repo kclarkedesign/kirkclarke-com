@@ -114,6 +114,8 @@
       }
       #profiles {
         background-color: var(--color-dark);
+        position: relative;
+        z-index: 1;
       }
       .anchor {
         padding-top: 58px;
@@ -681,6 +683,102 @@
             ><i class="fas fa-hands-helping"></i
           ></a>
         </p>
+      </section>
+      <section id="contact" class="anchor text-center p-sm-5 pb-5" style=" background: var(--light); ">
+        <div class="container form-container " style=" max-width: 680px;">
+          <div class="pt-3 mt-5 mb-5">
+            <div class="form-header">
+              <header>
+                <h1 id="title">Connect (and create) with me</h1>
+                <p id="description">Let me know your&nbsp;thoughts!</p>
+              </header>
+            </div>
+            <form id="survey-form" class="text-left" action="contact.php" method="POST">
+              <div class="form-group">
+                <label id="name-label" for="name">Name</label> <input id="name" name="name" class="form-control" type="text" placeholder="First Last" required />
+              </div>
+              <div class="form-group">
+                <label id="email-label" for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="name@example.com" class="form-control" required />
+              </div>
+              <!-- <div class="form-group">
+                <label id="number-label" for="number">Lectures completed</label>
+                <input id="number" type="number" placeholder="# of lectures" class="form-control" required min="1" max="11" />
+              </div> -->
+              <!-- <div class="form-group">
+                <label for="dropdown">Skill level</label>
+                <select id="dropdown" class="form-control">
+                  <option>Beginner</option>
+                  <option>Intermediate</option>
+                  <option>Advanced</option>
+                  <option>Expert</option>
+                  <select>
+              </div> -->
+              <!-- <div class="form-group">
+                <label class="col-form-label">Would you recommend Create with Kirk to a friend?</label><br>
+                <div class="form-check form-check-inline">
+                  <label id="radio1-label" for="number">
+                    <input id="radio1" value="yes" type="radio" name="radio-group" checked />
+                    <span>Yes</span>
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <label id="radio2-label" for="number">
+                    <input id="radio2" value="no" type="radio" name="radio-group" />
+                    <span>No</span>
+                  </label>
+                </div>
+              </div> -->
+              <!-- <div class="form-group">
+                <label class="col-form-label">Subjects you want to learn more about?</label><br>
+
+                <div class="form-check">
+                  <label id="checkbox1-label" for="checkbox1">
+                    <input id="checkbox1" class="form-check-input" value="html" type="checkbox" name="checkbox-group" />
+                    <span>HTML</span>
+                  </label>
+                </div>
+                <div class="form-check">
+                  <label id="checkbox2-label" for="checkbox2">
+                    <input id="checkbox2" class="form-check-input" value="CSS" type="checkbox" name="checkbox-group" />
+                    <span>CSS</span>
+                  </label>
+                </div>
+                <div class="form-check">
+                  <label id="checkbox3-label" for="checkbox3">
+                    <input id="checkbox3" class="form-check-input" value="javascript" type="checkbox" name="checkbox-group" />
+                    <span>JavaScript</span>
+                  </label>
+                </div>
+                <div class="form-check">
+                  <label id="checkbox4-label" for="checkbox4">
+                    <input id="checkbox4" class="form-check-input" value="c#" type="checkbox" name="checkbox-group" />
+                    <span>C#</span>
+                  </label>
+                </div>
+                <div class="form-check">
+                  <label id="checkbox5-label" for="checkbox5">
+                    <input id="checkbox5" class="form-check-input" value="PHP" type="checkbox" name="checkbox-group" />
+                    <span>PHP</span>
+                  </label>
+                </div>
+                <div class="form-check">
+                  <label id="checkbox6-label" for="checkbox6">
+                    <input id="checkbox6" class="form-check-input" value="SQL" type="checkbox" name="checkbox-group" />
+                    <span>SQL</span>
+                  </label>
+                </div>
+              </div> -->
+              <div class="form-group">
+
+                <label id="textarea-label" for="textarea">Your message</label>
+                <textarea id="textarea" class="form-control" value="" type="text" name="message" style="  min-height: 20vh;"></textarea>
+
+              </div>
+              <input id="submit" type="submit" value="Submit" class="btn btn-secondary btn-lg btn-block">
+            </form>
+          </div>
+        </div>
       </section>
     </main>
     <footer class="text-center p-4">&copy; 2021 Kirk Clarke</footer>
