@@ -18,11 +18,13 @@
       media="all"
       rel="stylesheet preload"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+      as="style"
     />
     <link
       media="all"
       rel="stylesheet preload"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.3.0/font-awesome-animation.min.css"
+      as="style"
     />
     <link
       rel="stylesheet preload"
@@ -201,6 +203,17 @@
 
       footer {
         padding: 2vh;
+      }
+      /**/
+      .choices {
+        border: 0;
+        clip: rect(0,0,0,0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
       }
     </style>
   </head>
@@ -693,89 +706,29 @@
                 <p id="description">Let me know your&nbsp;thoughts!</p>
               </header>
             </div>
-            <form id="survey-form" class="text-left" action="contact.php" method="POST">
+            <form id="contact-form" class="text-left" action="contact.php" method="POST" onsubmit="return validateForm()">
               <div class="form-group">
-                <label id="name-label" for="name">Name</label> <input id="name" name="name" class="form-control" type="text" placeholder="First Last" required />
+                <label id="name-label" for="name">Name *</label> <input id="name" name="name" class="form-control" type="text" placeholder="First Last" required maxlength="50" />
               </div>
               <div class="form-group">
-                <label id="email-label" for="email">Email</label>
-                <input id="email" name="email" type="email" placeholder="name@example.com" class="form-control" required />
+                <label id="email-label" for="email">Email *</label>
+                <input id="email" name="email" type="email" placeholder="name@example.com" class="form-control" required maxlength="50"/>
               </div>
-              <!-- <div class="form-group">
-                <label id="number-label" for="number">Lectures completed</label>
-                <input id="number" type="number" placeholder="# of lectures" class="form-control" required min="1" max="11" />
-              </div> -->
-              <!-- <div class="form-group">
-                <label for="dropdown">Skill level</label>
-                <select id="dropdown" class="form-control">
-                  <option>Beginner</option>
-                  <option>Intermediate</option>
-                  <option>Advanced</option>
-                  <option>Expert</option>
-                  <select>
-              </div> -->
-              <!-- <div class="form-group">
-                <label class="col-form-label">Would you recommend Create with Kirk to a friend?</label><br>
-                <div class="form-check form-check-inline">
-                  <label id="radio1-label" for="number">
-                    <input id="radio1" value="yes" type="radio" name="radio-group" checked />
-                    <span>Yes</span>
-                  </label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <label id="radio2-label" for="number">
-                    <input id="radio2" value="no" type="radio" name="radio-group" />
-                    <span>No</span>
-                  </label>
-                </div>
-              </div> -->
-              <!-- <div class="form-group">
-                <label class="col-form-label">Subjects you want to learn more about?</label><br>
-
-                <div class="form-check">
-                  <label id="checkbox1-label" for="checkbox1">
-                    <input id="checkbox1" class="form-check-input" value="html" type="checkbox" name="checkbox-group" />
-                    <span>HTML</span>
-                  </label>
-                </div>
-                <div class="form-check">
-                  <label id="checkbox2-label" for="checkbox2">
-                    <input id="checkbox2" class="form-check-input" value="CSS" type="checkbox" name="checkbox-group" />
-                    <span>CSS</span>
-                  </label>
-                </div>
-                <div class="form-check">
-                  <label id="checkbox3-label" for="checkbox3">
-                    <input id="checkbox3" class="form-check-input" value="javascript" type="checkbox" name="checkbox-group" />
-                    <span>JavaScript</span>
-                  </label>
-                </div>
-                <div class="form-check">
-                  <label id="checkbox4-label" for="checkbox4">
-                    <input id="checkbox4" class="form-check-input" value="c#" type="checkbox" name="checkbox-group" />
-                    <span>C#</span>
-                  </label>
-                </div>
-                <div class="form-check">
-                  <label id="checkbox5-label" for="checkbox5">
-                    <input id="checkbox5" class="form-check-input" value="PHP" type="checkbox" name="checkbox-group" />
-                    <span>PHP</span>
-                  </label>
-                </div>
-                <div class="form-check">
-                  <label id="checkbox6-label" for="checkbox6">
-                    <input id="checkbox6" class="form-check-input" value="SQL" type="checkbox" name="checkbox-group" />
-                    <span>SQL</span>
-                  </label>
-                </div>
-              </div> -->
               <div class="form-group">
 
-                <label id="textarea-label" for="textarea">Your message</label>
-                <textarea id="textarea" class="form-control" value="" type="text" name="message" style="  min-height: 20vh;"></textarea>
+                <label id="textarea-label" for="textarea">Your message *</label>
+                <textarea id="textarea" class="form-control" value="" type="text" name="message" style="min-height: 20vh;" rows="10" maxlength="6000" required></textarea>
 
               </div>
-              <input id="submit" type="submit" value="Submit" class="btn btn-secondary btn-lg btn-block">
+              <input name="choices" type="text" class="choices" tabindex="-1" autocomplete="off">
+              <div class="g-recaptcha" data-sitekey="Insert your recaptcha site key here"></div>
+              <button id="submit" type="submit" value="Submit" class="btn btn-secondary btn-lg btn-block">Submit</button>
+
+              <!-- <div class="form-submit-status">
+                
+                <div class="alert alert- >Message" role="alert"></div>
+                
+              </div> -->
             </form>
           </div>
         </div>
@@ -788,5 +741,6 @@
       src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"
       type="text/javascript"
     ></script>
+    <script src="./js/validate-contact.js"></script>
   </body>
 </html>
