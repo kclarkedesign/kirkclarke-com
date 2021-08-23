@@ -25,7 +25,7 @@ const validateForm = () => {
   if (formFieldsArr[formFieldsArr.length - 2].value != "") {
     return false;
   }
-  //console.log(formFieldsArr);
+
   let isValid = true;
 
   for (const field of formFieldsArr) {
