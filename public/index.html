@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-21054528-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-21054528-2');
+    </script>
+
     <meta charset="UTF-8" />
     <meta
       name="description"
@@ -205,6 +215,7 @@
         padding: 2vh;
       }
       /**/
+      #choices-label,
       .choices {
         border: 0;
         clip: rect(0,0,0,0);
@@ -721,7 +732,7 @@
                 <textarea id="textarea" class="form-control" value="" type="text" name="message" style="min-height: 20vh;" rows="10" maxlength="6000" required></textarea>
 
               </div>
-              <input name="choices" type="text" class="choices" tabindex="-1" autocomplete="off">
+              <label id="choices-label"for="choices">Your choices</label><input id="choices" name="choices" type="text" class="form-control choices" tabindex="-1" autocomplete="off">
               <button id="submit" type="submit" value="Submit" class="btn btn-secondary btn-lg btn-block">Submit</button>
 
               <!-- <div class="form-submit-status">
