@@ -1,3 +1,4 @@
+const SELECTED_CSS_CLASS = "selected";
 const quizzes = document.querySelectorAll(".js-quiz");
 
 if (quizzes.length > 0) {
@@ -42,17 +43,32 @@ if (quizzes.length > 0) {
         callback(quizAnswersCont, handleSelection);
     };
 
-    const handleSelection = (e) => {
+    const handleSelection = (e, btnIndex) => {
       if (e) {
-        console.log(e);
+        const selectedBtn = e.currentTarget;
+        const btnChoices = selectedBtn.parentElement.parentElement.childNodes;
+
+        btnChoices.forEach((btn, index) => {
+          if (index != btnIndex) {
+            btn.classList.remove(SELECTED_CSS_CLASS);
+
+            if (
+              !selectedBtn.parentElement.classList.value.includes(
+                SELECTED_CSS_CLASS
+              )
+            ) {
+              selectedBtn.parentElement.classList.add(SELECTED_CSS_CLASS);
+            }
+          }
+        });
       }
     };
 
     const initChoices = (container, callback) => {
       const choiceBtns = container.querySelectorAll(".quiz-answer");
-      choiceBtns.forEach((btn) => {
+      choiceBtns.forEach((btn, index) => {
         btn.addEventListener("click", (e) => {
-          callback(e);
+          callback(e, index);
         });
       });
 
