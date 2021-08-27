@@ -9,6 +9,7 @@ if (quizzes.length > 0) {
     let quizAnswersCont = quiz.getElementsByClassName(
       "quiz-answers-container"
     )[0];
+    let quizCheckAnswer = quiz.getElementsByClassName("quiz-check-answer")[0];
     let quizNext = quiz.getElementsByClassName("quiz-continue")[0];
     let quizPrev = quiz.getElementsByClassName("quiz-previous")[0];
     let currentQuestion = index + 1;
@@ -19,6 +20,7 @@ if (quizzes.length > 0) {
     const questionsStr = quizData.dataset.schema;
     const answers = JSON.parse(answersStr);
     const questions = JSON.parse(questionsStr);
+    let selectedAnswerIndex = 0;
 
     const getChoices = (current, callback) => {
       const choices = questions.properties["answer-" + current]["enum"];
@@ -46,6 +48,7 @@ if (quizzes.length > 0) {
     const handleSelection = (e, btnIndex) => {
       if (e) {
         const selectedBtn = e.currentTarget;
+        selectedAnswerIndex = btnIndex;
         const btnChoices = selectedBtn.parentElement.parentElement.childNodes;
 
         btnChoices.forEach((btn, index) => {
@@ -102,7 +105,17 @@ if (quizzes.length > 0) {
       }
     };
 
-    const checkChoice = () => {};
+    // check selected answer against answer key
+    const checkChoice = (current) => {
+      const correctAnswerText = answers.answerKey["answer-" + current][0];
+      const selectedAnswerText =
+        questions.properties["answer-" + current]["enum"][selectedAnswerIndex];
+      if (correctAnswerText == selectedAnswerText) {
+        console.log("correct");
+      } else {
+        console.log("wrong");
+      }
+    };
 
     quizNext.addEventListener("click", (e) => {
       nextQuestion();
@@ -110,6 +123,10 @@ if (quizzes.length > 0) {
 
     quizPrev.addEventListener("click", (e) => {
       prevQuestion();
+    });
+
+    quizCheckAnswer.addEventListener("click", (e) => {
+      checkChoice(currentQuestion);
     });
   });
 }
