@@ -303,6 +303,13 @@
       onload="this.onload=null;this.rel='stylesheet'"
     />
     <noscript><link rel="stylesheet" href="./css/navbar.css" /></noscript>
+    <link
+      rel="stylesheet preload"
+      href="./css/quiz.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="./css/quiz.css" /></noscript>
     <style>
       :root {
         --color-celadon: #98dfaf;
@@ -797,7 +804,7 @@ This sentence has &lt;start&gt;some Text&lt;/end&gt; I want to manipulate.
               Though if it isn't making sense or you're not sure about
               something, stay positive! I promise it will all make sense soon.
             </div>
-            <div class="js-quiz">
+            <div class="js-quiz o-quiz">
               <div
                 class="attachment-data"
                 data-data='{"answerKey":{"answer-1":["\u003ccode\u003e \u0026lt;b\u0026gt;Don&apos;t let them fool you\u0026lt;/b\u0026gt; \u003c/code\u003e"],"answer-2":["True"],"answer-3":["\u003ccode\u003e\u0026lt;!-- I&apos;m a comment --\u0026gt;\u003c/code\u003e"]}}'
@@ -814,7 +821,7 @@ This sentence has &lt;start&gt;some Text&lt;/end&gt; I want to manipulate.
                           class="quiz-progress"
                           aria-label="Question 1 out of 3"
                         ></div>
-                        <div class="quiz-question-outer" style="height: 272px">
+                        <div class="quiz-question-outer">
                           <div>
                             <article class="Quiz-item">
                               <div class="quiz-question"></div>

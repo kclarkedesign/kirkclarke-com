@@ -6,9 +6,13 @@ if (quizzes.length > 0) {
     // quiz elements
     let quizQuestion = quiz.getElementsByClassName("quiz-question")[0];
     let quizProgress = quiz.getElementsByClassName("quiz-progress")[0];
+    let quizQuestionOuter = quiz.getElementsByClassName(
+      "quiz-question-outer"
+    )[0];
     let quizAnswersCont = quiz.getElementsByClassName(
       "quiz-answers-container"
     )[0];
+    let quizItem = quiz.getElementsByClassName("Quiz-item")[0];
     let quizCheckAnswer = quiz.getElementsByClassName("quiz-check-answer")[0];
     let quizNext = quiz.getElementsByClassName("quiz-continue")[0];
     let quizPrev = quiz.getElementsByClassName("quiz-previous")[0];
@@ -75,15 +79,26 @@ if (quizzes.length > 0) {
         });
       });
 
+      quizQuestionOuter.style.height = quizItem.offsetHeight + "px";
+
       if (typeof callback == "function") callback();
     };
 
     const buildQuiz = (current) => {
       // build quiz
-      quizQuestion.innerHTML =
-        questions.properties["answer-" + current]["title"];
-      quizProgress.innerHTML = `${current} / ${questions.required.length}`;
-      getChoices(current, initChoices);
+      quizItem.classList.add("quiz-item-exit-active");
+      setTimeout(() => {
+        quizItem.classList.remove("quiz-item-exit-active");
+        quizItem.classList.add("quiz-item-enter-active");
+        setTimeout(() => {
+          quizItem.classList.remove("quiz-item-enter-active");
+          quizItem.classList.add("quiz-item-enter-done");
+          quizQuestion.innerHTML =
+            questions.properties["answer-" + current]["title"];
+          quizProgress.innerHTML = `${current} / ${questions.required.length}`;
+          getChoices(current, initChoices);
+        }, 150);
+      }, 150);
     };
 
     // init
