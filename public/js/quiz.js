@@ -1,8 +1,13 @@
 const SELECTED_CSS_CLASS = "selected";
 const quizzes = document.querySelectorAll(".js-quiz");
+const CORRECT_SELECTION_MSG = "Excellent, that's the right answer!";
+const INCORRECT_SELECTION_MSG =
+  "Sorry, that's not the right answer. Give it another shot!";
 
 if (quizzes.length > 0) {
   quizzes.forEach((quiz, index) => {
+    // quiz memory
+    const quizSelections = [];
     // quiz elements
     let quizQuestion = quiz.getElementsByClassName("quiz-question")[0];
     let quizProgress = quiz.getElementsByClassName("quiz-progress")[0];
@@ -85,11 +90,15 @@ if (quizzes.length > 0) {
     };
 
     const buildQuiz = (current) => {
+      // check quiz memory
+      if (quizSelections.length > 0) {
+      }
       // build quiz
       quizItem.classList.add("quiz-item-exit-active");
       setTimeout(() => {
         quizItem.classList.remove("quiz-item-exit-active");
         quizItem.classList.add("quiz-item-enter-active");
+        quizItem.getElementsByClassName("quiz-selection-msg")[0].innerText = "";
         setTimeout(() => {
           quizItem.classList.remove("quiz-item-enter-active");
           quizItem.classList.add("quiz-item-enter-done");
@@ -99,6 +108,15 @@ if (quizzes.length > 0) {
           getChoices(current, initChoices);
         }, 150);
       }, 150);
+
+      // handle back button
+      if (current > 1) {
+        quizPrev.disabled = false;
+        quizPrev.classList.add("is-visible");
+      } else {
+        quizPrev.disabled = true;
+        quizPrev.classList.remove("is-visible");
+      }
     };
 
     // init
@@ -126,10 +144,26 @@ if (quizzes.length > 0) {
       const selectedAnswerText =
         questions.properties["answer-" + current]["enum"][selectedAnswerIndex];
       if (correctAnswerText == selectedAnswerText) {
-        console.log("correct");
+        // console.log("correct");
+        quizAnswersCont
+          .getElementsByClassName(SELECTED_CSS_CLASS)[0]
+          .classList.add("correct");
+        quizNext.disabled = false;
+        quizNext.classList.add("is-visible");
+        quizCheckAnswer.setAttribute("disabled", "true");
+        quizItem.getElementsByClassName("quiz-selection-msg")[0].innerText =
+          CORRECT_SELECTION_MSG;
       } else {
-        console.log("wrong");
+        // console.log("wrong");
+        quizItem.getElementsByClassName("quiz-selection-msg")[0].innerText =
+          INCORRECT_SELECTION_MSG;
+        quizCheckAnswer.classList.add("faa-horizontal", "animated");
+        setTimeout(() => {
+          quizCheckAnswer.classList.remove("faa-horizontal", "animated");
+        }, 2000);
       }
+      // TODO: use resize observer
+      quizQuestionOuter.style.height = quizItem.offsetHeight + "px";
     };
 
     quizNext.addEventListener("click", (e) => {

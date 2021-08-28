@@ -127,11 +127,29 @@
   display: none;
 }
 
+.correct.selected .quiz-answer-icon-correct {
+  display: block;
+}
+
 .quiz-answer-icon i.quiz-answer-icon-incorrect {
   color: #e74c3c;
 }
 
 .quiz-controls {
-  margin-top: 30px;
+  margin-top: 40px;
   position: relative;
+}
+
+.quiz-controls button:disabled {
+  opacity: 0;
+  display: none;
+}
+
+.quiz-controls button.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.quiz-selection-msg {
+  text-align: center;
 }
