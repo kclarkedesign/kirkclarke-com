@@ -9,6 +9,7 @@ if (quizzes.length > 0) {
     // quiz memory
     const quizSelections = [];
     let answered = false;
+
     // quiz elements
     let quizQuestion = quiz.getElementsByClassName("quiz-question")[0];
     let quizProgress = quiz.getElementsByClassName("quiz-progress")[0];
@@ -31,6 +32,10 @@ if (quizzes.length > 0) {
     const answers = JSON.parse(answersStr);
     const questions = JSON.parse(questionsStr);
     let selectedAnswerIndex = 0;
+
+    const checkSelections = (array, key, value) => {
+      return array.some((object) => object[key] == value);
+    };
 
     const getChoices = (current, callback) => {
       const choices = questions.properties["answer-" + current]["enum"];
@@ -103,23 +108,19 @@ if (quizzes.length > 0) {
       if (typeof callback == "function") callback();
     };
 
-    const checkSelections = (array, key, value) => {
-      return array.some((object) => object[key] == value);
-    };
-
-    const buildQuiz = (current) => {
+    const buildQuiz = (current, recap = false) => {
       answered = false;
       // check quiz memory
       if (quizSelections.length > 0) {
         // check if current question was answered
-        console.log(quizSelections);
         if (!checkSelections(quizSelections, "answer", "answer-" + current)) {
-          // reset to default
+          // reset to default control state
           quizNext.disabled = true;
           quizCheckAnswer.disabled = false;
           quizNext.classList.remove("is-visible");
           quizCheckAnswer.classList.add("is-visible");
         } else {
+          // show answered control state
           answered = true;
           quizNext.disabled = false;
           quizCheckAnswer.disabled = true;
@@ -127,23 +128,27 @@ if (quizzes.length > 0) {
           quizCheckAnswer.classList.remove("is-visible");
         }
       }
-      // build quiz
+      // start building quiz current questions
       quizItem.classList.add("quiz-item-exit-active");
+      // after delay enter & reset selection msg
       setTimeout(() => {
         quizItem.classList.remove("quiz-item-exit-active");
         quizItem.classList.add("quiz-item-enter-active");
         quizItem.getElementsByClassName("quiz-selection-msg")[0].innerText = "";
+        // after delay finish animating
         setTimeout(() => {
           quizItem.classList.remove("quiz-item-enter-active");
           quizItem.classList.add("quiz-item-enter-done");
           quizQuestion.innerHTML =
             questions.properties["answer-" + current]["title"];
+          // update progress
           quizProgress.innerHTML = `${current} / ${questions.required.length}`;
+          // and add prev/next questions
           getChoices(current, initChoices);
         }, 150);
       }, 150);
 
-      // handle back button
+      // handle back button (only show if back is possible)
       if (current > 1) {
         quizPrev.disabled = false;
         quizPrev.classList.add("is-visible");
@@ -151,12 +156,18 @@ if (quizzes.length > 0) {
         quizPrev.disabled = true;
         quizPrev.classList.remove("is-visible");
       }
+
+      if (current == questions.required.length) {
+        quizNext.disabled = true;
+        quizNext.classList.remove("is-visible");
+      }
     };
 
-    // init
+    // first initializaton
     buildQuiz(currentQuestion);
 
-    // controls
+    // controls //
+
     // get next question
     const nextQuestion = () => {
       if (questions.required.length >= currentQuestion + 1) {
@@ -191,13 +202,14 @@ if (quizzes.length > 0) {
         quizAnswersCont
           .getElementsByClassName(SELECTED_CSS_CLASS)[0]
           .classList.add("correct");
-        quizNext.disabled = false;
-        quizNext.classList.add("is-visible");
+        if (current != questions.required.length) {
+          quizNext.disabled = false;
+          quizNext.classList.add("is-visible");
+        }
         quizCheckAnswer.setAttribute("disabled", "true");
         quizItem.getElementsByClassName("quiz-selection-msg")[0].innerText =
           CORRECT_SELECTION_MSG;
       } else {
-        // console.log("wrong");
         quizItem.getElementsByClassName("quiz-selection-msg")[0].innerText =
           INCORRECT_SELECTION_MSG;
         quizCheckAnswer.classList.add("faa-horizontal", "animated");
