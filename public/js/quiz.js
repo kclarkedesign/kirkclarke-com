@@ -8,6 +8,7 @@ if (quizzes.length > 0) {
   quizzes.forEach((quiz, index) => {
     // quiz memory
     const quizSelections = [];
+    let answered = false;
     // quiz elements
     let quizQuestion = quiz.getElementsByClassName("quiz-question")[0];
     let quizProgress = quiz.getElementsByClassName("quiz-progress")[0];
@@ -50,6 +51,15 @@ if (quizzes.length > 0) {
 
       quizAnswersCont.innerHTML = choicesHTML;
 
+      if (checkSelections(quizSelections, "answer", "answer-" + current)) {
+        //get correct answer index
+        const choiceIndex = quizSelections[current - 1]["choice"];
+        // pre-select the correct choice
+        quizAnswersCont
+          .getElementsByClassName("quiz-answer-container")
+          [choiceIndex].classList.add(SELECTED_CSS_CLASS, "correct");
+      }
+
       if (typeof callback == "function")
         callback(quizAnswersCont, handleSelection);
     };
@@ -60,38 +70,62 @@ if (quizzes.length > 0) {
         selectedAnswerIndex = btnIndex;
         const btnChoices = selectedBtn.parentElement.parentElement.childNodes;
 
-        btnChoices.forEach((btn, index) => {
-          if (index != btnIndex) {
-            btn.classList.remove(SELECTED_CSS_CLASS);
+        if (!answered) {
+          btnChoices.forEach((btn, index) => {
+            if (index != btnIndex) {
+              btn.classList.remove(SELECTED_CSS_CLASS);
 
-            if (
-              !selectedBtn.parentElement.classList.value.includes(
-                SELECTED_CSS_CLASS
-              )
-            ) {
-              selectedBtn.parentElement.classList.add(SELECTED_CSS_CLASS);
+              if (
+                !selectedBtn.parentElement.classList.value.includes(
+                  SELECTED_CSS_CLASS
+                )
+              ) {
+                selectedBtn.parentElement.classList.add(SELECTED_CSS_CLASS);
+              }
             }
-          }
-        });
+          });
+        }
       }
     };
 
     const initChoices = (container, callback) => {
-      const choiceBtns = container.querySelectorAll(".quiz-answer");
-      choiceBtns.forEach((btn, index) => {
-        btn.addEventListener("click", (e) => {
-          callback(e, index);
+      if (!answered) {
+        const choiceBtns = container.querySelectorAll(".quiz-answer");
+        choiceBtns.forEach((btn, index) => {
+          btn.addEventListener("click", (e) => {
+            callback(e, index);
+          });
         });
-      });
+      }
 
       quizQuestionOuter.style.height = quizItem.offsetHeight + "px";
 
       if (typeof callback == "function") callback();
     };
 
+    const checkSelections = (array, key, value) => {
+      return array.some((object) => object[key] == value);
+    };
+
     const buildQuiz = (current) => {
+      answered = false;
       // check quiz memory
       if (quizSelections.length > 0) {
+        // check if current question was answered
+        console.log(quizSelections);
+        if (!checkSelections(quizSelections, "answer", "answer-" + current)) {
+          // reset to default
+          quizNext.disabled = true;
+          quizCheckAnswer.disabled = false;
+          quizNext.classList.remove("is-visible");
+          quizCheckAnswer.classList.add("is-visible");
+        } else {
+          answered = true;
+          quizNext.disabled = false;
+          quizCheckAnswer.disabled = true;
+          quizNext.classList.add("is-visible");
+          quizCheckAnswer.classList.remove("is-visible");
+        }
       }
       // build quiz
       quizItem.classList.add("quiz-item-exit-active");
@@ -128,6 +162,8 @@ if (quizzes.length > 0) {
       if (questions.required.length >= currentQuestion + 1) {
         currentQuestion += 1;
         buildQuiz(currentQuestion);
+      } else {
+        console.log("build recap");
       }
     };
     // get prev question
@@ -144,7 +180,14 @@ if (quizzes.length > 0) {
       const selectedAnswerText =
         questions.properties["answer-" + current]["enum"][selectedAnswerIndex];
       if (correctAnswerText == selectedAnswerText) {
-        // console.log("correct");
+        const selectedAnswerVal = {
+          answer: "answer-" + current,
+          choice: selectedAnswerIndex,
+        };
+
+        if (!checkSelections(quizSelections, "answer", "answer-" + current)) {
+          quizSelections.push(selectedAnswerVal);
+        }
         quizAnswersCont
           .getElementsByClassName(SELECTED_CSS_CLASS)[0]
           .classList.add("correct");
