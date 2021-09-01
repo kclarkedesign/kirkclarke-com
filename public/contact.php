@@ -6,6 +6,7 @@ use PHPMailer\PHPMailer\Exception;
 require './php/PHPMailer.php';
 require './php/SMTP.php';
 require './php/Exception.php';
+require './php/EmailConfig.php';
 
 try {
     // request should be post
@@ -48,15 +49,15 @@ try {
                 $mail = new PHPMailer();
                 $mail->SMTPDebug = 0;
                 $mail->isSMTP();
-                $mail->Host = 'mail.kirkclarke.com';
+                $mail->Host = $host;
                 $mail->SMTPAuth   = true;
-                $mail->Username   = 'contact@kirkclarke.com';                     //SMTP username
-                $mail->Password   = '+&ZKz?a+pDG$';                               //SMTP password
+                $mail->Username   = $username;                     //SMTP username
+                $mail->Password   = $password;                               //SMTP password
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; 
-                $mail->Port = 465;                                                //https://my.bluehost.com/cgi/help/email-application-setup
+                $mail->Port = $port;                                                
                 $mail->CharSet = PHPMailer::CHARSET_UTF8;
-                $mail->setFrom('contact@kirkclarke.com', (empty($name) ? 'Contact form' : $name));
-                $mail->addAddress('ignite@kirkclarke.com');
+                $mail->setFrom($username, (empty($name) ? 'Contact form' : $name));
+                $mail->addAddress($addressEmail);
                 $mail->addReplyTo($email, $name);
                 $mail->Subject = 'New submission from contact form on Kirkclarke.com';
                 $mail->Body = "Contact form submission\n\nFrom:\n" . $name . "\n" . $email . "\n\nMessage:\n" . $message;
