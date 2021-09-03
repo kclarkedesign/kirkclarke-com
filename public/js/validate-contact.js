@@ -1,3 +1,44 @@
+const submitBtn = document.getElementById("submit");
+submitBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  // check fields - frontend
+  if (isFormValid) {
+    // check fields - backend
+    validateFields();
+  }
+});
+
+const validateFields = () => {
+  const form = document.getElementById("contact-form");
+  const formData = new FormData(form);
+  grecaptcha.ready(function () {
+    grecaptcha
+      .execute("6LdGAhocAAAAAFZKVSDhNzbo0VxKl6jbiWEocrQM", { action: "submit" })
+      .then(function (token) {
+        // Add your logic to submit to your backend server here.
+        // choicesInput.insertAdjacentHTML(
+        //   "afterend",
+        //   '<input type="hidden" name="g-recaptcha-response" value="' +
+        //     token +
+        //     '">'
+        // );
+        formData.append("g-recaptcha-response", token);
+        const request = new XMLHttpRequest();
+        request.open("POST", "contact.php");
+        // request.setRequestHeader(
+        //   "Content-Type",
+        //   "application/x-www-form-urlencoded"
+        // );
+        request.send(formData);
+        // fetch("./contact.php", {
+        //   method: "post",
+        //   body: formData,
+        //   headers: { "Content-type": "application/x-www-form-urlencoded" },
+        // });
+      });
+  });
+};
+
 const gatherFormFields = (formId) => {
   const form = document.querySelector(formId);
   const isValid = form.checkValidity();
@@ -18,7 +59,7 @@ const validateEmailField = (elem) => {
   );
 };
 
-const validateForm = () => {
+const isFormValid = () => {
   const formFieldsArr = gatherFormFields("#contact-form");
   const inValidFieldsArr = [];
 

@@ -9,15 +9,45 @@ require './php/Exception.php';
 require './php/EmailConfig.php';
 
 try {
-    // request should be post
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && array_key_exists('email', $_POST)) {
+    // 
+    if (array_key_exists('email', $_POST)) {
+        
         $resp = $type = $nameErr = $emailErr = $messageErr = "";
         $name = $email = $message = $choices = "";
 
         // honeypot field should be empty
-        if (empty($_POST["choices"])) {
+        if ($_POST["choices"] == '') {
+            //validate recaptcha
+            // if ($_POST["g-recaptcha-response"] == '') {
+            //     $resp = 'Mailer Error: reCaptcha failed';
+            //     $type = "warning";
+            //     header("Location: index.html#contact?type={$type}&resp={$resp}"); exit;
+            // } else {
+            //     $captcha = $_POST["g-recaptcha-response"];
+            //     $verify_url = 'https://www.google.com/recaptcha/api/siteverify';
+
+            //     $data = array('secret' => $recaptchaSecret, 'response' => $captcha);
+            //     $response = file_get_contents($verify_url, false, $context);
+
+            //     $options = array(
+            //         'http' => array(
+            //         'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+            //         'method'  => 'POST',
+            //         'content' => http_build_query($data)
+            //         )
+            //     );
+            //     $context  = stream_context_create($options);
+            //     $response = file_get_contents($url, false, $context);
+            //     $responseKeys = json_decode($response,true);
+            //     // header('Content-type: application/json');
+            //     if (!$responseKeys["success"]) {
+            //         header("Location: index.html#contact?type={$type}&resp={$resp}"); exit;
+            //     } else {
+            //         print_r("success");
+            //     }
+            // }
             // validate name
-            if (empty($_POST["name"])) {
+            if ($_POST["name"] == '') {
                 $nameErr = "Name is required";
             } else {
                 if (!preg_match("/^[a-zA-Z-' ]*$/",$name)) {
@@ -27,7 +57,7 @@ try {
                 }
             }
             // validate email
-            if (empty($_POST["email"])) {
+            if ($_POST["email"] == '') {
                 $emailErr = "Email is required";
             } else {
                 if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) && !PHPMailer::validateAddress($_POST['email'])) {
@@ -38,7 +68,7 @@ try {
             }
 
             // validate message
-            if (empty($_POST["message"])) {
+            if ($_POST["message"] == '') {
                 $messageErr = "A message is required";
             } else {
                 $message = test_input($_POST['message']);
@@ -56,7 +86,7 @@ try {
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; 
                 $mail->Port = $port;                                                
                 $mail->CharSet = PHPMailer::CHARSET_UTF8;
-                $mail->setFrom($username, (empty($name) ? 'Contact form' : $name));
+                $mail->setFrom($username, (isset($name) ? 'Contact form' : $name));
                 $mail->addAddress($addressEmail);
                 $mail->addReplyTo($email, $name);
                 $mail->Subject = 'New submission from contact form on Kirkclarke.com';
