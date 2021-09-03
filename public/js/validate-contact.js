@@ -23,14 +23,20 @@ const validateFields = () => {
         request.open("POST", "contact.php");
         request.onload = (e) => {
           if (request.readyState === 4) {
-            let btnRespTxt = JSON.parse(request.responseText);
+            const respTxt = JSON.parse(request.responseText);
+            const respTxtType = respTxt.type;
+
             // if (request.status === 200) {
-            //   btnRespTxt = JSON.parse(request.responseText);
+            //   respTxt = JSON.parse(request.responseText);
             // } else {
-            //   btnRespTxt = JSON.parse(request.responseText);
+            //   respTxt = JSON.parse(request.responseText);
             // }
-            submitBtn.innerText = btnRespTxt.resp;
+            document.activeElement.blur();
+            submitBtn.innerText = respTxt.resp;
+            submitBtn.classList.add("alert-" + respTxtType);
+
             setTimeout(() => {
+              submitBtn.classList.remove("alert-" + respTxtType);
               submitBtn.innerText = "Submit";
             }, 5000);
           }
