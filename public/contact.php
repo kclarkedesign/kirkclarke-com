@@ -17,35 +17,32 @@ try {
 
         // honeypot field should be empty
         if ($_POST["choices"] == '') {
-            //validate recaptcha
-            // if ($_POST["g-recaptcha-response"] == '') {
-            //     $resp = 'Mailer Error: reCaptcha failed';
-            //     $type = "warning";
-            //     header("Location: index.html#contact?type={$type}&resp={$resp}"); exit;
-            // } else {
-            //     $captcha = $_POST["g-recaptcha-response"];
-            //     $verify_url = 'https://www.google.com/recaptcha/api/siteverify';
+            //validate recaptcha - https://codeforgeek.com/google-recaptcha-v3-tutorial/
+            if ($_POST["g-recaptcha-response"] == '') {
+                $resp = 'Mailer Error: reCaptcha failed';
+                $type = "warning";
+            } else {
+                $captchaPubicKey = $_POST["g-recaptcha-response"];
+                $verify_url = 'https://www.google.com/recaptcha/api/siteverify';
+                $data = array('secret' => $recaptchaSecret, 'response' => $captchaPubicKey);
 
-            //     $data = array('secret' => $recaptchaSecret, 'response' => $captcha);
-            //     $response = file_get_contents($verify_url, false, $context);
-
-            //     $options = array(
-            //         'http' => array(
-            //         'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-            //         'method'  => 'POST',
-            //         'content' => http_build_query($data)
-            //         )
-            //     );
-            //     $context  = stream_context_create($options);
-            //     $response = file_get_contents($url, false, $context);
-            //     $responseKeys = json_decode($response,true);
-            //     // header('Content-type: application/json');
-            //     if (!$responseKeys["success"]) {
-            //         header("Location: index.html#contact?type={$type}&resp={$resp}"); exit;
-            //     } else {
-            //         print_r("success");
-            //     }
-            // }
+                $options = array(
+                    'http' => array(
+                    'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+                    'method'  => 'POST',
+                    'content' => http_build_query($data)
+                    )
+                );
+                $context  = stream_context_create($options);
+                $response = file_get_contents($verify_url, false, $context);
+                $responseKeys = json_decode($response,true);
+                header('Content-type: application/json');
+                if (!$responseKeys["success"]) {
+                    $resp = 'reCaptcha failed validation';
+                    $type = 'fail';
+                    echo json_encode(array('type' => $type, 'resp' => $resp));
+                }
+            }
             // validate name
             if ($_POST["name"] == '') {
                 $nameErr = "Name is required";
@@ -94,30 +91,33 @@ try {
 
                 if (!$mail->send()) {
                     $resp = 'Mailer Error: ' . $mail->ErrorInfo;
-                    $type = "warning";
+                    $type = "fail";
                 } else {
                     $resp = 'Your contact information was sent successfully.';
                     $type = "success";
                 }
             }
             // handle resp
-            header("Location: index.html#contact?type={$type}&resp={$resp}"); exit;
+            echo json_encode(array('type' => $type, 'resp' => $resp));
+            exit;
         }
         
     }
     
 
 } catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    $resp = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    $type = "fail";
+    echo json_encode(array('type' => $type, 'resp' => $resp));
 }
 
-if (isset($_REQUEST["destination"])) {
-    header("Location: {$_REQUEST["destination"]}"); exit;
-} else if (isset($_SERVER["HTTP_REFERER"])){
-    header("Location: {$_SERVER["HTTP_REFERER"]}"); exit;
-} else {
-    header("Location: index.html#contact"); exit;
-}
+// if (isset($_REQUEST["destination"])) {
+//     header("Location: {$_REQUEST["destination"]}"); exit;
+// } else if (isset($_SERVER["HTTP_REFERER"])){
+//     header("Location: {$_SERVER["HTTP_REFERER"]}"); exit;
+// } else {
+//     header("Location: index.html#contact"); exit;
+// }
 function test_input($data) {
   $data = trim($data);
   $data = stripslashes(strip_tags($data));

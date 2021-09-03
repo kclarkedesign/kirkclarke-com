@@ -10,31 +10,32 @@ submitBtn.addEventListener("click", (e) => {
 
 const validateFields = () => {
   const form = document.getElementById("contact-form");
+  const submitBtn = document.getElementById("submit");
   const formData = new FormData(form);
+  submitBtn.innerHTML = "Submitting&hellip;";
   grecaptcha.ready(function () {
     grecaptcha
       .execute("6LdGAhocAAAAAFZKVSDhNzbo0VxKl6jbiWEocrQM", { action: "submit" })
       .then(function (token) {
-        // Add your logic to submit to your backend server here.
-        // choicesInput.insertAdjacentHTML(
-        //   "afterend",
-        //   '<input type="hidden" name="g-recaptcha-response" value="' +
-        //     token +
-        //     '">'
-        // );
         formData.append("g-recaptcha-response", token);
+        // async xmlHttpRequest
         const request = new XMLHttpRequest();
         request.open("POST", "contact.php");
-        // request.setRequestHeader(
-        //   "Content-Type",
-        //   "application/x-www-form-urlencoded"
-        // );
+        request.onload = (e) => {
+          if (request.readyState === 4) {
+            let btnRespTxt = JSON.parse(request.responseText);
+            // if (request.status === 200) {
+            //   btnRespTxt = JSON.parse(request.responseText);
+            // } else {
+            //   btnRespTxt = JSON.parse(request.responseText);
+            // }
+            submitBtn.innerText = btnRespTxt.resp;
+            setTimeout(() => {
+              submitBtn.innerText = "Submit";
+            }, 5000);
+          }
+        };
         request.send(formData);
-        // fetch("./contact.php", {
-        //   method: "post",
-        //   body: formData,
-        //   headers: { "Content-type": "application/x-www-form-urlencoded" },
-        // });
       });
   });
 };
