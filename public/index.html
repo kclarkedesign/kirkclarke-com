@@ -226,6 +226,8 @@
         position: absolute;
         width: 1px;
       }
+      /* recaptcha badge */
+      .grecaptcha-badge { visibility: hidden; }
     </style>
   </head>
   <body>
@@ -391,7 +393,7 @@
               <span title="Angular (11)"><i class="cat fa-angular fab"></i></span>
               <span title="API (RAWG Video Games Database API)"
                 ><i class="cat fa-cog fas"></i
-              ></a>
+              ></span>
             </div>
             <a
               class="profile-link d-block"
@@ -753,9 +755,15 @@
 
                 <label id="textarea-label" for="textarea">Your message *</label>
                 <textarea id="textarea" class="form-control" value="" type="text" name="message" style="min-height: 20vh;" rows="10" maxlength="6000" required></textarea>
+                <small class="text-muted">This site is protected by reCAPTCHA and the Google
+              <a href="https://policies.google.com/privacy" rel="noopener"
+                      target="_blank">Privacy Policy</a> and <a href="https://policies.google.com/terms" rel="noopener"
+                      target="_blank">Terms of Service</a> apply.
 
+              </small>
               </div>
               <label id="choices-label"for="choices">Your choices</label><input id="choices" name="choices" type="text" class="form-control choices" tabindex="-1" autocomplete="off">
+              
               <button id="submit" type="submit" value="Submit" class="btn btn-secondary btn-lg btn-block">Submit</button>
 
               <!-- <div class="form-submit-status">
