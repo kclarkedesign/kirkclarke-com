@@ -20,11 +20,11 @@ try {
             //validate recaptcha - https://codeforgeek.com/google-recaptcha-v3-tutorial/
             if ($_POST["g-recaptcha-response"] == '') {
                 $resp = 'Mailer Error: reCaptcha failed';
-                $type = "warning";
+                $type = "danger";
             } else {
                 $captchaPubicKey = $_POST["g-recaptcha-response"];
                 $verify_url = 'https://www.google.com/recaptcha/api/siteverify';
-                $data = array('secret' => $recaptchaSecret, 'response' => $captchaPubicKey);
+                $data = array('secret' => $config_recaptchaSecret, 'response' => $captchaPubicKey);
 
                 $options = array(
                     'http' => array(
@@ -39,7 +39,7 @@ try {
                 header('Content-type: application/json');
                 if (!$responseKeys["success"]) {
                     $resp = 'reCaptcha failed validation';
-                    $type = 'fail';
+                    $type = 'danger';
                     echo json_encode(array('type' => $type, 'resp' => $resp));
                 }
             }
@@ -76,22 +76,22 @@ try {
                 $mail = new PHPMailer();
                 $mail->SMTPDebug = 0;
                 $mail->isSMTP();
-                $mail->Host = $host;
+                $mail->Host = $config_host;
                 $mail->SMTPAuth   = true;
-                $mail->Username   = $username;                     //SMTP username
-                $mail->Password   = $password;                               //SMTP password
+                $mail->Username   = $config_username;                     //SMTP username
+                $mail->Password   = $config_password;                               //SMTP password
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; 
-                $mail->Port = $port;                                                
+                $mail->Port = $config_port;                                                
                 $mail->CharSet = PHPMailer::CHARSET_UTF8;
-                $mail->setFrom($username, (isset($name) ? 'Contact form' : $name));
-                $mail->addAddress($addressEmail);
+                $mail->setFrom($config_username, (isset($name) ? 'Contact form' : $name));
+                $mail->addAddress($config_addressEmail);
                 $mail->addReplyTo($email, $name);
                 $mail->Subject = 'New submission from contact form on Kirkclarke.com';
                 $mail->Body = "Contact form submission\n\nFrom:\n" . $name . "\n" . $email . "\n\nMessage:\n" . $message;
 
                 if (!$mail->send()) {
                     $resp = 'Mailer Error: ' . $mail->ErrorInfo;
-                    $type = "fail";
+                    $type = "danger";
                 } else {
                     $resp = 'Your contact information was sent successfully.';
                     $type = "success";
@@ -107,7 +107,7 @@ try {
 
 } catch (Exception $e) {
     $resp = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-    $type = "fail";
+    $type = "danger";
     echo json_encode(array('type' => $type, 'resp' => $resp));
 }
 
