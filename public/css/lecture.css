@@ -114,6 +114,12 @@ pre {
   background: var(--light);
 }
 
+@media (max-width: 425px) {
+  .course-main {
+    padding: 1rem 0.85rem 4rem !important;
+  }
+}
+
 .course-sidebar {
   border-right: 1px solid #d7dadb;
   width: 350px;
