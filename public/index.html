@@ -470,6 +470,17 @@
       .grecaptcha-badge {
         visibility: hidden;
       }
+
+      .u-link {
+        border-bottom: 1px dotted;
+      }
+      .u-link--dark {
+        color: var(--color-dark);
+      }
+      .u-link:hover {
+        border-bottom: 1px solid;
+        text-decoration: none;
+      }
     </style>
   </head>
   <body>
@@ -1070,6 +1081,7 @@
                       href="https://policies.google.com/privacy"
                       rel="noopener"
                       target="_blank"
+                      class="u-link u-link--dark"
                       >Privacy Policy</a
                     >
                     and
@@ -1077,6 +1089,7 @@
                       href="https://policies.google.com/terms"
                       rel="noopener"
                       target="_blank"
+                      class="u-link u-link--dark"
                       >Terms of Service</a
                     >
                     apply.
