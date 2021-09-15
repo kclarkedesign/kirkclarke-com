@@ -60,17 +60,20 @@
         --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
           "Liberation Mono", "Courier New", monospace;
       }
+
       *,
       ::after,
       ::before {
         box-sizing: border-box;
       }
+
       html {
         font-family: sans-serif;
         line-height: 1.15;
         -webkit-text-size-adjust: 100%;
         -webkit-tap-highlight-color: transparent;
       }
+
       article,
       aside,
       figcaption,
@@ -83,6 +86,7 @@
       section {
         display: block;
       }
+
       body {
         margin: 0;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -95,6 +99,7 @@
         text-align: left;
         background-color: #fff;
       }
+
       h1,
       h2,
       h3,
@@ -104,26 +109,32 @@
         margin-top: 0;
         margin-bottom: 0.5rem;
       }
+
       p {
         margin-top: 0;
         margin-bottom: 1rem;
       }
+
       small {
         font-size: 80%;
       }
+
       a {
         color: #007bff;
         text-decoration: none;
         background-color: transparent;
       }
+
       img {
         vertical-align: middle;
         border-style: none;
       }
+
       svg {
         overflow: hidden;
         vertical-align: middle;
       }
+
       .h1,
       .h2,
       .h3,
@@ -140,23 +151,28 @@
         font-weight: 500;
         line-height: 1.2;
       }
+
       .h1,
       h1 {
         font-size: 2.5rem;
       }
+
       .h2,
       h2 {
         font-size: 2rem;
       }
+
       .small,
       small {
         font-size: 80%;
         font-weight: 400;
       }
+
       .img-fluid {
         max-width: 100%;
         height: auto;
       }
+
       .col,
       .col-1,
       .col-10,
@@ -232,22 +248,27 @@
         padding-right: 15px;
         padding-left: 15px;
       }
+
       .flex-row {
         -ms-flex-direction: row !important;
         flex-direction: row !important;
       }
+
       .justify-content-between {
         -ms-flex-pack: justify !important;
         justify-content: space-between !important;
       }
+
       .align-items-center {
         -ms-flex-align: center !important;
         align-items: center !important;
       }
+
       .align-self-center {
         -ms-flex-item-align: center !important;
         align-self: center !important;
       }
+
       .text-center {
         text-align: center !important;
       }
@@ -259,11 +280,12 @@
       as="style"
       onload="this.onload=null;this.rel='stylesheet'"
     />
-    <noscript
-      ><link
+    <noscript>
+      <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
-    /></noscript>
+      />
+    </noscript>
     <link
       media="all"
       rel="stylesheet preload"
@@ -282,22 +304,28 @@
       as="style"
       onload="this.onload=null;this.rel='stylesheet'"
     />
-    <noscript><link rel="stylesheet" href="./css/navbar.css" /></noscript>
+    <noscript>
+      <link rel="stylesheet" href="./css/navbar.css" />
+    </noscript>
     <link
       rel="stylesheet preload"
       href="./css/base.css"
       as="style"
       onload="this.onload=null;this.rel='stylesheet'"
     />
-    <noscript><link rel="stylesheet" href="./css/base.css" /></noscript>
+    <noscript>
+      <link rel="stylesheet" href="./css/base.css" />
+    </noscript>
 
     <style>
       :root {
         --color-celadon: #98dfaf;
         --color-dark: #191919;
         --color-white: #ffffff;
-        --color-celedon-contrast: #585858; /* Davys Grey */
+        --color-celedon-contrast: #585858;
+        /* Davys Grey */
       }
+
       html {
         scroll-behavior: smooth;
       }
@@ -316,6 +344,7 @@
         width: 1px;
         word-wrap: normal !important;
       }
+
       nav {
         display: flex;
         justify-content: center;
@@ -326,19 +355,23 @@
         background-color: var(--color-celadon);
         z-index: 5;
       }
+
       nav a:hover {
         color: #545c52;
       }
+
       .nav-link {
         color: var(--color-dark);
         font-weight: bold;
         font-size: 1.5em;
         margin: 0 0.5em;
       }
+
       .brand {
         width: 100%;
         max-width: 35px;
       }
+
       .full-vh {
         background: #000;
         height: 100vh;
@@ -351,24 +384,29 @@
         background-color: #191919;
         color: #fff;
       }
+
       .welcome__subtitle {
         color: var(--color-celadon);
         font-size: 1.5rem;
       }
+
       .welcome__down,
       .welcome__down a {
         color: var(--color-white);
         font-size: 1.25em;
       }
+
       #projects {
         background-color: var(--color-dark);
         min-height: 300px;
       }
+
       #profiles {
         background-color: var(--color-dark);
         position: relative;
         z-index: 1;
       }
+
       .anchor {
         padding-top: 58px;
         margin-top: -58px;
@@ -382,16 +420,19 @@
         padding: 1em;
         margin: 0 auto;
       }
+
       @media (max-width: 320px) {
         .o-grid--projects {
           grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
         }
       }
+
       @media (min-width: 1024px) {
         .o-grid--projects {
           max-width: 1140px;
         }
       }
+
       .project-tile {
         border: 3px solid;
         transition: all 0.3s ease-in-out;
@@ -401,10 +442,12 @@
       .project-tile:hover {
         border: 3px solid var(--color-celadon);
       }
+
       .project-tile:hover a {
         color: var(--color-celadon);
         text-decoration: underline;
       }
+
       .project-title {
         background: var(--color-dark);
         color: var(--color-celadon);
@@ -454,6 +497,7 @@
       footer {
         padding: 2vh;
       }
+
       /**/
       #choices-label,
       .choices {
@@ -466,6 +510,7 @@
         position: absolute;
         width: 1px;
       }
+
       /* recaptcha badge */
       .grecaptcha-badge {
         visibility: hidden;
@@ -474,15 +519,18 @@
       .u-link {
         border-bottom: 1px dotted;
       }
+
       .u-link--dark {
         color: var(--color-dark);
       }
+
       .u-link:hover {
         border-bottom: 1px solid;
         text-decoration: none;
       }
     </style>
   </head>
+
   <body>
     <header>
       <nav id="navbar" class="nav align-items-center justify-content-between">
@@ -501,6 +549,7 @@
                   .cls-1 {
                     fill: #191919;
                   }
+
                   .cls-2 {
                     fill: none;
                   }
@@ -637,8 +686,8 @@
               />
               <div class="project-title">
                 Customize Private & Protected: WordPress Plugin
-              </div></a
-            >
+              </div>
+            </a>
           </article>
           <!-- Add in icons or bar for language, labs/experiments (upper right). Might need popup/overlay to explain -->
           <article class="project-tile">
@@ -664,8 +713,8 @@
                 width="900"
                 height="800"
               />
-              <div class="project-title">Angular Video Game Database</div></a
-            >
+              <div class="project-title">Angular Video Game Database</div>
+            </a>
           </article>
           <article class="project-tile">
             <div class="cat-container cat-container--vertical">
@@ -678,16 +727,14 @@
               target="_blank"
               rel="noopener"
               ><img
-                src="./images/thumb-project-ngvideogamedb.jpg"
+                src="./images/thumb-image-grid-lightbox-component.jpg"
                 class="img-fluid"
                 alt="Markdown Previewer"
                 width="900"
                 height="800"
               />
-              <div class="project-title">
-                Image Grid Component and Lightbox (Vue.js)
-              </div></a
-            >
+              <div class="project-title">Vue.js Image Grid Component</div>
+            </a>
           </article>
           <article class="project-tile">
             <a
@@ -704,8 +751,8 @@
               />
               <div class="project-title">
                 92Y Impact Report Companion Website
-              </div></a
-            >
+              </div>
+            </a>
           </article>
           <article class="project-tile">
             <a
@@ -720,10 +767,8 @@
                 width="900"
                 height="900"
               />
-              <div class="project-title">
-                Beginner HTML Mini-Course Website
-              </div></a
-            >
+              <div class="project-title">Beginner HTML Mini-Course Website</div>
+            </a>
           </article>
           <article class="project-tile">
             <a
@@ -738,8 +783,8 @@
                 width="900"
                 height="900"
               />
-              <div class="project-title">92Y Virtual Exhibitions</div></a
-            >
+              <div class="project-title">92Y Virtual Exhibitions</div>
+            </a>
           </article>
           <article class="project-tile">
             <!-- <div class="cat-container cat-container--vertical">
@@ -758,10 +803,8 @@
                 width="900"
                 height="900"
               />
-              <div class="project-title">
-                Free Course & Consulting Website
-              </div></a
-            >
+              <div class="project-title">Free Course & Consulting Website</div>
+            </a>
           </article>
           <article class="project-tile">
             <div class="cat-container cat-container--vertical">
@@ -786,8 +829,8 @@
               />
               <div class="project-title">
                 Daily UI Challenge #13 &mdash;Direct&nbsp;Messaging
-              </div></a
-            >
+              </div>
+            </a>
           </article>
           <article class="project-tile">
             <div class="cat-container cat-container--vertical">
@@ -807,8 +850,8 @@
                 width="900"
                 height="900"
               />
-              <div class="project-title">FCC Project: Survey Form</div></a
-            >
+              <div class="project-title">FCC Project: Survey Form</div>
+            </a>
           </article>
           <article class="project-tile">
             <div class="cat-container cat-container--vertical">
@@ -828,10 +871,8 @@
                 width="900"
                 height="900"
               />
-              <div class="project-title">
-                FCC Project: Product Landing Page
-              </div></a
-            >
+              <div class="project-title">FCC Project: Product Landing Page</div>
+            </a>
           </article>
           <article class="project-tile">
             <div class="cat-container cat-container--vertical">
@@ -851,10 +892,8 @@
                 width="900"
                 height="900"
               />
-              <div class="project-title">
-                FCC Project: Random Quote Machine
-              </div></a
-            >
+              <div class="project-title">FCC Project: Random Quote Machine</div>
+            </a>
           </article>
           <article class="project-tile">
             <div class="cat-container cat-container--vertical">
@@ -874,10 +913,8 @@
                 width="900"
                 height="900"
               />
-              <div class="project-title">
-                FCC Project: Markdown Previewer
-              </div></a
-            >
+              <div class="project-title">FCC Project: Markdown Previewer</div>
+            </a>
           </article>
           <article class="project-tile">
             <div class="cat-container cat-container--vertical">
@@ -897,8 +934,8 @@
                 width="900"
                 height="900"
               />
-              <div class="project-title">FCC Project: Drum Machine</div></a
-            >
+              <div class="project-title">FCC Project: Drum Machine</div>
+            </a>
           </article>
           <article class="project-tile">
             <div class="cat-container cat-container--vertical">
@@ -920,8 +957,8 @@
               />
               <div class="project-title">
                 FCC Project: JavaScript Calculator
-              </div></a
-            >
+              </div>
+            </a>
           </article>
           <article class="project-tile">
             <div class="cat-container cat-container--vertical">
@@ -941,8 +978,8 @@
                 width="900"
                 height="900"
               />
-              <div class="project-title">FCC Project: Pomodoro Clock</div></a
-            >
+              <div class="project-title">FCC Project: Pomodoro Clock</div>
+            </a>
           </article>
           <article class="project-tile">
             <div class="cat-container cat-container--vertical">
@@ -966,8 +1003,8 @@
               />
               <div class="project-title">
                 Campaign for Columbia Law: A Force in the World
-              </div></a
-            >
+              </div>
+            </a>
           </article>
           <article class="project-tile">
             <div class="cat-container cat-container--vertical">
@@ -989,8 +1026,8 @@
                 width="900"
                 height="900"
               />
-              <div class="project-title">Centered Health Healing Arts</div></a
-            >
+              <div class="project-title">Centered Health Healing Arts</div>
+            </a>
           </article>
         </div>
       </section>
