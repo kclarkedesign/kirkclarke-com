@@ -412,6 +412,11 @@
         margin-top: -58px;
       }
 
+      .o-filter--projects .btn {
+        color: rgb(166 241 190 / 70%);
+        border-color: rgb(33 37 41);
+      }
+
       .o-grid--projects {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -664,13 +669,13 @@
       </section>
       <section id="projects" class="anchor text-center p-sm-5 pb-5">
         <!--  TODO: Add filtering and possibly skills section -->
-        <div class="o-filter--projects">
+        <div class="o-filter--projects js-filter mt-4 mb-2">
           <!-- look at title or add data attributes to see which filters to add -->
         </div>
         <div class="o-grid--projects">
           <!-- TODO: add grid using vue or some kind of templating framework -->
           <article class="project-tile">
-            <div class="cat-container cat-container--vertical">
+            <div class="cat-container js-cat-container cat-container--vertical">
               <!-- <span title="JavaScript"><i class="cat fab fa-js"></i></span> -->
               <span title="PHP"><i class="cat fab fa-php"></i></span>
               <span title="WordPress"
@@ -696,7 +701,7 @@
           </article>
           <!-- Add in icons or bar for language, labs/experiments (upper right). Might need popup/overlay to explain -->
           <article class="project-tile">
-            <div class="cat-container cat-container--vertical">
+            <div class="cat-container js-cat-container cat-container--vertical">
               <span title="Experiment"><i class="cat fa-flask fas"></i></span>
               <span title="Sass (SCSS)"><i class="cat fa-sass fab"></i></span>
               <span title="Angular (11)"
@@ -722,7 +727,7 @@
             </a>
           </article>
           <article class="project-tile">
-            <div class="cat-container cat-container--vertical">
+            <div class="cat-container js-cat-container cat-container--vertical">
               <span title="VueJS (3)"><i class="cat fab fa-vuejs"></i></span>
               <span title="JavaScript"><i class="cat fab fa-js"></i></span>
             </div>
@@ -808,7 +813,7 @@
             </a>
           </article> -->
           <article class="project-tile">
-            <div class="cat-container cat-container--vertical">
+            <div class="cat-container js-cat-container cat-container--vertical">
               <span title="Challenge"
                 ><i class="cat fas fa-pencil-ruler"></i
               ></span>
@@ -834,7 +839,7 @@
             </a>
           </article>
           <!-- <article class="project-tile">
-            <div class="cat-container cat-container--vertical">
+            <div class="cat-container js-cat-container cat-container--vertical">
               <span title="Experiment"><i class="cat fa-flask fas"></i></span>
               
             </div>
@@ -854,7 +859,7 @@
             </a>
           </article> -->
           <!-- <article class="project-tile">
-            <div class="cat-container cat-container--vertical">
+            <div class="cat-container js-cat-container cat-container--vertical">
               <span title="Experiment"><i class="cat fa-flask fas"></i></span>
               <span title="Sass (SCSS)"><i class="cat fa-sass fab"></i></span>
               <span title="React"><i class="cat fa-react fab"></i></span>
@@ -875,7 +880,7 @@
             </a>
           </article> -->
           <article class="project-tile">
-            <div class="cat-container cat-container--vertical">
+            <div class="cat-container js-cat-container cat-container--vertical">
               <span title="Experiment"><i class="cat fa-flask fas"></i></span>
               <span title="Sass (SCSS)"><i class="cat fa-sass fab"></i></span>
               <span title="React"><i class="cat fa-react fab"></i></span>
@@ -896,7 +901,7 @@
             </a>
           </article>
           <article class="project-tile">
-            <div class="cat-container cat-container--vertical">
+            <div class="cat-container js-cat-container cat-container--vertical">
               <span title="Experiment"><i class="cat fa-flask fas"></i></span>
               <span title="Sass (SCSS)"><i class="cat fa-sass fab"></i></span>
               <span title="React"><i class="cat fa-react fab"></i></span>
@@ -917,7 +922,7 @@
             </a>
           </article>
           <article class="project-tile">
-            <div class="cat-container cat-container--vertical">
+            <div class="cat-container js-cat-container cat-container--vertical">
               <span title="Experiment"><i class="cat fa-flask fas"></i></span>
               <span title="Sass (SCSS)"><i class="cat fa-sass fab"></i></span>
               <span title="React"><i class="cat fa-react fab"></i></span>
@@ -938,7 +943,7 @@
             </a>
           </article>
           <article class="project-tile">
-            <div class="cat-container cat-container--vertical">
+            <div class="cat-container js-cat-container cat-container--vertical">
               <span title="Experiment"><i class="cat fa-flask fas"></i></span>
               <span title="Sass (SCSS)"><i class="cat fa-sass fab"></i></span>
               <span title="React"><i class="cat fa-react fab"></i></span>
@@ -959,7 +964,7 @@
             </a>
           </article>
           <article class="project-tile">
-            <div class="cat-container cat-container--vertical">
+            <div class="cat-container js-cat-container cat-container--vertical">
               <span title="JavaScript"><i class="cat fab fa-js"></i></span>
               <span title="PHP"><i class="cat fab fa-php"></i></span>
               <span title="WordPress"
@@ -984,7 +989,7 @@
             </a>
           </article>
           <article class="project-tile">
-            <div class="cat-container cat-container--vertical">
+            <div class="cat-container js-cat-container cat-container--vertical">
               <!-- <span title="JavaScript"><i class="cat fab fa-js"></i></span>
               <span title="PHP"><i class="cat fab fa-php"></i></span> -->
               <span title="WordPress"
@@ -1163,6 +1168,7 @@
     </main>
     <footer class="text-center p-4">&copy; 2021 Kirk Clarke</footer>
     <script src="./js/toggle.js"></script>
+    <script src="./js/filter.js"></script>
     <script
       defer="defer"
       src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"
