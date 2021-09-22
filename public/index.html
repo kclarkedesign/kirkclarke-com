@@ -417,6 +417,10 @@
         border-color: rgb(33 37 41);
       }
 
+      .o-filter--projects .filter-selected {
+        background: rgb(74 74 74);
+      }
+
       .o-grid--projects {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -451,6 +455,10 @@
       .project-tile:hover a {
         color: var(--color-celadon);
         text-decoration: underline;
+      }
+
+      .o-grid--projects .filtered-out {
+        display: none;
       }
 
       .project-title {
