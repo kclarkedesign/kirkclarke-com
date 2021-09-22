@@ -4,6 +4,8 @@ const FILTER_SELECTED_SELECTOR = "filter-selected";
 const FILTERING_ACTIVE_SELECTOR = "filters-active";
 const projectGrid = document.querySelector("o-grid--projects");
 const projectTiles = document.querySelectorAll(".project-tile");
+const activeFilters = [];
+let tilesFilteredCount = 0;
 
 const getCategories = () => {
   const catArray = [];
@@ -51,32 +53,44 @@ const addFilters = (arr) => {
 };
 
 const handleFilter = (e) => {
-  const activeFilters = [];
   const filter = e.target;
+  const FILTERED_SELECTOR = "filtered-out";
   const targetClass = filter.dataset.filter.toLowerCase();
-  const checkTiles = (action, cssClass) => {
+
+  const checkTiles = (cssClass) => {
     projectTiles.forEach((tile) => {
-      if (action == "add") {
-        if (!tile.classList.value.includes(targetClass)) {
-          tile.classList.add(cssClass);
-        }
+      console.log(
+        activeFilters.some((filter) => tile.classList.value.includes(filter))
+      );
+      if (
+        !activeFilters.some((filter) => tile.classList.value.includes(filter))
+      ) {
+        tile.classList.add(cssClass);
       } else {
-        if (tile.classList.value.includes(targetClass)) {
-          tile.classList.remove(cssClass);
-        }
+        tile.classList.remove(cssClass);
       }
     });
   };
+
   filter.classList.toggle(FILTER_SELECTED_SELECTOR);
 
   if (filter.classList.value.toLowerCase().includes(FILTER_SELECTED_SELECTOR)) {
     // add filter to activeFilters
-    checkTiles("add", "filtered-out");
+    activeFilters.push(targetClass);
+    checkTiles(FILTERED_SELECTOR);
   } else {
-    // remove filter to activeFilters
-    checkTiles("remove", "filtered-out");
-    projectTiles.forEach((tile) => {});
+    // remove filter from activeFilters
+    activeFilters.splice(activeFilters.indexOf(targetClass), 1);
+    checkTiles(FILTERED_SELECTOR);
   }
+
+  if (activeFilters.length == 0) {
+    projectTiles.forEach((tile) => {
+      tile.classList.remove(FILTERED_SELECTOR);
+    });
+  }
+
+  console.log(activeFilters);
 };
 
 addProjectCategories();
