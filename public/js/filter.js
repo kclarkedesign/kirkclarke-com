@@ -2,7 +2,7 @@ const FILTER_SELECTOR = "js-filter";
 const CATEGORY_PARENT_SELECTOR = "js-cat-container";
 const FILTER_SELECTED_SELECTOR = "filter-selected";
 const FILTERING_ACTIVE_SELECTOR = "filters-active";
-const projectGrid = document.querySelector("o-grid--projects");
+const projectGrid = document.querySelector(".o-grid--projects");
 const projectTiles = document.querySelectorAll(".project-tile");
 const activeFilters = [];
 let tilesFilteredCount = 0;
@@ -53,15 +53,13 @@ const addFilters = (arr) => {
 };
 
 const handleFilter = (e) => {
+  //TODO: update url and allow for filtering from query string
   const filter = e.target;
   const FILTERED_SELECTOR = "filtered-out";
   const targetClass = filter.dataset.filter.toLowerCase();
 
   const checkTiles = (cssClass) => {
     projectTiles.forEach((tile) => {
-      console.log(
-        activeFilters.some((filter) => tile.classList.value.includes(filter))
-      );
       if (
         !activeFilters.some((filter) => tile.classList.value.includes(filter))
       ) {
@@ -90,7 +88,7 @@ const handleFilter = (e) => {
     });
   }
 
-  console.log(activeFilters);
+  // console.log(activeFilters);
 };
 
 addProjectCategories();
