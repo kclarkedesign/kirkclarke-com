@@ -37,18 +37,33 @@ const addProjectCategories = () => {
   });
 };
 
-const addFilters = (arr) => {
+const handleFilters = (arr, reset = false) => {
   const filterParent = document.querySelector(`.${FILTER_SELECTOR}`);
-  filterParent.innerHTML = arr
-    .map((item) => {
-      return `<button class="btn btn-outline-secondary m-1" data-filter="${item}">${item}</button>`;
-    })
-    .join("");
 
-  for (filter of filterParent.children) {
-    filter.addEventListener("click", (e) => {
-      handleFilter(e);
-    });
+  if (reset == false) {
+    filterParent.innerHTML = arr
+      .map((item) => {
+        return `<button class="btn btn-outline-secondary m-1" data-filter="${item}">${item}</button>`;
+      })
+      .join("");
+
+    filterParent.innerHTML +=
+      '<button id="js-filter-reset" class="btn btn-outline-secondary m-1" data-filter="reset">Reset filters</button>';
+
+    for (filter of filterParent.children) {
+      filter.addEventListener("click", (e) => {
+        handleFilter(e);
+      });
+    }
+  } else {
+    // empty active filters array
+    while (arr.length) {
+      arr.pop();
+    }
+    // remove active filter class from filters
+    for (filter of filterParent.children) {
+      filter.classList.remove(FILTER_SELECTED_SELECTOR);
+    }
   }
 };
 
@@ -58,17 +73,27 @@ const handleFilter = (e) => {
   const FILTERED_SELECTOR = "filtered-out";
   const targetClass = filter.dataset.filter.toLowerCase();
 
-  const checkTiles = (cssClass) => {
+  const checkTiles = (cssClass, reset = false) => {
     projectTiles.forEach((tile) => {
-      if (
-        !activeFilters.some((filter) => tile.classList.value.includes(filter))
-      ) {
-        tile.classList.add(cssClass);
+      if (reset == false) {
+        if (
+          !activeFilters.some((filter) => tile.classList.value.includes(filter))
+        ) {
+          tile.classList.add(cssClass);
+        } else {
+          tile.classList.remove(cssClass);
+        }
       } else {
         tile.classList.remove(cssClass);
       }
     });
   };
+  // if reset
+  if (filter.id == "js-filter-reset") {
+    handleFilters(activeFilters, true);
+    checkTiles(FILTERED_SELECTOR, true);
+    return;
+  }
 
   filter.classList.toggle(FILTER_SELECTED_SELECTOR);
 
@@ -92,4 +117,4 @@ const handleFilter = (e) => {
 };
 
 addProjectCategories();
-addFilters(getCategories());
+handleFilters(getCategories());
