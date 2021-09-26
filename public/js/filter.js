@@ -2,6 +2,8 @@ const FILTER_SELECTOR = "js-filter";
 const CATEGORY_PARENT_SELECTOR = "js-cat-container";
 const FILTER_SELECTED_SELECTOR = "filter-selected";
 const FILTERING_ACTIVE_SELECTOR = "filters-active";
+const FILTER_RESET_SELECTOR = "js-filter-reset";
+const DISPLAY_NONE_SELECTOR = "d-none";
 const projectGrid = document.querySelector(".o-grid--projects");
 const projectTiles = document.querySelectorAll(".project-tile");
 const activeFilters = [];
@@ -37,6 +39,15 @@ const addProjectCategories = () => {
   });
 };
 
+const handleFilterReset = (e, resetId, arr) => {
+  const filterReset = document.querySelector(`#${resetId}`);
+  if (arr.length > 0) {
+    filterReset.classList.remove(DISPLAY_NONE_SELECTOR);
+  } else {
+    filterReset.classList.add(DISPLAY_NONE_SELECTOR);
+  }
+};
+
 const handleFilters = (arr, reset = false) => {
   const filterParent = document.querySelector(`.${FILTER_SELECTOR}`);
 
@@ -48,11 +59,14 @@ const handleFilters = (arr, reset = false) => {
       .join("");
 
     filterParent.innerHTML +=
-      '<button id="js-filter-reset" class="btn btn-outline-secondary m-1" data-filter="reset">Reset filters</button>';
+      '<button id="js-filter-reset" class="btn btn-reset-filters btn-outline-secondary m-1 d-none" data-filter="reset">Reset filters</button>';
 
     for (filter of filterParent.children) {
       filter.addEventListener("click", (e) => {
         handleFilter(e);
+        if (filter.id == FILTER_RESET_SELECTOR) {
+          handleFilterReset(e, filter.id, activeFilters);
+        }
       });
     }
   } else {
@@ -89,7 +103,7 @@ const handleFilter = (e) => {
     });
   };
   // if reset
-  if (filter.id == "js-filter-reset") {
+  if (filter.id == FILTER_RESET_SELECTOR) {
     handleFilters(activeFilters, true);
     checkTiles(FILTERED_SELECTOR, true);
     return;
@@ -112,8 +126,6 @@ const handleFilter = (e) => {
       tile.classList.remove(FILTERED_SELECTOR);
     });
   }
-
-  // console.log(activeFilters);
 };
 
 addProjectCategories();
