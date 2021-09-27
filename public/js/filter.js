@@ -7,6 +7,7 @@ const DISPLAY_NONE_SELECTOR = "d-none";
 const projectGrid = document.querySelector(".o-grid--projects");
 const projectTiles = document.querySelectorAll(".project-tile");
 const activeFilters = [];
+let windowUrl = new URL(window.location.href);
 let tilesFilteredCount = 0;
 
 const getCategories = () => {
@@ -50,9 +51,12 @@ const handleFilterReset = (e, resetId, arr) => {
 
 const handleFilters = (arr, reset = false) => {
   const filterParent = document.querySelector(`.${FILTER_SELECTOR}`);
+  // TODO: figure out a behavior for labeling the tags
+  // filterParent.innerHTML =
+  //   '<p class="text-center text-light">View projects by</p>';
 
   if (reset == false) {
-    filterParent.innerHTML = arr
+    filterParent.innerHTML += arr
       .map((item) => {
         return `<button class="btn btn-outline-secondary m-1" data-filter="${item}">${item}</button>`;
       })
