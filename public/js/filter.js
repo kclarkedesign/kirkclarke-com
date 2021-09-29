@@ -10,6 +10,8 @@ const activeFilters = [];
 let windowUrl = new URL(window.location.href);
 let tilesFilteredCount = 0;
 
+// onload check/manage filters
+
 const getCategories = () => {
   const catArray = [];
   const categories = document.querySelectorAll(
