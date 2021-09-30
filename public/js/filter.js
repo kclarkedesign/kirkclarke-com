@@ -11,6 +11,13 @@ let windowUrl = new URL(window.location.href);
 let tilesFilteredCount = 0;
 
 // onload check/manage filters
+const checkSearchParams = (url) => {
+  let searchParams = new URLSearchParams(url);
+
+  if (searchParams.has("filter")) {
+    console.log(searchParams.getAll("filter"));
+  }
+};
 
 const getCategories = () => {
   const catArray = [];
