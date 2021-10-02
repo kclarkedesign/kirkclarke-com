@@ -39,6 +39,10 @@ const server = https.createServer(httpsConfig, (req, res) => {
     ".doc": "application/msword",
   };
 
+  if (pathname.match("^/?")) {
+    pathname = pathname.split("?")[0];
+  }
+
   if (fs.statSync(pathname).isDirectory()) {
     pathname = pkgPaths.public + "/index.html";
   } else if (

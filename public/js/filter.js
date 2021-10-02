@@ -12,11 +12,24 @@ let tilesFilteredCount = 0;
 
 // onload check/manage filters
 const checkSearchParams = (url) => {
-  let searchParams = new URLSearchParams(url);
-
+  let searchParams = url.searchParams;
   if (searchParams.has("filter")) {
-    console.log(searchParams.getAll("filter"));
+    // apply available searchParams to filters
+    const filterArr = searchParams.getAll("filter");
+    for (let i = 0; i < searchParams.getAll("filter").length; i++) {
+      if (
+        document.querySelector(`.js-filter [data-filter='${filterArr[i]}']`)
+      ) {
+        const projectFilter = document.querySelector(
+          `.js-filter [data-filter='${filterArr[i]}']`
+        );
+        if (projectFilter.dataset.filter.toLowerCase() == filterArr[i]) {
+          projectFilter.click();
+        }
+      }
+    }
   }
+  // console.log(activeFilters);
 };
 
 const getCategories = () => {
@@ -67,7 +80,7 @@ const handleFilters = (arr, reset = false) => {
   if (reset == false) {
     filterParent.innerHTML += arr
       .map((item) => {
-        return `<button class="btn btn-outline-secondary m-1" data-filter="${item}">${item}</button>`;
+        return `<button class="btn btn-outline-secondary m-1" data-filter="${item.toLowerCase()}">${item}</button>`;
       })
       .join("");
 
@@ -145,3 +158,4 @@ const handleFilter = (e) => {
 
 addProjectCategories();
 handleFilters(getCategories());
+checkSearchParams(windowUrl);
