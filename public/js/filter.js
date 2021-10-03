@@ -113,7 +113,7 @@ const handleFilter = (e) => {
   const FILTERED_SELECTOR = "filtered-out";
   const targetClass = filter.dataset.filter.toLowerCase();
 
-  //TODO: add check for url params
+  //TODO: apply logic to add updte search params for url params
 
   const checkTiles = (cssClass, reset = false) => {
     projectTiles.forEach((tile) => {
