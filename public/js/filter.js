@@ -32,6 +32,24 @@ const checkSearchParams = (url) => {
   // console.log(activeFilters);
 };
 
+const handleSearchParams = (type, cssClass) => {
+  let queryParams = new URLSearchParams(window.location.search);
+
+  if (type == "add") {
+    queryParams.append("filter", cssClass);
+  } else if (type == "remove") {
+    //queryParams.toString().split("&")
+    queryParams = new URLSearchParams(
+      queryParams.toString().replace(`&filter=${cssClass}`, "")
+    );
+    console.log(queryParams.toString);
+  }
+
+  console.log(queryParams.toString());
+
+  history.pushState(null, null, "?" + queryParams.toString());
+};
+
 const getCategories = () => {
   const catArray = [];
   const categories = document.querySelectorAll(
@@ -143,10 +161,12 @@ const handleFilter = (e) => {
     // add filter to activeFilters
     activeFilters.push(targetClass);
     checkTiles(FILTERED_SELECTOR);
+    handleSearchParams("add", targetClass);
   } else {
     // remove filter from activeFilters
     activeFilters.splice(activeFilters.indexOf(targetClass), 1);
     checkTiles(FILTERED_SELECTOR);
+    handleSearchParams("remove", targetClass);
   }
 
   if (activeFilters.length == 0) {
