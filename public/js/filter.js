@@ -12,6 +12,8 @@ let tilesFilteredCount = 0;
 
 // onload check/manage filters
 const checkSearchParams = (url) => {
+  console.log(url);
+  console.log(url.searchParams.toString());
   let searchParams = url.searchParams;
   if (searchParams.has("filter")) {
     // apply available searchParams to filters
@@ -34,20 +36,25 @@ const checkSearchParams = (url) => {
 
 const handleSearchParams = (type, cssClass) => {
   let queryParams = new URLSearchParams(window.location.search);
-
-  if (type == "add") {
+  if (type == "add" && !queryParams.toString().includes(cssClass)) {
     queryParams.append("filter", cssClass);
-  } else if (type == "remove") {
+  } else if (type == "remove" && queryParams.toString().includes(cssClass)) {
     //queryParams.toString().split("&")
     queryParams = new URLSearchParams(
-      queryParams.toString().replace(`&filter=${cssClass}`, "")
+      queryParams.toString().replace(`filter=${cssClass}`, "")
     );
-    console.log(queryParams.toString);
+  } else if (type == "reset") {
+    queryParams.delete("filter");
   }
 
   console.log(queryParams.toString());
 
   history.pushState(null, null, "?" + queryParams.toString());
+};
+
+const handleHistory = () => {
+  windowUrl = new URL(window.location.href);
+  checkSearchParams(windowUrl);
 };
 
 const getCategories = () => {
@@ -152,6 +159,7 @@ const handleFilter = (e) => {
   if (filter.id == FILTER_RESET_SELECTOR) {
     handleFilters(activeFilters, true);
     checkTiles(FILTERED_SELECTOR, true);
+    handleSearchParams("reset", "reset");
     return;
   }
 
@@ -179,3 +187,7 @@ const handleFilter = (e) => {
 addProjectCategories();
 handleFilters(getCategories());
 checkSearchParams(windowUrl);
+
+window.addEventListener("popstate", (e) => {
+  handleHistory();
+});
