@@ -6,26 +6,26 @@ const FILTER_RESET_SELECTOR = "js-filter-reset";
 const DISPLAY_NONE_SELECTOR = "d-none";
 const projectGrid = document.querySelector(".o-grid--projects");
 const projectTiles = document.querySelectorAll(".project-tile");
-const activeFilters = [];
+let activeFilters = [];
 let windowUrl = new URL(window.location.href);
 let tilesFilteredCount = 0;
 
 // onload check/manage filters
 const checkSearchParams = (url) => {
-  console.log(url);
-  console.log(url.searchParams.toString());
   let searchParams = url.searchParams;
+  console.log(searchParams.toString());
   if (searchParams.has("filter")) {
-    // apply available searchParams to filters
-    const filterArr = searchParams.getAll("filter");
+    // apply available searchParams to activeFilters
+    activeFilters = searchParams.getAll("filter");
+    console.log(activeFilters);
     for (let i = 0; i < searchParams.getAll("filter").length; i++) {
       if (
-        document.querySelector(`.js-filter [data-filter='${filterArr[i]}']`)
+        document.querySelector(`.js-filter [data-filter='${activeFilters[i]}']`)
       ) {
         const projectFilter = document.querySelector(
-          `.js-filter [data-filter='${filterArr[i]}']`
+          `.js-filter [data-filter='${activeFilters[i]}']`
         );
-        if (projectFilter.dataset.filter.toLowerCase() == filterArr[i]) {
+        if (projectFilter.dataset.filter.toLowerCase() == activeFilters[i]) {
           projectFilter.click();
         }
       }
@@ -47,14 +47,15 @@ const handleSearchParams = (type, cssClass) => {
     queryParams.delete("filter");
   }
 
-  console.log(queryParams.toString());
-
-  history.pushState(null, null, "?" + queryParams.toString());
+  history.pushState(queryParams.toString(), null, "?" + queryParams.toString());
 };
 
 const handleHistory = () => {
   windowUrl = new URL(window.location.href);
+  console.log(windowUrl);
+  console.log(window.location);
   checkSearchParams(windowUrl);
+  // handleFilters(activeFilters);
 };
 
 const getCategories = () => {
