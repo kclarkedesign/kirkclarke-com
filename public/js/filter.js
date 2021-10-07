@@ -1,4 +1,5 @@
 const FILTER_SELECTOR = "js-filter";
+const FILTERED_SELECTOR = "filtered-out";
 const CATEGORY_PARENT_SELECTOR = "js-cat-container";
 const FILTER_SELECTED_SELECTOR = "filter-selected";
 const FILTERING_ACTIVE_SELECTOR = "filters-active";
@@ -10,36 +11,53 @@ let activeFilters = [];
 let windowUrl = new URL(window.location.href);
 let tilesFilteredCount = 0;
 
+const checkTiles = (cssClass, reset = false) => {
+  projectTiles.forEach((tile) => {
+    if (reset == false) {
+      if (
+        !activeFilters.some((filter) => tile.classList.value.includes(filter))
+      ) {
+        tile.classList.add(cssClass);
+      } else {
+        tile.classList.remove(cssClass);
+      }
+    } else {
+      tile.classList.remove(cssClass);
+    }
+  });
+};
+
 // onload check/manage filters
-const checkSearchParams = (url) => {
+const checkSearchParams = (url, useHistory = false) => {
   let searchParams = url.searchParams;
-  console.log(searchParams.toString());
+
   if (searchParams.has("filter")) {
     // apply available searchParams to activeFilters
     activeFilters = searchParams.getAll("filter");
-    console.log(activeFilters);
-    for (let i = 0; i < searchParams.getAll("filter").length; i++) {
+    for (let i = 0; i < activeFilters.length; i++) {
       if (
         document.querySelector(`.js-filter [data-filter='${activeFilters[i]}']`)
       ) {
         const projectFilter = document.querySelector(
           `.js-filter [data-filter='${activeFilters[i]}']`
         );
-        if (projectFilter.dataset.filter.toLowerCase() == activeFilters[i]) {
+        if (
+          projectFilter.dataset.filter.toLowerCase() == activeFilters[i] &&
+          !projectFilter.classList.value.includes(FILTER_SELECTED_SELECTOR)
+        ) {
           projectFilter.click();
         }
       }
     }
   }
-  // console.log(activeFilters);
 };
 
 const handleSearchParams = (type, cssClass) => {
   let queryParams = new URLSearchParams(window.location.search);
+
   if (type == "add" && !queryParams.toString().includes(cssClass)) {
     queryParams.append("filter", cssClass);
   } else if (type == "remove" && queryParams.toString().includes(cssClass)) {
-    //queryParams.toString().split("&")
     queryParams = new URLSearchParams(
       queryParams.toString().replace(`filter=${cssClass}`, "")
     );
@@ -47,15 +65,42 @@ const handleSearchParams = (type, cssClass) => {
     queryParams.delete("filter");
   }
 
-  history.pushState(queryParams.toString(), null, "?" + queryParams.toString());
+  history.pushState(
+    { filter: queryParams.toString() },
+    "",
+    "?" + queryParams.toString()
+  );
 };
 
 const handleHistory = () => {
   windowUrl = new URL(window.location.href);
-  console.log(windowUrl);
-  console.log(window.location);
-  checkSearchParams(windowUrl);
-  // handleFilters(activeFilters);
+  // update active filters based on current url
+  activeFilters = windowUrl.searchParams.getAll("filter");
+
+  if (activeFilters.length == 0) {
+    handleResetFilter(FILTER_RESET_SELECTOR, activeFilters);
+    handleFilters(activeFilters, true);
+    checkTiles(FILTERED_SELECTOR, true);
+    handleSearchParams("reset", "reset");
+    return;
+  }
+
+  const filters = document.querySelectorAll(`.js-filter [data-filter]`);
+  for (let i = 0; i < filters.length; i++) {
+    if (
+      !activeFilters.includes(filters[i].dataset.filter.toLowerCase()) &&
+      filters[i].classList.value.includes(FILTER_SELECTED_SELECTOR)
+    ) {
+      filters[i].classList.remove(FILTER_SELECTED_SELECTOR);
+    } else if (
+      activeFilters.includes(filters[i].dataset.filter.toLowerCase()) &&
+      !filters[i].classList.value.includes(FILTER_SELECTED_SELECTOR)
+    ) {
+      filters[i].classList.add(FILTER_SELECTED_SELECTOR);
+    }
+
+    checkTiles(FILTERED_SELECTOR);
+  }
 };
 
 const getCategories = () => {
@@ -88,7 +133,7 @@ const addProjectCategories = () => {
   });
 };
 
-const handleFilterReset = (e, resetId, arr) => {
+const handleResetFilter = (resetId, arr) => {
   const filterReset = document.querySelector(`#${resetId}`);
   if (arr.length > 0) {
     filterReset.classList.remove(DISPLAY_NONE_SELECTOR);
@@ -117,7 +162,7 @@ const handleFilters = (arr, reset = false) => {
       filter.addEventListener("click", (e) => {
         handleFilter(e);
         if (filter.id == FILTER_RESET_SELECTOR) {
-          handleFilterReset(e, filter.id, activeFilters);
+          handleResetFilter(filter.id, activeFilters);
         }
       });
     }
@@ -134,28 +179,9 @@ const handleFilters = (arr, reset = false) => {
 };
 
 const handleFilter = (e) => {
-  //TODO: update url and allow for filtering from query string
   const filter = e.target;
-  const FILTERED_SELECTOR = "filtered-out";
   const targetClass = filter.dataset.filter.toLowerCase();
 
-  //TODO: apply logic to add updte search params for url params
-
-  const checkTiles = (cssClass, reset = false) => {
-    projectTiles.forEach((tile) => {
-      if (reset == false) {
-        if (
-          !activeFilters.some((filter) => tile.classList.value.includes(filter))
-        ) {
-          tile.classList.add(cssClass);
-        } else {
-          tile.classList.remove(cssClass);
-        }
-      } else {
-        tile.classList.remove(cssClass);
-      }
-    });
-  };
   // if reset
   if (filter.id == FILTER_RESET_SELECTOR) {
     handleFilters(activeFilters, true);
@@ -188,7 +214,4 @@ const handleFilter = (e) => {
 addProjectCategories();
 handleFilters(getCategories());
 checkSearchParams(windowUrl);
-
-window.addEventListener("popstate", (e) => {
-  handleHistory();
-});
+window.addEventListener("popstate", handleHistory);
