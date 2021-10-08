@@ -82,6 +82,7 @@ const handleHistory = () => {
     handleFilters(activeFilters, true);
     checkTiles(FILTERED_SELECTOR, true);
     handleSearchParams("reset", "reset");
+    history.pushState(null, null, window.location.href.replace("?", ""));
     return;
   }
 
@@ -187,6 +188,7 @@ const handleFilter = (e) => {
     handleFilters(activeFilters, true);
     checkTiles(FILTERED_SELECTOR, true);
     handleSearchParams("reset", "reset");
+    history.pushState(null, null, window.location.href.replace("?", ""));
     return;
   }
 
