@@ -411,36 +411,40 @@
         padding-top: 58px;
         margin-top: -58px;
       }
+      .o-filter__label {
+        margin: 1.25em 0 -1em;
+        color: rgb(165 165 165);
+      }
 
-      .o-filter--projects .btn {
+      .o-filter__projects .btn {
         color: rgb(166 241 190 / 70%);
         border-color: rgb(33 37 41);
       }
 
-      .o-filter--projects .btn:focus {
+      .o-filter__projects .btn:focus {
         box-shadow: none;
       }
 
-      .o-filter--projects .filter-selected {
+      .o-filter__projects .filter-selected {
         position: relative;
         background: rgb(74 74 74);
       }
 
-      .o-filter--projects .filter-selected:after {
+      .o-filter__projects .filter-selected:after {
         content: "\2022";
         position: absolute;
         top: -5px;
         right: 4px;
       }
 
-      .o-filter--projects .btn-reset-filters {
+      .o-filter__projects .btn-reset-filters {
         background-color: rgb(152 223 175 / 17%);
         color: #9be3b2;
         display: block;
         margin: 4px auto !important;
       }
 
-      .o-grid--projects {
+      .o-grid__projects {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
         grid-gap: 2em;
@@ -450,13 +454,13 @@
       }
 
       @media (max-width: 320px) {
-        .o-grid--projects {
+        .o-grid__projects {
           grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
         }
       }
 
       @media (min-width: 1024px) {
-        .o-grid--projects {
+        .o-grid__projects {
           max-width: 1140px;
         }
       }
@@ -476,7 +480,7 @@
         text-decoration: underline;
       }
 
-      .o-grid--projects .filtered-out {
+      .o-grid__projects .filtered-out {
         display: none;
       }
 
@@ -696,11 +700,12 @@
       </section>
       <section id="projects" class="anchor text-center p-sm-5 pb-5">
         <!--  TODO: possibly skills section -->
-        <div class="o-filter--projects js-filter mt-4 mb-2">
+        <div class="o-filter__label">Filter recent projects by tag</div>
+        <div class="o-filter__projects js-filter mt-4 mb-2">
           <!-- filters are added here -->
-          <!-- TODO: adjust how active filters work/appear. Remove focus state, add all and clear behavior. Also label describing state -->
+          <!-- TODO: adjust how active filters work/appear.  Also label describing state -->
         </div>
-        <div class="o-grid--projects">
+        <div class="o-grid__projects">
           <!-- TODO?: add grid using vue or some kind of templating framework -->
           <article class="project-tile">
             <div class="cat-container js-cat-container cat-container--vertical">

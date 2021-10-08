@@ -5,7 +5,7 @@ const FILTER_SELECTED_SELECTOR = "filter-selected";
 const FILTERING_ACTIVE_SELECTOR = "filters-active";
 const FILTER_RESET_SELECTOR = "js-filter-reset";
 const DISPLAY_NONE_SELECTOR = "d-none";
-const projectGrid = document.querySelector(".o-grid--projects");
+const projectGrid = document.querySelector(".o-grid__projects");
 const projectTiles = document.querySelectorAll(".project-tile");
 let activeFilters = [];
 let windowUrl = new URL(window.location.href);
@@ -117,7 +117,7 @@ const getCategories = () => {
     }
   });
 
-  return catArray;
+  return catArray.sort();
 };
 
 const addProjectCategories = () => {
