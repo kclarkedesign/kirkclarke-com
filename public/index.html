@@ -1,1212 +1,911 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link rel="preconnect" href="https://www.google-analytics.com" />
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=UA-21054528-2"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
 
-      gtag("config", "UA-21054528-2");
-    </script>
+<head>
+  <link rel="preconnect" href="https://www.google-analytics.com" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-21054528-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
 
-    <meta charset="UTF-8" />
-    <meta
-      name="description"
-      content="Portfolio and course created by Kirk Clarke, a Web (UI/UX) Designer & Engineer, Tech Coach"
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kirk Clarke | Web (UI/UX) Designer & Engineer</title>
+    gtag("config", "UA-21054528-2");
+  </script>
 
-    <style type="text/css">
-      :root {
-        --blue: #007bff;
-        --indigo: #6610f2;
-        --purple: #6f42c1;
-        --pink: #e83e8c;
-        --red: #dc3545;
-        --orange: #fd7e14;
-        --yellow: #ffc107;
-        --green: #28a745;
-        --teal: #20c997;
-        --cyan: #17a2b8;
-        --white: #fff;
-        --gray: #6c757d;
-        --gray-dark: #343a40;
-        --primary: #007bff;
-        --secondary: #6c757d;
-        --success: #28a745;
-        --info: #17a2b8;
-        --warning: #ffc107;
-        --danger: #dc3545;
-        --light: #f8f9fa;
-        --dark: #343a40;
-        --breakpoint-xs: 0;
-        --breakpoint-sm: 576px;
-        --breakpoint-md: 768px;
-        --breakpoint-lg: 992px;
-        --breakpoint-xl: 1200px;
-        --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI",
-          Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-          "Noto Color Emoji";
-        --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
-          "Liberation Mono", "Courier New", monospace;
-      }
+  <meta charset="UTF-8" />
+  <meta name="description"
+    content="Portfolio and course created by Kirk Clarke, a Web (UI/UX) Designer & Engineer, Tech Coach" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kirk Clarke | Web (UI/UX) Designer & Engineer</title>
 
-      *,
-      ::after,
-      ::before {
-        box-sizing: border-box;
-      }
+  <style type="text/css">
+    :root {
+      --blue: #007bff;
+      --indigo: #6610f2;
+      --purple: #6f42c1;
+      --pink: #e83e8c;
+      --red: #dc3545;
+      --orange: #fd7e14;
+      --yellow: #ffc107;
+      --green: #28a745;
+      --teal: #20c997;
+      --cyan: #17a2b8;
+      --white: #fff;
+      --gray: #6c757d;
+      --gray-dark: #343a40;
+      --primary: #007bff;
+      --secondary: #6c757d;
+      --success: #28a745;
+      --info: #17a2b8;
+      --warning: #ffc107;
+      --danger: #dc3545;
+      --light: #f8f9fa;
+      --dark: #343a40;
+      --breakpoint-xs: 0;
+      --breakpoint-sm: 576px;
+      --breakpoint-md: 768px;
+      --breakpoint-lg: 992px;
+      --breakpoint-xl: 1200px;
+      --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+      --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+    }
 
-      html {
-        font-family: sans-serif;
-        line-height: 1.15;
-        -webkit-text-size-adjust: 100%;
-        -webkit-tap-highlight-color: transparent;
-      }
+    *,
+    ::after,
+    ::before {
+      box-sizing: border-box;
+    }
 
-      article,
-      aside,
-      figcaption,
-      figure,
-      footer,
-      header,
-      hgroup,
-      main,
-      nav,
-      section {
-        display: block;
-      }
+    html {
+      font-family: sans-serif;
+      line-height: 1.15;
+      -webkit-text-size-adjust: 100%;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-      body {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
-          "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-        font-size: 1rem;
-        font-weight: 400;
-        line-height: 1.5;
-        color: #212529;
-        text-align: left;
-        background-color: #fff;
-      }
+    article,
+    aside,
+    figcaption,
+    figure,
+    footer,
+    header,
+    hgroup,
+    main,
+    nav,
+    section {
+      display: block;
+    }
 
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        margin-top: 0;
-        margin-bottom: 0.5rem;
-      }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #212529;
+      text-align: left;
+      background-color: #fff;
+    }
 
-      p {
-        margin-top: 0;
-        margin-bottom: 1rem;
-      }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
 
-      small {
-        font-size: 80%;
-      }
+    p {
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
 
-      a {
-        color: #007bff;
-        text-decoration: none;
-        background-color: transparent;
-      }
+    small {
+      font-size: 80%;
+    }
 
-      img {
-        vertical-align: middle;
-        border-style: none;
-      }
+    a {
+      color: #007bff;
+      text-decoration: none;
+      background-color: transparent;
+    }
 
-      svg {
-        overflow: hidden;
-        vertical-align: middle;
-      }
+    img {
+      vertical-align: middle;
+      border-style: none;
+    }
 
-      .h1,
-      .h2,
-      .h3,
-      .h4,
-      .h5,
-      .h6,
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        margin-bottom: 0.5rem;
-        font-weight: 500;
-        line-height: 1.2;
-      }
+    svg {
+      overflow: hidden;
+      vertical-align: middle;
+    }
 
-      .h1,
-      h1 {
-        font-size: 2.5rem;
-      }
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      line-height: 1.2;
+    }
 
-      .h2,
-      h2 {
-        font-size: 2rem;
-      }
+    .h1,
+    h1 {
+      font-size: 2.5rem;
+    }
 
-      .small,
-      small {
-        font-size: 80%;
-        font-weight: 400;
-      }
+    .h2,
+    h2 {
+      font-size: 2rem;
+    }
 
-      .img-fluid {
-        max-width: 100%;
-        height: auto;
-      }
+    .small,
+    small {
+      font-size: 80%;
+      font-weight: 400;
+    }
 
-      .col,
-      .col-1,
-      .col-10,
-      .col-11,
-      .col-12,
-      .col-2,
-      .col-3,
-      .col-4,
-      .col-5,
-      .col-6,
-      .col-7,
-      .col-8,
-      .col-9,
-      .col-auto,
-      .col-lg,
-      .col-lg-1,
-      .col-lg-10,
-      .col-lg-11,
-      .col-lg-12,
-      .col-lg-2,
-      .col-lg-3,
-      .col-lg-4,
-      .col-lg-5,
-      .col-lg-6,
-      .col-lg-7,
-      .col-lg-8,
-      .col-lg-9,
-      .col-lg-auto,
-      .col-md,
-      .col-md-1,
-      .col-md-10,
-      .col-md-11,
-      .col-md-12,
-      .col-md-2,
-      .col-md-3,
-      .col-md-4,
-      .col-md-5,
-      .col-md-6,
-      .col-md-7,
-      .col-md-8,
-      .col-md-9,
-      .col-md-auto,
-      .col-sm,
-      .col-sm-1,
-      .col-sm-10,
-      .col-sm-11,
-      .col-sm-12,
-      .col-sm-2,
-      .col-sm-3,
-      .col-sm-4,
-      .col-sm-5,
-      .col-sm-6,
-      .col-sm-7,
-      .col-sm-8,
-      .col-sm-9,
-      .col-sm-auto,
-      .col-xl,
-      .col-xl-1,
-      .col-xl-10,
-      .col-xl-11,
-      .col-xl-12,
-      .col-xl-2,
-      .col-xl-3,
-      .col-xl-4,
-      .col-xl-5,
-      .col-xl-6,
-      .col-xl-7,
-      .col-xl-8,
-      .col-xl-9,
-      .col-xl-auto {
-        position: relative;
-        width: 100%;
-        padding-right: 15px;
-        padding-left: 15px;
-      }
+    .img-fluid {
+      max-width: 100%;
+      height: auto;
+    }
 
-      .flex-row {
-        -ms-flex-direction: row !important;
-        flex-direction: row !important;
-      }
+    .col,
+    .col-1,
+    .col-10,
+    .col-11,
+    .col-12,
+    .col-2,
+    .col-3,
+    .col-4,
+    .col-5,
+    .col-6,
+    .col-7,
+    .col-8,
+    .col-9,
+    .col-auto,
+    .col-lg,
+    .col-lg-1,
+    .col-lg-10,
+    .col-lg-11,
+    .col-lg-12,
+    .col-lg-2,
+    .col-lg-3,
+    .col-lg-4,
+    .col-lg-5,
+    .col-lg-6,
+    .col-lg-7,
+    .col-lg-8,
+    .col-lg-9,
+    .col-lg-auto,
+    .col-md,
+    .col-md-1,
+    .col-md-10,
+    .col-md-11,
+    .col-md-12,
+    .col-md-2,
+    .col-md-3,
+    .col-md-4,
+    .col-md-5,
+    .col-md-6,
+    .col-md-7,
+    .col-md-8,
+    .col-md-9,
+    .col-md-auto,
+    .col-sm,
+    .col-sm-1,
+    .col-sm-10,
+    .col-sm-11,
+    .col-sm-12,
+    .col-sm-2,
+    .col-sm-3,
+    .col-sm-4,
+    .col-sm-5,
+    .col-sm-6,
+    .col-sm-7,
+    .col-sm-8,
+    .col-sm-9,
+    .col-sm-auto,
+    .col-xl,
+    .col-xl-1,
+    .col-xl-10,
+    .col-xl-11,
+    .col-xl-12,
+    .col-xl-2,
+    .col-xl-3,
+    .col-xl-4,
+    .col-xl-5,
+    .col-xl-6,
+    .col-xl-7,
+    .col-xl-8,
+    .col-xl-9,
+    .col-xl-auto {
+      position: relative;
+      width: 100%;
+      padding-right: 15px;
+      padding-left: 15px;
+    }
 
-      .justify-content-between {
-        -ms-flex-pack: justify !important;
-        justify-content: space-between !important;
-      }
+    .flex-row {
+      -ms-flex-direction: row !important;
+      flex-direction: row !important;
+    }
 
-      .align-items-center {
-        -ms-flex-align: center !important;
-        align-items: center !important;
-      }
+    .justify-content-between {
+      -ms-flex-pack: justify !important;
+      justify-content: space-between !important;
+    }
 
-      .align-self-center {
-        -ms-flex-item-align: center !important;
-        align-self: center !important;
-      }
+    .align-items-center {
+      -ms-flex-align: center !important;
+      align-items: center !important;
+    }
 
-      .text-center {
-        text-align: center !important;
-      }
-    </style>
+    .align-self-center {
+      -ms-flex-item-align: center !important;
+      align-self: center !important;
+    }
 
-    <link
-      rel="stylesheet preload"
-      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
-      />
-    </noscript>
-    <link
-      media="all"
-      rel="stylesheet preload"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-      as="style"
-    />
-    <link
-      media="all"
-      rel="stylesheet preload"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.3.0/font-awesome-animation.min.css"
-      as="style"
-    />
-    <link
-      rel="stylesheet preload"
-      href="./css/navbar.css"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link rel="stylesheet" href="./css/navbar.css" />
-    </noscript>
-    <link
-      rel="stylesheet preload"
-      href="./css/base.css"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link rel="stylesheet" href="./css/base.css" />
-    </noscript>
+    .text-center {
+      text-align: center !important;
+    }
+  </style>
 
-    <style>
-      :root {
-        --color-celadon: #98dfaf;
-        --color-dark: #191919;
-        --color-white: #ffffff;
-        --color-celedon-contrast: #585858;
-        /* Davys Grey */
-      }
+  <link rel="stylesheet preload"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
+  </noscript>
+  <link media="all" rel="stylesheet preload"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" as="style" />
+  <link media="all" rel="stylesheet preload"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.3.0/font-awesome-animation.min.css"
+    as="style" />
+  <link rel="stylesheet preload" href="./css/navbar.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet" href="./css/navbar.css" />
+  </noscript>
+  <link rel="stylesheet preload" href="./css/base.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet" href="./css/base.css" />
+  </noscript>
 
-      html {
-        scroll-behavior: smooth;
-      }
+  <style>
+    :root {
+      --color-celadon: #98dfaf;
+      --color-dark: #191919;
+      --color-white: #ffffff;
+      --color-celedon-contrast: #585858;
+      /* Davys Grey */
+    }
 
-      /** Accessibility **/
-      /* Text meant only for screen readers. */
-      .sr-text {
-        border: 0;
-        clip: rect(1px, 1px, 1px, 1px);
-        clip-path: inset(50%);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px;
-        word-wrap: normal !important;
-      }
+    html {
+      scroll-behavior: smooth;
+    }
 
-      nav {
-        display: flex;
-        justify-content: center;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: var(--color-celadon);
-        z-index: 5;
-      }
+    /** Accessibility **/
+    /* Text meant only for screen readers. */
+    .sr-text {
+      border: 0;
+      clip: rect(1px, 1px, 1px, 1px);
+      clip-path: inset(50%);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+      word-wrap: normal !important;
+    }
 
-      nav a:hover {
-        color: #545c52;
-      }
+    nav {
+      display: flex;
+      justify-content: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--color-celadon);
+      z-index: 5;
+    }
 
-      .nav-link {
-        color: var(--color-dark);
-        font-weight: bold;
-        font-size: 1.5em;
-        margin: 0 0.5em;
-      }
+    nav a:hover {
+      color: #545c52;
+    }
 
-      .brand {
-        width: 100%;
-        max-width: 35px;
-      }
+    .nav-link {
+      color: var(--color-dark);
+      font-weight: bold;
+      font-size: 1.5em;
+      margin: 0 0.5em;
+    }
 
-      .full-vh {
-        background: #000;
-        height: 100vh;
-      }
+    .brand {
+      width: 100%;
+      max-width: 35px;
+    }
 
-      #welcome-section {
-        display: flex;
-        align-content: center;
-        justify-content: center;
-        background-color: #191919;
-        color: #fff;
-      }
+    .full-vh {
+      background: #000;
+      height: 100vh;
+    }
 
-      .welcome__subtitle {
-        color: var(--color-celadon);
-        font-size: 1.5rem;
-      }
+    #welcome-section {
+      display: flex;
+      align-content: center;
+      justify-content: center;
+      background-color: #191919;
+      color: #fff;
+    }
 
-      .welcome__down,
-      .welcome__down a {
-        color: var(--color-white);
-        font-size: 1.25em;
-      }
+    .welcome__subtitle {
+      color: var(--color-celadon);
+      font-size: 1.5rem;
+    }
 
-      #projects {
-        background-color: var(--color-dark);
-        min-height: 300px;
-      }
+    .welcome__down,
+    .welcome__down a {
+      color: var(--color-white);
+      font-size: 1.25em;
+    }
 
-      #profiles {
-        background-color: var(--color-dark);
-        position: relative;
-        z-index: 1;
-      }
+    #projects {
+      background-color: var(--color-dark);
+      min-height: 300px;
+    }
 
-      .anchor {
-        padding-top: 58px;
-        margin-top: -58px;
-      }
-      .o-filter__label {
-        margin: 1.25em 0 -1em;
-        color: rgb(165 165 165);
-      }
+    #profiles {
+      background-color: var(--color-dark);
+      position: relative;
+      z-index: 1;
+    }
 
-      .o-filter__projects .btn {
-        color: rgb(166 241 190 / 70%);
-        border-color: rgb(33 37 41);
-      }
-      .o-filter__projects .btn:hover {
-        background-color: transparent;
-        border-color: rgb(64 64 64);
-        color: #fff;
-      }
+    .anchor {
+      padding-top: 58px;
+      margin-top: -58px;
+    }
 
-      .o-filter__projects .btn:focus {
-        box-shadow: none;
-      }
+    .o-filter__label {
+      margin: 1.25em 0 -1em;
+      color: rgb(165 165 165);
+    }
 
-      .o-filter__projects .filter-selected {
-        position: relative;
-        background: rgb(74 74 74);
-      }
+    .o-filter__projects .btn {
+      color: rgb(166 241 190 / 70%);
+      border-color: rgb(33 37 41);
+    }
 
-      .o-filter__projects .filter-selected:hover {
-        background: rgb(74 74 74);
-        color: rgb(166 241 190 / 70%);
-      }
+    .o-filter__projects .btn:hover {
+      background-color: transparent;
+      border-color: rgb(64 64 64);
+      color: #fff;
+    }
 
-      .o-filter__projects .filter-selected:after {
-        content: "\2022";
-        position: absolute;
-        top: -5px;
-        right: 4px;
-      }
+    .o-filter__projects .btn:focus {
+      box-shadow: none;
+    }
 
-      .o-filter__projects .btn-reset-filters {
-        background-color: rgb(152 223 175 / 17%);
-        color: #9be3b2;
-        display: block;
-        margin: 4px auto !important;
-      }
+    .o-filter__projects .filter-selected {
+      position: relative;
+      background: rgb(74 74 74);
+    }
 
+    .o-filter__projects .filter-selected:hover {
+      background: rgb(74 74 74);
+      color: rgb(166 241 190 / 70%);
+    }
+
+    .o-filter__projects .filter-selected:after {
+      content: "\2022";
+      position: absolute;
+      top: -5px;
+      right: 4px;
+    }
+
+    .o-filter__projects .btn-reset-filters {
+      background-color: rgb(152 223 175 / 17%);
+      color: #9be3b2;
+      display: block;
+      margin: 4px auto !important;
+    }
+
+    .o-grid__projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-gap: 2em;
+      width: 100%;
+      padding: 1em;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 320px) {
       .o-grid__projects {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        grid-gap: 2em;
-        width: 100%;
-        padding: 1em;
-        margin: 0 auto;
+        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
       }
+    }
 
-      @media (max-width: 320px) {
-        .o-grid__projects {
-          grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
-        }
+    @media (min-width: 1024px) {
+      .o-grid__projects {
+        max-width: 1140px;
       }
+    }
 
-      @media (min-width: 1024px) {
-        .o-grid__projects {
-          max-width: 1140px;
-        }
-      }
+    .project-tile {
+      border: 3px solid;
+      transition: all 0.3s ease-in-out;
+      position: relative;
+    }
 
-      .project-tile {
-        border: 3px solid;
-        transition: all 0.3s ease-in-out;
-        position: relative;
-      }
+    .project-tile:hover {
+      border: 3px solid var(--color-celadon);
+    }
 
-      .project-tile:hover {
-        border: 3px solid var(--color-celadon);
-      }
+    .project-tile:hover a {
+      color: var(--color-celadon);
+      text-decoration: underline;
+    }
 
-      .project-tile:hover a {
-        color: var(--color-celadon);
-        text-decoration: underline;
-      }
+    .o-grid__projects .filtered-out {
+      display: none;
+    }
 
-      .o-grid__projects .filtered-out {
-        display: none;
-      }
+    .project-title {
+      background: var(--color-dark);
+      color: var(--color-celadon);
+      padding: 1em 2em;
+    }
 
-      .project-title {
-        background: var(--color-dark);
-        color: var(--color-celadon);
-        padding: 1em 2em;
-      }
+    .site-link {
+      color: rgb(145 211 166 / 70%);
+      border: none;
+      font-size: 3.5em;
+      transition: all 0.3s ease-in-out;
+      margin: 0 22px;
+    }
 
-      .site-link {
-        color: rgb(145 211 166 / 70%);
-        border: none;
-        font-size: 3.5em;
-        transition: all 0.3s ease-in-out;
-        margin: 0 22px;
-      }
+    .site-link:hover {
+      color: var(--color-celadon);
+    }
 
-      .site-link:hover {
-        color: var(--color-celadon);
-      }
+    .site-link--sm {
+      font-size: 2em;
+      margin: 0 15px;
+    }
 
-      .site-link--sm {
-        font-size: 2em;
-        margin: 0 15px;
-      }
+    .cat-container {
+      position: absolute;
+      right: 0;
+      padding: 3px 6px;
+      margin: 3px 3px;
+      /* background: #3e3e3e75; */
+      background: rgb(25 25 25 / 70%);
+      border-radius: 3px;
+    }
 
-      .cat-container {
-        position: absolute;
-        right: 0;
-        padding: 3px 6px;
-        margin: 3px 3px;
-        /* background: #3e3e3e75; */
-        background: rgb(25 25 25 / 70%);
-        border-radius: 3px;
-      }
+    .cat-container--vertical {
+      padding: 6px 3px;
+      display: flex;
+      flex-direction: column;
+    }
 
-      .cat-container--vertical {
-        padding: 6px 3px;
-        display: flex;
-        flex-direction: column;
-      }
+    .cat {
+      right: 0;
+      color: #fff;
+      font-size: 1.5em;
+      padding: 3px;
+    }
 
-      .cat {
-        right: 0;
-        color: #fff;
-        font-size: 1.5em;
-        padding: 3px;
-      }
+    footer {
+      padding: 2vh;
+    }
 
-      footer {
-        padding: 2vh;
-      }
+    /**/
+    #choices-label,
+    .choices {
+      border: 0;
+      clip: rect(0, 0, 0, 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
 
-      /**/
-      #choices-label,
-      .choices {
-        border: 0;
-        clip: rect(0, 0, 0, 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px;
-      }
+    /* recaptcha badge */
+    .grecaptcha-badge {
+      visibility: hidden;
+    }
 
-      /* recaptcha badge */
-      .grecaptcha-badge {
-        visibility: hidden;
-      }
+    .u-link {
+      border-bottom: 1px dotted;
+    }
 
-      .u-link {
-        border-bottom: 1px dotted;
-      }
+    .u-link--dark {
+      color: var(--color-dark);
+    }
 
-      .u-link--dark {
-        color: var(--color-dark);
-      }
+    .u-link:hover {
+      border-bottom: 1px solid;
+      text-decoration: none;
+    }
+  </style>
+</head>
 
-      .u-link:hover {
-        border-bottom: 1px solid;
-        text-decoration: none;
-      }
-    </style>
-  </head>
+<body>
+  <header>
+    <nav id="navbar" class="nav align-items-center justify-content-between">
+      <div class="navbar-brand">
+        <a class="navbar-brand__link" href="/"><span class="sr-text">Kirk Clarke's personal portfolio</span><svg
+            id="Layer_1" class="brand" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+            viewbox="0 0 327.68 327.69">
+            <defs>
+              <style>
+                .cls-1 {
+                  fill: #191919;
+                }
 
-  <body>
-    <header>
-      <nav id="navbar" class="nav align-items-center justify-content-between">
-        <div class="navbar-brand">
-          <a class="navbar-brand__link" href="/"
-            ><span class="sr-text">Kirk Clarke's personal portfolio</span
-            ><svg
-              id="Layer_1"
-              class="brand"
-              data-name="Layer 1"
-              xmlns="http://www.w3.org/2000/svg"
-              viewbox="0 0 327.68 327.69"
-            >
-              <defs>
-                <style>
-                  .cls-1 {
-                    fill: #191919;
-                  }
-
-                  .cls-2 {
-                    fill: none;
-                  }
-                </style>
-              </defs>
-              <path
-                class="cls-1"
-                d="M183.77,16.31A163.85,163.85,0,1,0,347.6,180.16,163.85,163.85,0,0,0,183.77,16.31ZM86.05,97.37h47.89V125c-31.92,16.47-47.89,50-47.89,50ZM133.93,263H86V185.24s16,33.57,47.9,50Zm147.56,0H235.57s-71.69-15.32-112.74-82.41c41.05-67.12,112.74-83.18,112.74-83.18h45.92C237.87,110,194,153.44,170,180.44,194,207.21,237.87,250.32,281.49,263Z"
-                transform="translate(-19.92 -16.31)"
-              ></path>
-              <path
-                class="cls-2"
-                d="M281.49,97.37H235.57s-71.69,16.06-112.74,83.18C163.88,247.64,235.57,263,235.57,263h45.92C237.87,250.32,194,207.21,170,180.44,194,153.44,237.87,110,281.49,97.37Z"
-                transform="translate(-19.92 -16.31)"
-              ></path>
-              <path
-                class="cls-2"
-                d="M86,185.24V263h47.9V235.25C102,218.81,86,185.24,86,185.24Z"
-                transform="translate(-19.92 -16.31)"
-              ></path>
-              <path
-                class="cls-2"
-                d="M133.94,125V97.37H86.05v77.7S102,141.51,133.94,125Z"
-                transform="translate(-19.92 -16.31)"
-              ></path>
-              <rect class="cls-2" width="327.68" height="327.69"></rect></svg
-          ></a>
+                .cls-2 {
+                  fill: none;
+                }
+              </style>
+            </defs>
+            <path class="cls-1"
+              d="M183.77,16.31A163.85,163.85,0,1,0,347.6,180.16,163.85,163.85,0,0,0,183.77,16.31ZM86.05,97.37h47.89V125c-31.92,16.47-47.89,50-47.89,50ZM133.93,263H86V185.24s16,33.57,47.9,50Zm147.56,0H235.57s-71.69-15.32-112.74-82.41c41.05-67.12,112.74-83.18,112.74-83.18h45.92C237.87,110,194,153.44,170,180.44,194,207.21,237.87,250.32,281.49,263Z"
+              transform="translate(-19.92 -16.31)"></path>
+            <path class="cls-2"
+              d="M281.49,97.37H235.57s-71.69,16.06-112.74,83.18C163.88,247.64,235.57,263,235.57,263h45.92C237.87,250.32,194,207.21,170,180.44,194,153.44,237.87,110,281.49,97.37Z"
+              transform="translate(-19.92 -16.31)"></path>
+            <path class="cls-2" d="M86,185.24V263h47.9V235.25C102,218.81,86,185.24,86,185.24Z"
+              transform="translate(-19.92 -16.31)"></path>
+            <path class="cls-2" d="M133.94,125V97.37H86.05v77.7S102,141.51,133.94,125Z"
+              transform="translate(-19.92 -16.31)"></path>
+            <rect class="cls-2" width="327.68" height="327.69"></rect>
+          </svg></a>
+      </div>
+      <div class="main-nav navbar-nav">
+        <a href="javascript:void(0);" class="hamburger js-toggle" data-toggle="main-nav__links"><span
+            class="sr-text">Main menu</span>
+          <i class="fa fa-bars"></i>
+          <i class="fa fa-times"></i>
+        </a>
+        <div class="main-nav__links">
+          <a href="/#projects" class="nav-link">Projects</a>
+          <a href="/#profiles" class="nav-link">Profiles</a>
+          <a href="/#contact" class="nav-link">Contact</a>
+          <a href="/getting-started.html" class="nav-link">Course</a>
         </div>
-        <div class="main-nav navbar-nav">
-          <a
-            href="javascript:void(0);"
-            class="hamburger js-toggle"
-            data-toggle="main-nav__links"
-            ><span class="sr-text">Main menu</span>
-            <i class="fa fa-bars"></i>
-            <i class="fa fa-times"></i>
-          </a>
-          <div class="main-nav__links">
-            <a href="/#projects" class="nav-link">Projects</a>
-            <a href="/#profiles" class="nav-link">Profiles</a>
-            <a href="/#contact" class="nav-link">Contact</a>
-            <a href="/getting-started.html" class="nav-link">Course</a>
-          </div>
-        </div>
-      </nav>
-    </header>
-    <main>
-      <section id="welcome-section" class="full-vh p-sm-5">
-        <div
-          id="welcome-intro"
-          class="
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section id="welcome-section" class="full-vh p-sm-5">
+      <div id="welcome-intro" class="
             col-md-5
             p-lg-5
             mx-auto
             align-self-center
             justify-center
             text-center
-          "
-        >
-          <h1 class="welcome__title">
-            I'm Kirk and I'd like to&nbsp;help&nbsp;you
-          </h1>
-          <h2 class="welcome__subtitle">
-            Web (UI/UX) Designer &&nbsp;Engineer
-          </h2>
-          <p class="sites pt-1">
-            <a
-              href="https://github.com/kclarkedesign"
-              target="_blank"
-              class="site-link site-link--sm"
-              title="Github"
-              rel="noopener"
-              ><i class="fab fa-github"></i
-            ></a>
+          ">
+        <h1 class="welcome__title">
+          I'm Kirk and I'd like to&nbsp;help&nbsp;you
+        </h1>
+        <h2 class="welcome__subtitle">
+          Web (UI/UX) Designer &&nbsp;Engineer
+        </h2>
+        <p class="sites pt-1">
+          <a href="https://github.com/kclarkedesign" target="_blank" class="site-link site-link--sm" title="Github"
+            rel="noopener"><i class="fab fa-github"></i></a>
 
-            <a
-              href="https://www.linkedin.com/in/kclarke/"
-              target="_blank"
-              class="site-link site-link--sm"
-              title="Linkedin"
-              rel="noopener"
-              ><i class="fab fa-linkedin"></i
-            ></a>
+          <a href="https://www.linkedin.com/in/kclarke/" target="_blank" class="site-link site-link--sm"
+            title="Linkedin" rel="noopener"><i class="fab fa-linkedin"></i></a>
 
-            <a
-              href="https://www.freecodecamp.org/kirkclarke"
-              target="_blank"
-              class="site-link site-link--sm"
-              title="freeCodeCamp"
-              rel="noopener"
-              ><i class="fab fa-free-code-camp"></i
-            ></a>
+          <a href="https://www.freecodecamp.org/kirkclarke" target="_blank" class="site-link site-link--sm"
+            title="freeCodeCamp" rel="noopener"><i class="fab fa-free-code-camp"></i></a>
 
-            <a
-              href="https://createwithkirk.medium.com/"
-              target="_blank"
-              class="site-link site-link--sm"
-              title="Medium"
-              rel="noopener"
-              ><i class="fab fa-medium"></i
-            ></a>
-          </p>
-          <h2 class="welcome__down">
-            <a href="#projects"
-              ><span class="sr-text"
-                >Continue scrolling for my projects and more</span
-              ><small
-                ><i class="fas fa-chevron-down faa-float animated"></i></small
-            ></a>
-          </h2>
-        </div>
-      </section>
-      <section id="projects" class="anchor text-center p-sm-5 pb-5">
-        <!--  TODO: possibly skills section -->
-        <div class="o-filter__label">Filter recent projects by tag</div>
-        <div class="o-filter__projects js-filter mt-4 mb-2">
-          <!-- filters are added here -->
-          <!-- TODO: label describing state -->
-        </div>
-        <div class="o-grid__projects">
-          <!-- TODO?: add grid using vue or some kind of templating framework -->
-          <article class="project-tile">
-            <div class="cat-container js-cat-container cat-container--vertical">
-              <!-- <span title="JavaScript"><i class="cat fab fa-js"></i></span> -->
-              <span title="Experiment"><i class="cat fa-flask fas"></i></span>
-              <span title="React"><i class="cat fa-react fab"></i></span>
-              <!--<span title="Firebase"><i class="fa fa-database"></i></span> -->
-            </div>
-            <a
-              class="profile-link d-block"
-              href="https://reddit-clone-c9a4a.web.app/"
-              target="_blank"
-              rel="noopener"
-              ><img
-                src="./images/thumb-reddit-clone.jpg"
-                class="img-fluid"
-                alt="Reddit Clone"
-                width="900"
-                height="900"
-              />
-              <div class="project-title">Reddit Clone</div>
-            </a>
-          </article>
-          <article class="project-tile">
-            <div class="cat-container js-cat-container cat-container--vertical">
-              <!-- <span title="JavaScript"><i class="cat fab fa-js"></i></span> -->
-              <span title="PHP"><i class="cat fab fa-php"></i></span>
-              <span title="WordPress"
-                ><i class="cat fab fa-wordpress"></i
-              ></span>
-            </div>
-            <a
-              class="profile-link d-block"
-              href="https://wordpress.org/plugins/customize-private-protected/"
-              target="_blank"
-              rel="noopener"
-              ><img
-                src="./images/thumb-cpp-wp-plugin.jpg"
-                class="img-fluid"
-                alt="Customize Private & Protected: WordPress Plugin"
-                width="900"
-                height="900"
-              />
-              <div class="project-title">
-                Customize Private & Protected: WordPress Plugin
-              </div>
-            </a>
-          </article>
-          <!-- Might need popup/overlay to explain icons -->
-          <article class="project-tile">
-            <div class="cat-container js-cat-container cat-container--vertical">
-              <span title="Experiment"><i class="cat fa-flask fas"></i></span>
-              <span title="Sass (SCSS)"><i class="cat fa-sass fab"></i></span>
-              <span title="Angular (11)"
-                ><i class="cat fa-angular fab"></i
-              ></span>
-              <span title="API (RAWG Video Games Database API)"
-                ><i class="cat fa-cog fas"></i
-              ></span>
-            </div>
-            <a
-              class="profile-link d-block"
-              href="/ng-video-game-db/"
-              target="_blank"
-              rel="noopener"
-              ><img
-                src="./images/thumb-project-ngvideogamedb.jpg"
-                class="img-fluid"
-                alt="Markdown Previewer"
-                width="900"
-                height="800"
-              />
-              <div class="project-title">Angular Video Game Database</div>
-            </a>
-          </article>
-          <article class="project-tile">
-            <div class="cat-container js-cat-container cat-container--vertical">
-              <span title="VueJS (3)"><i class="cat fab fa-vuejs"></i></span>
-              <span title="JavaScript"><i class="cat fab fa-js"></i></span>
-            </div>
-            <a
-              class="profile-link d-block"
-              href="https://www.92y.org/exhibits/student-virtual.aspx"
-              target="_blank"
-              rel="noopener"
-              ><img
-                src="./images/thumb-image-grid-lightbox-component.jpg"
-                class="img-fluid"
-                alt="Markdown Previewer"
-                width="900"
-                height="800"
-              />
-              <div class="project-title">Vue.js Image Grid Component</div>
-            </a>
-          </article>
-          <article class="project-tile">
-            <a
-              class="project-link"
-              href="https://www.92y.org/support/your-impact"
-              target="_blank"
-              rel="noopener"
-              ><img
-                src="./images/thumb-impact-report-2020.jpg"
-                class="img-fluid"
-                alt="92Y Impact Report companion website"
-                width="900"
-                height="900"
-              />
-              <div class="project-title">
-                92Y Impact Report Companion Website
-              </div>
-            </a>
-          </article>
-          <article class="project-tile">
-            <a
-              class="project-link"
-              href="/getting-started.html"
-              target="_blank"
-              rel="noopener"
-              ><img
-                src="./images/thumb-cwk-html-minicourse.jpg"
-                class="img-fluid"
-                alt="Create with Kirk HTML Mini-Course"
-                width="900"
-                height="900"
-              />
-              <div class="project-title">Beginner HTML Mini-Course Website</div>
-            </a>
-          </article>
-          <article class="project-tile">
-            <a
-              class="project-link"
-              href="https://www.92y.org/exhibits/virtual"
-              target="_blank"
-              rel="noopener"
-              ><img
-                src="./images/thumb-works-in-progress.jpg"
-                class="img-fluid"
-                alt="92Y Virtual Exhibitions"
-                width="900"
-                height="900"
-              />
-              <div class="project-title">92Y Virtual Exhibitions</div>
-            </a>
-          </article>
-          <article class="project-tile">
-            <div class="cat-container js-cat-container cat-container--vertical">
-              <span title="Challenge"
-                ><i class="cat fas fa-pencil-ruler"></i
-              ></span>
-              <span title="Social Post (Instagram)"
-                ><i class="cat fab fa-instagram"></i
-              ></span>
-            </div>
-            <a
-              class="project-link"
-              href="https://www.instagram.com/p/CDc4d7ipwnZ/"
-              target="_blank"
-              rel="noopener"
-              ><img
-                src="./images/thumb-daily-ui-13-direct-messaging.jpg"
-                class="img-fluid"
-                alt="Daily UI Challenge #13 &mdash; Direct Messaging"
-                width="900"
-                height="900"
-              />
-              <div class="project-title">
-                Daily UI Challenge #13 &mdash;Direct&nbsp;Messaging
-              </div>
-            </a>
-          </article>
-          <article class="project-tile">
-            <div class="cat-container js-cat-container cat-container--vertical">
-              <span title="Experiment"><i class="cat fa-flask fas"></i></span>
-              <span title="Sass (SCSS)"><i class="cat fa-sass fab"></i></span>
-              <span title="React"><i class="cat fa-react fab"></i></span>
-            </div>
-            <a
-              class="profile-link d-block"
-              href="https://codepen.io/kclarkedesign/full/QWNpbww"
-              target="_blank"
-              rel="noopener"
-              ><img
-                src="./images/thumb-project-markdown-previewer.jpg"
-                class="img-fluid"
-                alt="React Markdown Previewer"
-                width="900"
-                height="900"
-              />
-              <div class="project-title">React Markdown Previewer</div>
-            </a>
-          </article>
-          <article class="project-tile">
-            <div class="cat-container js-cat-container cat-container--vertical">
-              <span title="Experiment"><i class="cat fa-flask fas"></i></span>
-              <span title="Sass (SCSS)"><i class="cat fa-sass fab"></i></span>
-              <span title="React"><i class="cat fa-react fab"></i></span>
-            </div>
-            <a
-              class="profile-link d-block"
-              href="https://codepen.io/kclarkedesign/full/NWNjxWy"
-              target="_blank"
-              rel="noopener"
-              ><img
-                src="./images/thumb-project-drum-machine.jpg"
-                class="img-fluid"
-                alt="React Drum Machine"
-                width="900"
-                height="900"
-              />
-              <div class="project-title">React Drum Machine</div>
-            </a>
-          </article>
-          <article class="project-tile">
-            <div class="cat-container js-cat-container cat-container--vertical">
-              <span title="Experiment"><i class="cat fa-flask fas"></i></span>
-              <span title="Sass (SCSS)"><i class="cat fa-sass fab"></i></span>
-              <span title="React"><i class="cat fa-react fab"></i></span>
-            </div>
-            <a
-              class="profile-link d-block"
-              href="https://codepen.io/kclarkedesign/full/zYqwmqK"
-              target="_blank"
-              rel="noopener"
-              ><img
-                src="./images/thumb-project-js-calculator.jpg"
-                class="img-fluid"
-                alt="React JavaScript Calculator"
-                width="900"
-                height="900"
-              />
-              <div class="project-title">React JavaScript Calculator</div>
-            </a>
-          </article>
-          <article class="project-tile">
-            <div class="cat-container js-cat-container cat-container--vertical">
-              <span title="Experiment"><i class="cat fa-flask fas"></i></span>
-              <span title="Sass (SCSS)"><i class="cat fa-sass fab"></i></span>
-              <span title="React"><i class="cat fa-react fab"></i></span>
-            </div>
-            <a
-              class="profile-link d-block"
-              href="https://codepen.io/kclarkedesign/full/vYGZzGN"
-              target="_blank"
-              rel="noopener"
-              ><img
-                src="./images/thumb-project-pomodoro-clock.jpg"
-                class="img-fluid"
-                alt="React Pomodoro Clock"
-                width="900"
-                height="900"
-              />
-              <div class="project-title">React Pomodoro Clock</div>
-            </a>
-          </article>
-          <article class="project-tile">
-            <div class="cat-container js-cat-container cat-container--vertical">
-              <span title="JavaScript"><i class="cat fab fa-js"></i></span>
-              <span title="PHP"><i class="cat fab fa-php"></i></span>
-              <span title="WordPress"
-                ><i class="cat fab fa-wordpress"></i
-              ></span>
-            </div>
-            <a
-              class="profile-link d-block"
-              href="https://campaign.law.columbia.edu/"
-              target="_blank"
-              rel="noopener"
-              ><img
-                src="./images/thumb-campaign-for-columbia-law.jpg"
-                class="img-fluid"
-                alt="Campaign for Columbia Law: A Force in the World"
-                width="900"
-                height="900"
-              />
-              <div class="project-title">
-                Campaign for Columbia Law: A Force in the World
-              </div>
-            </a>
-          </article>
-          <article class="project-tile">
-            <div class="cat-container js-cat-container cat-container--vertical">
-              <!-- <span title="JavaScript"><i class="cat fab fa-js"></i></span>
-              <span title="PHP"><i class="cat fab fa-php"></i></span> -->
-              <span title="WordPress"
-                ><i class="cat fab fa-wordpress"></i
-              ></span>
-            </div>
-            <a
-              class="profile-link d-block"
-              href="https://andreahenkels.com/"
-              target="_blank"
-              rel="noopener"
-              ><img
-                src="./images/thumb-centered-health-healing-arts.jpg"
-                class="img-fluid"
-                alt="Centered Health Healing Arts"
-                width="900"
-                height="900"
-              />
-              <div class="project-title">Centered Health Healing Arts</div>
-            </a>
-          </article>
-          <article class="project-tile">
-            <div class="cat-container js-cat-container cat-container--vertical">
-              <span title="JavaScript"><i class="cat fab fa-js"></i></span>
-              <span title="Sass (SCSS)"><i class="cat fa-sass fab"></i></span>
-              <span title="AngularJS"><i class="cat fa-angular fab"></i></span>
-            </div>
-            <a
-              class="profile-link d-block"
-              href="https://www.92y.org/classes"
-              target="_blank"
-              rel="noopener"
-              ><img
-                src="./images/thumb-product-finder.jpg"
-                class="img-fluid"
-                alt="AngularJS program finder"
-                width="900"
-                height="800"
-              />
-              <div class="project-title">AngularJS program finder</div>
-            </a>
-          </article>
-        </div>
-      </section>
-      <section id="profiles" class="anchor text-center p-sm-5 pb-5">
-        <p class="sites pt-4">
-          <a
-            href="https://github.com/kclarkedesign"
-            target="_blank"
-            class="site-link"
-            title="Github"
-            rel="noopener"
-            ><i class="fab fa-github"></i
-          ></a>
-
-          <a
-            href="https://www.linkedin.com/in/kclarke/"
-            target="_blank"
-            class="site-link"
-            title="Linkedin"
-            rel="noopener"
-            ><i class="fab fa-linkedin"></i
-          ></a>
-
-          <a
-            href="https://www.freecodecamp.org/kirkclarke"
-            target="_blank"
-            class="site-link"
-            title="freeCodeCamp"
-            rel="noopener"
-            ><i class="fab fa-free-code-camp"></i
-          ></a>
-          <a
-            href="https://createwithkirk.medium.com/"
-            target="_blank"
-            class="site-link"
-            title="Medium"
-            rel="noopener"
-            ><i class="fab fa-medium"></i
-          ></a>
-          <a
-            href="https://www.catchafire.org/profiles/1179112/impact/"
-            target="_blank"
-            class="site-link"
-            title="Volunteer Work (Catchafire.org)"
-            rel="noopener"
-            ><i class="fas fa-hands-helping"></i
-          ></a>
+          <a href="https://createwithkirk.medium.com/" target="_blank" class="site-link site-link--sm" title="Medium"
+            rel="noopener"><i class="fab fa-medium"></i></a>
         </p>
-      </section>
-      <section
-        id="contact"
-        class="anchor text-center p-sm-5 pb-5"
-        style="background: var(--light)"
-      >
-        <div class="container form-container" style="max-width: 680px">
-          <div class="pt-3 mt-5 mb-5">
-            <div class="form-header">
-              <header>
-                <h1 id="title">Connect (and create) with me</h1>
-                <p id="description">Let me know your&nbsp;thoughts!</p>
-              </header>
+        <h2 class="welcome__down">
+          <a href="#projects"><span class="sr-text">Continue scrolling for my projects and more</span><small><i
+                class="fas fa-chevron-down faa-float animated"></i></small></a>
+        </h2>
+      </div>
+    </section>
+    <section id="projects" class="anchor text-center p-sm-5 pb-5">
+      <!--  TODO: possibly skills section -->
+      <div class="o-filter__label">Filter recent projects by tag</div>
+      <div class="o-filter__projects js-filter mt-4 mb-2">
+        <!-- filters are added here -->
+        <!-- TODO: label describing state -->
+      </div>
+      <div class="o-grid__projects">
+        <!-- TODO?: add grid using vue or some kind of templating framework -->
+        <article class="project-tile">
+          <div class="cat-container js-cat-container cat-container--vertical">
+            <!-- <span title="JavaScript"><i class="cat fab fa-js"></i></span> -->
+            <span title="PHP"><i class="cat fab fa-php"></i></span>
+            <span title="WordPress"><i class="cat fab fa-wordpress"></i></span>
+            <!--<span title="Firebase"><i class="fa fa-database"></i></span> -->
+          </div>
+          <a class="profile-link d-block" href="https://joanieleeds.com/" target="_blank" rel="noopener"><img
+              src="./images/thumb-joanieleeds.jpg" class="img-fluid" alt="JoanieLeeds.com" width="900" height="900" />
+            <div class="project-title">JoanieLeeds.com</div>
+          </a>
+        </article>
+        <article class="project-tile">
+          <div class="cat-container js-cat-container cat-container--vertical">
+            <!-- <span title="JavaScript"><i class="cat fab fa-js"></i></span> -->
+            <span title="Experiment"><i class="cat fa-flask fas"></i></span>
+            <span title="React"><i class="cat fa-react fab"></i></span>
+            <!--<span title="Firebase"><i class="fa fa-database"></i></span> -->
+          </div>
+          <a class="profile-link d-block" href="https://reddit-clone-c9a4a.web.app/" target="_blank" rel="noopener"><img
+              src="./images/thumb-reddit-clone.jpg" class="img-fluid" alt="Reddit Clone" width="900" height="900" />
+            <div class="project-title">Reddit Clone</div>
+          </a>
+        </article>
+        <article class="project-tile">
+          <div class="cat-container js-cat-container cat-container--vertical">
+            <!-- <span title="JavaScript"><i class="cat fab fa-js"></i></span> -->
+            <span title="PHP"><i class="cat fab fa-php"></i></span>
+            <span title="WordPress"><i class="cat fab fa-wordpress"></i></span>
+          </div>
+          <a class="profile-link d-block" href="https://wordpress.org/plugins/customize-private-protected/"
+            target="_blank" rel="noopener"><img src="./images/thumb-cpp-wp-plugin.jpg" class="img-fluid"
+              alt="Customize Private & Protected: WordPress Plugin" width="900" height="900" />
+            <div class="project-title">
+              Customize Private & Protected: WordPress Plugin
             </div>
-            <form
-              id="contact-form"
-              class="text-left"
-              action="contact.php"
-              method="POST"
-            >
-              <div class="form-group">
-                <label id="name-label" for="name">Name *</label>
-                <input
-                  id="name"
-                  name="name"
-                  class="form-control"
-                  type="text"
-                  placeholder="First Last"
-                  required
-                  maxlength="50"
-                />
-              </div>
-              <div class="form-group">
-                <label id="email-label" for="email">Email *</label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="name@example.com"
-                  class="form-control"
-                  required
-                  maxlength="50"
-                />
-              </div>
-              <div class="form-group">
-                <label id="textarea-label" for="textarea">Your message *</label>
-                <textarea
-                  id="textarea"
-                  class="form-control"
-                  value=""
-                  type="text"
-                  name="message"
-                  style="min-height: 20vh"
-                  rows="10"
-                  maxlength="6000"
-                  required
-                ></textarea>
-                <div class="text-center">
-                  <small
-                    >This site is protected by reCAPTCHA and the Google
-                    <a
-                      href="https://policies.google.com/privacy"
-                      rel="noopener"
-                      target="_blank"
-                      class="u-link u-link--dark"
-                      >Privacy Policy</a
-                    >
-                    and
-                    <a
-                      href="https://policies.google.com/terms"
-                      rel="noopener"
-                      target="_blank"
-                      class="u-link u-link--dark"
-                      >Terms of Service</a
-                    >
-                    apply.
-                  </small>
-                </div>
-              </div>
-              <label id="choices-label" for="choices">Your choices</label
-              ><input
-                id="choices"
-                name="choices"
-                type="text"
-                class="form-control choices"
-                tabindex="-1"
-                autocomplete="off"
-              />
+          </a>
+        </article>
+        <!-- Might need popup/overlay to explain icons -->
+        <article class="project-tile">
+          <div class="cat-container js-cat-container cat-container--vertical">
+            <span title="Experiment"><i class="cat fa-flask fas"></i></span>
+            <span title="Sass (SCSS)"><i class="cat fa-sass fab"></i></span>
+            <span title="Angular (11)"><i class="cat fa-angular fab"></i></span>
+            <span title="API (RAWG Video Games Database API)"><i class="cat fa-cog fas"></i></span>
+          </div>
+          <a class="profile-link d-block" href="/ng-video-game-db/" target="_blank" rel="noopener"><img
+              src="./images/thumb-project-ngvideogamedb.jpg" class="img-fluid" alt="Markdown Previewer" width="900"
+              height="800" />
+            <div class="project-title">Angular Video Game Database</div>
+          </a>
+        </article>
+        <article class="project-tile">
+          <div class="cat-container js-cat-container cat-container--vertical">
+            <span title="VueJS (3)"><i class="cat fab fa-vuejs"></i></span>
+            <span title="JavaScript"><i class="cat fab fa-js"></i></span>
+          </div>
+          <a class="profile-link d-block" href="https://www.92y.org/exhibits/student-virtual.aspx" target="_blank"
+            rel="noopener"><img src="./images/thumb-image-grid-lightbox-component.jpg" class="img-fluid"
+              alt="Markdown Previewer" width="900" height="800" />
+            <div class="project-title">Vue.js Image Grid Component</div>
+          </a>
+        </article>
+        <article class="project-tile">
+          <a class="project-link" href="https://www.92y.org/support/your-impact" target="_blank" rel="noopener"><img
+              src="./images/thumb-impact-report-2020.jpg" class="img-fluid" alt="92Y Impact Report companion website"
+              width="900" height="900" />
+            <div class="project-title">
+              92Y Impact Report Companion Website
+            </div>
+          </a>
+        </article>
+        <article class="project-tile">
+          <a class="project-link" href="/getting-started.html" target="_blank" rel="noopener"><img
+              src="./images/thumb-cwk-html-minicourse.jpg" class="img-fluid" alt="Create with Kirk HTML Mini-Course"
+              width="900" height="900" />
+            <div class="project-title">Beginner HTML Mini-Course Website</div>
+          </a>
+        </article>
+        <article class="project-tile">
+          <a class="project-link" href="https://www.92y.org/exhibits/virtual" target="_blank" rel="noopener"><img
+              src="./images/thumb-works-in-progress.jpg" class="img-fluid" alt="92Y Virtual Exhibitions" width="900"
+              height="900" />
+            <div class="project-title">92Y Virtual Exhibitions</div>
+          </a>
+        </article>
+        <article class="project-tile">
+          <div class="cat-container js-cat-container cat-container--vertical">
+            <span title="Challenge"><i class="cat fas fa-pencil-ruler"></i></span>
+            <span title="Social Post (Instagram)"><i class="cat fab fa-instagram"></i></span>
+          </div>
+          <a class="project-link" href="https://www.instagram.com/p/CDc4d7ipwnZ/" target="_blank" rel="noopener"><img
+              src="./images/thumb-daily-ui-13-direct-messaging.jpg" class="img-fluid"
+              alt="Daily UI Challenge #13 &mdash; Direct Messaging" width="900" height="900" />
+            <div class="project-title">
+              Daily UI Challenge #13 &mdash;Direct&nbsp;Messaging
+            </div>
+          </a>
+        </article>
+        <article class="project-tile">
+          <div class="cat-container js-cat-container cat-container--vertical">
+            <span title="Experiment"><i class="cat fa-flask fas"></i></span>
+            <span title="Sass (SCSS)"><i class="cat fa-sass fab"></i></span>
+            <span title="React"><i class="cat fa-react fab"></i></span>
+          </div>
+          <a class="profile-link d-block" href="https://codepen.io/kclarkedesign/full/QWNpbww" target="_blank"
+            rel="noopener"><img src="./images/thumb-project-markdown-previewer.jpg" class="img-fluid"
+              alt="React Markdown Previewer" width="900" height="900" />
+            <div class="project-title">React Markdown Previewer</div>
+          </a>
+        </article>
+        <article class="project-tile">
+          <div class="cat-container js-cat-container cat-container--vertical">
+            <span title="Experiment"><i class="cat fa-flask fas"></i></span>
+            <span title="Sass (SCSS)"><i class="cat fa-sass fab"></i></span>
+            <span title="React"><i class="cat fa-react fab"></i></span>
+          </div>
+          <a class="profile-link d-block" href="https://codepen.io/kclarkedesign/full/NWNjxWy" target="_blank"
+            rel="noopener"><img src="./images/thumb-project-drum-machine.jpg" class="img-fluid" alt="React Drum Machine"
+              width="900" height="900" />
+            <div class="project-title">React Drum Machine</div>
+          </a>
+        </article>
+        <article class="project-tile">
+          <div class="cat-container js-cat-container cat-container--vertical">
+            <span title="Experiment"><i class="cat fa-flask fas"></i></span>
+            <span title="Sass (SCSS)"><i class="cat fa-sass fab"></i></span>
+            <span title="React"><i class="cat fa-react fab"></i></span>
+          </div>
+          <a class="profile-link d-block" href="https://codepen.io/kclarkedesign/full/zYqwmqK" target="_blank"
+            rel="noopener"><img src="./images/thumb-project-js-calculator.jpg" class="img-fluid"
+              alt="React JavaScript Calculator" width="900" height="900" />
+            <div class="project-title">React JavaScript Calculator</div>
+          </a>
+        </article>
+        <article class="project-tile">
+          <div class="cat-container js-cat-container cat-container--vertical">
+            <span title="Experiment"><i class="cat fa-flask fas"></i></span>
+            <span title="Sass (SCSS)"><i class="cat fa-sass fab"></i></span>
+            <span title="React"><i class="cat fa-react fab"></i></span>
+          </div>
+          <a class="profile-link d-block" href="https://codepen.io/kclarkedesign/full/vYGZzGN" target="_blank"
+            rel="noopener"><img src="./images/thumb-project-pomodoro-clock.jpg" class="img-fluid"
+              alt="React Pomodoro Clock" width="900" height="900" />
+            <div class="project-title">React Pomodoro Clock</div>
+          </a>
+        </article>
+        <article class="project-tile">
+          <div class="cat-container js-cat-container cat-container--vertical">
+            <span title="JavaScript"><i class="cat fab fa-js"></i></span>
+            <span title="PHP"><i class="cat fab fa-php"></i></span>
+            <span title="WordPress"><i class="cat fab fa-wordpress"></i></span>
+          </div>
+          <a class="profile-link d-block" href="https://campaign.law.columbia.edu/" target="_blank" rel="noopener"><img
+              src="./images/thumb-campaign-for-columbia-law.jpg" class="img-fluid"
+              alt="Campaign for Columbia Law: A Force in the World" width="900" height="900" />
+            <div class="project-title">
+              Campaign for Columbia Law: A Force in the World
+            </div>
+          </a>
+        </article>
+        <article class="project-tile">
+          <div class="cat-container js-cat-container cat-container--vertical">
+            <!-- <span title="JavaScript"><i class="cat fab fa-js"></i></span>
+              <span title="PHP"><i class="cat fab fa-php"></i></span> -->
+            <span title="WordPress"><i class="cat fab fa-wordpress"></i></span>
+          </div>
+          <a class="profile-link d-block" href="https://andreahenkels.com/" target="_blank" rel="noopener"><img
+              src="./images/thumb-centered-health-healing-arts.jpg" class="img-fluid" alt="Centered Health Healing Arts"
+              width="900" height="900" />
+            <div class="project-title">Centered Health Healing Arts</div>
+          </a>
+        </article>
+        <article class="project-tile">
+          <div class="cat-container js-cat-container cat-container--vertical">
+            <span title="JavaScript"><i class="cat fab fa-js"></i></span>
+            <span title="Sass (SCSS)"><i class="cat fa-sass fab"></i></span>
+            <span title="AngularJS"><i class="cat fa-angular fab"></i></span>
+          </div>
+          <a class="profile-link d-block" href="https://www.92y.org/classes" target="_blank" rel="noopener"><img
+              src="./images/thumb-product-finder.jpg" class="img-fluid" alt="AngularJS program finder" width="900"
+              height="800" />
+            <div class="project-title">AngularJS program finder</div>
+          </a>
+        </article>
+      </div>
+    </section>
+    <section id="profiles" class="anchor text-center p-sm-5 pb-5">
+      <p class="sites pt-4">
+        <a href="https://github.com/kclarkedesign" target="_blank" class="site-link" title="Github" rel="noopener"><i
+            class="fab fa-github"></i></a>
 
-              <button
-                id="submit"
-                type="submit"
-                value="Submit"
-                class="btn btn-secondary btn-lg btn-block"
-              >
-                Submit
-              </button>
+        <a href="https://www.linkedin.com/in/kclarke/" target="_blank" class="site-link" title="Linkedin"
+          rel="noopener"><i class="fab fa-linkedin"></i></a>
 
-              <!-- <div class="form-submit-status">
+        <a href="https://www.freecodecamp.org/kirkclarke" target="_blank" class="site-link" title="freeCodeCamp"
+          rel="noopener"><i class="fab fa-free-code-camp"></i></a>
+        <a href="https://createwithkirk.medium.com/" target="_blank" class="site-link" title="Medium" rel="noopener"><i
+            class="fab fa-medium"></i></a>
+        <a href="https://www.catchafire.org/profiles/1179112/impact/" target="_blank" class="site-link"
+          title="Volunteer Work (Catchafire.org)" rel="noopener"><i class="fas fa-hands-helping"></i></a>
+      </p>
+    </section>
+    <section id="contact" class="anchor text-center p-sm-5 pb-5" style="background: var(--light)">
+      <div class="container form-container" style="max-width: 680px">
+        <div class="pt-3 mt-5 mb-5">
+          <div class="form-header">
+            <header>
+              <h1 id="title">Connect (and create) with me</h1>
+              <p id="description">Let me know your&nbsp;thoughts!</p>
+            </header>
+          </div>
+          <form id="contact-form" class="text-left" action="contact.php" method="POST">
+            <div class="form-group">
+              <label id="name-label" for="name">Name *</label>
+              <input id="name" name="name" class="form-control" type="text" placeholder="First Last" required
+                maxlength="50" />
+            </div>
+            <div class="form-group">
+              <label id="email-label" for="email">Email *</label>
+              <input id="email" name="email" type="email" placeholder="name@example.com" class="form-control" required
+                maxlength="50" />
+            </div>
+            <div class="form-group">
+              <label id="textarea-label" for="textarea">Your message *</label>
+              <textarea id="textarea" class="form-control" value="" type="text" name="message" style="min-height: 20vh"
+                rows="10" maxlength="6000" required></textarea>
+              <div class="text-center">
+                <small>This site is protected by reCAPTCHA and the Google
+                  <a href="https://policies.google.com/privacy" rel="noopener" target="_blank"
+                    class="u-link u-link--dark">Privacy Policy</a>
+                  and
+                  <a href="https://policies.google.com/terms" rel="noopener" target="_blank"
+                    class="u-link u-link--dark">Terms of Service</a>
+                  apply.
+                </small>
+              </div>
+            </div>
+            <label id="choices-label" for="choices">Your choices</label><input id="choices" name="choices" type="text"
+              class="form-control choices" tabindex="-1" autocomplete="off" />
+
+            <button id="submit" type="submit" value="Submit" class="btn btn-secondary btn-lg btn-block">
+              Submit
+            </button>
+
+            <!-- <div class="form-submit-status">
                 
                 <div class="alert alert- >Message" role="alert"></div>
                 
               </div> -->
-            </form>
-          </div>
+          </form>
         </div>
-      </section>
-    </main>
-    <footer class="text-center p-4">&copy; 2009 - 2021 Kirk Clarke</footer>
-    <script src="./js/toggle.js"></script>
-    <script src="./js/filter.js"></script>
-    <script
-      defer="defer"
-      src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"
-      type="text/javascript"
-    ></script>
-    <script
-      defer="defer"
-      src="https://www.google.com/recaptcha/api.js?render=6LdGAhocAAAAAFZKVSDhNzbo0VxKl6jbiWEocrQM"
-    ></script>
-    <script src="./js/validate-contact.js"></script>
-  </body>
+      </div>
+    </section>
+  </main>
+  <footer class="text-center p-4">&copy; 2009 - 2021 Kirk Clarke</footer>
+  <script src="./js/toggle.js"></script>
+  <script src="./js/filter.js"></script>
+  <script defer="defer" src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"
+    type="text/javascript"></script>
+  <script defer="defer"
+    src="https://www.google.com/recaptcha/api.js?render=6LdGAhocAAAAAFZKVSDhNzbo0VxKl6jbiWEocrQM"></script>
+  <script src="./js/validate-contact.js"></script>
+</body>
+
 </html>
