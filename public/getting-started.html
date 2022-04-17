@@ -1,909 +1,814 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=UA-21054528-2"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
 
-      gtag("config", "UA-21054528-2");
-    </script>
-    <meta charset="UTF-8" />
-    <meta
-      name="description"
-      content="HTML stands for Hypertext Markup Language and it is the primary way to interact with web page code."
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      Getting Started - Free beginners guide to coding: Learn HTML fast || Kirk
-      Clarke | Web (UI/UX) Designer & Engineer
-    </title>
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-21054528-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
 
-    <link
-      rel="stylesheet preload"
-      href="./css/base.css"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript><link rel="stylesheet" href="./css/base.css" /></noscript>
-    <style type="text/css">
-      :root {
-        --blue: #007bff;
-        --indigo: #6610f2;
-        --purple: #6f42c1;
-        --pink: #e83e8c;
-        --red: #dc3545;
-        --orange: #fd7e14;
-        --yellow: #ffc107;
-        --green: #28a745;
-        --teal: #20c997;
-        --cyan: #17a2b8;
-        --white: #fff;
-        --gray: #6c757d;
-        --gray-dark: #343a40;
-        --primary: #007bff;
-        --secondary: #6c757d;
-        --success: #28a745;
-        --info: #17a2b8;
-        --warning: #ffc107;
-        --danger: #dc3545;
-        --light: #f8f9fa;
-        --dark: #343a40;
-        --breakpoint-xs: 0;
-        --breakpoint-sm: 576px;
-        --breakpoint-md: 768px;
-        --breakpoint-lg: 992px;
-        --breakpoint-xl: 1200px;
-        --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI",
-          Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-          "Noto Color Emoji";
-        --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
-          "Liberation Mono", "Courier New", monospace;
-      }
-      *,
-      ::after,
-      ::before {
-        box-sizing: border-box;
-      }
-      html {
-        font-family: sans-serif;
-        line-height: 1.15;
-        -webkit-text-size-adjust: 100%;
-        -webkit-tap-highlight-color: transparent;
-      }
-      article,
-      aside,
-      figcaption,
-      figure,
-      footer,
-      header,
-      hgroup,
-      main,
-      nav,
-      section {
-        display: block;
-      }
-      body {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
-          "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-        font-size: 1rem;
-        font-weight: 400;
-        line-height: 1.5;
-        color: #212529;
-        text-align: left;
-        background-color: #fff;
-      }
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        margin-top: 0;
-        margin-bottom: 0.5rem;
-      }
-      p {
-        margin-top: 0;
-        margin-bottom: 1rem;
-      }
-      small {
-        font-size: 80%;
-      }
-      a {
-        color: #007bff;
-        text-decoration: none;
-        background-color: transparent;
-      }
-      img {
-        vertical-align: middle;
-        border-style: none;
-      }
-      svg {
-        overflow: hidden;
-        vertical-align: middle;
-      }
-      .h1,
-      .h2,
-      .h3,
-      .h4,
-      .h5,
-      .h6,
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        margin-bottom: 0.5rem;
-        font-weight: 500;
-        line-height: 1.2;
-      }
-      .h1,
-      h1 {
-        font-size: 2.5rem;
-      }
-      .h2,
-      h2 {
-        font-size: 2rem;
-      }
-      .small,
-      small {
-        font-size: 80%;
-        font-weight: 400;
-      }
-      .img-fluid {
-        max-width: 100%;
-        height: auto;
-      }
-      .col,
-      .col-1,
-      .col-10,
-      .col-11,
-      .col-12,
-      .col-2,
-      .col-3,
-      .col-4,
-      .col-5,
-      .col-6,
-      .col-7,
-      .col-8,
-      .col-9,
-      .col-auto,
-      .col-lg,
-      .col-lg-1,
-      .col-lg-10,
-      .col-lg-11,
-      .col-lg-12,
-      .col-lg-2,
-      .col-lg-3,
-      .col-lg-4,
-      .col-lg-5,
-      .col-lg-6,
-      .col-lg-7,
-      .col-lg-8,
-      .col-lg-9,
-      .col-lg-auto,
-      .col-md,
-      .col-md-1,
-      .col-md-10,
-      .col-md-11,
-      .col-md-12,
-      .col-md-2,
-      .col-md-3,
-      .col-md-4,
-      .col-md-5,
-      .col-md-6,
-      .col-md-7,
-      .col-md-8,
-      .col-md-9,
-      .col-md-auto,
-      .col-sm,
-      .col-sm-1,
-      .col-sm-10,
-      .col-sm-11,
-      .col-sm-12,
-      .col-sm-2,
-      .col-sm-3,
-      .col-sm-4,
-      .col-sm-5,
-      .col-sm-6,
-      .col-sm-7,
-      .col-sm-8,
-      .col-sm-9,
-      .col-sm-auto,
-      .col-xl,
-      .col-xl-1,
-      .col-xl-10,
-      .col-xl-11,
-      .col-xl-12,
-      .col-xl-2,
-      .col-xl-3,
-      .col-xl-4,
-      .col-xl-5,
-      .col-xl-6,
-      .col-xl-7,
-      .col-xl-8,
-      .col-xl-9,
-      .col-xl-auto {
-        position: relative;
-        width: 100%;
-        padding-right: 15px;
-        padding-left: 15px;
-      }
-      .flex-row {
-        -ms-flex-direction: row !important;
-        flex-direction: row !important;
-      }
-      .justify-content-between {
-        -ms-flex-pack: justify !important;
-        justify-content: space-between !important;
-      }
-      .align-items-center {
-        -ms-flex-align: center !important;
-        align-items: center !important;
-      }
-      .align-self-center {
-        -ms-flex-item-align: center !important;
-        align-self: center !important;
-      }
-      .text-center {
-        text-align: center !important;
-      }
-    </style>
+    gtag("config", "UA-21054528-2");
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="description"
+    content="HTML stands for Hypertext Markup Language and it is the primary way to interact with web page code." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    Getting Started - Free beginners guide to coding: Learn HTML fast || Kirk
+    Clarke | Web (UI/UX) Designer & Engineer
+  </title>
 
-    <link
-      rel="stylesheet preload"
-      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript
-      ><link
-        rel="stylesheet preload"
-        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
-    /></noscript>
-    <link
-      media="all"
-      rel="stylesheet preload"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-    />
-    <link
-      media="all"
-      rel="stylesheet preload"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.3.0/font-awesome-animation.min.css"
-    />
-    <link
-      rel="stylesheet preload"
-      href="./css/vs2015.min.css"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript><link rel="stylesheet" href="./css/vs2015.min.css" /></noscript>
-    <link
-      rel="stylesheet preload"
-      href="./css/lecture.css"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript><link rel="stylesheet" href="./css/lecture.css" /></noscript>
-    <link
-      rel="stylesheet preload"
-      href="./css/navbar.css"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript><link rel="stylesheet" href="./css/navbar.css" /></noscript>
-    <link
-      rel="stylesheet preload"
-      href="./css/quiz.css"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript><link rel="stylesheet" href="./css/quiz.css" /></noscript>
-    <style>
-      :root {
-        --color-celadon: #98dfaf;
-        --color-dark: #191919;
-        --color-white: #ffffff;
-        --color-celedon-contrast: #585858; /* Davys Grey */
-      }
-      html {
-        scroll-behavior: smooth;
-      }
+  <link rel="stylesheet preload" href="./css/base.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet" href="./css/base.css" />
+  </noscript>
+  <style type="text/css">
+    :root {
+      --blue: #007bff;
+      --indigo: #6610f2;
+      --purple: #6f42c1;
+      --pink: #e83e8c;
+      --red: #dc3545;
+      --orange: #fd7e14;
+      --yellow: #ffc107;
+      --green: #28a745;
+      --teal: #20c997;
+      --cyan: #17a2b8;
+      --white: #fff;
+      --gray: #6c757d;
+      --gray-dark: #343a40;
+      --primary: #007bff;
+      --secondary: #6c757d;
+      --success: #28a745;
+      --info: #17a2b8;
+      --warning: #ffc107;
+      --danger: #dc3545;
+      --light: #f8f9fa;
+      --dark: #343a40;
+      --breakpoint-xs: 0;
+      --breakpoint-sm: 576px;
+      --breakpoint-md: 768px;
+      --breakpoint-lg: 992px;
+      --breakpoint-xl: 1200px;
+      --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+      --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+    }
 
-      nav {
-        display: flex;
-        justify-content: center;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: var(--color-celadon);
-        z-index: 5;
-      }
-      nav a:hover {
-        color: #545c52;
-      }
-      .nav-link {
-        color: var(--color-dark);
-        font-weight: bold;
-        font-size: 1.5em;
-        margin: 0 0.5em;
-      }
-      .brand {
-        width: 100%;
-        max-width: 35px;
-      }
-      .full-vh {
-        background: #000;
-        height: 100vh;
-      }
+    *,
+    ::after,
+    ::before {
+      box-sizing: border-box;
+    }
 
-      #welcome-section {
-        display: flex;
-        align-content: center;
-        justify-content: center;
-        background-color: #191919;
-        color: #fff;
-      }
-      .welcome__subtitle {
-        color: var(--color-celadon);
-        font-size: 1.5rem;
-      }
-      .welcome__down,
-      .welcome__down a {
-        color: var(--color-white);
-        font-size: 1.25em;
-      }
-      #projects {
-        background-color: var(--color-dark);
-        min-height: 300px;
-      }
-      #profiles {
-        background-color: var(--color-dark);
-      }
-      .anchor {
-        padding-top: 58px;
-        margin-top: -58px;
-      }
+    html {
+      font-family: sans-serif;
+      line-height: 1.15;
+      -webkit-text-size-adjust: 100%;
+      -webkit-tap-highlight-color: transparent;
+    }
 
+    article,
+    aside,
+    figcaption,
+    figure,
+    footer,
+    header,
+    hgroup,
+    main,
+    nav,
+    section {
+      display: block;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #212529;
+      text-align: left;
+      background-color: #fff;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+    small {
+      font-size: 80%;
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+      background-color: transparent;
+    }
+
+    img {
+      vertical-align: middle;
+      border-style: none;
+    }
+
+    svg {
+      overflow: hidden;
+      vertical-align: middle;
+    }
+
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .h1,
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    .h2,
+    h2 {
+      font-size: 2rem;
+    }
+
+    .small,
+    small {
+      font-size: 80%;
+      font-weight: 400;
+    }
+
+    .img-fluid {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .col,
+    .col-1,
+    .col-10,
+    .col-11,
+    .col-12,
+    .col-2,
+    .col-3,
+    .col-4,
+    .col-5,
+    .col-6,
+    .col-7,
+    .col-8,
+    .col-9,
+    .col-auto,
+    .col-lg,
+    .col-lg-1,
+    .col-lg-10,
+    .col-lg-11,
+    .col-lg-12,
+    .col-lg-2,
+    .col-lg-3,
+    .col-lg-4,
+    .col-lg-5,
+    .col-lg-6,
+    .col-lg-7,
+    .col-lg-8,
+    .col-lg-9,
+    .col-lg-auto,
+    .col-md,
+    .col-md-1,
+    .col-md-10,
+    .col-md-11,
+    .col-md-12,
+    .col-md-2,
+    .col-md-3,
+    .col-md-4,
+    .col-md-5,
+    .col-md-6,
+    .col-md-7,
+    .col-md-8,
+    .col-md-9,
+    .col-md-auto,
+    .col-sm,
+    .col-sm-1,
+    .col-sm-10,
+    .col-sm-11,
+    .col-sm-12,
+    .col-sm-2,
+    .col-sm-3,
+    .col-sm-4,
+    .col-sm-5,
+    .col-sm-6,
+    .col-sm-7,
+    .col-sm-8,
+    .col-sm-9,
+    .col-sm-auto,
+    .col-xl,
+    .col-xl-1,
+    .col-xl-10,
+    .col-xl-11,
+    .col-xl-12,
+    .col-xl-2,
+    .col-xl-3,
+    .col-xl-4,
+    .col-xl-5,
+    .col-xl-6,
+    .col-xl-7,
+    .col-xl-8,
+    .col-xl-9,
+    .col-xl-auto {
+      position: relative;
+      width: 100%;
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+
+    .flex-row {
+      -ms-flex-direction: row !important;
+      flex-direction: row !important;
+    }
+
+    .justify-content-between {
+      -ms-flex-pack: justify !important;
+      justify-content: space-between !important;
+    }
+
+    .align-items-center {
+      -ms-flex-align: center !important;
+      align-items: center !important;
+    }
+
+    .align-self-center {
+      -ms-flex-item-align: center !important;
+      align-self: center !important;
+    }
+
+    .text-center {
+      text-align: center !important;
+    }
+  </style>
+
+  <link rel="stylesheet preload"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet preload"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
+  </noscript>
+  <link media="all" rel="stylesheet preload"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+  <link media="all" rel="stylesheet preload"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.3.0/font-awesome-animation.min.css" />
+  <link rel="stylesheet preload" href="./css/vs2015.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet" href="./css/vs2015.min.css" />
+  </noscript>
+  <link rel="stylesheet preload" href="./css/lecture.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet" href="./css/lecture.css" />
+  </noscript>
+  <link rel="stylesheet preload" href="./css/navbar.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet" href="./css/navbar.css" />
+  </noscript>
+  <link rel="stylesheet preload" href="./css/quiz.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet" href="./css/quiz.css" />
+  </noscript>
+  <style>
+    :root {
+      --color-celadon: #98dfaf;
+      --color-dark: #191919;
+      --color-white: #ffffff;
+      --color-celedon-contrast: #585858;
+      /* Davys Grey */
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--color-celadon);
+      z-index: 5;
+    }
+
+    nav a:hover {
+      color: #545c52;
+    }
+
+    .nav-link {
+      color: var(--color-dark);
+      font-weight: bold;
+      font-size: 1.5em;
+      margin: 0 0.5em;
+    }
+
+    .brand {
+      width: 100%;
+      max-width: 35px;
+    }
+
+    .full-vh {
+      background: #000;
+      height: 100vh;
+    }
+
+    #welcome-section {
+      display: flex;
+      align-content: center;
+      justify-content: center;
+      background-color: #191919;
+      color: #fff;
+    }
+
+    .welcome__subtitle {
+      color: var(--color-celadon);
+      font-size: 1.5rem;
+    }
+
+    .welcome__down,
+    .welcome__down a {
+      color: var(--color-white);
+      font-size: 1.25em;
+    }
+
+    #projects {
+      background-color: var(--color-dark);
+      min-height: 300px;
+    }
+
+    #profiles {
+      background-color: var(--color-dark);
+    }
+
+    .anchor {
+      padding-top: 58px;
+      margin-top: -58px;
+    }
+
+    .o-grid--projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-gap: 2em;
+      width: 100%;
+      padding: 1em;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 320px) {
       .o-grid--projects {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        grid-gap: 2em;
-        width: 100%;
-        padding: 1em;
-        margin: 0 auto;
+        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
       }
-      @media (max-width: 320px) {
-        .o-grid--projects {
-          grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
-        }
-      }
-      @media (min-width: 1024px) {
-        .o-grid--projects {
-          max-width: 1140px;
-        }
-      }
-      .project-tile {
-        border: 3px solid;
-        transition: all 0.3s ease-in-out;
-        position: relative;
-      }
+    }
 
-      .project-tile:hover {
-        border: 3px solid var(--color-celadon);
+    @media (min-width: 1024px) {
+      .o-grid--projects {
+        max-width: 1140px;
       }
-      .project-tile:hover a {
-        color: var(--color-celadon);
-        text-decoration: underline;
-      }
-      .project-title {
-        background: var(--color-dark);
-        color: var(--color-celadon);
-        padding: 1em 2em;
-      }
+    }
 
-      .site-link {
-        color: rgb(145 211 166 / 70%);
-        border: none;
-        font-size: 3.5em;
-        transition: all 0.3s ease-in-out;
-        margin: 0 22px;
-      }
+    .project-tile {
+      border: 3px solid;
+      transition: all 0.3s ease-in-out;
+      position: relative;
+    }
 
-      .site-link:hover {
-        color: var(--color-celadon);
-      }
+    .project-tile:hover {
+      border: 3px solid var(--color-celadon);
+    }
 
-      .site-link--sm {
-        font-size: 2em;
-        margin: 0 15px;
-      }
+    .project-tile:hover a {
+      color: var(--color-celadon);
+      text-decoration: underline;
+    }
 
-      .cat-container {
-        position: absolute;
-        right: 0;
-        padding: 3px 6px;
-        margin: 3px 3px;
-        /* background: #3e3e3e75; */
-        background: rgb(25 25 25 / 70%);
-        border-radius: 3px;
-      }
+    .project-title {
+      background: var(--color-dark);
+      color: var(--color-celadon);
+      padding: 1em 2em;
+    }
 
-      .cat-container--vertical {
-        padding: 6px 3px;
-        display: flex;
-        flex-direction: column;
-      }
+    .site-link {
+      color: rgb(145 211 166 / 70%);
+      border: none;
+      font-size: 3.5em;
+      transition: all 0.3s ease-in-out;
+      margin: 0 22px;
+    }
 
-      .cat {
-        right: 0;
-        color: #fff;
-        font-size: 1.5em;
-        padding: 3px;
-      }
+    .site-link:hover {
+      color: var(--color-celadon);
+    }
 
-      footer {
-        padding: 1.25vh;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <nav id="navbar" class="nav align-items-center justify-content-between">
-        <div class="navbar-brand">
-          <a class="navbar-brand__link" href="/"
-            ><span class="sr-text">Kirk Clarke's personal portfolio</span
-            ><svg
-              id="Layer_1"
-              class="brand"
-              data-name="Layer 1"
-              xmlns="http://www.w3.org/2000/svg"
-              viewbox="0 0 327.68 327.69"
-            >
-              <defs>
-                <style>
-                  .cls-1 {
-                    fill: #191919;
-                  }
-                  .cls-2 {
-                    fill: none;
-                  }
-                </style>
-              </defs>
-              <path
-                class="cls-1"
-                d="M183.77,16.31A163.85,163.85,0,1,0,347.6,180.16,163.85,163.85,0,0,0,183.77,16.31ZM86.05,97.37h47.89V125c-31.92,16.47-47.89,50-47.89,50ZM133.93,263H86V185.24s16,33.57,47.9,50Zm147.56,0H235.57s-71.69-15.32-112.74-82.41c41.05-67.12,112.74-83.18,112.74-83.18h45.92C237.87,110,194,153.44,170,180.44,194,207.21,237.87,250.32,281.49,263Z"
-                transform="translate(-19.92 -16.31)"
-              ></path>
-              <path
-                class="cls-2"
-                d="M281.49,97.37H235.57s-71.69,16.06-112.74,83.18C163.88,247.64,235.57,263,235.57,263h45.92C237.87,250.32,194,207.21,170,180.44,194,153.44,237.87,110,281.49,97.37Z"
-                transform="translate(-19.92 -16.31)"
-              ></path>
-              <path
-                class="cls-2"
-                d="M86,185.24V263h47.9V235.25C102,218.81,86,185.24,86,185.24Z"
-                transform="translate(-19.92 -16.31)"
-              ></path>
-              <path
-                class="cls-2"
-                d="M133.94,125V97.37H86.05v77.7S102,141.51,133.94,125Z"
-                transform="translate(-19.92 -16.31)"
-              ></path>
-              <rect class="cls-2" width="327.68" height="327.69"></rect></svg
-          ></a>
-          <a
-            class="course-nav-link js-toggle"
-            data-toggle="course-sidebar"
-            href="javascript:void(0);"
-          >
-            <i class="fas fa-list-ul"></i>
-            <span class="course-nav-link__text">Course Overview</span></a
-          >
+    .site-link--sm {
+      font-size: 2em;
+      margin: 0 15px;
+    }
+
+    .cat-container {
+      position: absolute;
+      right: 0;
+      padding: 3px 6px;
+      margin: 3px 3px;
+      /* background: #3e3e3e75; */
+      background: rgb(25 25 25 / 70%);
+      border-radius: 3px;
+    }
+
+    .cat-container--vertical {
+      padding: 6px 3px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cat {
+      right: 0;
+      color: #fff;
+      font-size: 1.5em;
+      padding: 3px;
+    }
+
+    footer {
+      padding: 1.25vh;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="js/config.js"></script>
+  <script src="js/gapi.js"></script>
+</head>
+
+<body>
+  <header>
+    <nav id="navbar" class="nav align-items-center justify-content-between">
+      <div class="navbar-brand">
+        <a class="navbar-brand__link" href="/"><span class="sr-text">Kirk Clarke's personal portfolio</span><svg
+            id="Layer_1" class="brand" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+            viewbox="0 0 327.68 327.69">
+            <defs>
+              <style>
+                .cls-1 {
+                  fill: #191919;
+                }
+
+                .cls-2 {
+                  fill: none;
+                }
+              </style>
+            </defs>
+            <path class="cls-1"
+              d="M183.77,16.31A163.85,163.85,0,1,0,347.6,180.16,163.85,163.85,0,0,0,183.77,16.31ZM86.05,97.37h47.89V125c-31.92,16.47-47.89,50-47.89,50ZM133.93,263H86V185.24s16,33.57,47.9,50Zm147.56,0H235.57s-71.69-15.32-112.74-82.41c41.05-67.12,112.74-83.18,112.74-83.18h45.92C237.87,110,194,153.44,170,180.44,194,207.21,237.87,250.32,281.49,263Z"
+              transform="translate(-19.92 -16.31)"></path>
+            <path class="cls-2"
+              d="M281.49,97.37H235.57s-71.69,16.06-112.74,83.18C163.88,247.64,235.57,263,235.57,263h45.92C237.87,250.32,194,207.21,170,180.44,194,153.44,237.87,110,281.49,97.37Z"
+              transform="translate(-19.92 -16.31)"></path>
+            <path class="cls-2" d="M86,185.24V263h47.9V235.25C102,218.81,86,185.24,86,185.24Z"
+              transform="translate(-19.92 -16.31)"></path>
+            <path class="cls-2" d="M133.94,125V97.37H86.05v77.7S102,141.51,133.94,125Z"
+              transform="translate(-19.92 -16.31)"></path>
+            <rect class="cls-2" width="327.68" height="327.69"></rect>
+          </svg></a>
+        <a class="course-nav-link js-toggle" data-toggle="course-sidebar" href="javascript:void(0);">
+          <i class="fas fa-list-ul"></i>
+          <span class="course-nav-link__text">Course Overview</span></a>
+      </div>
+
+      <div class="main-nav navbar-nav">
+        <a href="javascript:void(0);" class="hamburger js-toggle" data-toggle="main-nav__links"><span
+            class="sr-text">Main menu</span>
+          <i class="fa fa-bars"></i>
+          <i class="fa fa-times"></i>
+        </a>
+        <div class="main-nav__links">
+          <a href="/#projects" class="nav-link">Projects</a>
+          <a href="/#profiles" class="nav-link">Profiles</a>
+          <a href="/#contact" class="nav-link">Contact</a>
+          <a href="/getting-started.html" class="nav-link">Course</a>
         </div>
-
-        <div class="main-nav navbar-nav">
-          <a
-            href="javascript:void(0);"
-            class="hamburger js-toggle"
-            data-toggle="main-nav__links"
-            ><span class="sr-text">Main menu</span>
-            <i class="fa fa-bars"></i>
-            <i class="fa fa-times"></i>
-          </a>
-          <div class="main-nav__links">
-            <a href="/#projects" class="nav-link">Projects</a>
-            <a href="/#profiles" class="nav-link">Profiles</a>
-            <a href="/#contact" class="nav-link">Contact</a>
-            <a href="/getting-started.html" class="nav-link">Course</a>
-          </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="lecture lecture-layout pt-5">
+      <div id="course-sidebar" role="navigation" class="course-sidebar">
+        <div class="sidebar-header p-3">
+          <h2>Free beginners guide to coding: Learn HTML fast</h2>
         </div>
-      </nav>
-    </header>
-    <main>
-      <section class="lecture lecture-layout pt-5">
-        <div id="course-sidebar" role="navigation" class="course-sidebar">
-          <div class="sidebar-header p-3">
-            <h2>Free beginners guide to coding: Learn HTML fast</h2>
-          </div>
-          <div class="col-sm-12 course-section">
-            <h3 class="section-heading" role="heading">
-              Learn to code HTML from scratch
-            </h3>
-            <ul class="section-list">
-              <li class="section-item current-item">
-                <a href="./getting-started.html" class="section-item__link">
-                  <span class="lecture-name">Getting Started</span>
-                </a>
-              </li>
-              <li class="section-item">
-                <a
-                  href="./common-elements-attributes.html"
-                  class="section-item__link"
-                >
-                  <span class="lecture-name"
-                    >Common Elements and Attributes</span
-                  >
-                </a>
-              </li>
-              <li class="section-item">
-                <a
-                  href="./your-first-html-document.html"
-                  class="section-item__link"
-                >
-                  <span class="lecture-name"
-                    >Create your first HTML document</span
-                  >
-                </a>
-              </li>
-              <li class="section-item">
-                <a href="./bonus-css-intro.html" class="section-item__link">
-                  <span class="lecture-name"
-                    >Bonus: Add some flair! (A CSS Introduction)</span
-                  >
-                </a>
-              </li>
-              <li class="section-item">
-                <a
-                  href="./free-mini-cheatsheet.html"
-                  class="section-item__link"
-                >
-                  <span class="lecture-name"
-                    >FREE DOWNLOAD: Beginner HTML & CSS Mini-Cheatsheet</span
-                  >
-                </a>
-              </li>
-            </ul>
-          </div>
+        <div class="col-sm-12 course-section">
+          <h3 class="section-heading" role="heading">
+            Learn to code HTML from scratch
+          </h3>
+          <ul class="section-list">
+            <li class="section-item current-item">
+              <a href="./getting-started.html" class="section-item__link">
+                <span class="lecture-name">Getting Started</span>
+              </a>
+            </li>
+            <li class="section-item">
+              <a href="./common-elements-attributes.html" class="section-item__link">
+                <span class="lecture-name">Common Elements and Attributes</span>
+              </a>
+            </li>
+            <li class="section-item">
+              <a href="./your-first-html-document.html" class="section-item__link">
+                <span class="lecture-name">Create your first HTML document</span>
+              </a>
+            </li>
+            <li class="section-item">
+              <a href="./bonus-css-intro.html" class="section-item__link">
+                <span class="lecture-name">Bonus: Add some flair! (A CSS Introduction)</span>
+              </a>
+            </li>
+            <li class="section-item">
+              <a href="./free-mini-cheatsheet.html" class="section-item__link">
+                <span class="lecture-name">FREE DOWNLOAD: Beginner HTML & CSS Mini-Cheatsheet</span>
+              </a>
+            </li>
+          </ul>
         </div>
-        <div role="main" class="course-main p-3">
-          <h2 class="lecture__title">Getting Started</h2>
-          <div class="lecture__section p-1">
-            <p>
-              The goal of this guide is to give anyone the ability to understand
-              and effectively code with HTML confidently, and as painlessly as
-              possible.
-            </p>
-            <p>
-              <span style="color: rgb(32, 33, 36)"
-                >And before you begin, I want you to forget everything you think
-                you know about coding and say to yourself, "I CAN DO THIS!, I
-                WILL DO THIS!". I sincerely want you to believe in yourself as
-                much as I believe in you.</span
-              >
-            </p>
-            <p><strong>Now let's do this!</strong></p>
-          </div>
-          <!--/ lecture__section -->
-          <!-- <h1 class="section-title">The Basics</h1> -->
-          <div class="lecture__section p-1">
-            <h2 class="lecture__section-heading">What is HTML?</h2>
-            <p>
-              HTML stands for <strong>Hypertext Markup Language</strong> and it
-              is the primary way to interact with web page code. If you can name
-              a website or web page, I guarantee it uses HTML somehow. And by
-              the end of this lecture, you will understand the following:
-            </p>
-            <ol>
-              <li>
-                HTML is the standard way to manipulate and give meaning to text
-                and other parts of a web page.
-              </li>
-              <li>
-                HTML has a few common terms to remember. Two of those terms are
-                <strong><em>tags </em></strong>and<em>
-                  <strong>elements</strong>.</em
-                >
-              </li>
-              <li>
-                HTML markup refers to the building blocks (i.e. elements and
-                tags) of web pages.
-              </li>
-              <li>
-                As you markup/build your page, you are speaking in the web
-                browser's language, telling it what to display.
-              </li>
-            </ol>
-          </div>
-          <!--/ lecture__section -->
-          <div class="lecture__section p-1">
-            <h2 class="lecture__section-heading">An HTML Element in action</h2>
-            <p>
-              An HTML element is a marker that defines what happens next within
-              a page. Elements are created when you combine content with HTML
-              tags. As shown below, we're using the bold tags
-              <code>&lt;b&gt;</code> and <code>&lt;/b&gt;</code> to make content
-              between them bold. The <code>&lt;b&gt;</code> is the
-              <strong>start t</strong><strong>ag</strong>, which tells the
-              browser to make everything following it bold until it sees the
-              <code>&lt;/b&gt;</code> <strong>end tag </strong>which completes
-              the bold HTML element.
-            </p>
-            <p style="margin-top: 1em">
-              Example: Using the HTML bold tags to make some text bold
-            </p>
-            <div
-              data-code-viewer=""
-              data-code-viewer-code="Get started with <b>HTML</b> today"
-              data-code-viewer-language="html"
-            >
-              <div class="code-viewer">
-                <div class="code-viewer-label">html</div>
-                <code class="html hljs xml"
-                  >Get started with
+      </div>
+      <div role="main" class="course-main p-3">
+        <h2 class="lecture__title">Getting Started</h2>
+        <div class="lecture__section p-1">
+          <p>
+            The goal of this guide is to give anyone the ability to understand
+            and effectively code with HTML confidently, and as painlessly as
+            possible.
+          </p>
+          <p>
+            <span style="color: rgb(32, 33, 36)">And before you begin, I want you to forget everything you think
+              you know about coding and say to yourself, "I CAN DO THIS!, I
+              WILL DO THIS!". I sincerely want you to believe in yourself as
+              much as I believe in you.</span>
+          </p>
+          <p><strong>Now let's do this!</strong></p>
+        </div>
+        <!--/ lecture__section -->
+        <!-- <h1 class="section-title">The Basics</h1> -->
+        <div class="lecture__section p-1">
+          <h2 class="lecture__section-heading">What is HTML?</h2>
+          <p>
+            HTML stands for <strong>Hypertext Markup Language</strong> and it
+            is the primary way to interact with web page code. If you can name
+            a website or web page, I guarantee it uses HTML somehow. And by
+            the end of this lecture, you will understand the following:
+          </p>
+          <ol>
+            <li>
+              HTML is the standard way to manipulate and give meaning to text
+              and other parts of a web page.
+            </li>
+            <li>
+              HTML has a few common terms to remember. Two of those terms are
+              <strong><em>tags </em></strong>and<em>
+                <strong>elements</strong>.</em>
+            </li>
+            <li>
+              HTML markup refers to the building blocks (i.e. elements and
+              tags) of web pages.
+            </li>
+            <li>
+              As you markup/build your page, you are speaking in the web
+              browser's language, telling it what to display.
+            </li>
+          </ol>
+        </div>
+        <!--/ lecture__section -->
+        <div class="lecture__section p-1">
+          <h2 class="lecture__section-heading">An HTML Element in action</h2>
+          <p>
+            An HTML element is a marker that defines what happens next within
+            a page. Elements are created when you combine content with HTML
+            tags. As shown below, we're using the bold tags
+            <code>&lt;b&gt;</code> and <code>&lt;/b&gt;</code> to make content
+            between them bold. The <code>&lt;b&gt;</code> is the
+            <strong>start t</strong><strong>ag</strong>, which tells the
+            browser to make everything following it bold until it sees the
+            <code>&lt;/b&gt;</code> <strong>end tag </strong>which completes
+            the bold HTML element.
+          </p>
+          <p style="margin-top: 1em">
+            Example: Using the HTML bold tags to make some text bold
+          </p>
+          <div data-code-viewer="" data-code-viewer-code="Get started with <b>HTML</b> today"
+            data-code-viewer-language="html">
+            <div class="code-viewer">
+              <div class="code-viewer-label">html</div>
+              <code class="html hljs xml">Get started with
                   <span class="hljs-tag"
                     >&lt;<span class="hljs-name">b</span>&gt;</span
                   >HTML<span class="hljs-tag"
                     >&lt;/<span class="hljs-name">b</span>&gt;</span
                   >
-                  today</code
-                >
-              </div>
-            </div>
-            <p>Results in &hellip;</p>
-            <h3 style="margin-top: 1em">
-              <blockquote style="margin-top: 1em">
-                Get started with <strong>HTML</strong> today
-              </blockquote>
-            </h3>
-            <p>This is an example of a bold HTML element in all its' glory!</p>
-            <div class="practice-callout">
-              If you're feeling confident, try replicating the example by
-              <a
-                href="https://codepen.io/kclarkedesign/pen/oNbyrME?editors=1000"
-                rel="noopener"
-                target="_blank"
-                ><strong>giving it a shot yourself!</strong></a
-              >
-              Though if you don't understand what's going or can't get it
-              working, don't worry! You'll get the idea soon enough.
+                  today</code>
             </div>
           </div>
-          <!--/ lecture__section -->
-          <div class="lecture__section p-1">
-            <h2 class="lecture__section-heading">Visualizing the structure</h2>
-            <p>
-              Let us go over one way to visualize and remember how to structure
-              HTML. I always recommend trying to use something physical you're
-              familiar with to build a mental model/picture of what's going on
-              in your code.
-            </p>
-            <h3 class="">
-              <strong>The<em> "Wrapping"</em> Concept</strong>
-            </h3>
-            <figure class="o-figure">
-              <img
-                src="https://www.filepicker.io/api/file/KHtYpq0SpuoW1wPgidZC"
-                class="img-responsive"
-                alt="animated example of the wrapping concept, a box is drawn surrounding the text 'HTML'"
-                loading="lazy"
-                width="600"
-                height="136"
-              />
-            </figure>
+          <p>Results in &hellip;</p>
+          <h3 style="margin-top: 1em">
+            <blockquote style="margin-top: 1em">
+              Get started with <strong>HTML</strong> today
+            </blockquote>
+          </h3>
+          <p>This is an example of a bold HTML element in all its' glory!</p>
+          <div class="practice-callout">
+            If you're feeling confident, try replicating the example by
+            <a href="https://codepen.io/kclarkedesign/pen/oNbyrME?editors=1000" rel="noopener"
+              target="_blank"><strong>giving it a shot yourself!</strong></a>
+            Though if you don't understand what's going or can't get it
+            working, don't worry! You'll get the idea soon enough.
+          </div>
+        </div>
+        <!--/ lecture__section -->
+        <div class="lecture__section p-1">
+          <h2 class="lecture__section-heading">Visualizing the structure</h2>
+          <p>
+            Let us go over one way to visualize and remember how to structure
+            HTML. I always recommend trying to use something physical you're
+            familiar with to build a mental model/picture of what's going on
+            in your code.
+          </p>
+          <h3 class="">
+            <strong>The<em> "Wrapping"</em> Concept</strong>
+          </h3>
+          <figure class="o-figure">
+            <img src="https://www.filepicker.io/api/file/KHtYpq0SpuoW1wPgidZC" class="img-responsive"
+              alt="animated example of the wrapping concept, a box is drawn surrounding the text 'HTML'" loading="lazy"
+              width="600" height="136" />
+          </figure>
 
-            <p>
-              In the <em>Wrapping</em> concept, HTML elements can be thought of
-              as boxes or containers that surround and hold text (or other HTML
-              elements). Thus, only the things that are wrapped are effected by
-              the HTML element. So let's apply this concept to the following
-              sentence and "wrap" some of the text with the <em>bold </em> html
-              element.
-            </p>
-            <div
-              data-code-viewer=""
-              data-code-viewer-code="Get started with HTML today"
-              data-code-viewer-language="html"
-            >
-              <div class="code-viewer">
-                <div class="code-viewer-label">html</div>
-                <code class="html hljs xml">Get started with HTML today</code>
-              </div>
+          <p>
+            In the <em>Wrapping</em> concept, HTML elements can be thought of
+            as boxes or containers that surround and hold text (or other HTML
+            elements). Thus, only the things that are wrapped are effected by
+            the HTML element. So let's apply this concept to the following
+            sentence and "wrap" some of the text with the <em>bold </em> html
+            element.
+          </p>
+          <div data-code-viewer="" data-code-viewer-code="Get started with HTML today" data-code-viewer-language="html">
+            <div class="code-viewer">
+              <div class="code-viewer-label">html</div>
+              <code class="html hljs xml">Get started with HTML today</code>
             </div>
-            <p>
-              First, we'll start our wrap right before the text "HTML" by adding
-              the first part of our bold element. This first part can be
-              referred to as the start tag. Which essentially opens the bold
-              element.
-            </p>
-            <div
-              data-code-viewer=""
-              data-code-viewer-code="Get started with <b>HTML today"
-              data-code-viewer-language="html"
-            >
-              <div class="code-viewer">
-                <div class="code-viewer-label">html</div>
-                <code class="html hljs xml"
-                  >Get started with
+          </div>
+          <p>
+            First, we'll start our wrap right before the text "HTML" by adding
+            the first part of our bold element. This first part can be
+            referred to as the start tag. Which essentially opens the bold
+            element.
+          </p>
+          <div data-code-viewer="" data-code-viewer-code="Get started with <b>HTML today"
+            data-code-viewer-language="html">
+            <div class="code-viewer">
+              <div class="code-viewer-label">html</div>
+              <code class="html hljs xml">Get started with
                   <span class="hljs-tag"
                     >&lt;<span class="hljs-name">b</span>&gt;</span
-                  >HTML today</code
-                >
-              </div>
+                  >HTML today</code>
             </div>
-            <p>
-              Next up we'll close the bold element with an end tag. Which looks
-              like the start tag except with a forward slash (/) added in.
-            </p>
-            <div
-              data-code-viewer=""
-              data-code-viewer-code="Get started with <b>HTML</b> today"
-              data-code-viewer-language="html"
-            >
-              <div class="code-viewer">
-                <div class="code-viewer-label">html</div>
-                <code class="html hljs xml"
-                  >Get started with
+          </div>
+          <p>
+            Next up we'll close the bold element with an end tag. Which looks
+            like the start tag except with a forward slash (/) added in.
+          </p>
+          <div data-code-viewer="" data-code-viewer-code="Get started with <b>HTML</b> today"
+            data-code-viewer-language="html">
+            <div class="code-viewer">
+              <div class="code-viewer-label">html</div>
+              <code class="html hljs xml">Get started with
                   <span class="hljs-tag"
                     >&lt;<span class="hljs-name">b</span>&gt;</span
                   >HTML<span class="hljs-tag"
                     >&lt;/<span class="hljs-name">b</span>&gt;</span
                   >
-                  today</code
-                >
-              </div>
+                  today</code>
             </div>
-            <p>
-              In doing so, we close and complete the element, creating an
-              invisible box that wraps around the text in between the two tags
-              of our element. Most common HTML elements have a start and end tag
-              (a.k.a. opening and closing tags), that work like the following:
-            </p>
-            <pre>
+          </div>
+          <p>
+            In doing so, we close and complete the element, creating an
+            invisible box that wraps around the text in between the two tags
+            of our element. Most common HTML elements have a start and end tag
+            (a.k.a. opening and closing tags), that work like the following:
+          </p>
+          <pre>
 This sentence has &lt;start&gt;some Text&lt;/end&gt; I want to manipulate.
-</pre
-            >
-            <p>
-              And generally speaking, if the element you want to use requires an
-              end tag and you don't use it, then everything following the start
-              tag that can be affected will be affected.
-            </p>
-            <div class="practice-callout">
-              Now here's another opportunity
-              <a
-                href="https://codepen.io/kclarkedesign/pen/JjGmGyO?editors=1000"
-                rel="noopener"
-                target="_blank"
-                ><strong>to try it yourself!</strong></a
-              >
-              Though if it isn't making sense or you're not sure about
-              something, stay positive! I promise it will all make sense soon.
-            </div>
-            <div class="js-quiz o-quiz">
-              <div
-                class="attachment-data"
-                data-data='{"answerKey":{"answer-1":["\u003ccode\u003e \u0026lt;b\u0026gt;Don&apos;t let them fool you\u0026lt;/b\u0026gt; \u003c/code\u003e"],"answer-2":["True"],"answer-3":["\u003ccode\u003e\u0026lt;!-- I&apos;m a comment --\u0026gt;\u003c/code\u003e"]}}'
-                data-schema='{"type":"object","required":["answer-1","answer-2","answer-3"],"properties":{"answer-1":{"enum":["\u003ccode\u003e \u0026lt;b\u0026gt;Pick me\u0026lt;b\u0026gt; \u003c/code\u003e","\u003ccode\u003e \u0026lt;b\u0026gt;No I&apos;m  the element \u003c/code\u003e","\u003ccode\u003e \u0026lt;b\u0026gt;Don&apos;t let them fool you\u0026lt;/b\u0026gt; \u003c/code\u003e","\u003ccode\u003e None of these are correct\u003c/code\u003e"],"type":"string","title":"Which of these are a correct \u003cb\u003eHTML Element\u003c/b\u003e?","description":"single"},"answer-2":{"enum":["True","False"],"type":"string","title":"A \u003cb\u003estart tag\u003c/b\u003e can be called an \u003cb\u003eopening tag\u003c/b\u003e, while an \u003cb\u003eend tag\u003c/b\u003e can be called a \u003cb\u003eclosing tag\u003c/b\u003e.","description":"single"},"answer-3":{"enum":["\u003ccode\u003e\u0026lt;-- I&apos;m a comment. --\u0026gt;\u003c/code\u003e","\u003ccode\u003e\u0026lt;!- I&apos;m a comment -\u0026gt;\u003c/code\u003e","\u003ccode\u003e\u0026lt;!  I&apos;m a comment  \u0026gt;\u003c/code\u003e","\u003ccode\u003e\u0026lt;!-- I&apos;m a comment --\u0026gt;\u003c/code\u003e"],"type":"string","title":"An HTML comment is written like:","description":"single"}}}'
-                data-id="40802323"
-                data-is-published="true"
-              >
-                <div class="quiz-content" aria-live="polite">
-                  <div id="quiz-app">
-                    <div class="quiz-wrapper attachment-block-wrapper">
-                      <div class="quiz__label attachment-block-label">Quiz</div>
-                      <div class="quiz Quiz single">
-                        <div
-                          class="quiz-progress"
-                          aria-label="Question 1 out of 3"
-                        ></div>
-                        <div class="quiz-question-outer">
-                          <div>
-                            <article class="Quiz-item">
-                              <div class="quiz-question"></div>
-                              <div class="quiz-answers-container"></div>
-                              <div class="quiz-selection-msg"></div>
-                            </article>
-                          </div>
+</pre>
+          <p>
+            And generally speaking, if the element you want to use requires an
+            end tag and you don't use it, then everything following the start
+            tag that can be affected will be affected.
+          </p>
+          <div class="practice-callout">
+            Now here's another opportunity
+            <a href="https://codepen.io/kclarkedesign/pen/JjGmGyO?editors=1000" rel="noopener"
+              target="_blank"><strong>to try it yourself!</strong></a>
+            Though if it isn't making sense or you're not sure about
+            something, stay positive! I promise it will all make sense soon.
+          </div>
+          <div class="js-quiz o-quiz">
+            <div class="attachment-data"
+              data-data='{"answerKey":{"answer-1":["\u003ccode\u003e \u0026lt;b\u0026gt;Don&apos;t let them fool you\u0026lt;/b\u0026gt; \u003c/code\u003e"],"answer-2":["True"],"answer-3":["\u003ccode\u003e\u0026lt;!-- I&apos;m a comment --\u0026gt;\u003c/code\u003e"]}}'
+              data-schema='{"type":"object","required":["answer-1","answer-2","answer-3"],"properties":{"answer-1":{"enum":["\u003ccode\u003e \u0026lt;b\u0026gt;Pick me\u0026lt;b\u0026gt; \u003c/code\u003e","\u003ccode\u003e \u0026lt;b\u0026gt;No I&apos;m  the element \u003c/code\u003e","\u003ccode\u003e \u0026lt;b\u0026gt;Don&apos;t let them fool you\u0026lt;/b\u0026gt; \u003c/code\u003e","\u003ccode\u003e None of these are correct\u003c/code\u003e"],"type":"string","title":"Which of these are a correct \u003cb\u003eHTML Element\u003c/b\u003e?","description":"single"},"answer-2":{"enum":["True","False"],"type":"string","title":"A \u003cb\u003estart tag\u003c/b\u003e can be called an \u003cb\u003eopening tag\u003c/b\u003e, while an \u003cb\u003eend tag\u003c/b\u003e can be called a \u003cb\u003eclosing tag\u003c/b\u003e.","description":"single"},"answer-3":{"enum":["\u003ccode\u003e\u0026lt;-- I&apos;m a comment. --\u0026gt;\u003c/code\u003e","\u003ccode\u003e\u0026lt;!- I&apos;m a comment -\u0026gt;\u003c/code\u003e","\u003ccode\u003e\u0026lt;!  I&apos;m a comment  \u0026gt;\u003c/code\u003e","\u003ccode\u003e\u0026lt;!-- I&apos;m a comment --\u0026gt;\u003c/code\u003e"],"type":"string","title":"An HTML comment is written like:","description":"single"}}}'
+              data-id="40802323" data-is-published="true">
+              <div class="quiz-content" aria-live="polite">
+                <div id="quiz-app">
+                  <div class="quiz-wrapper attachment-block-wrapper">
+                    <div class="quiz__label attachment-block-label">Quiz</div>
+                    <div class="quiz Quiz single">
+                      <div class="quiz-progress" aria-label="Question 1 out of 3"></div>
+                      <div class="quiz-question-outer">
+                        <div>
+                          <article class="Quiz-item">
+                            <div class="quiz-question"></div>
+                            <div class="quiz-answers-container"></div>
+                            <div class="quiz-selection-msg"></div>
+                          </article>
                         </div>
-                        <div class="quiz-controls">
-                          <button
-                            class="
+                      </div>
+                      <div class="quiz-controls">
+                        <button class="
                               btn btn-primary
                               float-right
                               check-answer-button
                               quiz-check-answer
-                            "
-                            date-test="check-answer-button"
-                            aria-label="submit answer"
-                            data-ss-event-name="Quiz: Check answer"
-                            data-ss-event-type="button"
-                            data-ss-quiz-id="40802323"
-                            data-ss-school-id="677579"
-                            data-ss-user-id="41739970"
-                          >
-                            Check</button
-                          ><button
-                            disabled="true"
-                            class="btn btn-primary float-right quiz-continue"
-                            date-test="continue-button"
-                            aria-label="continue"
-                            data-ss-event-name="Quiz: Go to next question"
-                          >
-                            Continue ›</button
-                          ><button
-                            disabled="true"
-                            class="btn btn-primary float-left quiz-previous"
-                            aria-label="go back"
-                            data-ss-event-name="Quiz: Go to previous question"
-                            data-ss-event-type="button"
-                            data-ss-quiz-id="40802323"
-                            data-ss-school-id="677579"
-                            data-ss-user-id="41739970"
-                          >
-                            ‹ Back
-                          </button>
-                        </div>
+                            " date-test="check-answer-button" aria-label="submit answer"
+                          data-ss-event-name="Quiz: Check answer" data-ss-event-type="button" data-ss-quiz-id="40802323"
+                          data-ss-school-id="677579" data-ss-user-id="41739970">
+                          Check</button><button disabled="true" class="btn btn-primary float-right quiz-continue"
+                          date-test="continue-button" aria-label="continue"
+                          data-ss-event-name="Quiz: Go to next question">
+                          Continue ›</button><button disabled="true" class="btn btn-primary float-left quiz-previous"
+                          aria-label="go back" data-ss-event-name="Quiz: Go to previous question"
+                          data-ss-event-type="button" data-ss-quiz-id="40802323" data-ss-school-id="677579"
+                          data-ss-user-id="41739970">
+                          ‹ Back
+                        </button>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
 
-              <!-- Quiz attachment -->
-            </div>
-            <!-- lecture bottom navigation -->
-            <div class="pb-5 pt-4 text-right">
-              <a
-                href="./common-elements-attributes.html"
-                class="next-lecture btn btn-continue"
-                >Continue to next lecture <i class="fas fa-chevron-right"></i
-              ></a>
-            </div>
+            <!-- Quiz attachment -->
           </div>
-          <!--/ lecture__section -->
+          <!-- lecture bottom navigation -->
+          <div class="pb-5 pt-4 text-right">
+            <a href="./common-elements-attributes.html" class="next-lecture btn btn-continue">Continue to next lecture
+              <i class="fas fa-chevron-right"></i></a>
+          </div>
         </div>
-      </section>
-    </main>
-    <footer class="global-footer bg-white text-center">
-      &copy; 2021 Kirk Clarke
-      <a
-        class="pl-1 pr-1"
-        href="https://www.paypal.com/paypalme/KirkClarke"
-        rel="noopener"
-        target="_blank"
-        style="white-space: nowrap; color: var(--green)"
-        ><i class="fab fa-fw fa-paypal" aria-hidden="true"></i>&nbsp;Buy me a
-        tea!</a
-      >
-    </footer>
-    <script src="./js/toggle.js"></script>
-    <script src="./js/highlight.min.js"></script>
-    <script src="./js/code-viewer.js" type="text/javascript"></script>
-    <script src="./js/quiz.js"></script>
-  </body>
+        <!--/ lecture__section -->
+      </div>
+    </section>
+  </main>
+  <footer class="global-footer bg-white text-center">
+    &copy; 2021 Kirk Clarke
+    <a class="pl-1 pr-1" href="https://www.paypal.com/paypalme/KirkClarke" rel="noopener" target="_blank"
+      style="white-space: nowrap; color: var(--green)"><i class="fab fa-fw fa-paypal" aria-hidden="true"></i>&nbsp;Buy
+      me a
+      tea!</a>
+  </footer>
+  <script src="./js/toggle.js"></script>
+  <script src="./js/highlight.min.js"></script>
+  <script src="./js/code-viewer.js" type="text/javascript"></script>
+  <script src="./js/quiz.js"></script>
+</body>
+
 </html>
