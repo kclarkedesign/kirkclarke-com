@@ -1,673 +1,626 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=UA-21054528-2"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
 
-      gtag("config", "UA-21054528-2");
-    </script>
-    <meta charset="UTF-8" />
-    <meta
-      name="description"
-      content="Use this free cheatsheet to help you master the basics of HTML & CSS!"
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      FREE DOWNLOAD: Beginner HTML & CSS Mini-Cheatsheet - Free beginners guide
-      to coding: Learn HTML fast || Kirk Clarke | Web (UI/UX) Designer &
-      Engineer
-    </title>
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-21054528-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
 
-    <link
-      rel="stylesheet preload"
-      href="./css/base.css"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript><link rel="stylesheet" href="./css/base.css" /></noscript>
-    <style type="text/css">
-      :root {
-        --blue: #007bff;
-        --indigo: #6610f2;
-        --purple: #6f42c1;
-        --pink: #e83e8c;
-        --red: #dc3545;
-        --orange: #fd7e14;
-        --yellow: #ffc107;
-        --green: #28a745;
-        --teal: #20c997;
-        --cyan: #17a2b8;
-        --white: #fff;
-        --gray: #6c757d;
-        --gray-dark: #343a40;
-        --primary: #007bff;
-        --secondary: #6c757d;
-        --success: #28a745;
-        --info: #17a2b8;
-        --warning: #ffc107;
-        --danger: #dc3545;
-        --light: #f8f9fa;
-        --dark: #343a40;
-        --breakpoint-xs: 0;
-        --breakpoint-sm: 576px;
-        --breakpoint-md: 768px;
-        --breakpoint-lg: 992px;
-        --breakpoint-xl: 1200px;
-        --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI",
-          Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-          "Noto Color Emoji";
-        --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
-          "Liberation Mono", "Courier New", monospace;
-      }
-      *,
-      ::after,
-      ::before {
-        box-sizing: border-box;
-      }
-      html {
-        font-family: sans-serif;
-        line-height: 1.15;
-        -webkit-text-size-adjust: 100%;
-        -webkit-tap-highlight-color: transparent;
-      }
-      article,
-      aside,
-      figcaption,
-      figure,
-      footer,
-      header,
-      hgroup,
-      main,
-      nav,
-      section {
-        display: block;
-      }
-      body {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
-          "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-        font-size: 1rem;
-        font-weight: 400;
-        line-height: 1.5;
-        color: #212529;
-        text-align: left;
-        background-color: #fff;
-      }
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        margin-top: 0;
-        margin-bottom: 0.5rem;
-      }
-      p {
-        margin-top: 0;
-        margin-bottom: 1rem;
-      }
-      small {
-        font-size: 80%;
-      }
-      a {
-        color: #007bff;
-        text-decoration: none;
-        background-color: transparent;
-      }
-      img {
-        vertical-align: middle;
-        border-style: none;
-      }
-      svg {
-        overflow: hidden;
-        vertical-align: middle;
-      }
-      .h1,
-      .h2,
-      .h3,
-      .h4,
-      .h5,
-      .h6,
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        margin-bottom: 0.5rem;
-        font-weight: 500;
-        line-height: 1.2;
-      }
-      .h1,
-      h1 {
-        font-size: 2.5rem;
-      }
-      .h2,
-      h2 {
-        font-size: 2rem;
-      }
-      .small,
-      small {
-        font-size: 80%;
-        font-weight: 400;
-      }
-      .img-fluid {
-        max-width: 100%;
-        height: auto;
-      }
-      .col,
-      .col-1,
-      .col-10,
-      .col-11,
-      .col-12,
-      .col-2,
-      .col-3,
-      .col-4,
-      .col-5,
-      .col-6,
-      .col-7,
-      .col-8,
-      .col-9,
-      .col-auto,
-      .col-lg,
-      .col-lg-1,
-      .col-lg-10,
-      .col-lg-11,
-      .col-lg-12,
-      .col-lg-2,
-      .col-lg-3,
-      .col-lg-4,
-      .col-lg-5,
-      .col-lg-6,
-      .col-lg-7,
-      .col-lg-8,
-      .col-lg-9,
-      .col-lg-auto,
-      .col-md,
-      .col-md-1,
-      .col-md-10,
-      .col-md-11,
-      .col-md-12,
-      .col-md-2,
-      .col-md-3,
-      .col-md-4,
-      .col-md-5,
-      .col-md-6,
-      .col-md-7,
-      .col-md-8,
-      .col-md-9,
-      .col-md-auto,
-      .col-sm,
-      .col-sm-1,
-      .col-sm-10,
-      .col-sm-11,
-      .col-sm-12,
-      .col-sm-2,
-      .col-sm-3,
-      .col-sm-4,
-      .col-sm-5,
-      .col-sm-6,
-      .col-sm-7,
-      .col-sm-8,
-      .col-sm-9,
-      .col-sm-auto,
-      .col-xl,
-      .col-xl-1,
-      .col-xl-10,
-      .col-xl-11,
-      .col-xl-12,
-      .col-xl-2,
-      .col-xl-3,
-      .col-xl-4,
-      .col-xl-5,
-      .col-xl-6,
-      .col-xl-7,
-      .col-xl-8,
-      .col-xl-9,
-      .col-xl-auto {
-        position: relative;
-        width: 100%;
-        padding-right: 15px;
-        padding-left: 15px;
-      }
-      .flex-row {
-        -ms-flex-direction: row !important;
-        flex-direction: row !important;
-      }
-      .justify-content-between {
-        -ms-flex-pack: justify !important;
-        justify-content: space-between !important;
-      }
-      .align-items-center {
-        -ms-flex-align: center !important;
-        align-items: center !important;
-      }
-      .align-self-center {
-        -ms-flex-item-align: center !important;
-        align-self: center !important;
-      }
-      .text-center {
-        text-align: center !important;
-      }
-    </style>
+    gtag("config", "UA-21054528-2");
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="description" content="Use this free cheatsheet to help you master the basics of HTML & CSS!" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    FREE DOWNLOAD: Beginner HTML & CSS Mini-Cheatsheet - Free beginners guide
+    to coding: Learn HTML fast || Kirk Clarke | Web (UI/UX) Designer &
+    Engineer
+  </title>
 
-    <link
-      rel="stylesheet preload"
-      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript
-      ><link
-        rel="stylesheet preload"
-        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
-    /></noscript>
-    <link
-      media="all"
-      rel="stylesheet preload"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-    />
-    <link
-      media="all"
-      rel="stylesheet preload"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.3.0/font-awesome-animation.min.css"
-    />
-    <link
-      rel="stylesheet preload"
-      href="./css/vs2015.min.css"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript><link rel="stylesheet" href="./css/vs2015.min.css" /></noscript>
-    <link
-      rel="stylesheet preload"
-      href="./css/lecture.css"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript><link rel="stylesheet" href="./css/lecture.css" /></noscript>
-    <link
-      rel="stylesheet preload"
-      href="./css/navbar.css"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript><link rel="stylesheet" href="./css/navbar.css" /></noscript>
-    <style>
-      :root {
-        --color-celadon: #98dfaf;
-        --color-dark: #191919;
-        --color-white: #ffffff;
-        --color-celedon-contrast: #585858; /* Davys Grey */
-      }
-      html {
-        scroll-behavior: smooth;
-      }
+  <link rel="stylesheet preload" href="../../../css/base.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet" href="../../../css/base.css" />
+  </noscript>
+  <style type="text/css">
+    :root {
+      --blue: #007bff;
+      --indigo: #6610f2;
+      --purple: #6f42c1;
+      --pink: #e83e8c;
+      --red: #dc3545;
+      --orange: #fd7e14;
+      --yellow: #ffc107;
+      --green: #28a745;
+      --teal: #20c997;
+      --cyan: #17a2b8;
+      --white: #fff;
+      --gray: #6c757d;
+      --gray-dark: #343a40;
+      --primary: #007bff;
+      --secondary: #6c757d;
+      --success: #28a745;
+      --info: #17a2b8;
+      --warning: #ffc107;
+      --danger: #dc3545;
+      --light: #f8f9fa;
+      --dark: #343a40;
+      --breakpoint-xs: 0;
+      --breakpoint-sm: 576px;
+      --breakpoint-md: 768px;
+      --breakpoint-lg: 992px;
+      --breakpoint-xl: 1200px;
+      --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+      --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+    }
 
-      nav {
-        display: flex;
-        justify-content: center;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: var(--color-celadon);
-        z-index: 5;
-      }
-      nav a:hover {
-        color: #545c52;
-      }
-      .nav-link {
-        color: var(--color-dark);
-        font-weight: bold;
-        font-size: 1.5em;
-        margin: 0 0.5em;
-      }
-      .brand {
-        width: 100%;
-        max-width: 35px;
-      }
-      .full-vh {
-        background: #000;
-        height: 100vh;
-      }
+    *,
+    ::after,
+    ::before {
+      box-sizing: border-box;
+    }
 
-      #welcome-section {
-        display: flex;
-        align-content: center;
-        justify-content: center;
-        background-color: #191919;
-        color: #fff;
-      }
-      .welcome__subtitle {
-        color: var(--color-celadon);
-        font-size: 1.5rem;
-      }
-      .welcome__down,
-      .welcome__down a {
-        color: var(--color-white);
-        font-size: 1.25em;
-      }
-      #projects {
-        background-color: var(--color-dark);
-        min-height: 300px;
-      }
-      #profiles {
-        background-color: var(--color-dark);
-      }
-      .anchor {
-        padding-top: 58px;
-        margin-top: -58px;
-      }
+    html {
+      font-family: sans-serif;
+      line-height: 1.15;
+      -webkit-text-size-adjust: 100%;
+      -webkit-tap-highlight-color: transparent;
+    }
 
+    article,
+    aside,
+    figcaption,
+    figure,
+    footer,
+    header,
+    hgroup,
+    main,
+    nav,
+    section {
+      display: block;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #212529;
+      text-align: left;
+      background-color: #fff;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+    small {
+      font-size: 80%;
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+      background-color: transparent;
+    }
+
+    img {
+      vertical-align: middle;
+      border-style: none;
+    }
+
+    svg {
+      overflow: hidden;
+      vertical-align: middle;
+    }
+
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .h1,
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    .h2,
+    h2 {
+      font-size: 2rem;
+    }
+
+    .small,
+    small {
+      font-size: 80%;
+      font-weight: 400;
+    }
+
+    .img-fluid {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .col,
+    .col-1,
+    .col-10,
+    .col-11,
+    .col-12,
+    .col-2,
+    .col-3,
+    .col-4,
+    .col-5,
+    .col-6,
+    .col-7,
+    .col-8,
+    .col-9,
+    .col-auto,
+    .col-lg,
+    .col-lg-1,
+    .col-lg-10,
+    .col-lg-11,
+    .col-lg-12,
+    .col-lg-2,
+    .col-lg-3,
+    .col-lg-4,
+    .col-lg-5,
+    .col-lg-6,
+    .col-lg-7,
+    .col-lg-8,
+    .col-lg-9,
+    .col-lg-auto,
+    .col-md,
+    .col-md-1,
+    .col-md-10,
+    .col-md-11,
+    .col-md-12,
+    .col-md-2,
+    .col-md-3,
+    .col-md-4,
+    .col-md-5,
+    .col-md-6,
+    .col-md-7,
+    .col-md-8,
+    .col-md-9,
+    .col-md-auto,
+    .col-sm,
+    .col-sm-1,
+    .col-sm-10,
+    .col-sm-11,
+    .col-sm-12,
+    .col-sm-2,
+    .col-sm-3,
+    .col-sm-4,
+    .col-sm-5,
+    .col-sm-6,
+    .col-sm-7,
+    .col-sm-8,
+    .col-sm-9,
+    .col-sm-auto,
+    .col-xl,
+    .col-xl-1,
+    .col-xl-10,
+    .col-xl-11,
+    .col-xl-12,
+    .col-xl-2,
+    .col-xl-3,
+    .col-xl-4,
+    .col-xl-5,
+    .col-xl-6,
+    .col-xl-7,
+    .col-xl-8,
+    .col-xl-9,
+    .col-xl-auto {
+      position: relative;
+      width: 100%;
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+
+    .flex-row {
+      -ms-flex-direction: row !important;
+      flex-direction: row !important;
+    }
+
+    .justify-content-between {
+      -ms-flex-pack: justify !important;
+      justify-content: space-between !important;
+    }
+
+    .align-items-center {
+      -ms-flex-align: center !important;
+      align-items: center !important;
+    }
+
+    .align-self-center {
+      -ms-flex-item-align: center !important;
+      align-self: center !important;
+    }
+
+    .text-center {
+      text-align: center !important;
+    }
+  </style>
+
+  <link rel="stylesheet preload"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet preload"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
+  </noscript>
+  <link media="all" rel="stylesheet preload"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+  <link media="all" rel="stylesheet preload"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.3.0/font-awesome-animation.min.css" />
+  <link rel="stylesheet preload" href="../../../css/vs2015.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet" href="../../../css/vs2015.min.css" />
+  </noscript>
+  <link rel="stylesheet preload" href="../../../css/lecture.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet" href="../../../css/lecture.css" />
+  </noscript>
+  <link rel="stylesheet preload" href="../../../css/navbar.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet" href="../../../css/navbar.css" />
+  </noscript>
+  <style>
+    :root {
+      --color-celadon: #98dfaf;
+      --color-dark: #191919;
+      --color-white: #ffffff;
+      --color-celedon-contrast: #585858;
+      /* Davys Grey */
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--color-celadon);
+      z-index: 5;
+    }
+
+    nav a:hover {
+      color: #545c52;
+    }
+
+    .nav-link {
+      color: var(--color-dark);
+      font-weight: bold;
+      font-size: 1.5em;
+      margin: 0 0.5em;
+    }
+
+    .brand {
+      width: 100%;
+      max-width: 35px;
+    }
+
+    .full-vh {
+      background: #000;
+      height: 100vh;
+    }
+
+    #welcome-section {
+      display: flex;
+      align-content: center;
+      justify-content: center;
+      background-color: #191919;
+      color: #fff;
+    }
+
+    .welcome__subtitle {
+      color: var(--color-celadon);
+      font-size: 1.5rem;
+    }
+
+    .welcome__down,
+    .welcome__down a {
+      color: var(--color-white);
+      font-size: 1.25em;
+    }
+
+    #projects {
+      background-color: var(--color-dark);
+      min-height: 300px;
+    }
+
+    #profiles {
+      background-color: var(--color-dark);
+    }
+
+    .anchor {
+      padding-top: 58px;
+      margin-top: -58px;
+    }
+
+    .o-grid--projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-gap: 2em;
+      width: 100%;
+      padding: 1em;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 320px) {
       .o-grid--projects {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        grid-gap: 2em;
-        width: 100%;
-        padding: 1em;
-        margin: 0 auto;
+        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
       }
-      @media (max-width: 320px) {
-        .o-grid--projects {
-          grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
-        }
-      }
-      @media (min-width: 1024px) {
-        .o-grid--projects {
-          max-width: 1140px;
-        }
-      }
-      .project-tile {
-        border: 3px solid;
-        transition: all 0.3s ease-in-out;
-        position: relative;
-      }
+    }
 
-      .project-tile:hover {
-        border: 3px solid var(--color-celadon);
+    @media (min-width: 1024px) {
+      .o-grid--projects {
+        max-width: 1140px;
       }
-      .project-tile:hover a {
-        color: var(--color-celadon);
-        text-decoration: underline;
-      }
-      .project-title {
-        background: var(--color-dark);
-        color: var(--color-celadon);
-        padding: 1em 2em;
-      }
+    }
 
-      .site-link {
-        color: rgb(145 211 166 / 70%);
-        border: none;
-        font-size: 3.5em;
-        transition: all 0.3s ease-in-out;
-        margin: 0 22px;
-      }
+    .project-tile {
+      border: 3px solid;
+      transition: all 0.3s ease-in-out;
+      position: relative;
+    }
 
-      .site-link:hover {
-        color: var(--color-celadon);
-      }
+    .project-tile:hover {
+      border: 3px solid var(--color-celadon);
+    }
 
-      .site-link--sm {
-        font-size: 2em;
-        margin: 0 15px;
-      }
+    .project-tile:hover a {
+      color: var(--color-celadon);
+      text-decoration: underline;
+    }
 
-      .cat-container {
-        position: absolute;
-        right: 0;
-        padding: 3px 6px;
-        margin: 3px 3px;
-        /* background: #3e3e3e75; */
-        background: rgb(25 25 25 / 70%);
-        border-radius: 3px;
-      }
+    .project-title {
+      background: var(--color-dark);
+      color: var(--color-celadon);
+      padding: 1em 2em;
+    }
 
-      .cat-container--vertical {
-        padding: 6px 3px;
-        display: flex;
-        flex-direction: column;
-      }
+    .site-link {
+      color: rgb(145 211 166 / 70%);
+      border: none;
+      font-size: 3.5em;
+      transition: all 0.3s ease-in-out;
+      margin: 0 22px;
+    }
 
-      .cat {
-        right: 0;
-        color: #fff;
-        font-size: 1.5em;
-        padding: 3px;
-      }
+    .site-link:hover {
+      color: var(--color-celadon);
+    }
 
-      footer {
-        padding: 1.25vh;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <nav id="navbar" class="nav align-items-center justify-content-between">
-        <div class="navbar-brand">
-          <a class="navbar-brand__link" href="/"
-            ><span class="sr-text">Kirk Clarke's personal portfolio</span
-            ><svg
-              id="Layer_1"
-              class="brand"
-              data-name="Layer 1"
-              xmlns="http://www.w3.org/2000/svg"
-              viewbox="0 0 327.68 327.69"
-            >
-              <defs>
-                <style>
-                  .cls-1 {
-                    fill: #191919;
-                  }
-                  .cls-2 {
-                    fill: none;
-                  }
-                </style>
-              </defs>
-              <path
-                class="cls-1"
-                d="M183.77,16.31A163.85,163.85,0,1,0,347.6,180.16,163.85,163.85,0,0,0,183.77,16.31ZM86.05,97.37h47.89V125c-31.92,16.47-47.89,50-47.89,50ZM133.93,263H86V185.24s16,33.57,47.9,50Zm147.56,0H235.57s-71.69-15.32-112.74-82.41c41.05-67.12,112.74-83.18,112.74-83.18h45.92C237.87,110,194,153.44,170,180.44,194,207.21,237.87,250.32,281.49,263Z"
-                transform="translate(-19.92 -16.31)"
-              ></path>
-              <path
-                class="cls-2"
-                d="M281.49,97.37H235.57s-71.69,16.06-112.74,83.18C163.88,247.64,235.57,263,235.57,263h45.92C237.87,250.32,194,207.21,170,180.44,194,153.44,237.87,110,281.49,97.37Z"
-                transform="translate(-19.92 -16.31)"
-              ></path>
-              <path
-                class="cls-2"
-                d="M86,185.24V263h47.9V235.25C102,218.81,86,185.24,86,185.24Z"
-                transform="translate(-19.92 -16.31)"
-              ></path>
-              <path
-                class="cls-2"
-                d="M133.94,125V97.37H86.05v77.7S102,141.51,133.94,125Z"
-                transform="translate(-19.92 -16.31)"
-              ></path>
-              <rect class="cls-2" width="327.68" height="327.69"></rect></svg
-          ></a>
-          <a
-            class="course-nav-link js-toggle"
-            data-toggle="course-sidebar"
-            href="#"
-          >
-            <i class="fas fa-list-ul"></i>
-            <span class="course-nav-link__text">Course Overview</span></a
-          >
+    .site-link--sm {
+      font-size: 2em;
+      margin: 0 15px;
+    }
+
+    .cat-container {
+      position: absolute;
+      right: 0;
+      padding: 3px 6px;
+      margin: 3px 3px;
+      /* background: #3e3e3e75; */
+      background: rgb(25 25 25 / 70%);
+      border-radius: 3px;
+    }
+
+    .cat-container--vertical {
+      padding: 6px 3px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cat {
+      right: 0;
+      color: #fff;
+      font-size: 1.5em;
+      padding: 3px;
+    }
+
+    footer {
+      padding: 1.25vh;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav id="navbar" class="nav align-items-center justify-content-between">
+      <div class="navbar-brand">
+        <a class="navbar-brand__link" href="/"><span class="sr-text">Kirk Clarke's personal portfolio</span><svg
+            id="Layer_1" class="brand" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+            viewbox="0 0 327.68 327.69">
+            <defs>
+              <style>
+                .cls-1 {
+                  fill: #191919;
+                }
+
+                .cls-2 {
+                  fill: none;
+                }
+              </style>
+            </defs>
+            <path class="cls-1"
+              d="M183.77,16.31A163.85,163.85,0,1,0,347.6,180.16,163.85,163.85,0,0,0,183.77,16.31ZM86.05,97.37h47.89V125c-31.92,16.47-47.89,50-47.89,50ZM133.93,263H86V185.24s16,33.57,47.9,50Zm147.56,0H235.57s-71.69-15.32-112.74-82.41c41.05-67.12,112.74-83.18,112.74-83.18h45.92C237.87,110,194,153.44,170,180.44,194,207.21,237.87,250.32,281.49,263Z"
+              transform="translate(-19.92 -16.31)"></path>
+            <path class="cls-2"
+              d="M281.49,97.37H235.57s-71.69,16.06-112.74,83.18C163.88,247.64,235.57,263,235.57,263h45.92C237.87,250.32,194,207.21,170,180.44,194,153.44,237.87,110,281.49,97.37Z"
+              transform="translate(-19.92 -16.31)"></path>
+            <path class="cls-2" d="M86,185.24V263h47.9V235.25C102,218.81,86,185.24,86,185.24Z"
+              transform="translate(-19.92 -16.31)"></path>
+            <path class="cls-2" d="M133.94,125V97.37H86.05v77.7S102,141.51,133.94,125Z"
+              transform="translate(-19.92 -16.31)"></path>
+            <rect class="cls-2" width="327.68" height="327.69"></rect>
+          </svg></a>
+        <a class="course-nav-link js-toggle" data-toggle="course-sidebar" href="#">
+          <i class="fas fa-list-ul"></i>
+          <span class="course-nav-link__text">Course Overview</span></a>
+      </div>
+
+      <div class="main-nav navbar-nav">
+        <a href="javascript:void(0);" class="hamburger js-toggle" data-toggle="main-nav__links"><span
+            class="sr-text">Main menu</span>
+          <i class="fa fa-bars"></i>
+          <i class="fa fa-times"></i>
+        </a>
+        <div class="main-nav__links">
+          <a href="/#projects" class="nav-link">Projects</a>
+          <a href="/#profiles" class="nav-link">Profiles</a>
+          <a href="/#contact" class="nav-link">Contact</a>
+          <a href="/getting-started.html" class="nav-link">Course</a>
         </div>
-
-        <div class="main-nav navbar-nav">
-          <a
-            href="javascript:void(0);"
-            class="hamburger js-toggle"
-            data-toggle="main-nav__links"
-            ><span class="sr-text">Main menu</span>
-            <i class="fa fa-bars"></i>
-            <i class="fa fa-times"></i>
-          </a>
-          <div class="main-nav__links">
-            <a href="/#projects" class="nav-link">Projects</a>
-            <a href="/#profiles" class="nav-link">Profiles</a>
-            <a href="/#contact" class="nav-link">Contact</a>
-            <a href="/getting-started.html" class="nav-link">Course</a>
-          </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="lecture lecture-layout pt-5">
+      <div id="course-sidebar" role="navigation" class="course-sidebar">
+        <div class="sidebar-header p-3">
+          <h2>Free beginners guide to coding: Learn HTML fast</h2>
         </div>
-      </nav>
-    </header>
-    <main>
-      <section class="lecture lecture-layout pt-5">
-        <div id="course-sidebar" role="navigation" class="course-sidebar">
-          <div class="sidebar-header p-3">
-            <h2>Free beginners guide to coding: Learn HTML fast</h2>
-          </div>
-          <div class="col-sm-12 course-section">
-            <h3 class="section-heading" role="heading">
-              Learn to code HTML from scratch
-            </h3>
-            <ul class="section-list">
-              <li class="section-item">
-                <a href="./getting-started.html" class="section-item__link">
-                  <span class="lecture-name">Getting Started</span>
-                </a>
-              </li>
-              <li class="section-item">
-                <a
-                  href="./common-elements-attributes.html"
-                  class="section-item__link"
-                >
-                  <span class="lecture-name"
-                    >Common Elements and Attributes</span
-                  >
-                </a>
-              </li>
-              <li class="section-item">
-                <a
-                  href="./your-first-html-document.html"
-                  class="section-item__link"
-                >
-                  <span class="lecture-name"
-                    >Create your first HTML document</span
-                  >
-                </a>
-              </li>
-              <li class="section-item">
-                <a href="./bonus-css-intro.html" class="section-item__link">
-                  <span class="lecture-name"
-                    >Bonus: Add some flair! (A CSS Introduction)</span
-                  >
-                </a>
-              </li>
-              <li class="section-item current-item">
-                <a
-                  href="./free-mini-cheatsheet.html"
-                  class="section-item__link"
-                >
-                  <span class="lecture-name"
-                    >FREE DOWNLOAD: Beginner HTML & CSS Mini-Cheatsheet</span
-                  >
-                </a>
-              </li>
-            </ul>
-          </div>
+        <div class="col-sm-12 course-section">
+          <h3 class="section-heading" role="heading">
+            Learn to code HTML from scratch
+          </h3>
+          <ul class="section-list">
+            <li class="section-item">
+              <a href="../../../getting-started.html" class="section-item__link">
+                <span class="lecture-name">Getting Started</span>
+              </a>
+            </li>
+            <li class="section-item">
+              <a href="../../../common-elements-attributes.html" class="section-item__link">
+                <span class="lecture-name">Common Elements and Attributes</span>
+              </a>
+            </li>
+            <li class="section-item">
+              <a href="../../../your-first-html-document.html" class="section-item__link">
+                <span class="lecture-name">Create your first HTML document</span>
+              </a>
+            </li>
+            <li class="section-item">
+              <a href="../../../bonus-css-intro.html" class="section-item__link">
+                <span class="lecture-name">Bonus: Add some flair! (A CSS Introduction)</span>
+              </a>
+            </li>
+            <li class="section-item current-item">
+              <a href="../../../free-mini-cheatsheet.html" class="section-item__link">
+                <span class="lecture-name">FREE DOWNLOAD: Beginner HTML & CSS Mini-Cheatsheet</span>
+              </a>
+            </li>
+          </ul>
         </div>
-        <div role="main" class="course-main p-3">
-          <h2 class="lecture__title">
-            FREE DOWNLOAD: Beginner HTML & CSS Mini-Cheatsheet
-          </h2>
-          <div class="lecture__section p-1">
-            <p>Use this free cheatsheet to help you master the basics!</p>
-            <div
-              class="lecture-attachment lecture-attachment-type-pdf_embed"
-              id="lecture-attachment-41151867"
-            >
-              <div class="attachment-pdf-embed">
-                <div class="col-xs-12">
-                  <div class="label">
-                    <svg width="24" height="24" class="icon-m v-middle">
-                      <use xlink:href="#icon__Attachment"></use>
-                    </svg>
-                    <!-- Create-with-Kirk_HTML-CSS_Mini-Cheatsheet.pdf -->
-                  </div>
-                  <div class="wrapper">
-                    <div
-                      data-pdfviewer=""
-                      data-pdfviewer-id="YgooR1KPT5avzd2tB2m0"
-                      id="pdfViewer-YgooR1KPT5avzd2tB2m0"
-                    >
-                      <iframe
-                        title="Free HTML & CSS Mini-Cheatsheet"
-                        src="https://cdn.filestackcontent.com/preview=css:%22https%3A%2F%2Fassets.teachablecdn.com%2Fcss%2Ffilestack-pdf-viewer.css%22/YgooR1KPT5avzd2tB2m0"
-                        width="100%"
-                        height="100%"
-                      ></iframe>
-                    </div>
+      </div>
+      <div role="main" class="course-main p-3">
+        <h2 class="lecture__title">
+          FREE DOWNLOAD: Beginner HTML & CSS Mini-Cheatsheet
+        </h2>
+        <div class="lecture__section p-1">
+          <p>Use this free cheatsheet to help you master the basics!</p>
+          <div class="lecture-attachment lecture-attachment-type-pdf_embed" id="lecture-attachment-41151867">
+            <div class="attachment-pdf-embed">
+              <div class="col-xs-12">
+                <div class="label">
+                  <svg width="24" height="24" class="icon-m v-middle">
+                    <use xlink:href="#icon__Attachment"></use>
+                  </svg>
+                  <!-- Create-with-Kirk_HTML-CSS_Mini-Cheatsheet.pdf -->
+                </div>
+                <div class="wrapper">
+                  <div data-pdfviewer="" data-pdfviewer-id="YgooR1KPT5avzd2tB2m0" id="pdfViewer-YgooR1KPT5avzd2tB2m0">
+                    <iframe title="Free HTML & CSS Mini-Cheatsheet"
+                      src="https://cdn.filestackcontent.com/preview=css:%22https%3A%2F%2Fassets.teachablecdn.com%2Fcss%2Ffilestack-pdf-viewer.css%22/YgooR1KPT5avzd2tB2m0"
+                      width="100%" height="100%"></iframe>
                   </div>
                 </div>
               </div>
+            </div>
 
-              <div class="download-pdf">
-                <!-- Attachment: File -->
-                <div class="attachment justify-content-center row">
-                  Download
-                </div>
-                <div class="attachment justify-content-center row">
-                  <a
-                    class="
+            <div class="download-pdf">
+              <!-- Attachment: File -->
+              <div class="attachment justify-content-center row">
+                Download
+              </div>
+              <div class="attachment justify-content-center row">
+                <a class="
                       align-content-center
                       btn btn-dark btn-primary
                       d-flex
                       download
-                    "
-                    href="https://cdn.fs.teachablecdn.com/YgooR1KPT5avzd2tB2m0"
-                    target="_blank"
-                    rel="noopener"
-                    download=""
-                    data-x-origin-download=""
-                    data-x-origin-download-name="Create-with-Kirk_HTML-CSS_Mini-Cheatsheet.pdf"
-                    data-x-origin-download-initialzed="true"
-                  >
-                    <i class="fa-2x fa-file-download fas pr-2"></i>
-                    <span class="pt-1"
-                      >Create-with-Kirk_HTML-CSS_Mini-Cheatsheet.pdf</span
-                    >
-                  </a>
-                </div>
+                    " href="https://cdn.fs.teachablecdn.com/YgooR1KPT5avzd2tB2m0" target="_blank" rel="noopener"
+                  download="" data-x-origin-download=""
+                  data-x-origin-download-name="Create-with-Kirk_HTML-CSS_Mini-Cheatsheet.pdf"
+                  data-x-origin-download-initialzed="true">
+                  <i class="fa-2x fa-file-download fas pr-2"></i>
+                  <span class="pt-1">Create-with-Kirk_HTML-CSS_Mini-Cheatsheet.pdf</span>
+                </a>
               </div>
             </div>
           </div>
-          <!--/ lecture__section -->
         </div>
-      </section>
-    </main>
-    <footer class="global-footer bg-white text-center">
-      &copy; 2021 Kirk Clarke
-      <a
-        class="pl-1 pr-1"
-        href="https://www.paypal.com/paypalme/KirkClarke"
-        rel="noopener"
-        target="_blank"
-        style="white-space: nowrap; color: var(--green)"
-        ><i class="fab fa-fw fa-paypal" aria-hidden="true"></i>&nbsp;Buy me a
-        tea!</a
-      >
-    </footer>
-    <script src="./js/toggle.js"></script>
-    <script src="./js/highlight.min.js"></script>
-    <script src="./js/code-viewer.js" type="text/javascript"></script>
-  </body>
+        <!--/ lecture__section -->
+      </div>
+    </section>
+  </main>
+  <footer class="global-footer bg-white text-center">
+    &copy; 2021 Kirk Clarke
+    <a class="pl-1 pr-1" href="https://www.paypal.com/paypalme/KirkClarke" rel="noopener" target="_blank"
+      style="white-space: nowrap; color: var(--green)"><i class="fab fa-fw fa-paypal" aria-hidden="true"></i>&nbsp;Buy
+      me a
+      tea!</a>
+  </footer>
+  <script src="../../../js/toggle.js"></script>
+  <script src="../../../js/highlight.min.js"></script>
+  <script src="../../../js/code-viewer.js" type="text/javascript"></script>
+</body>
+
 </html>
