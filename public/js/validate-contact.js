@@ -20,7 +20,7 @@ const validateFields = () => {
         formData.append("g-recaptcha-response", token);
         // async xmlHttpRequest
         const request = new XMLHttpRequest();
-        request.open("POST", "contact.php");
+        request.open("POST", "kcContactAPI.php");
         request.onload = (e) => {
           if (request.readyState === 4) {
             const respTxt = JSON.parse(request.responseText);
