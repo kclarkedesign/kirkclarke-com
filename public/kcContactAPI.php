@@ -43,7 +43,13 @@ try {
                     $type = 'danger';
                     echo json_encode(array('type' => $type, 'resp' => $resp));
                 } else {
-                    $trySend = $responseKeys["success"];
+                    if ($responseKeys["score"] >= 0.5) {
+                        $trySend = $responseKeys["success"];
+                    } else {
+                        $resp = "reCAPTCHA score failed.";
+                        $type = 'danger';
+                        echo json_encode(array('type' => $type, 'resp' => $resp));
+                    }
                 }
             }
 
