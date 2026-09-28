@@ -3,3 +3,18 @@ dist*
 EmailConfig.php
 public/hosted/impact-report-2020/img
 public/hosted/impact-report-2020/font
+
+# Next.js
+.next
+out
+next-env.d.ts
+*.tsbuildinfo
+
+# Vercel
+.vercel
+
+# Env
+.env*.local
+
+# Editor/OS
+.DS_Store

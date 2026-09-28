@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------
+   Primitives — Intuition UI's mint scale, verbatim (koto/packages/ui/
+   tokens.css). Generates bg-primary-N, text-primary-N, border-primary-N
+   utilities. Kept identical across the Overland Innovators properties;
+   don't hand-edit a value here without changing it there too.
+--------------------------------------------------------------------- */
+@theme {
+  --color-primary-50: #f0fdf7;
+  --color-primary-100: #dcfceb;
+  --color-primary-200: #baf7d8;
+  --color-primary-300: #98dfaf;
+  --color-primary-400: #6fd49a;
+  --color-primary-500: #4bc57d;
+  --color-primary-600: #3ba968;
+  --color-primary-700: #2d8a54;
+  --color-primary-800: #246e44;
+  --color-primary-900: #1e5a38;
+  --color-primary-950: #0f3521;
+}
+
+/* ---------------------------------------------------------------------
+   Semantic tokens — this site's own names (docs/redesign/brief.md
+   "Palette"), aliased onto the primitives above. These are the names
+   every component and the Claude Design prototype already use
+   (var(--ground), var(--raised), ...) — referenced via Tailwind v4's
+   arbitrary-value shorthand, e.g. bg-(--raised) border-(--hairline).
+   Dark is the default and the first impression for most visitors.
+--------------------------------------------------------------------- */
+:root {
+  --ground: #0a0a0a;
+  --raised: #171717;
+  --hairline: #262626;
+  --signature: var(--color-primary-300);
+  --action: var(--color-primary-500);
+  --action-text: #06170e;
+  --deep-1: var(--color-primary-900);
+  --deep-2: var(--color-primary-950);
+  --highlight: var(--color-primary-200);
+  --text: #fafafa;
+  --text-secondary: #a1a1a1;
+  --text-label: #8a8a8a;
+}
+
+/* Light mode — manual override via .light on <html> (set by the
+   blocking script in app/layout.tsx, before first paint) or
+   prefers-color-scheme when no override is stored. Values from
+   brief.md's light table; --signature switches to the darker
+   primary-800 step here specifically because it's used as *text*
+   color in several places (the typewriter word, tag accents) and
+   primary-300 fails AA on white. --action/--action-text are unchanged
+   — a mint button's own internal contrast doesn't depend on the page
+   background. --deep-1/--deep-2/--highlight (decorative gradient-blob
+   colors only) are also unchanged for now; brief.md explicitly left
+   the light-mode hero look undecided pending a visual pass. */
+:root.light {
+  --ground: #ffffff;
+  --raised: #fafafa;
+  --hairline: #e5e5e5;
+  --signature: var(--color-primary-800);
+  --text: #171717;
+  --text-secondary: #525252;
+  --text-label: #737373;
+}
+
+/* Font stacks — see app/layout.tsx for why .variable lives on <html>
+   and why this is `@theme inline` rather than a plain @theme block:
+   next/font's --font-* variables aren't defined at :root, so a
+   non-inline reference resolves before they exist. */
+@theme inline {
+  --font-sans: var(--font-inter), "Inter Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), var(--font-sans);
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+}
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--text);
+  font-family: var(--font-sans);
+}
+
+a {
+  color: var(--signature);
+}
+a:hover {
+  color: var(--highlight);
+}
+
+::selection {
+  background: var(--action);
+  color: var(--action-text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--action);
+  outline-offset: 2px;
+}
+
+/* Hero gradient — direction A "Calm" (docs/redesign/brief.md "Motion"),
+   values as tuned in the approved Claude Design prototype. One shared
+   keyframe set for both breakpoints; the blobs themselves are sized
+   responsively via utility classes, not via separate keyframes. */
+@keyframes hero-drift-1 {
+  0%, 100% { transform: translate(-16%, -10%) scale(1); }
+  50% { transform: translate(14%, 12%) scale(1.22); }
+}
+@keyframes hero-drift-2 {
+  0%, 100% { transform: translate(10%, 14%) scale(1); }
+  50% { transform: translate(-14%, -8%) scale(1.16); }
+}
+@keyframes blink-cursor {
+  50% { border-color: transparent; }
+}
+
+/* Scroll reveal — adapted from Koto's app/globals.css + scroll-observer.tsx
+   pattern (fade only, no translateY: brief.md wants "subtle fades, not
+   slides or bounces"). .js-anim is added by the blocking init script
+   in layout.tsx; a watchdog there removes it if the reveal script never
+   loads, so content is never stuck hidden. */
+.js-anim .animate-on-scroll {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.js-anim .animate-on-scroll.visible {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .js-anim .animate-on-scroll {
+    opacity: 1;
+    transition: none;
+  }
+}

@@ -1,31 +1,36 @@
 {
   "name": "kirkclarke.com",
-  "version": "2.0.0",
-  "description": "",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build-images": "cross-var cpy \"public/images/*\" $npm_package_config_paths_dist/images",
-    "build-index-html": "cross-var cpy \"public/index.html*\" $npm_package_config_paths_dist/",
-    "start": "nodemon -e js,html -- server.js"
-  },
-  "config": {
-    "paths": {
-      "dist": "dist",
-      "public": "public"
-    }
-  },
-  "keywords": [],
-  "author": "Kirk Clarke",
-  "license": "ISC",
+  "version": "3.0.0",
   "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint --max-warnings 0",
+    "check-types": "next typegen && tsc --noEmit",
+    "eval:chat": "tsx scripts/eval-chat.ts"
+  },
+  "engines": {
+    "node": ">=20"
+  },
   "dependencies": {
-    "cross-var": "^1.1.0",
-    "express": "^4.17.1"
+    "@anthropic-ai/sdk": "^0.128.0",
+    "@vercel/analytics": "^2.0.1",
+    "next": "16.1.5",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "react-markdown": "^10.1.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.12",
-    "webpack": "^5.39.0",
-    "webpack-cli": "^4.7.2"
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.6.3",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.6",
+    "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.15",
+    "typescript": "5.9.2"
   }
 }
