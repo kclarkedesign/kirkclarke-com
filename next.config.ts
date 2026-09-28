@@ -32,13 +32,12 @@ const nextConfig: NextConfig = {
       // Bluehost/Apache auto-appended index.html for a bare directory
       // request; Next's public/ folder doesn't. This preserved legacy
       // mini-site (public/hosted/impact-report-2020/index.html) needs it
-      // spelled out explicitly, both with and without the trailing slash.
+      // spelled out explicitly. The trailing-slash variant doesn't need
+      // its own entry — Next's default trailing-slash normalization
+      // redirects it to the no-slash form before rewrites run, so it
+      // lands here anyway (confirmed: 308 -> this rule -> 200).
       {
         source: "/hosted/impact-report-2020",
-        destination: "/hosted/impact-report-2020/index.html",
-      },
-      {
-        source: "/hosted/impact-report-2020/",
         destination: "/hosted/impact-report-2020/index.html",
       },
     ];
