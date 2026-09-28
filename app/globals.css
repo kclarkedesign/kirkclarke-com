@@ -127,6 +127,38 @@ a:hover {
   opacity: 1;
 }
 
+/* Work-card hover — a restrained nod to target-lock HUD design (plan
+   §3b), the one place the personality touch shows up visually. */
+.work-card {
+  position: relative;
+}
+.work-card::before,
+.work-card::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+.work-card::before {
+  top: 8px;
+  left: 8px;
+  border-top: 2px solid var(--action);
+  border-left: 2px solid var(--action);
+}
+.work-card::after {
+  bottom: 8px;
+  right: 8px;
+  border-bottom: 2px solid var(--action);
+  border-right: 2px solid var(--action);
+}
+.work-card:hover::before,
+.work-card:hover::after {
+  opacity: 1;
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
