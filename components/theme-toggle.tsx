@@ -36,9 +36,41 @@ export default function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={light ? "Switch to dark mode" : "Switch to light mode"}
-      className="rounded-lg border border-(--hairline) p-1.5 text-sm leading-none transition-colors hover:border-(--action)"
+      className="flex rounded-lg border border-(--hairline) p-1.5 text-(--text) transition-colors hover:border-(--action)"
     >
-      {light ? "🌙" : "☀️"}
+      {light ? <MoonIcon /> : <SunIcon />}
     </button>
+  );
+}
+
+// Hand-drawn, matching the hamburger/close icons in nav.tsx (same
+// stroke weight, same 20x20 viewBox) rather than emoji — emoji render
+// inconsistently across platforms (Windows' moon in particular is a
+// colorful glyph that clashes with an otherwise monochrome-plus-mint
+// icon language) and can't take currentColor.
+function SunIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <circle cx="10" cy="10" r="4" stroke="currentColor" strokeWidth="1.5" />
+      <path
+        d="M10 1.5V3.5M10 16.5V18.5M18.5 10H16.5M3.5 10H1.5M15.66 4.34L14.24 5.76M5.76 14.24L4.34 15.66M15.66 15.66L14.24 14.24M5.76 5.76L4.34 4.34"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function MoonIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path
+        d="M17 10.79A7.5 7.5 0 1 1 9.21 3a6 6 0 0 0 7.79 7.79Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }
