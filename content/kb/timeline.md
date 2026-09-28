@@ -1,0 +1,6 @@
+- **2007–present** — Founder, independent design & web work. Client sites, brand systems, SEO, CMS integration.
+- **2013–2021** — 92nd Street Y. Web Designer, then Senior Web Designer / UI Developer. Drove a CMS migration and the platform's shift to remote programming during 2020.
+- **2022–2024** — The Writing Revolution. Senior Engineering Manager, then Director of Technology. Built the organization's custom WordPress platform from scratch.
+- **2024–present** — The Writing Revolution. Senior Director of Technology. Owns the integration layer across Salesforce, QuickBooks, and several other systems; leads a cross-functional team; runs the org's AI enablement program.
+- **Ongoing** — Independent: Koto and Kibi, two products built and owned solo. Book design and editing for a family project.
+- **Education** — BA, Drawing & Graphic Design, Binghamton University.
