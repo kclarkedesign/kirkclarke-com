@@ -118,7 +118,7 @@ export default function Hero({ onOpenChat }: { onOpenChat: () => void }) {
           <button
             type="button"
             onClick={onOpenChat}
-            className="rounded-full bg-(--action) px-6 py-3 text-sm font-semibold text-(--action-text) md:px-7 md:text-[15px]"
+            className="rounded-full bg-(--action) px-6 py-3 text-sm font-semibold text-(--action-text) transition hover:brightness-110 md:px-7 md:text-[15px]"
           >
             Ask about my work
           </button>

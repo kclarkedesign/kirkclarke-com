@@ -49,7 +49,7 @@ const ChatDrawer = forwardRef<ChatDrawerHandle>(function ChatDrawer(_props, ref)
           <button
             type="button"
             aria-label="Close"
-            className="text-(--text-label) hover:text-(--text)"
+            className="text-(--text-label) transition-colors hover:text-(--text)"
             onClick={() => dialogRef.current?.close()}
           >
             ✕
@@ -111,7 +111,7 @@ const ChatDrawer = forwardRef<ChatDrawerHandle>(function ChatDrawer(_props, ref)
           <button
             type="submit"
             aria-label="Send"
-            className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-(--action) text-(--action-text)"
+            className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-(--action) text-(--action-text) transition hover:brightness-110"
           >
             ↑
           </button>

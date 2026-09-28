@@ -93,8 +93,8 @@ export default function WorkGrid({
               className={
                 "rounded-full border px-3 py-1.5 font-mono text-xs transition-colors md:px-4 md:py-2 md:text-[13px] " +
                 (active
-                  ? "border-(--action) bg-(--action) text-(--action-text)"
-                  : "border-(--hairline) bg-transparent text-(--text-secondary)")
+                  ? "border-(--action) bg-(--action) text-(--action-text) hover:brightness-110"
+                  : "border-(--hairline) bg-transparent text-(--text-secondary) hover:border-(--action) hover:text-(--text)")
               }
             >
               {tag.label}

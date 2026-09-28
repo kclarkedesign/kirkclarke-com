@@ -7,11 +7,16 @@ export default function Contact() {
       <div className="flex flex-col items-center gap-4 md:flex-row md:gap-6">
         <a
           href="mailto:ignite@kirkclarke.com"
-          className="rounded-full bg-(--action) px-5 py-3 text-sm font-semibold text-(--action-text)"
+          className="rounded-full bg-(--action) px-5 py-3 text-sm font-semibold text-(--action-text) transition hover:brightness-110"
         >
           ignite@kirkclarke.com
         </a>
-        <a href="https://www.linkedin.com/in/kclarke/" target="_blank" rel="noopener" className="text-sm text-(--text-secondary)">
+        <a
+          href="https://www.linkedin.com/in/kclarke/"
+          target="_blank"
+          rel="noopener"
+          className="text-sm text-(--text-secondary) hover:text-(--text)"
+        >
           LinkedIn
         </a>
         {/* Résumé link: the prototype had this as a placeholder (href="#")

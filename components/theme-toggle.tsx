@@ -36,7 +36,7 @@ export default function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={light ? "Switch to dark mode" : "Switch to light mode"}
-      className="rounded-lg border border-(--hairline) p-1.5 text-sm leading-none"
+      className="rounded-lg border border-(--hairline) p-1.5 text-sm leading-none transition-colors hover:border-(--action)"
     >
       {light ? "🌙" : "☀️"}
     </button>

@@ -14,8 +14,10 @@ const LINKS = [
 ];
 
 const askButtonClasses = {
-  desktop: "rounded-full bg-(--action) px-4.5 py-2.5 text-sm font-semibold text-(--action-text)",
-  mobile: "rounded-full bg-(--action) px-3.5 py-1.5 text-[13px] font-semibold text-(--action-text)",
+  desktop:
+    "rounded-full bg-(--action) px-4.5 py-2.5 text-sm font-semibold text-(--action-text) transition hover:brightness-110",
+  mobile:
+    "rounded-full bg-(--action) px-3.5 py-1.5 text-[13px] font-semibold text-(--action-text) transition hover:brightness-110",
 };
 
 // One responsive nav, not the two separate desktop/mobile artboards the
@@ -58,7 +60,7 @@ export default function Nav({ onOpenChat }: { onOpenChat?: () => void }) {
             aria-label="Menu"
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((v) => !v)}
-            className="flex rounded-lg border border-(--hairline) p-1.5 text-(--text)"
+            className="flex rounded-lg border border-(--hairline) p-1.5 text-(--text) transition-colors hover:border-(--action)"
           >
             {menuOpen ? (
               <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
