@@ -209,18 +209,6 @@ export const projects: Project[] = [
     hasCaseStudy: false,
   },
   {
-    slug: "columbia-law",
-    title: "Campaign for Columbia Law",
-    tagline: "A Force in the World.",
-    context: "archive",
-    year: "2020",
-    tags: ["design", "wordpress"],
-    outcomes: [],
-    thumbnail: "/images/thumb-campaign-for-columbia-law.jpg",
-    href: "https://campaign.law.columbia.edu/",
-    hasCaseStudy: false,
-  },
-  {
     slug: "joanie-leeds",
     title: "JoanieLeeds.com",
     tagline: "Musician site, WordPress.",

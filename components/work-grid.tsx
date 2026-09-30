@@ -118,7 +118,7 @@ export default function WorkGrid({
             </>
           );
           const cardClasses =
-            "work-card flex flex-col gap-2.5 rounded-xl border border-(--hairline) bg-(--raised) p-[18px] md:gap-3 md:p-6";
+            "work-card flex flex-col gap-2.5 rounded-xl border border-(--hairline) bg-(--raised) p-[18px] text-(--text) md:gap-3 md:p-6";
           const style = { viewTransitionName: `project-${project.slug}` } as React.CSSProperties;
 
           return project.hasCaseStudy ? (
