@@ -89,7 +89,7 @@ export const projects: Project[] = [
     title: "Words of Wisdom",
     tagline: "Jamaican Sayings, Their Meanings, and the Lessons of a Lifetime — by K.L. Craigie, his mother.",
     context: "independent",
-    year: "TODO — confirm publication year",
+    year: "2026",
     tags: ["design"],
     outcomes: [
       "55 sayings, each carrying a patois original, a plain-English meaning, and a full weekly journaling page",
