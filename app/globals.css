@@ -74,36 +74,42 @@
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 }
 
-body {
-  margin: 0;
-  background: var(--ground);
-  color: var(--text);
-  font-family: var(--font-sans);
-}
+/* Unlayered rules beat Tailwind's layered utilities, so these base
+   styles must live in @layer base — otherwise `a { color }` silently
+   overrides every text-* utility on an anchor (the mint CTA button's
+   dark label, hover colors, etc.). */
+@layer base {
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--text);
+    font-family: var(--font-sans);
+  }
 
-a {
-  color: var(--signature);
-}
-a:hover {
-  color: var(--highlight);
-}
+  a {
+    color: var(--signature);
+  }
+  a:hover {
+    color: var(--highlight);
+  }
 
-/* Tailwind's preflight resets button { cursor: default }, matching a
-   native form control — every button here is acting as a link/action
-   trigger instead, so it needs the pointer back. One rule instead of
-   cursor-pointer repeated on every button className. */
-button:not(:disabled) {
-  cursor: pointer;
-}
+  /* Tailwind's preflight resets button { cursor: default }, matching a
+     native form control — every button here is acting as a link/action
+     trigger instead, so it needs the pointer back. One rule instead of
+     cursor-pointer repeated on every button className. */
+  button:not(:disabled) {
+    cursor: pointer;
+  }
 
-::selection {
-  background: var(--action);
-  color: var(--action-text);
-}
+  ::selection {
+    background: var(--action);
+    color: var(--action-text);
+  }
 
-:focus-visible {
-  outline: 2px solid var(--action);
-  outline-offset: 2px;
+  :focus-visible {
+    outline: 2px solid var(--action);
+    outline-offset: 2px;
+  }
 }
 
 /* Hero gradient — direction A "Calm" (docs/redesign/brief.md "Motion"),

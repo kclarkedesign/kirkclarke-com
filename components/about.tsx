@@ -11,7 +11,7 @@ export default function About() {
           2007. Freelance web and design work for whoever would hire him — brand
           systems, WordPress sites, whatever a small business needed. Some of that
           teaching turned into an actual{" "}
-          <a href="/courses/beginner/html/getting-started.html" className="text-(--signature)">
+          <a href="/courses/beginner/html/getting-started.html" className="text-(--signature) underline underline-offset-2">
             beginner HTML course
           </a>{" "}
           he still keeps running.
