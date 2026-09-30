@@ -1,8 +1,6 @@
 node_modules
 dist*
 EmailConfig.php
-public/hosted/impact-report-2020/img
-public/hosted/impact-report-2020/font
 
 # Next.js
 .next
