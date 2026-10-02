@@ -112,6 +112,11 @@
   }
 }
 
+/* The contact form shows Google's required disclosure text instead. */
+.grecaptcha-badge {
+  visibility: hidden;
+}
+
 /* Hero gradient — direction A "Calm" (docs/redesign/brief.md "Motion"),
    values as tuned in the approved Claude Design prototype. One shared
    keyframe set for both breakpoints; the blobs themselves are sized
