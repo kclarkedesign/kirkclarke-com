@@ -37,6 +37,18 @@ export default function About() {
         Arc Raiders.
       </p>
 
+      <p className="mb-10 text-xs leading-relaxed text-(--text-label) md:mb-12 md:text-[13px]">
+        Elsewhere: his{" "}
+        <a href="https://www.freecodecamp.org/kirkclarke" target="_blank" rel="noopener" className="underline underline-offset-2">
+          freeCodeCamp profile
+        </a>{" "}
+        from the teaching years, and volunteer work through{" "}
+        <a href="https://www.catchafire.org/profiles/1179112/impact/" target="_blank" rel="noopener" className="underline underline-offset-2">
+          Catchafire
+        </a>
+        .
+      </p>
+
       <div className="mb-10 flex max-w-[780px] flex-col md:mb-12">
         {dayToDay.map((row) => (
           <div
