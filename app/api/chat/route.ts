@@ -4,7 +4,7 @@ import { buildChatRequest, parseMessages } from "@/lib/chat";
 export const runtime = "nodejs";
 
 // Every failure (SDK error, refusal, missing key) becomes this — no internals leak.
-const RESTING = "Chat is resting right now — email Kirk at ignite@kirkclarke.com.";
+const RESTING = "Chat is resting right now — use “Send me a message” in the [Contact section](/#contact) to reach Kirk.";
 
 export async function POST(req: Request) {
   const messages = parseMessages(await req.json().catch(() => null));

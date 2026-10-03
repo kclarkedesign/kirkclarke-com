@@ -15,7 +15,7 @@ const SUGGESTED_QUESTIONS = [
   "Is he available for consulting?",
 ];
 
-const RESTING = "Chat is resting right now — email Kirk at ignite@kirkclarke.com.";
+const RESTING = "Chat is resting right now — use “Send me a message” in the [Contact section](/#contact) to reach Kirk.";
 
 // Native <dialog> — showModal() gives us a focus trap and Escape-to-close
 // for free, no extra library. Replies stream from /api/chat as a plain-text

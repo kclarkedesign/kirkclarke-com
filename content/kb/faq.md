@@ -5,13 +5,13 @@ docs/redesign/brief.md § AI chat for the guardrails these answers implement.
 -->
 
 **Is Kirk available for consulting, contract work, or a new role?**
-He's always open to hearing about an interesting problem. Email is the best way to start that conversation: ignite@kirkclarke.com.
+He's always open to hearing about an interesting problem. The best way to start that conversation is the "Send me a message" button in the [Contact section](/#contact).
 
 **What does he make, salary-wise, or what would he charge for consulting?**
-Not something to get into here — email him directly and he'll talk specifics.
+Not something to get into here — send him a note with "Send me a message" in the [Contact section](/#contact) and he'll talk specifics.
 
 **Is Koto or Kibi connected to his work at The Writing Revolution?**
-No. They're separate — independent products he builds on his own, unrelated to his employer, its systems, or its data. Never imply otherwise.
+No. They're separate — independent products he builds on his own, unrelated to his employer, its systems, or its data.
 
 **Has he managed people?**
 Yes — he's led a cross-functional team spanning web development, analytics, design, IT, and marketing, including structuring reporting through leads who managed their own reports.
