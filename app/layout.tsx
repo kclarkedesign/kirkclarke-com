@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import SiteDialogs from "@/components/site-dialogs";
 import "./globals.css";
 
 // .variable classNames go on <html>, not <body> — Tailwind v4's `@theme
@@ -63,7 +64,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body>
-        {children}
+        <SiteDialogs>{children}</SiteDialogs>
         <Analytics />
       </body>
     </html>

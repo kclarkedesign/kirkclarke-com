@@ -4,6 +4,7 @@ import { forwardRef, useEffect, useImperativeHandle, useRef, useState, type Comp
 import Link from "next/link";
 import Markdown from "react-markdown";
 import Mark from "./mark";
+import { useSiteDialogs } from "./site-dialogs-context";
 
 export interface ChatDrawerHandle {
   open: () => void;
@@ -19,6 +20,22 @@ const SUGGESTED_QUESTIONS = [
 // a link component created inside ChatDrawer is a new type per streamed chunk,
 // which remounts every link in the reply.
 function ReplyLink({ href = "", children }: ComponentProps<"a">) {
+  const { openContact } = useSiteDialogs();
+  if (href === "/#contact") {
+    return (
+      <a
+        href={href}
+        className="underline"
+        onClick={(e) => {
+          e.preventDefault();
+          e.currentTarget.closest("dialog")?.close();
+          openContact();
+        }}
+      >
+        {children}
+      </a>
+    );
+  }
   return href.startsWith("/") ? (
     <Link href={href} className="underline" onClick={(e) => e.currentTarget.closest("dialog")?.close()}>
       {children}

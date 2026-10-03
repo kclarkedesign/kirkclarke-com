@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Mark from "./mark";
 import ThemeToggle from "./theme-toggle";
+import { useSiteDialogs } from "./site-dialogs-context";
 
 // Absolute paths (not #work) so the nav works identically whether it's
 // rendered on the home page or a case-study page.
@@ -24,13 +25,9 @@ const askButtonClasses = {
 // Claude Design prototype needed for side-by-side preview (plan §11a) —
 // links show inline at md+, collapse into a hamburger below that.
 //
-// onOpenChat is a client-side callback (the chat drawer's own ref), so
-// it can only be supplied by a "use client" parent on the same page —
-// Server Components can't pass functions to Client Components across
-// that boundary. Case-study pages don't render the chat drawer, so Nav
-// falls back to a plain link back to the home page's hero there.
-export default function Nav({ onOpenChat }: { onOpenChat?: () => void }) {
+export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { openChat, openContact } = useSiteDialogs();
 
   return (
     <nav className="sticky top-0 z-10 border-b border-(--hairline) bg-(--ground)/80 px-5 py-4 backdrop-blur-xl md:px-16 md:py-5">
@@ -48,12 +45,23 @@ export default function Nav({ onOpenChat }: { onOpenChat?: () => void }) {
               {l.label}
             </Link>
           ))}
-          <AskButton onOpenChat={onOpenChat} className={askButtonClasses.desktop} label="Ask about my work" />
+          <button
+            type="button"
+            onClick={openContact}
+            className="text-sm font-medium text-(--text-secondary) hover:text-(--text)"
+          >
+            Contact
+          </button>
+          <button type="button" onClick={openChat} className={askButtonClasses.desktop}>
+            Ask about my work
+          </button>
           <ThemeToggle />
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
-          <AskButton onOpenChat={onOpenChat} className={askButtonClasses.mobile} label="Ask" />
+          <button type="button" onClick={openChat} className={askButtonClasses.mobile}>
+            Ask
+          </button>
           <ThemeToggle />
           <button
             type="button"
@@ -87,31 +95,18 @@ export default function Nav({ onOpenChat }: { onOpenChat?: () => void }) {
               {l.label}
             </Link>
           ))}
+          <button
+            type="button"
+            onClick={() => {
+              setMenuOpen(false);
+              openContact();
+            }}
+            className="py-2.5 text-left text-[15px] font-medium text-(--text)"
+          >
+            Contact
+          </button>
         </div>
       )}
     </nav>
-  );
-}
-
-function AskButton({
-  onOpenChat,
-  className,
-  label,
-}: {
-  onOpenChat?: () => void;
-  className: string;
-  label: string;
-}) {
-  if (onOpenChat) {
-    return (
-      <button type="button" onClick={onOpenChat} className={className}>
-        {label}
-      </button>
-    );
-  }
-  return (
-    <Link href="/#hero-section" className={className}>
-      {label}
-    </Link>
   );
 }

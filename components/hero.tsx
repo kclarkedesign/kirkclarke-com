@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useSiteDialogs } from "./site-dialogs-context";
 
 const WORDS = ["designer", "engineer", "leader", "problem eliminator"];
 const COUNT_UP_MS = 1400;
@@ -9,7 +10,8 @@ function prefersReducedMotion() {
   return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-export default function Hero({ onOpenChat }: { onOpenChat: () => void }) {
+export default function Hero() {
+  const { openChat } = useSiteDialogs();
   const [typedText, setTypedText] = useState(WORDS[0] ?? "");
   const [progress, setProgress] = useState(1); // eased 0->1; starts at 1 (final values) for reduced motion / no-JS-flash
   const [glow, setGlow] = useState({ x: 0, y: 0, active: false });
@@ -117,7 +119,7 @@ export default function Hero({ onOpenChat }: { onOpenChat: () => void }) {
         <div className="relative flex items-center gap-5 md:gap-7">
           <button
             type="button"
-            onClick={onOpenChat}
+            onClick={openChat}
             className="rounded-full bg-(--action) px-6 py-3 text-sm font-semibold text-(--action-text) transition hover:brightness-110 md:px-7 md:text-[15px]"
           >
             Ask about my work

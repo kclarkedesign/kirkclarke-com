@@ -25,9 +25,6 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
   return (
     <>
-      {/* No onOpenChat — this is a Server Component, and a closure can't
-          cross the server/client boundary as a prop. Nav's own fallback
-          (a plain link back to the home page) handles this correctly. */}
       <Nav />
 
       <main>
