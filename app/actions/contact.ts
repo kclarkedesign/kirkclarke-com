@@ -1,7 +1,7 @@
 "use server";
 
 import nodemailer from "nodemailer";
-import { validateContact } from "@/lib/contact";
+import { assessmentPasses, validateContact } from "@/lib/contact";
 
 export interface ContactState {
   status: "idle" | "ok" | "error";
@@ -9,19 +9,27 @@ export interface ContactState {
 }
 
 const FALLBACK = "Couldn't send that just now — please reach out on LinkedIn instead.";
-const MIN_SCORE = 0.5;
-
+// reCAPTCHA Enterprise "create assessment" call (the key was migrated to
+// Google Cloud). Fails closed on any missing config, network error or bad score.
 async function passesRecaptcha(token: string): Promise<boolean> {
-  const secret = process.env.RECAPTCHA_SECRET;
-  if (!secret || !token) return false;
+  const { RECAPTCHA_PROJECT_ID, RECAPTCHA_API_KEY, NEXT_PUBLIC_RECAPTCHA_SITE_KEY } = process.env;
+  if (!RECAPTCHA_PROJECT_ID || !RECAPTCHA_API_KEY || !NEXT_PUBLIC_RECAPTCHA_SITE_KEY || !token) return false;
   try {
-    const res = await fetch("https://www.google.com/recaptcha/api/siteverify", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams({ secret, response: token }),
-    });
-    const data = (await res.json()) as { success?: boolean; score?: number; action?: string };
-    return data.success === true && (data.score ?? 0) >= MIN_SCORE && data.action === "submit";
+    const res = await fetch(
+      `https://recaptchaenterprise.googleapis.com/v1/projects/${encodeURIComponent(RECAPTCHA_PROJECT_ID)}/assessments?key=${encodeURIComponent(RECAPTCHA_API_KEY)}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          event: { token, siteKey: NEXT_PUBLIC_RECAPTCHA_SITE_KEY, expectedAction: "submit" },
+        }),
+      },
+    );
+    if (!res.ok) {
+      console.error("contact form: reCAPTCHA assessment failed", res.status);
+      return false;
+    }
+    return assessmentPasses(await res.json());
   } catch {
     return false;
   }

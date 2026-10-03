@@ -8,6 +8,22 @@ export interface ContactFields {
   message: string;
 }
 
+const MIN_SCORE = 0.5;
+
+// Shape of a reCAPTCHA Enterprise assessment response. The key's own domain
+// list already restricts which sites can mint tokens, so no hostname check here.
+export function assessmentPasses(data: unknown): boolean {
+  const a = data as {
+    tokenProperties?: { valid?: boolean; action?: string };
+    riskAnalysis?: { score?: number };
+  };
+  return (
+    a?.tokenProperties?.valid === true &&
+    a.tokenProperties.action === "submit" &&
+    (a.riskAnalysis?.score ?? 0) >= MIN_SCORE
+  );
+}
+
 // Header-injection guard: newlines/control chars have no business in a name.
 const stripControl = (s: string) => s.replace(/[\u0000-\u001f\u007f]/g, " ").trim();
 

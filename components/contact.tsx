@@ -7,8 +7,10 @@ import { MAX_MESSAGE } from "@/lib/contact";
 declare global {
   interface Window {
     grecaptcha?: {
-      ready: (cb: () => void) => void;
-      execute: (siteKey: string, opts: { action: string }) => Promise<string>;
+      enterprise?: {
+        ready: (cb: () => void) => void;
+        execute: (siteKey: string, opts: { action: string }) => Promise<string>;
+      };
     };
   }
 }
@@ -79,7 +81,7 @@ export default function Contact() {
     if (!SITE_KEY || scriptRequested.current) return;
     scriptRequested.current = true;
     const s = document.createElement("script");
-    s.src = `https://www.google.com/recaptcha/api.js?render=${SITE_KEY}`;
+    s.src = `https://www.google.com/recaptcha/enterprise.js?render=${SITE_KEY}`;
     s.async = true;
     document.head.appendChild(s);
   }
@@ -161,12 +163,13 @@ function ContactForm({ onDone }: { onDone: () => void }) {
       formData.set("g-recaptcha-response", token);
       startTransition(() => formAction(formData));
     };
-    if (!SITE_KEY || !window.grecaptcha) {
+    const rc = window.grecaptcha?.enterprise;
+    if (!SITE_KEY || !rc) {
       submit("");
       return;
     }
-    window.grecaptcha.ready(() => {
-      window.grecaptcha!.execute(SITE_KEY, { action: "submit" }).then(submit, () => submit(""));
+    rc.ready(() => {
+      rc.execute(SITE_KEY, { action: "submit" }).then(submit, () => submit(""));
     });
   }
 

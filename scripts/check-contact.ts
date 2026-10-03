@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { validateContact, MAX_MESSAGE } from "../lib/contact";
+import { validateContact, assessmentPasses, MAX_MESSAGE } from "../lib/contact";
 
 const ok = { name: "Ada", email: "ada@example.com", message: "Hi" };
 assert.deepEqual(validateContact(ok), ok);
@@ -11,4 +11,11 @@ assert.equal(typeof validateContact({ ...ok, message: "x".repeat(MAX_MESSAGE + 1
 assert.equal(typeof validateContact({ ...ok, name: "x".repeat(101) }), "string");
 const injected = validateContact({ ...ok, name: "Ada\r\nBcc: evil@x.com" });
 assert.ok(typeof injected !== "string" && !/[\r\n]/.test(injected.name));
+const good = { tokenProperties: { valid: true, action: "submit" }, riskAnalysis: { score: 0.9 } };
+assert.equal(assessmentPasses(good), true);
+assert.equal(assessmentPasses({ ...good, riskAnalysis: { score: 0.3 } }), false);
+assert.equal(assessmentPasses({ ...good, tokenProperties: { valid: false, action: "submit" } }), false);
+assert.equal(assessmentPasses({ ...good, tokenProperties: { valid: true, action: "login" } }), false);
+assert.equal(assessmentPasses({}), false);
+assert.equal(assessmentPasses(null), false);
 console.log("contact validation: all checks passed");
