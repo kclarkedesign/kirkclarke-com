@@ -15,6 +15,22 @@ const SUGGESTED_QUESTIONS = [
   "Is he available for consulting?",
 ];
 
+// Module-level so react-markdown sees the same component type on every render;
+// a link component created inside ChatDrawer is a new type per streamed chunk,
+// which remounts every link in the reply.
+function ReplyLink({ href = "", children }: ComponentProps<"a">) {
+  return href.startsWith("/") ? (
+    <Link href={href} className="underline" onClick={(e) => e.currentTarget.closest("dialog")?.close()}>
+      {children}
+    </Link>
+  ) : (
+    <a href={href} className="underline" target="_blank" rel="noreferrer">
+      {children}
+    </a>
+  );
+}
+const MARKDOWN_COMPONENTS = { a: ReplyLink };
+
 const RESTING = "Chat is resting right now — use “Send me a message” in the [Contact section](/#contact) to reach Kirk.";
 
 // Native <dialog> — showModal() gives us a focus trap and Escape-to-close
@@ -27,7 +43,11 @@ const ChatDrawer = forwardRef<ChatDrawerHandle>(function ChatDrawer(_props, ref)
   const [announce, setAnnounce] = useState("");
   const endRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => endRef.current?.scrollIntoView({ block: "end" }), [messages]);
+  // Braces matter: an effect must return nothing or a cleanup function, and
+  // scrollIntoView's return value would crash React on commit.
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ block: "end" });
+  }, [messages]);
 
   useImperativeHandle(ref, () => ({
     open: () => dialogRef.current?.showModal(),
@@ -71,17 +91,6 @@ const ChatDrawer = forwardRef<ChatDrawerHandle>(function ChatDrawer(_props, ref)
     }
   }
 
-  const link = ({ href = "", children }: ComponentProps<"a">) =>
-    href.startsWith("/") ? (
-      <Link href={href} className="underline" onClick={() => dialogRef.current?.close()}>
-        {children}
-      </Link>
-    ) : (
-      <a href={href} className="underline" target="_blank" rel="noreferrer">
-        {children}
-      </a>
-    );
-
   return (
     <dialog
       ref={dialogRef}
@@ -120,7 +129,7 @@ const ChatDrawer = forwardRef<ChatDrawerHandle>(function ChatDrawer(_props, ref)
                   : "max-w-[85%] self-start rounded-2xl rounded-bl-sm border border-(--hairline) bg-(--raised) px-4 py-3 text-sm leading-relaxed text-(--text)"
               }
             >
-              {m.role === "user" ? m.text : m.text ? <Markdown components={{ a: link }}>{m.text}</Markdown> : "…"}
+              {m.role === "user" ? m.text : m.text ? <Markdown components={MARKDOWN_COMPONENTS}>{m.text}</Markdown> : "…"}
             </div>
           ))}
           <div ref={endRef} />

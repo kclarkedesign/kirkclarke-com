@@ -25,7 +25,9 @@ export default function Home({
       <Nav onOpenChat={openChat} />
       <main>
         <Hero onOpenChat={openChat} />
-        <WorkGrid projects={projects} initialTags={initialTags} />
+        {/* WorkGrid seeds its state from initialTags once, so remount it when a
+            client-side link (e.g. from the chat) lands on a new ?tag=. */}
+        <WorkGrid key={initialTags.join(",")} projects={projects} initialTags={initialTags} />
         <HowIWork />
         <About />
         <Contact />
