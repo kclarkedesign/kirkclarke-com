@@ -13,7 +13,14 @@ const FALLBACK = "Couldn't send that just now — please reach out on LinkedIn i
 // Google Cloud). Fails closed on any missing config, network error or bad score.
 async function passesRecaptcha(token: string): Promise<boolean> {
   const { RECAPTCHA_PROJECT_ID, RECAPTCHA_API_KEY, NEXT_PUBLIC_RECAPTCHA_SITE_KEY } = process.env;
-  if (!RECAPTCHA_PROJECT_ID || !RECAPTCHA_API_KEY || !NEXT_PUBLIC_RECAPTCHA_SITE_KEY || !token) return false;
+  if (!RECAPTCHA_PROJECT_ID || !RECAPTCHA_API_KEY || !NEXT_PUBLIC_RECAPTCHA_SITE_KEY) {
+    console.error("contact form: reCAPTCHA env vars are not configured");
+    return false;
+  }
+  if (!token) {
+    console.error("contact form: no reCAPTCHA token (script blocked, or key rejects this domain)");
+    return false;
+  }
   try {
     const res = await fetch(
       `https://recaptchaenterprise.googleapis.com/v1/projects/${encodeURIComponent(RECAPTCHA_PROJECT_ID)}/assessments?key=${encodeURIComponent(RECAPTCHA_API_KEY)}`,
@@ -29,7 +36,18 @@ async function passesRecaptcha(token: string): Promise<boolean> {
       console.error("contact form: reCAPTCHA assessment failed", res.status);
       return false;
     }
-    return assessmentPasses(await res.json());
+    const data = await res.json();
+    const ok = assessmentPasses(data);
+    if (!ok) {
+      console.error("contact form: reCAPTCHA rejected", {
+        valid: data?.tokenProperties?.valid,
+        invalidReason: data?.tokenProperties?.invalidReason,
+        action: data?.tokenProperties?.action,
+        hostname: data?.tokenProperties?.hostname,
+        score: data?.riskAnalysis?.score,
+      });
+    }
+    return ok;
   } catch {
     return false;
   }
