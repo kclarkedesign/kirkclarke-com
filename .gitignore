@@ -1,8 +1,6 @@
 node_modules
 dist*
 EmailConfig.php
-public/hosted/impact-report-2020/img
-public/hosted/impact-report-2020/font
 
 # Next.js
 .next
@@ -18,3 +16,4 @@ next-env.d.ts
 
 # Editor/OS
 .DS_Store
+.env*

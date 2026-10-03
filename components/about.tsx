@@ -11,7 +11,7 @@ export default function About() {
           2007. Freelance web and design work for whoever would hire him — brand
           systems, WordPress sites, whatever a small business needed. Some of that
           teaching turned into an actual{" "}
-          <a href="/courses/beginner/html/getting-started.html" className="text-(--signature)">
+          <a href="/courses/beginner/html/getting-started.html" className="text-(--signature) underline underline-offset-2">
             beginner HTML course
           </a>{" "}
           he still keeps running.
@@ -35,6 +35,18 @@ export default function About() {
         Off duty: dine-in movies at the Alamo Drafthouse (Resident Evil most
         recently), first- and third-person shooters — Destiny 2, Marvel Rivals,
         Arc Raiders.
+      </p>
+
+      <p className="mb-10 text-xs leading-relaxed text-(--text-label) md:mb-12 md:text-[13px]">
+        Elsewhere: his{" "}
+        <a href="https://www.freecodecamp.org/kirkclarke" target="_blank" rel="noopener" className="underline underline-offset-2">
+          freeCodeCamp profile
+        </a>{" "}
+        from the teaching years, and volunteer work through{" "}
+        <a href="https://www.catchafire.org/profiles/1179112/impact/" target="_blank" rel="noopener" className="underline underline-offset-2">
+          Catchafire
+        </a>
+        .
       </p>
 
       <div className="mb-10 flex max-w-[780px] flex-col md:mb-12">

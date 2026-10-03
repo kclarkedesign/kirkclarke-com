@@ -89,7 +89,7 @@ export const projects: Project[] = [
     title: "Words of Wisdom",
     tagline: "Jamaican Sayings, Their Meanings, and the Lessons of a Lifetime — by K.L. Craigie, his mother.",
     context: "independent",
-    year: "TODO — confirm publication year",
+    year: "2026",
     tags: ["design"],
     outcomes: [
       "55 sayings, each carrying a patois original, a plain-English meaning, and a full weekly journaling page",
@@ -206,18 +206,6 @@ export const projects: Project[] = [
     outcomes: [],
     thumbnail: "/images/thumb-product-finder.jpg",
     href: "https://www.92y.org/classes",
-    hasCaseStudy: false,
-  },
-  {
-    slug: "columbia-law",
-    title: "Campaign for Columbia Law",
-    tagline: "A Force in the World.",
-    context: "archive",
-    year: "2020",
-    tags: ["design", "wordpress"],
-    outcomes: [],
-    thumbnail: "/images/thumb-campaign-for-columbia-law.jpg",
-    href: "https://campaign.law.columbia.edu/",
     hasCaseStudy: false,
   },
   {

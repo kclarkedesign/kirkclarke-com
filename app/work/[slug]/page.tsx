@@ -30,6 +30,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           (a plain link back to the home page) handles this correctly. */}
       <Nav />
 
+      <main>
       <article className="px-5 py-14 md:px-16 md:py-20">
         <header className="mb-10 max-w-225 md:mb-12">
           <h1 className="m-0 mb-4 font-display text-3xl font-bold leading-tight md:mb-5 md:text-5xl">
@@ -59,6 +60,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
       </article>
 
       <Contact />
+      </main>
     </>
   );
 }

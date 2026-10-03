@@ -1,5 +1,5 @@
 import nextConfig from "eslint-config-next";
 
-const config = [...nextConfig];
+const config = [{ ignores: [".claude/**"] }, ...nextConfig];
 
 export default config;

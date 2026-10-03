@@ -23,11 +23,13 @@ export default function Home({
   return (
     <>
       <Nav onOpenChat={openChat} />
-      <Hero onOpenChat={openChat} />
-      <WorkGrid projects={projects} initialTags={initialTags} />
-      <HowIWork />
-      <About />
-      <Contact />
+      <main>
+        <Hero onOpenChat={openChat} />
+        <WorkGrid projects={projects} initialTags={initialTags} />
+        <HowIWork />
+        <About />
+        <Contact />
+      </main>
       <footer className="border-t border-(--hairline) px-5 py-8 text-center md:px-16">
         <span className="text-[13px] text-(--text-label)">© Kirk Clarke</span>
       </footer>
