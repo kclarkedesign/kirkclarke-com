@@ -295,7 +295,121 @@
   }
 }
 
+/* Mobile side drawer (components/nav-drawer.tsx). Picks from the Taste-Nav-Drawer
+   board: 84% wide deep-green panel, 360ms ease-in-out, 55ms stagger, scrim 0.55
+   with no blur, three bars morphing into an X. The dialog is a transparent
+   full-viewport layer (its background is the scrim); the panel slides inside it. */
+.menu-toggle,
+.drawer-toggle {
+  display: flex;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+}
+.bars {
+  position: relative;
+  display: block;
+  width: 44px;
+  height: 44px;
+}
+.bars span {
+  position: absolute;
+  top: 50%;
+  left: 11px;
+  width: 22px;
+  height: 2px;
+  margin-top: -1px;
+  border-radius: 2px;
+  background: currentColor;
+  transition:
+    transform 360ms ease-in-out,
+    opacity 360ms ease-in-out;
+}
+.bars span:nth-child(1) {
+  transform: translateY(-7px);
+}
+.bars span:nth-child(3) {
+  transform: translateY(7px);
+}
+[data-x="true"] .bars span:nth-child(1) {
+  transform: rotate(45deg);
+}
+[data-x="true"] .bars span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0.2);
+}
+[data-x="true"] .bars span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+.drawer {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  /* clip, not hidden: `hidden` is still a scroll container, so focusing the first
+     link inside the offscreen panel scrolled the whole dialog sideways on open. */
+  overflow: hidden;
+  overflow: clip;
+  color: #fafafa;
+  background: rgb(0 0 0 / 0);
+  transition: background-color 360ms ease-in-out;
+}
+.drawer::backdrop {
+  background: transparent;
+}
+.drawer[data-shown="true"] {
+  background: rgb(0 0 0 / 0.55);
+}
+.drawer-panel {
+  position: absolute;
+  inset: 0 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 84%;
+  padding: 96px 32px 32px;
+  background: var(--color-primary-950);
+  border-left: 1px solid rgb(255 255 255 / 0.08);
+  transform: translateX(100%);
+  transition: transform 360ms ease-in-out;
+}
+.drawer[data-shown="true"] .drawer-panel {
+  transform: none;
+}
+.drawer-item {
+  opacity: 0;
+  transform: translateX(24px);
+  transition:
+    opacity 360ms ease-in-out,
+    transform 360ms ease-in-out;
+}
+.drawer[data-shown="true"] .drawer-item {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(80ms + var(--i, 0) * 55ms);
+}
+.drawer-toggle {
+  position: absolute;
+  top: var(--toggle-top, 10px);
+  right: var(--toggle-right, 16px);
+  transition: color 360ms ease-in-out;
+}
+.drawer[data-shown="true"] .drawer-toggle {
+  color: #fafafa;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .drawer-item {
+    transition-delay: 0s !important;
+  }
   * {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;

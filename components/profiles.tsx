@@ -10,7 +10,7 @@ const iconProps = {
   "aria-hidden": true,
 };
 
-const PROFILES = [
+export const PROFILES = [
   {
     label: "GitHub",
     href: "https://github.com/kclarkedesign",
