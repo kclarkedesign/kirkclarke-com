@@ -73,6 +73,7 @@ export const projects: Project[] = [
       "Security sweep closed 4 anon-key exposures and 1 RLS leak — 0 findings since",
       "Stripe billing uses compare-and-swap to make concurrent webhooks safe",
       "Button contrast measured and fixed: 2.19:1 → 9.03:1",
+      "Dashboard redesign direction: a unified sidebar, a four-step view builder, and per-view Data / Settings / Takeaways tabs",
     ],
     // Stylized renders of the Koto dashboard redesign (a design direction, not the
     // shipped UI) — captions in content/work/koto.md say so.
@@ -116,7 +117,7 @@ export const projects: Project[] = [
     tagline: "Site for a performer, singer, and podcast host.",
     context: "independent",
     year: "2026",
-    tags: ["design", "ai"],
+    tags: ["design", "ux", "ai"],
     outcomes: [
       "Designed in Figma with Claude Design in the loop, built in Wix",
       "One site carrying a concert, an album release, and booking inquiries without feeling bolted together",
@@ -240,7 +241,7 @@ export const projects: Project[] = [
     tagline: "AngularJS program finder and COVID-era platform work.",
     context: "archive",
     year: "2013–2021",
-    tags: ["design", "engineering"],
+    tags: ["design", "ux", "engineering"],
     outcomes: [],
     media: {
       treatment: "bleed",

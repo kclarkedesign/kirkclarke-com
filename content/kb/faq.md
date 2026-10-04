@@ -17,7 +17,7 @@ No. They're separate — independent products he builds on his own, unrelated to
 Yes — he's led a cross-functional team spanning web development, analytics, design, IT, and marketing, including structuring reporting through leads who managed their own reports.
 
 **Does he do UX / user experience work, or is he just an engineer?**
-Yes, real UX work, not just accessibility compliance: redesigning a sign-in flow from a spec and annotated before/after mockups, root-causing a video-playback bug that was blocking learners, and proposing a design system from an accessibility audit. See the TWR Web Platform case study for the specifics.
+Yes, real UX work, not just accessibility compliance. At The Writing Revolution: redesigning a sign-in flow from a spec and annotated before/after mockups, root-causing a video-playback bug that was blocking learners, and proposing a design system from an accessibility audit. On his own product, Koto: he designs it end to end, including a redesign direction for the dashboard (a unified sidebar, a four-step view builder, per-view Data / Settings / Takeaways tabs — a design direction, not the interface running today) and measured accessibility fixes like raising button contrast from 2.19:1 to 9.03:1. His design work on Daniella Rabbani's site and the 92nd Street Y class finder is in the UX filter too. See the TWR Web Platform and Koto case studies for the specifics.
 
 **What's Koto?**
 A live product that lets you share Salesforce data by link — recipients see it live, with no Salesforce license required. Built solo. See the Koto case study.
