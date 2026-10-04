@@ -67,7 +67,7 @@ export const projects: Project[] = [
     tagline: "Share live Salesforce data with anyone — no license required.",
     context: "independent",
     year: "2026",
-    tags: ["engineering", "design", "ai", "salesforce", "nextjs", "stripe", "mcp", "security"],
+    tags: ["engineering", "design", "ux", "ai", "salesforce", "nextjs", "stripe", "mcp", "security"],
     outcomes: [
       "Record cap enforced inside the Salesforce query itself, not by truncating an oversized result",
       "Security sweep closed 4 anon-key exposures and 1 RLS leak — 0 findings since",
