@@ -410,6 +410,194 @@
     }
   }
 }
+/* Pinned sequences (components/scene-sequence.tsx). Default: the steps stack as ordinary
+   scene figures. Where the page can pin them (scroll timelines, motion allowed) they share
+   one sticky frame inside a tall wrapper and swap as it scrolls. One view timeline (--seq)
+   on the wrapper drives everything; each step owns a slice of it, --len tall, starting
+   --pin into the wrapper's cover range — the point where the frame sticks. */
+.seq-frame,
+.seq-rail {
+  display: none;
+}
+.seq-step {
+  margin: 2.5rem 0;
+}
+.seq-step figcaption {
+  margin-top: 0.75rem;
+  max-width: 43.75rem;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-label);
+}
+.seq-step strong {
+  display: block;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+@keyframes seq-media-mid {
+  0% { opacity: 0; }
+  6%, 94% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes seq-media-first {
+  0%, 94% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes seq-media-last {
+  0% { opacity: 0; }
+  6%, 100% { opacity: 1; }
+}
+@keyframes seq-cap-mid {
+  0%, 4% { opacity: 0; translate: 0 0.5rem; }
+  12%, 88% { opacity: 1; translate: 0 0; }
+  96%, 100% { opacity: 0; translate: 0 -0.25rem; }
+}
+@keyframes seq-cap-first {
+  0%, 88% { opacity: 1; translate: 0 0; }
+  96%, 100% { opacity: 0; translate: 0 -0.25rem; }
+}
+@keyframes seq-cap-last {
+  0%, 4% { opacity: 0; translate: 0 0.5rem; }
+  12%, 100% { opacity: 1; translate: 0 0; }
+}
+/* A zoom-in lifts off its outline: it starts at the outlined spot, shrunk to its size
+   (--fx/--fy/--fs from components/scene.tsx), and grows to where it sits. */
+@keyframes seq-grow {
+  from {
+    opacity: 0;
+    translate: var(--fx, 0%) var(--fy, 0%);
+    scale: var(--fs, 0.5);
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  25% { opacity: 1; }
+  to { opacity: 1; translate: 0 0; scale: 1; }
+}
+@keyframes seq-fill {
+  from { scale: 0 1; }
+  to { scale: 1 1; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .seq {
+      /* Just under the nav; --pin is what is left of the viewport below it. */
+      --seq-top: 5.5rem;
+      --pin: calc(100svh - var(--seq-top));
+      --len: 80svh;
+      view-timeline: --seq block;
+      height: calc(var(--pin) + var(--n) * var(--len));
+      /* Wider than the text column: the article is a size container (@container in the
+         page), so 100cqw is its full content width. */
+      width: min(100cqw, 80rem);
+      margin: 2.5rem 0 3rem;
+    }
+    .seq-pin {
+      position: sticky;
+      top: var(--seq-top);
+      height: var(--pin);
+      display: grid;
+      /* The frame never outgrows the room under the nav, whatever the viewport's shape. */
+      grid-template-columns: min(100%, calc((100svh - var(--seq-top) - 9rem) * var(--media-ar)));
+      align-content: center;
+      row-gap: 1rem;
+    }
+    .seq-frame {
+      display: block;
+      grid-area: 1 / 1;
+      aspect-ratio: var(--media-ar);
+      border: 1px solid var(--hairline);
+      border-radius: 12px;
+      background:
+        radial-gradient(110% 80% at 85% 0%, color-mix(in srgb, var(--action) 20%, transparent), transparent 65%),
+        linear-gradient(135deg, var(--deep-1), var(--deep-2));
+    }
+    .seq-step {
+      display: contents;
+      margin: 0;
+      --from: calc(var(--pin) + var(--si) * var(--len));
+      --to: calc(var(--from) + var(--len));
+    }
+    /* The scenes sit transparent over the one frame, so the frame itself never fades. */
+    .seq .seq-step > .media {
+      grid-area: 1 / 1;
+      align-self: start;
+      background: none;
+      border-color: transparent;
+    }
+    .seq .seq-step > figcaption {
+      grid-area: 2 / 1;
+      margin: 0;
+      max-width: 40rem;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    .seq .seq-step strong {
+      margin-bottom: 0.125rem;
+      font-family: var(--font-display);
+      font-size: 20px;
+      color: var(--text);
+    }
+    .seq .seq-step > .media,
+    .seq .seq-step > figcaption {
+      animation-timeline: --seq;
+      animation-fill-mode: both;
+      animation-timing-function: linear;
+      animation-range: cover var(--from) cover var(--to);
+    }
+    .seq .seq-step[data-pos="first"] > .media { animation-name: seq-media-first; }
+    .seq .seq-step[data-pos="mid"] > .media { animation-name: seq-media-mid; }
+    .seq .seq-step[data-pos="last"] > .media { animation-name: seq-media-last; }
+    .seq .seq-step[data-pos="first"] > figcaption { animation-name: seq-cap-first; }
+    .seq .seq-step[data-pos="mid"] > figcaption { animation-name: seq-cap-mid; }
+    .seq .seq-step[data-pos="last"] > figcaption { animation-name: seq-cap-last; }
+
+    /* Inside a step: no parallax (the frame is the still point); zoom-ins grow out of their
+       outlines, staggered by --i across the first third of the step's slice. These beat the
+       .scene[data-mode="scroll"] rules above on specificity. */
+    .seq .seq-step .scene[data-mode="scroll"] .layer,
+    .seq .seq-step .scene[data-mode="scroll"] .layer-in[data-base] {
+      animation: none;
+    }
+    .seq .seq-step .scene[data-mode="scroll"] .layer-in[data-zoom] {
+      animation: seq-grow linear both;
+      animation-timeline: --seq;
+      animation-range:
+        cover calc(var(--from) + var(--len) * (0.06 + var(--i) * 0.04))
+        cover calc(var(--from) + var(--len) * (0.34 + var(--i) * 0.04));
+    }
+    .seq .seq-step .scene[data-mode="scroll"] .mark {
+      animation: scene-fade linear both;
+      animation-timeline: --seq;
+      animation-range:
+        cover calc(var(--from) + var(--len) * (0.02 + var(--i) * 0.04))
+        cover calc(var(--from) + var(--len) * (0.1 + var(--i) * 0.04));
+    }
+
+    .seq-rail {
+      display: flex;
+      grid-area: 3 / 1;
+      gap: 0.5rem;
+    }
+    .seq-rail span {
+      --from: calc(var(--pin) + var(--si) * var(--len));
+      --to: calc(var(--from) + var(--len));
+      position: relative;
+      flex: 1;
+      height: 2px;
+      overflow: clip;
+      background: var(--hairline);
+    }
+    .seq-rail span::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--action);
+      transform-origin: left;
+      animation: seq-fill linear both;
+      animation-timeline: --seq;
+      animation-range: cover var(--from) cover var(--to);
+    }
+  }
+}
 @media (prefers-reduced-motion: no-preference) {
   .media-img,
   .media-inner {

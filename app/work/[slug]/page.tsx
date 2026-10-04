@@ -8,6 +8,8 @@ import Contact from "@/components/contact";
 import Figure from "@/components/figure";
 import ProjectMedia from "@/components/project-media";
 import SceneFigure from "@/components/scene-figure";
+import SceneSequence from "@/components/scene-sequence";
+import { sequences } from "@/content/scenes";
 import VisitLink from "@/components/visit-link";
 
 export function generateStaticParams() {
@@ -32,7 +34,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
       <Nav />
 
       <main>
-      <article className="px-5 py-14 md:px-16 md:py-20">
+      <article className="@container px-5 py-14 md:px-16 md:py-20">
         <header className="mb-10 max-w-225 md:mb-12">
           <h1 className="m-0 mb-4 font-display text-3xl font-bold leading-tight md:mb-5 md:text-5xl">
             {project.tagline}
@@ -65,7 +67,11 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
               },
               img: ({ src, alt, title }) =>
                 typeof src !== "string" ? null : src.startsWith("scene:") ? (
-                  <SceneFigure id={src.slice("scene:".length)} caption={title} />
+                  sequences[src.slice("scene:".length)] ? (
+                    <SceneSequence id={src.slice("scene:".length)} />
+                  ) : (
+                    <SceneFigure id={src.slice("scene:".length)} caption={title} />
+                  )
                 ) : (
                   <Figure src={src} alt={alt ?? ""} caption={title} />
                 ),

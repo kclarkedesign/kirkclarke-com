@@ -40,6 +40,23 @@ export interface SceneData {
   layers: SceneLayer[];
 }
 
+// A pinned sequence: the frame stays put while the page scrolls, and each step swaps in
+// one scene (its zoom-ins grow out of their outlines). Steps share one stage ratio so
+// the frame never changes shape. Without scroll timelines, with reduced motion, the
+// steps simply stack as ordinary scene figures.
+export interface SequenceStep {
+  scene: string;
+  title: string;
+  caption: string;
+}
+
+export interface SequenceData {
+  ratio: number;
+  /** One description of the whole walkthrough, read before the steps. */
+  alt: string;
+  steps: SequenceStep[];
+}
+
 const K = "/images/work/koto";
 
 // Every layer is a render of the Koto dashboard redesign (a design direction, not the
@@ -125,6 +142,29 @@ export const scenes: Record<string, SceneData> = {
     ],
   },
 
+  "koto-views": {
+    ratio: 1.9,
+    alt: "The Views screen in Koto's redesign, zoomed in on one view's row and its Copy link button.",
+    layers: [
+      {
+        id: "base",
+        src: `${K}/cover.webp`,
+        ratio: 1.6,
+        x: 0,
+        y: 4,
+        w: 78,
+        z: 0,
+        depth: 0,
+        marks: [
+          { x: 10.4, y: 14, w: 39.3, h: 12.6, for: "row" },
+          { x: 75.8, y: 14, w: 19.3, h: 12.6, for: "copy" },
+        ],
+      },
+      { id: "row", src: `${K}/crops/view-row.webp`, ratio: 4.966, x: 28, y: 62, w: 54, z: 2, depth: 1.1, zoom: true },
+      { id: "copy", src: `${K}/crops/copy-link.webp`, ratio: 2.437, x: 74, y: 34, w: 24, z: 3, depth: 1.5, zoom: true },
+    ],
+  },
+
   "koto-builder": {
     ratio: 1.9,
     alt: "The view builder's Fields step in Koto's redesign, zoomed in on the checklist where eight of an account's seventy fields are ticked.",
@@ -183,6 +223,35 @@ export const scenes: Record<string, SceneData> = {
       },
       { id: "pub", src: `${K}/crops/published.webp`, ratio: 6.345, x: 30, y: 46, w: 68, z: 2, depth: 1.0, zoom: true },
       { id: "hist", src: `${K}/crops/history-row.webp`, ratio: 8, x: 22, y: 70, w: 74, z: 3, depth: 1.5, zoom: true },
+    ],
+  },
+};
+
+export const sequences: Record<string, SequenceData> = {
+  "koto-flow": {
+    ratio: 1.9,
+    alt: "A four-step walkthrough of Koto's redesigned dashboard, using sample data: sharing a view by link, building a view, reading its live data, and publishing a takeaway.",
+    steps: [
+      {
+        scene: "koto-views",
+        title: "Every view is a link",
+        caption: "Design direction for the dashboard: a slim sidebar and a list of views, each with its own Copy link button. One row and its button are shown zoomed in.",
+      },
+      {
+        scene: "koto-builder",
+        title: "Build a view in four steps",
+        caption: "Source, object, fields, review. Here, eight of an account's seventy fields are ticked; the checklist is shown zoomed in.",
+      },
+      {
+        scene: "koto-data",
+        title: "Live data, inside the plan's cap",
+        caption: "A view's Data tab: live records with search, sort and CSV export. The table head and first rows are shown zoomed in.",
+      },
+      {
+        scene: "koto-takeaways",
+        title: "Publish a takeaway",
+        caption: "The Takeaways tab keeps a history of AI-written summaries and lets the owner publish one above the shared data. The published banner and the newest entry are shown zoomed in.",
+      },
     ],
   },
 };
