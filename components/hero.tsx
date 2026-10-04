@@ -111,8 +111,12 @@ export default function Hero() {
         </h1>
         <p className="relative m-0 mb-7 min-h-[68px] max-w-[560px] text-[15px] leading-[1.5] text-(--text-secondary) md:mb-10 md:min-h-[58px] md:text-[19px]">
           Twenty years as a{" "}
-          <span className="border-r-2 border-(--signature) pr-px font-semibold text-(--signature) motion-safe:animate-[blink-cursor_0.9s_step-end_infinite]">
+          {/* Reduce-motion visitors get every role at once instead of a frozen "designer". */}
+          <span className="border-r-2 border-(--signature) pr-px font-semibold text-(--signature) motion-safe:animate-[blink-cursor_0.9s_step-end_infinite] motion-reduce:hidden">
             {typedText}
+          </span>
+          <span className="hidden font-semibold text-(--signature) motion-reduce:inline">
+            designer, engineer, and leader
           </span>{" "}
           — used wherever the problem actually is.
         </p>
