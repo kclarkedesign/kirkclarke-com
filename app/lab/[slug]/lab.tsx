@@ -49,8 +49,11 @@ export default function Lab({ project, images }: { project: Project; images: str
   const isScene = treatment === "scene";
 
   // Whole layer objects, so the snippet can replace a scene in content/scenes.ts as-is.
-  const sceneSnippet = layers.map((l) => `    ${JSON.stringify(l).replace(/"(\w+)":/g, "$1:")},`).join("\n");
+  const sceneSnippet = layers.map((l) => `    ${JSON.stringify(l).replace(/"(\w+)":/g, "$1: ").replace(/,/g, ", ").replace(/\{/g, "{ ").replace(/\}/g, " }")},`).join("\n");
   const mediaSnippet = `// content/projects.ts\nmedia: {\n  treatment: "scene",\n  scene: "${sceneId}",\n  motion: "${motion}",\n},`;
+  const snippet = isScene
+    ? `${mediaSnippet}\n\n// content/scenes.ts → "${sceneId}"\nratio: ${ratio},\nlayers: [\n${sceneSnippet}\n],`
+    : `// content/projects.ts\nmedia: {\n  treatment: "${treatment}",\n  motion: "${motion}",\n  shotRatio: ${shot},\n  // radius ${radius} · pad ${pad} · tint ${tint} · zoom ${zoom} · anchor ${pos}\n},`;
 
   return (
     <div style={vars} className="grid gap-8 lg:grid-cols-[280px_1fr]">
@@ -73,9 +76,6 @@ export default function Lab({ project, images }: { project: Project; images: str
                 <Range label="depth" value={l.depth ?? 0} min={-2} max={2} step={0.1} onChange={(v) => patch(l.id, { depth: v })} />
               </fieldset>
             ))}
-            <pre className="m-0 overflow-auto rounded-lg border border-(--hairline) bg-(--raised) p-3 font-mono text-[11px] leading-relaxed">
-              {`${mediaSnippet}\n\n// content/scenes.ts → "${sceneId}"\nratio: ${ratio},\nlayers: [\n${sceneSnippet}\n],`}
-            </pre>
           </>
         ) : (
           <>
@@ -87,9 +87,6 @@ export default function Lab({ project, images }: { project: Project; images: str
             <Range label="Frame padding" value={pad} min={0} max={40} step={1} onChange={setPad} />
             <Range label="Backdrop tint" value={tint} min={0} max={50} step={1} onChange={setTint} />
             <Range label="Hover zoom" value={zoom} min={1} max={1.15} step={0.01} onChange={setZoom} />
-            <pre className="m-0 overflow-auto rounded-lg border border-(--hairline) bg-(--raised) p-3 font-mono text-[11px] leading-relaxed">
-              {`media: {\n  treatment: "${treatment}",\n  motion: "${motion}",\n  shotRatio: ${shot},\n  // radius ${radius} · pad ${pad} · tint ${tint} · zoom ${zoom} · anchor ${pos}\n},`}
-            </pre>
           </>
         )}
       </aside>
@@ -103,7 +100,32 @@ export default function Lab({ project, images }: { project: Project; images: str
         <div className="max-w-225">
           <ProjectMedia project={project} variant="cover" {...common} />
         </div>
+        <Snippet text={snippet} />
       </div>
+    </div>
+  );
+}
+
+// Lives under the preview, not in the scrolling sidebar, so it is never squeezed to a sliver.
+function Snippet({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+  return (
+    <div className="max-w-225 rounded-lg border border-(--hairline) bg-(--raised)">
+      <div className="flex items-center justify-between border-b border-(--hairline) px-3 py-2 text-sm text-(--text-label)">
+        Snippet
+        <button
+          type="button"
+          onClick={() => {
+            void navigator.clipboard.writeText(text);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 1500);
+          }}
+          className="rounded-md border border-(--hairline) px-2.5 py-1 text-(--text) hover:bg-(--ground)"
+        >
+          {copied ? "Copied" : "Copy"}
+        </button>
+      </div>
+      <pre className="m-0 max-h-[28rem] overflow-auto p-3 font-mono text-xs leading-relaxed">{text}</pre>
     </div>
   );
 }
