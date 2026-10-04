@@ -31,12 +31,17 @@ export default function Nav() {
   return (
     <nav className="sticky top-0 z-10 border-b border-(--hairline) bg-(--ground)/80 px-5 py-3 backdrop-blur-xl md:px-16 md:py-5">
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2 md:gap-3">
+        {/* Name + mark go home. text-(--text) keeps the global mint link colour off the name. */}
+        <Link
+          href="/"
+          aria-label="Kirk Clarke, home"
+          className="flex items-center gap-2 text-(--text) transition-opacity hover:opacity-80 md:gap-3"
+        >
           <Mark className="h-5 w-5 md:h-6 md:w-6" />
           <span className="font-display text-[15px] font-bold tracking-tight md:text-[17px]">
             Kirk Clarke
           </span>
-        </div>
+        </Link>
 
         <div className="hidden items-center gap-8 md:flex">
           {LINKS.map((l) => (
