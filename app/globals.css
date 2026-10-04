@@ -229,7 +229,10 @@
    (the shots are dark UI), so text on it uses --highlight, not --signature. */
 .media {
   position: relative;
+  /* clip, not hidden: `hidden` makes this a scroll container, and a scene's scroll
+     timeline would then track this (never-scrolling) box instead of the page. */
   overflow: hidden;
+  overflow: clip;
   aspect-ratio: var(--media-ar, 16 / 10);
   background: var(--deep-2);
 }
@@ -281,6 +284,131 @@
   width: 46%;
   transform: translateY(-50%);
   opacity: 0.12;
+}
+/* Scenes (components/scene.tsx) — layered screens and zoom-in crops. The stage is
+   cover-fit to .media (a container), so a scene fills a card's image area like
+   object-fit: cover at any aspect ratio; cq* units keep radii and shadows in
+   proportion at every size. */
+.media[data-treatment="scene"] {
+  container-type: size;
+  background:
+    radial-gradient(110% 80% at 85% 0%, color-mix(in srgb, var(--action) 20%, transparent), transparent 65%),
+    linear-gradient(135deg, var(--deep-1), var(--deep-2));
+}
+.media[data-variant="figure"] {
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+}
+.scene {
+  position: absolute;
+  inset: 0;
+}
+.scene-stage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100cqw, calc(100cqh * var(--scene-ratio)));
+  aspect-ratio: var(--scene-ratio);
+  translate: -50% -50%;
+}
+.layer {
+  position: absolute;
+  transition: translate 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.layer-in {
+  position: relative;
+}
+.layer-img {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 1.1cqw;
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.1),
+    0 2.4cqw 5cqw rgb(0 0 0 / 0.5);
+}
+.layer-in[data-zoom] .layer-img {
+  border-radius: 0.9cqw;
+  box-shadow:
+    0 0 0 1.5px var(--action),
+    0 3cqw 6cqw rgb(0 0 0 / 0.6);
+}
+.layer-img[data-dim]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgb(0 0 0 / 0.45);
+}
+.mark {
+  position: absolute;
+  z-index: 1;
+  border-radius: 0.5cqw;
+  pointer-events: none;
+  box-shadow:
+    0 0 0 1.5px var(--action),
+    0 0 1.4cqw color-mix(in srgb, var(--action) 55%, transparent);
+}
+@keyframes scene-in {
+  from { opacity: 0; scale: 0.9; translate: 0 2.5cqw; }
+  to { opacity: 1; scale: 1; translate: 0 0; }
+}
+@keyframes scene-pop {
+  from { opacity: 0; scale: 0.88; translate: 0 calc(var(--depth, 1) * 3cqw); }
+  to { opacity: 1; scale: 1; translate: 0 0; }
+}
+@keyframes scene-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scene-settle {
+  from { scale: 1.05; }
+  to { scale: 1; }
+}
+@keyframes scene-drift {
+  from { translate: 0 calc(var(--depth, 0) * 2.4cqw); }
+  to { translate: 0 calc(var(--depth, 0) * -2.4cqw); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .work-card:hover .scene[data-mode="static"] .layer {
+    translate: 0 calc(var(--depth, 0) * -0.9cqw);
+  }
+  .scene[data-mode="intro"] .layer-in[data-zoom] {
+    animation: scene-in 0.85s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: calc(0.35s + var(--i) * 0.12s);
+  }
+  .scene[data-mode="intro"] .mark {
+    animation: scene-fade 0.6s ease both;
+    animation-delay: calc(0.7s + var(--i) * 0.12s);
+  }
+  /* Scroll-driven parts: layers drift at their own depth while the scene crosses the
+     viewport, and (in "scroll" mode) zoom-ins pop in as it arrives. Browsers without
+     scroll timelines skip all of this and show the finished composition. */
+  @supports (animation-timeline: view()) {
+    .scene {
+      view-timeline: --scene block;
+    }
+    .scene:not([data-mode="static"]) .layer {
+      animation: scene-drift linear both;
+      animation-timeline: --scene;
+      animation-range: cover;
+      transition: none;
+    }
+    .scene[data-mode="scroll"] .layer-in[data-base] {
+      animation: scene-settle linear both;
+      animation-timeline: --scene;
+      animation-range: entry 0% cover 22%;
+    }
+    .scene[data-mode="scroll"] .layer-in[data-zoom] {
+      animation: scene-pop linear both;
+      animation-timeline: --scene;
+      animation-range: entry calc(12% + var(--i) * 4%) cover calc(24% + var(--i) * 4%);
+    }
+    .scene[data-mode="scroll"] .mark {
+      animation: scene-fade linear both;
+      animation-timeline: --scene;
+      animation-range: entry calc(20% + var(--i) * 4%) cover calc(30% + var(--i) * 4%);
+    }
+  }
 }
 @media (prefers-reduced-motion: no-preference) {
   .media-img,

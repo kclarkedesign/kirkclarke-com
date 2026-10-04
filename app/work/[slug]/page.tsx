@@ -1,12 +1,13 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Markdown from "react-markdown";
+import Markdown, { defaultUrlTransform } from "react-markdown";
 import { projects } from "@/content/projects";
 import { getWorkMarkdown } from "@/lib/content";
 import Nav from "@/components/nav";
 import Contact from "@/components/contact";
 import Figure from "@/components/figure";
 import ProjectMedia from "@/components/project-media";
+import SceneFigure from "@/components/scene-figure";
 import VisitLink from "@/components/visit-link";
 
 export function generateStaticParams() {
@@ -39,7 +40,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           <p className="m-0 text-base text-(--text-secondary) md:text-lg">{project.title}</p>
         </header>
 
-        {project.media?.cover && (
+        {(project.media?.cover || project.media?.scene) && (
           <div className="mb-10 max-w-225 md:mb-12">
             <ProjectMedia project={project} variant="cover" />
           </div>
@@ -54,6 +55,8 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
         <div className="case-study-body max-w-225">
           <Markdown
+            // Let our own scene: references through; everything else keeps the default sanitizing.
+            urlTransform={(url) => (url.startsWith("scene:") ? url : defaultUrlTransform(url))}
             components={{
               // A lone image becomes a <figure>, which can't live inside a <p>.
               p: ({ node, children }) => {
@@ -61,7 +64,11 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                 return only?.type === "element" && only.tagName === "img" ? <>{children}</> : <p>{children}</p>;
               },
               img: ({ src, alt, title }) =>
-                typeof src === "string" ? <Figure src={src} alt={alt ?? ""} caption={title} /> : null,
+                typeof src !== "string" ? null : src.startsWith("scene:") ? (
+                  <SceneFigure id={src.slice("scene:".length)} caption={title} />
+                ) : (
+                  <Figure src={src} alt={alt ?? ""} caption={title} />
+                ),
             }}
           >
             {body}

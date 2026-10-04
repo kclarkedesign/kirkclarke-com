@@ -7,8 +7,11 @@
 
 export type ProjectContext = "independent" | "twr" | "archive";
 
-/** frame = shot inset in a tinted frame · bleed = edge-to-edge crop · type = no image, typographic cover */
-export type MediaTreatment = "frame" | "bleed" | "type";
+/**
+ * scene = layered screens + zoom-in crops (content/scenes.ts) · bleed = one shot filling the
+ * image area, cropped · frame = one shot inset in a tinted panel · type = placeholder ground
+ */
+export type MediaTreatment = "scene" | "bleed" | "frame" | "type";
 export type MediaMotion = "none" | "zoom" | "tilt";
 
 export interface ProjectImage {
@@ -22,6 +25,10 @@ export interface ProjectMedia {
   motion?: MediaMotion;
   /** Frame treatment only: crop the shot to this width ÷ height, from the top (default 1.6 = uncropped). */
   shotRatio?: number;
+  /** Key in content/scenes.ts, used by the "scene" treatment (case-study cover). */
+  scene?: string;
+  /** Composition for grid cards, if different from `scene` — cards are a different shape. */
+  cardScene?: string;
   /** Grid-card image; falls back to `cover`. */
   card?: ProjectImage;
   /** Top of the case-study page. */
@@ -70,7 +77,9 @@ export const projects: Project[] = [
     // Stylized renders of the Koto dashboard redesign (a design direction, not the
     // shipped UI) — captions in content/work/koto.md say so.
     media: {
-      treatment: "frame",
+      treatment: "scene",
+      scene: "koto-hero",
+      cardScene: "koto-card",
       motion: "zoom",
       shotRatio: 1.9,
       cover: {

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { MediaMotion, MediaTreatment, Project } from "@/content/projects";
+import type { SceneData } from "@/content/scenes";
 import ProjectMedia from "./project-media";
 
 // One work-grid card. The first visible card is the "feature" (feature-first
@@ -10,6 +11,8 @@ export default function ProjectCard({
   treatment,
   motion,
   imageSrc,
+  shotRatio,
+  scene,
 }: {
   project: Project;
   feature?: boolean;
@@ -17,6 +20,8 @@ export default function ProjectCard({
   treatment?: MediaTreatment;
   motion?: MediaMotion;
   imageSrc?: string;
+  shotRatio?: number;
+  scene?: SceneData;
 }) {
   const inner = (
     <>
@@ -26,6 +31,8 @@ export default function ProjectCard({
         treatment={treatment}
         motion={motion}
         imageSrc={imageSrc}
+        shotRatio={shotRatio}
+        scene={scene}
       />
       <div className={"flex flex-col gap-2.5 p-5 md:gap-3" + (feature ? "" : " flex-1")}>
         <h3

@@ -6,11 +6,11 @@ Salesforce data is locked behind a license. Sharing it with a board member, a pa
 
 Koto connects to a Salesforce org, lets you build a "view" — an object, a set of fields, a filter — and turns it into a link. Anyone with the link sees live, searchable, sortable data. No login, no license, no export.
 
-![The view builder's Fields step: a list of Salesforce account fields with checkboxes, eight of seventy selected, under a four-step progress bar.](/images/work/koto/builder.webp "Design direction for the dashboard: building a view in four steps — source, object, fields, review. Sample data throughout.")
+![The view builder's Fields step: a list of Salesforce account fields with checkboxes, eight of seventy selected, under a four-step progress bar.](scene:koto-builder "Design direction for the dashboard: building a view in four steps — source, object, fields, review. The outlined area is shown zoomed in. Sample data throughout.")
 
 Solo, end to end: product, design, and every line of the stack.
 
-![A view's Data tab: a table of sample accounts with search, a record-cap note, and an Export CSV button.](/images/work/koto/data.webp "A view's Data tab in the same direction: live records with search, sort, and CSV export, inside the plan's record cap.")
+![A view's Data tab: a table of sample accounts with search, a record-cap note, and an Export CSV button.](scene:koto-data "A view’s Data tab in the same direction: live records with search, sort, and CSV export, inside the plan’s record cap. The table is shown zoomed in.")
 
 - **The MCP server enforces its own limits at the source.** A hiring-manager-grade AI assistant asking for "the top 200 records" gets exactly that — the row cap is enforced inside the Salesforce query itself (`ORDER BY` the view's sort, `LIMIT` n+1, `COUNT()` only on overflow), not by pulling a much larger result and slicing it client-side.
 - **A security sweep found what a quick pass misses.** Closed four exposures reachable through the public anonymous key, plus one row-level-security policy leak. The database now shows zero findings.
@@ -24,7 +24,7 @@ Live, in active use, early. Free / Pro / Business tiers. The interesting part is
 
 The screens on this page are a design direction for the next version of the dashboard — a slim sidebar, and per-view Data, Settings and Takeaways tabs — not the interface running today.
 
-![A view's Takeaways tab: a published summary above the shared data, a Brief and Detailed switch, a Regenerate button, and a dated history of earlier summaries.](/images/work/koto/takeaways.webp "The Takeaways tab keeps a history of AI-written summaries and lets the owner publish one above the shared data.")
+![A view's Takeaways tab: a published summary above the shared data, a Brief and Detailed switch, a Regenerate button, and a dated history of earlier summaries.](scene:koto-takeaways "The Takeaways tab keeps a history of AI-written summaries and lets the owner publish one above the shared data. The published banner and the newest history entry are shown zoomed in.")
 
 ## What this taught me
 

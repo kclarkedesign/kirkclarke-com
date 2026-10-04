@@ -3,7 +3,9 @@
 import Image from "next/image";
 import type { PointerEvent } from "react";
 import type { MediaMotion, MediaTreatment, Project } from "@/content/projects";
+import { scenes, type SceneData } from "@/content/scenes";
 import Mark from "./mark";
+import Scene from "./scene";
 
 export type MediaVariant = "card" | "feature" | "cover";
 
@@ -14,7 +16,7 @@ const SIZES: Record<MediaVariant, string> = {
 };
 
 // The look is driven by CSS variables (see .media in globals.css) so the dev-only
-// lab (app/lab) can tune them live; chosen values get baked into projects.ts.
+// lab (app/lab) can tune it live; chosen values get baked into projects.ts.
 export default function ProjectMedia({
   project,
   variant,
@@ -22,6 +24,7 @@ export default function ProjectMedia({
   motion,
   imageSrc,
   shotRatio,
+  scene,
 }: {
   project: Project;
   variant: MediaVariant;
@@ -30,16 +33,21 @@ export default function ProjectMedia({
   motion?: MediaMotion;
   imageSrc?: string;
   shotRatio?: number;
+  scene?: SceneData;
 }) {
   const media = project.media;
   const image = variant === "cover" ? media?.cover : (media?.card ?? media?.cover);
   const src = imageSrc ?? image?.src;
-  const kind = src ? (treatment ?? media?.treatment ?? "type") : "type";
+  const sceneKey = variant === "cover" ? media?.scene : (media?.cardScene ?? media?.scene);
+  const sceneData = scene ?? (sceneKey ? scenes[sceneKey] : undefined);
+  const wanted = treatment ?? media?.treatment ?? "type";
+  // Fall back gracefully when the chosen treatment has nothing to show.
+  const kind: MediaTreatment = wanted === "scene" && sceneData ? "scene" : src && wanted !== "type" ? (wanted === "scene" ? "bleed" : wanted) : "type";
   const mode = motion ?? media?.motion ?? "none";
   const shot = shotRatio ?? media?.shotRatio;
 
   // Pointer tilt: two CSS variables, no re-render (the transform lives in CSS).
-  const tilt = mode === "tilt";
+  const tilt = mode === "tilt" && kind !== "scene";
   const onMove = (e: PointerEvent<HTMLDivElement>) => {
     const r = e.currentTarget.getBoundingClientRect();
     e.currentTarget.style.setProperty("--tx", String(((e.clientX - r.left) / r.width - 0.5) * 2));
@@ -60,7 +68,10 @@ export default function ProjectMedia({
       onPointerMove={tilt ? onMove : undefined}
       onPointerLeave={tilt ? onLeave : undefined}
     >
-      {kind === "type" ? (
+      {kind === "scene" && sceneData ? (
+        // The case-study cover plays its intro; grid cards stay still apart from a hover drift.
+        <Scene scene={sceneData} mode={variant === "cover" ? "intro" : "static"} />
+      ) : kind === "type" ? (
         // No image yet: a quiet placeholder ground; the card body carries the title.
         <div className="media-type" aria-hidden="true">
           <Mark className="media-mark" />
