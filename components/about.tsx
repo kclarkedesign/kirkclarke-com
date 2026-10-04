@@ -1,11 +1,10 @@
 import { dayToDay } from "@/content/day-to-day";
 import { testimonials } from "@/content/testimonials";
+import Section from "./section";
 
 export default function About() {
   return (
-    <section id="about" className="border-t border-(--hairline) px-5 py-16 md:px-16 md:py-24">
-      <h2 className="m-0 mb-8 font-display text-2xl font-semibold md:mb-10 md:text-3xl">About</h2>
-
+    <Section id="about" title="About">
       <div className="mb-8 grid grid-cols-1 gap-6 md:mb-10 md:grid-cols-3 md:gap-10">
         <AboutBeat title="Where it started">
           2007. Freelance web and design work for whoever would hire him — brand
@@ -77,7 +76,7 @@ export default function About() {
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
 

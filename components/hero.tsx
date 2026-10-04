@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Mark from "./mark";
 import { useSiteDialogs } from "./site-dialogs-context";
 
 const WORDS = ["designer", "engineer", "leader", "problem eliminator"];
@@ -82,7 +83,7 @@ export default function Hero() {
           setGlow({ x: e.clientX - rect.left, y: e.clientY - rect.top, active: true });
         }}
         onPointerLeave={() => setGlow((g) => ({ ...g, active: false }))}
-        className="relative flex flex-col items-center overflow-hidden px-5 py-14 text-center md:px-16 md:py-24"
+        className="relative flex flex-col items-start overflow-hidden px-5 py-14 text-left md:px-16 md:py-24"
       >
         <div
           aria-hidden
@@ -106,10 +107,14 @@ export default function Hero() {
           }}
         />
 
-        <h1 className="relative m-0 mb-4 max-w-[900px] font-display text-[34px] font-bold leading-[1.12] tracking-tight md:mb-6 md:text-[64px] md:leading-[1.08]">
+        {/* The circle-K mark, large and faint, fills the right side until the hero
+            image is decided — a watermark instead of an empty or placeholder box. */}
+        <Mark className="pointer-events-none absolute top-1/2 -right-15 hidden h-140 w-140 -translate-y-1/2 opacity-[0.07] md:block" />
+
+        <h1 className="relative m-0 mb-4 max-w-195 font-display text-[34px] font-bold leading-[1.12] tracking-tight md:mb-6 md:text-[clamp(52px,6vw,79px)] md:leading-[1.03]">
           I find the real problem. Then I remove it.
         </h1>
-        <p className="relative m-0 mb-7 min-h-[68px] max-w-[560px] text-[15px] leading-[1.5] text-(--text-secondary) md:mb-10 md:min-h-[58px] md:text-[19px]">
+        <p className="relative m-0 mb-7 min-h-[68px] max-w-[560px] text-[15px] leading-[1.5] text-(--text-secondary) md:mb-10 md:min-h-[117px] md:max-w-[620px] md:text-[26px]">
           Twenty years as a{" "}
           {/* Reduce-motion visitors get every role at once instead of a frozen "designer". */}
           <span className="border-r-2 border-(--signature) pr-px font-semibold text-(--signature) motion-safe:animate-[blink-cursor_0.9s_step-end_infinite] motion-reduce:hidden">

@@ -4,6 +4,7 @@ import { flushSync } from "react-dom";
 import { useEffect, useState } from "react";
 import type { Project } from "@/content/projects";
 import ProjectCard from "./project-card";
+import Section from "./section";
 
 // The same curated pill set the approved prototype showed — a hand-picked
 // subset of the tags that actually appear across content/projects.ts, not
@@ -78,9 +79,7 @@ export default function WorkGrid({
   );
 
   return (
-    <section id="work" className="px-5 py-16 md:px-16 md:py-24">
-      <h2 className="m-0 mb-6 font-display text-2xl font-semibold md:mb-8 md:text-3xl">Selected work</h2>
-
+    <Section id="work" title="Selected work" bordered={false}>
       <div className="mb-3 flex flex-wrap gap-2 md:mb-4">
         {FILTER_TAGS.map((tag) => {
           const active = activeTags.includes(tag.id);
@@ -106,11 +105,13 @@ export default function WorkGrid({
         Showing {visibleProjects.length} of {projects.length}
       </p>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 md:gap-5">
+      {/* Columns follow the room left beside the section heading, not the viewport:
+          2 up to xl, 3 at xl, 4 from 1400px (87.5rem, so it sorts after xl). */}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 min-[87.5rem]:grid-cols-4 md:gap-5">
         {visibleProjects.map((project, i) => (
           <ProjectCard key={project.slug} project={project} feature={i === 0} />
         ))}
       </div>
-    </section>
+    </Section>
   );
 }

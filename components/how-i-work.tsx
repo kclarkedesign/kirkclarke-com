@@ -1,9 +1,9 @@
 import { principles } from "@/content/how-i-work";
+import Section from "./section";
 
 export default function HowIWork() {
   return (
-    <section id="how-i-work" className="border-t border-(--hairline) px-5 py-16 md:px-16 md:py-24">
-      <h2 className="m-0 mb-8 font-display text-2xl font-semibold md:mb-10 md:text-3xl">How I work</h2>
+    <Section id="how-i-work" title="How I work">
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-10">
         {principles.map((p) => (
           <div key={p.title} className="flex flex-col gap-2 md:gap-2.5">
@@ -12,6 +12,6 @@ export default function HowIWork() {
           </div>
         ))}
       </div>
-    </section>
+    </Section>
   );
 }

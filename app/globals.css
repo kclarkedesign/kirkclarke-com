@@ -233,8 +233,8 @@
   aspect-ratio: var(--media-ar, 16 / 10);
   background: var(--deep-2);
 }
-@media (min-width: 48rem) {
-  /* The feature card spans two grid rows; its media absorbs the extra height. */
+@media (min-width: 80rem) {
+  /* From xl the feature card spans two grid rows; its media absorbs the extra height. */
   .media[data-variant="feature"] {
     --media-ar: 4 / 3;
     flex: 1 0 auto;

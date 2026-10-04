@@ -30,7 +30,8 @@ export default function ProjectCard({
       <div className={"flex flex-col gap-2.5 p-5 md:gap-3" + (feature ? "" : " flex-1")}>
         <h3
           className={
-            "m-0 font-display font-semibold " + (feature ? "text-[17px] md:text-[26px]" : "text-[15px] md:text-[17px]")
+            "m-0 font-display font-semibold " +
+            (feature ? "text-[17px] md:text-[22px] xl:text-[26px]" : "text-[15px] md:text-[17px]")
           }
         >
           {project.title}
@@ -42,7 +43,7 @@ export default function ProjectCard({
   );
   const classes =
     "work-card flex flex-col overflow-hidden rounded-xl border border-(--hairline) bg-(--raised) text-(--text)" +
-    (feature ? " sm:col-span-2 md:row-span-2" : "");
+    (feature ? " sm:col-span-2 xl:row-span-2" : "");
   const style = { viewTransitionName: `project-${project.slug}` } as React.CSSProperties;
 
   if (project.hasCaseStudy) {
