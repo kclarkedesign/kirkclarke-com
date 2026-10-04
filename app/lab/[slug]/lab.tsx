@@ -48,7 +48,9 @@ export default function Lab({ project, images }: { project: Project; images: str
   const common = { treatment, motion, imageSrc: img, shotRatio: shot, scene: sceneData };
   const isScene = treatment === "scene";
 
-  const sceneSnippet = layers.map((l) => `{ id: "${l.id}", x: ${l.x}, y: ${l.y}, w: ${l.w}, depth: ${l.depth ?? 0} }`).join(",\n");
+  // Whole layer objects, so the snippet can replace a scene in content/scenes.ts as-is.
+  const sceneSnippet = layers.map((l) => `    ${JSON.stringify(l).replace(/"(\w+)":/g, "$1:")},`).join("\n");
+  const mediaSnippet = `// content/projects.ts\nmedia: {\n  treatment: "scene",\n  scene: "${sceneId}",\n  motion: "${motion}",\n},`;
 
   return (
     <div style={vars} className="grid gap-8 lg:grid-cols-[280px_1fr]">
@@ -72,7 +74,7 @@ export default function Lab({ project, images }: { project: Project; images: str
               </fieldset>
             ))}
             <pre className="m-0 overflow-auto rounded-lg border border-(--hairline) bg-(--raised) p-3 font-mono text-[11px] leading-relaxed">
-              {`ratio: ${ratio},\n${sceneSnippet}`}
+              {`${mediaSnippet}\n\n// content/scenes.ts → "${sceneId}"\nratio: ${ratio},\nlayers: [\n${sceneSnippet}\n],`}
             </pre>
           </>
         ) : (
