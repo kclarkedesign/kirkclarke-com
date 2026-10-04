@@ -5,6 +5,9 @@ import { projects } from "@/content/projects";
 import { getWorkMarkdown } from "@/lib/content";
 import Nav from "@/components/nav";
 import Contact from "@/components/contact";
+import Figure from "@/components/figure";
+import ProjectMedia from "@/components/project-media";
+import VisitLink from "@/components/visit-link";
 
 export function generateStaticParams() {
   return projects.filter((p) => p.hasCaseStudy).map((p) => ({ slug: p.slug }));
@@ -36,24 +39,46 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           <p className="m-0 text-base text-(--text-secondary) md:text-lg">{project.title}</p>
         </header>
 
-        <div className="mb-10 flex flex-col gap-6 border-b border-(--hairline) pb-10 sm:flex-row sm:gap-12 md:mb-16 md:pb-12">
+        {project.media?.cover && (
+          <div className="mb-10 max-w-225 md:mb-12">
+            <ProjectMedia project={project} variant="cover" />
+          </div>
+        )}
+
+        <div className="mb-10 flex flex-col gap-6 border-b border-(--hairline) pb-10 sm:flex-row sm:items-end sm:gap-12 md:mb-16 md:pb-12">
           <Meta label="Role" value={project.role ?? "—"} />
           <Meta label="Timeline" value={project.year} />
           {project.stack && <Meta label="Stack" value={project.stack.join(", ")} />}
+          <VisitLink project={project} className="sm:ml-auto" />
         </div>
 
         <div className="case-study-body max-w-225">
-          <Markdown>{body}</Markdown>
+          <Markdown
+            components={{
+              // A lone image becomes a <figure>, which can't live inside a <p>.
+              p: ({ node, children }) => {
+                const only = node?.children.length === 1 ? node.children[0] : undefined;
+                return only?.type === "element" && only.tagName === "img" ? <>{children}</> : <p>{children}</p>;
+              },
+              img: ({ src, alt, title }) =>
+                typeof src === "string" ? <Figure src={src} alt={alt ?? ""} caption={title} /> : null,
+            }}
+          >
+            {body}
+          </Markdown>
         </div>
 
-        {next && (
-          <Link
-            href={`/work/${next.slug}`}
-            className="mt-8 inline-block text-sm font-medium text-(--text-secondary) hover:text-(--text)"
-          >
-            Next: {next.title} →
-          </Link>
-        )}
+        <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
+          <VisitLink project={project} />
+          {next && (
+            <Link
+              href={`/work/${next.slug}`}
+              className="inline-block text-sm font-medium text-(--text-secondary) hover:text-(--text)"
+            >
+              Next: {next.title} →
+            </Link>
+          )}
+        </div>
       </article>
 
       <Contact />

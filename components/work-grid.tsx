@@ -2,8 +2,8 @@
 
 import { flushSync } from "react-dom";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import type { Project } from "@/content/projects";
+import ProjectCard from "./project-card";
 
 // The same curated pill set the approved prototype showed — a hand-picked
 // subset of the tags that actually appear across content/projects.ts, not
@@ -107,41 +107,9 @@ export default function WorkGrid({
       </p>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 md:gap-5">
-        {visibleProjects.map((project) => {
-          const inner = (
-            <>
-              <h3 className="m-0 font-display text-[15px] font-semibold md:text-[17px]">{project.title}</h3>
-              <p className="m-0 flex-grow text-[13px] leading-relaxed text-(--text-secondary) md:text-sm">
-                {project.tagline}
-              </p>
-              <span className="font-mono text-[10px] text-(--text-label) md:text-[11px]">{project.year}</span>
-            </>
-          );
-          const cardClasses =
-            "work-card flex flex-col gap-2.5 rounded-xl border border-(--hairline) bg-(--raised) p-[18px] text-(--text) md:gap-3 md:p-6";
-          const style = { viewTransitionName: `project-${project.slug}` } as React.CSSProperties;
-
-          return project.hasCaseStudy ? (
-            <Link key={project.slug} href={`/work/${project.slug}`} style={style} className={cardClasses}>
-              {inner}
-            </Link>
-          ) : project.href ? (
-            <a
-              key={project.slug}
-              href={project.href}
-              target="_blank"
-              rel="noopener"
-              style={style}
-              className={cardClasses}
-            >
-              {inner}
-            </a>
-          ) : (
-            <div key={project.slug} style={style} className={cardClasses}>
-              {inner}
-            </div>
-          );
-        })}
+        {visibleProjects.map((project, i) => (
+          <ProjectCard key={project.slug} project={project} feature={i === 0} />
+        ))}
       </div>
     </section>
   );

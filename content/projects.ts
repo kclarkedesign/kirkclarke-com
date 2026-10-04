@@ -7,6 +7,27 @@
 
 export type ProjectContext = "independent" | "twr" | "archive";
 
+/** frame = shot inset in a tinted frame · bleed = edge-to-edge crop · type = no image, typographic cover */
+export type MediaTreatment = "frame" | "bleed" | "type";
+export type MediaMotion = "none" | "zoom" | "tilt";
+
+export interface ProjectImage {
+  /** Path under /public. All figures are 16:10 so no dimensions are stored. */
+  src: string;
+  alt: string;
+}
+
+export interface ProjectMedia {
+  treatment: MediaTreatment;
+  motion?: MediaMotion;
+  /** Frame treatment only: crop the shot to this width ÷ height, from the top (default 1.6 = uncropped). */
+  shotRatio?: number;
+  /** Grid-card image; falls back to `cover`. */
+  card?: ProjectImage;
+  /** Top of the case-study page. */
+  cover?: ProjectImage;
+}
+
 export interface Project {
   slug: string;
   title: string;
@@ -15,11 +36,14 @@ export interface Project {
   year: string;
   tags: string[];
   outcomes: string[];
-  thumbnail: string;
+  /** No `media` = typographic cover on the card, nothing on the case study. */
+  media?: ProjectMedia;
   /** External URL for archive cards that skip a case-study page. */
   href?: string;
-  /** Live product URL, when there is one. */
+  /** Live product URL, when there is one. Only set it when it really answers. */
   live?: string;
+  /** Button text for `live` ("Visit Koto"); defaults to "Visit <title>". */
+  liveLabel?: string;
   role?: string;
   stack?: string[];
   /** Case-study body exists at content/work/<slug>.md. False for archive-only cards. */
@@ -43,8 +67,19 @@ export const projects: Project[] = [
       "Stripe billing uses compare-and-swap to make concurrent webhooks safe",
       "Button contrast measured and fixed: 2.19:1 → 9.03:1",
     ],
-    thumbnail: "/images/work/koto.png",
+    // Stylized renders of the Koto dashboard redesign (a design direction, not the
+    // shipped UI) — captions in content/work/koto.md say so.
+    media: {
+      treatment: "frame",
+      motion: "zoom",
+      shotRatio: 1.9,
+      cover: {
+        src: "/images/work/koto/cover.webp",
+        alt: "Koto's redesigned Views screen: a slim sidebar and three shareable views, each with a Copy link button.",
+      },
+    },
     live: "https://usekoto.com",
+    liveLabel: "Visit Koto",
     role: "Solo founder — design, engineering, product",
     stack: ["Next.js", "TypeScript", "Supabase", "Stripe", "Claude", "MCP"],
     hasCaseStudy: true,
@@ -61,8 +96,7 @@ export const projects: Project[] = [
       "Prompt injection resisted structurally: retrieved content never enters the system prompt",
       "Root-caused a login failure to a mail client's link prescanner burning single-use tokens",
     ],
-    thumbnail: "/images/work/kibi.png",
-    live: "https://usekibi.com",
+    // `live` (https://usekibi.com) stays unset until the domain is connected and answering.
     role: "Solo founder — design, engineering, product",
     stack: ["Next.js", "TypeScript", "Supabase", "pgvector", "Claude"],
     hasCaseStudy: true,
@@ -78,8 +112,8 @@ export const projects: Project[] = [
       "Designed in Figma with Claude Design in the loop, built in Wix",
       "One site carrying a concert, an album release, and booking inquiries without feeling bolted together",
     ],
-    thumbnail: "/images/work/daniella-rabbani.png",
     live: "https://www.daniellarabbani.com",
+    liveLabel: "Visit the site",
     role: "Design and build, start to finish",
     stack: ["Figma", "Claude Design", "Wix"],
     hasCaseStudy: true,
@@ -94,8 +128,8 @@ export const projects: Project[] = [
     outcomes: [
       "55 sayings, each carrying a patois original, a plain-English meaning, and a full weekly journaling page",
     ],
-    thumbnail: "/images/work/words-of-wisdom.png",
     live: "https://www.amazon.com/dp/B0HBJ125P3",
+    liveLabel: "View on Amazon",
     role: "Design and editing",
     hasCaseStudy: true,
   },
@@ -111,7 +145,6 @@ export const projects: Project[] = [
       "Distributed shadcn-style — consumers get source, not a compiled package",
       "In progress: tokens defined ahead of full component adoption",
     ],
-    thumbnail: "/images/work/intuition-ui.png",
     role: "Design system author",
     hasCaseStudy: true,
   },
@@ -132,7 +165,6 @@ export const projects: Project[] = [
       "Humans approve every AI-drafted assignment before it's published — nothing auto-applies",
       "Timezone module correctly handles daylight-saving shifts and sessions that cross midnight",
     ],
-    thumbnail: "/images/work/host-scheduler.png",
     role: "Spec author, designer, and primary engineer",
     stack: ["TypeScript", "Next.js", "Supabase", "Salesforce", "Claude"],
     hasCaseStudy: true,
@@ -150,7 +182,6 @@ export const projects: Project[] = [
       "Handles multi-currency orders with foreign-exchange tracking",
       "Closed a data-integrity gap in how revenue was being reported",
     ],
-    thumbnail: "/images/work/checkout-to-qbo.png",
     role: "Architected and owns the integration; built with a collaborator",
     stack: ["Node.js", "Salesforce", "QuickBooks Online API", "Supabase"],
     hasCaseStudy: true,
@@ -167,7 +198,6 @@ export const projects: Project[] = [
       "An empirical protocol test found that OAuth resource parameters (RFC 8707) were being ignored — the finding that shaped the whole platform's security design",
       "Ran a company-wide AI enablement program: tooling, training, and hands-on onboarding",
     ],
-    thumbnail: "/images/work/ai-systems-mcp.png",
     role: "Architecture, security design, and review lead",
     stack: ["Python", "TypeScript", "MCP", "Claude", "Salesforce"],
     hasCaseStudy: true,
@@ -187,7 +217,6 @@ export const projects: Project[] = [
       "Root-caused a video-playback failure to an HLS/CORS bug and fixed it",
       "Ran an accessibility pass across every custom block: ARIA, focus order, alt-text tooling",
     ],
-    thumbnail: "/images/work/twr-platform.png",
     role: "Primary front-end developer and platform owner",
     stack: ["WordPress", "PHP", "ACF", "Sass", "JavaScript"],
     hasCaseStudy: true,
@@ -204,7 +233,10 @@ export const projects: Project[] = [
     year: "2013–2021",
     tags: ["design", "engineering"],
     outcomes: [],
-    thumbnail: "/images/thumb-product-finder.jpg",
+    media: {
+      treatment: "bleed",
+      card: { src: "/images/thumb-product-finder.jpg", alt: "The 92nd Street Y class finder: a keyword filter and type checkboxes beside a list of classes." },
+    },
     href: "https://www.92y.org/classes",
     hasCaseStudy: false,
   },
@@ -216,7 +248,10 @@ export const projects: Project[] = [
     year: "2020",
     tags: ["design", "wordpress"],
     outcomes: [],
-    thumbnail: "/images/thumb-joanieleeds.jpg",
+    media: {
+      treatment: "bleed",
+      card: { src: "/images/thumb-joanieleeds.jpg", alt: "The About page on JoanieLeeds.com: a bio beside a portrait of the musician holding a Grammy." },
+    },
     href: "https://joanieleeds.com/",
     hasCaseStudy: false,
   },
@@ -228,7 +263,10 @@ export const projects: Project[] = [
     year: "2020",
     tags: ["engineering", "wordpress"],
     outcomes: [],
-    thumbnail: "/images/thumb-cpp-wp-plugin.jpg",
+    media: {
+      treatment: "bleed",
+      card: { src: "/images/thumb-cpp-wp-plugin.jpg", alt: "The plugin's icon: a white gear inside a green circle." },
+    },
     href: "https://wordpress.org/plugins/customize-private-protected/",
     hasCaseStudy: false,
   },

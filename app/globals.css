@@ -199,6 +199,7 @@
 .work-card::after {
   content: "";
   position: absolute;
+  z-index: 1; /* above the card image */
   width: 14px;
   height: 14px;
   opacity: 0;
@@ -220,6 +221,78 @@
 .work-card:hover::before,
 .work-card:hover::after {
   opacity: 1;
+}
+
+/* Project media — grid-card and case-study cover images. The look is driven by
+   CSS variables so the dev-only lab (app/lab) can tune it live; chosen values
+   get baked into content/projects.ts. Ground is the deep green in both themes
+   (the shots are dark UI), so text on it uses --highlight, not --signature. */
+.media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: var(--media-ar, 16 / 10);
+  background: var(--deep-2);
+}
+@media (min-width: 48rem) {
+  /* The feature card spans two grid rows; its media absorbs the extra height. */
+  .media[data-variant="feature"] {
+    --media-ar: 4 / 3;
+    flex: 1 0 auto;
+  }
+}
+.media[data-variant="cover"] {
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+}
+.media-inner {
+  position: absolute;
+  inset: 0;
+}
+.media-img {
+  object-fit: cover;
+  object-position: var(--media-pos, top left);
+}
+.media[data-treatment="frame"] {
+  background:
+    radial-gradient(120% 90% at 15% 0%, color-mix(in srgb, var(--action) calc(var(--media-tint, 22) * 1%), transparent), transparent 70%),
+    var(--deep-2);
+}
+.media[data-treatment="frame"] .media-inner {
+  /* Shots are 16:10; centre one in the panel instead of cropping it, so a tall
+     feature card just shows more backdrop above and below. */
+  inset: auto var(--media-pad, 16px);
+  top: 50%;
+  translate: 0 -50%;
+  aspect-ratio: var(--media-shot-ar, 1.6);
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  border-radius: var(--media-radius, 8px);
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.35);
+}
+.media-type {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--deep-1), var(--deep-2));
+}
+.media-mark {
+  position: absolute;
+  top: 50%;
+  right: -8%;
+  width: 46%;
+  transform: translateY(-50%);
+  opacity: 0.12;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .media-img,
+  .media-inner {
+    transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .work-card:hover .media[data-motion="zoom"] .media-img {
+    transform: scale(var(--media-zoom, 1.04));
+  }
+  .media[data-motion="tilt"] .media-inner {
+    transform: perspective(900px) rotateX(calc(var(--ty, 0) * -3deg)) rotateY(calc(var(--tx, 0) * 3deg));
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
