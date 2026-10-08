@@ -616,6 +616,150 @@
   }
 }
 
+/* Case-study layout (components/case-study.tsx): one grid whose named areas the hero
+   variants rearrange. Stacked by default (phones, and pages with no cover), which is how
+   the page has always read; from 64rem, data-hero picks the wide layout. */
+.cs {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "title" "cover" "facts" "body" "end";
+}
+.cs-title {
+  grid-area: title;
+  max-width: 56.25rem;
+  margin-bottom: 2.5rem;
+}
+.cs-name {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+.cs-cover {
+  grid-area: cover;
+  max-width: 56.25rem;
+  margin-bottom: 2.5rem;
+}
+.cs-facts {
+  grid-area: facts;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--hairline);
+}
+.cs-body {
+  grid-area: body;
+  max-width: 56.25rem;
+}
+.cs-end {
+  grid-area: end;
+}
+@media (min-width: 40rem) {
+  .cs-facts {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 3rem;
+  }
+  .cs-visit {
+    margin-left: auto;
+  }
+}
+@media (min-width: 48rem) {
+  .cs-title,
+  .cs-cover {
+    margin-bottom: 3rem;
+  }
+  .cs-name {
+    font-size: 1.125rem;
+  }
+  .cs-facts {
+    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+  }
+}
+@media (min-width: 64rem) {
+  /* Split masthead: title and facts on the left, the cover running off the right edge
+     (the article pads 4rem, so the cover reaches the viewport). */
+  .cs[data-hero="split"][data-cover] {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    grid-template-rows: auto 1fr auto auto;
+    grid-template-areas: "title cover" "facts cover" "body body" "end end";
+    column-gap: 3rem;
+  }
+  .cs[data-hero="split"][data-cover] .cs-title {
+    align-self: start;
+    margin-bottom: 2rem;
+  }
+  .cs[data-hero="split"][data-cover] .cs-title h1 {
+    margin-bottom: 0;
+    font-size: clamp(2rem, 3.2vw, 3rem);
+  }
+  .cs[data-hero="split"][data-cover] .cs-facts {
+    align-self: start;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+  .cs[data-hero="split"][data-cover] .cs-visit {
+    margin: 0.75rem 0 0;
+  }
+  .cs[data-hero="split"][data-cover] .cs-cover {
+    max-width: none;
+    margin: 0 -4rem 4rem 0;
+  }
+  .cs[data-hero="split"][data-cover] .media[data-variant="cover"] {
+    border-right: 0;
+    border-radius: 16px 0 0 16px;
+  }
+
+  /* Stage: the cover at close to the full article width, facts in a thin row under it. */
+  .cs[data-hero="stage"][data-cover] .cs-cover {
+    max-width: 72rem;
+  }
+
+  /* Split and stage put the project name above the headline. */
+  .cs[data-hero="split"][data-cover] .cs-title,
+  .cs[data-hero="stage"][data-cover] .cs-title {
+    display: flex;
+    flex-direction: column;
+  }
+  .cs[data-hero="split"][data-cover] .cs-name,
+  .cs[data-hero="stage"][data-cover] .cs-name {
+    order: -1;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Rail: today's column, plus a facts rail that stays on screen through the body. A
+     pinned sequence stays inside the column here so it never runs under the rail. */
+  .cs[data-hero="rail"] {
+    grid-template-columns: minmax(0, 56.25rem) 15rem;
+    grid-template-areas: "title facts" "cover facts" "body facts" "end end";
+    column-gap: 3rem;
+    justify-content: start;
+  }
+  .cs[data-hero="rail"] .cs-facts {
+    position: sticky;
+    top: 7rem;
+    align-self: start;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+  }
+  .cs[data-hero="rail"] .cs-visit {
+    margin: 0.5rem 0 0;
+  }
+  .cs[data-hero="rail"] .seq {
+    width: 100%;
+  }
+}
+
 /* Mobile side drawer (components/nav-drawer.tsx). Picks from the Taste-Nav-Drawer
    board: 84% wide deep-green panel, 360ms ease-in-out, 55ms stagger, scrim 0.55
    with no blur, three bars morphing into an X. The dialog is a transparent

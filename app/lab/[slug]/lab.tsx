@@ -6,13 +6,15 @@ import { scenes, sequences, type SceneLayer, type SequenceStep } from "@/content
 import ProjectCard from "@/components/project-card";
 import ProjectMedia from "@/components/project-media";
 import SceneSequence from "@/components/scene-sequence";
+import type { HeroVariant } from "@/components/case-study";
 
 const TREATMENTS: MediaTreatment[] = ["scene", "bleed", "frame", "type"];
 const MOTIONS: MediaMotion[] = ["none", "zoom", "tilt"];
 const POSITIONS = ["top left", "top center", "center", "bottom left"];
 const SCENE_IDS = Object.keys(scenes);
 const SEQUENCE_IDS = Object.keys(sequences);
-const VIEWS = ["media (cards and cover)", "pinned sequence"];
+const VIEWS = ["media (cards and cover)", "pinned sequence", "case-study hero"];
+const HERO_LAYOUTS: HeroVariant[] = ["split", "stage", "rail"];
 // The greens every card uses until a project picks its own colors (see .media in globals.css).
 const DEFAULT_COLORS = { from: "#1e5a38", to: "#0f3521", glow: "#4bc57d" };
 // Scroll per step as the page ships it (--len in app/globals.css, in svh).
@@ -58,6 +60,7 @@ export default function Lab({ project, images }: { project: Project; images: str
   const [len, setLen] = useState(DEFAULT_LEN);
   const seqData = { ...sequences[seqId]!, steps };
   const isSequence = view === VIEWS[1];
+  const isHero = view === VIEWS[2];
 
   function pickSequence(id: string) {
     setSeqId(id);
@@ -106,7 +109,24 @@ export default function Lab({ project, images }: { project: Project; images: str
       <aside className="flex max-h-[calc(100vh-7rem)] flex-col gap-4 overflow-y-auto pr-1 text-sm lg:sticky lg:top-24 lg:self-start">
         <Select label="View" value={view} options={VIEWS} onChange={setView} />
 
-        {isSequence ? (
+        {isHero ? (
+          <div className="flex flex-col gap-3 text-(--text-secondary)">
+            <p className="m-0">
+              The wide-screen hero of {project.hasCaseStudy ? project.title : "this project"}&apos;s case study, at full width. Phones and pages with no
+              cover stay stacked in every layout.
+            </p>
+            {project.hasCaseStudy &&
+              HERO_LAYOUTS.map((v) => (
+                <a
+                  key={v}
+                  href={`/lab/${project.slug}/hero/${v}`}
+                  className="rounded-lg border border-(--hairline) bg-(--raised) px-3 py-2 text-(--text) hover:border-(--signature)"
+                >
+                  {v}
+                </a>
+              ))}
+          </div>
+        ) : isSequence ? (
           <>
             <Select label="Sequence" value={seqId} options={SEQUENCE_IDS} onChange={pickSequence} />
             <Range label="Scroll per step (svh)" value={len} min={30} max={160} step={5} onChange={setLen} />
@@ -187,7 +207,12 @@ export default function Lab({ project, images }: { project: Project; images: str
         )}
       </aside>
 
-      {isSequence ? (
+      {isHero ? (
+        <p className="m-0 max-w-prose text-(--text-secondary)">
+          Pick a layout on the left. Each opens the real case study at full width; the one baked into the page is the HERO constant in
+          app/work/[slug]/page.tsx.
+        </p>
+      ) : isSequence ? (
         // The snippet comes first: the pinned preview below it is several screens tall. The
         // @container wrapper is what .seq measures its breakout width against (the case-study
         // page does the same on its <article>).

@@ -1,16 +1,12 @@
 import { notFound } from "next/navigation";
-import Markdown, { defaultUrlTransform } from "react-markdown";
 import { projects } from "@/content/projects";
 import { getWorkMarkdown } from "@/lib/content";
 import Nav from "@/components/nav";
 import Contact from "@/components/contact";
-import Figure from "@/components/figure";
-import ProjectMedia from "@/components/project-media";
-import SceneFigure from "@/components/scene-figure";
-import SceneSequence from "@/components/scene-sequence";
-import { sequences } from "@/content/scenes";
-import VisitLink from "@/components/visit-link";
-import WorkNav from "@/components/work-nav";
+import CaseStudy, { type HeroVariant } from "@/components/case-study";
+
+// The wide-screen hero layout. Kirk's pick (2026-10-08); the lab previews the others.
+const HERO: HeroVariant = "split";
 
 export function generateStaticParams() {
   return projects.filter((p) => p.hasCaseStudy).map((p) => ({ slug: p.slug }));
@@ -21,8 +17,6 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   const project = projects.find((p) => p.slug === slug && p.hasCaseStudy);
   if (!project) notFound();
 
-  const body = getWorkMarkdown(slug);
-
   // Previous / Next / More work stay within the same context group (plan's hard
   // separation rule, §Context) — TWR work never links to independent work or back.
   const group = projects.filter((p) => p.context === project.context && p.hasCaseStudy);
@@ -32,71 +26,9 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
       <Nav />
 
       <main>
-      <article className="@container px-5 py-14 md:px-16 md:py-20">
-        <header className="mb-10 max-w-225 md:mb-12">
-          <h1 className="m-0 mb-4 font-display text-3xl font-bold leading-tight md:mb-5 md:text-5xl">
-            {project.tagline}
-          </h1>
-          <p className="m-0 text-base text-(--text-secondary) md:text-lg">{project.title}</p>
-        </header>
-
-        {(project.media?.cover || project.media?.scene) && (
-          <div className="mb-10 max-w-225 md:mb-12">
-            <ProjectMedia project={project} variant="cover" />
-          </div>
-        )}
-
-        <div className="mb-10 flex flex-col gap-6 border-b border-(--hairline) pb-10 sm:flex-row sm:items-end sm:gap-12 md:mb-16 md:pb-12">
-          <Meta label="Role" value={project.role ?? "—"} />
-          <Meta label="Timeline" value={project.year} />
-          {project.stack && <Meta label="Stack" value={project.stack.join(", ")} />}
-          <VisitLink project={project} className="sm:ml-auto" />
-        </div>
-
-        <div className="case-study-body max-w-225">
-          <Markdown
-            // Let our own scene: references through; everything else keeps the default sanitizing.
-            urlTransform={(url) => (url.startsWith("scene:") ? url : defaultUrlTransform(url))}
-            components={{
-              // A lone image becomes a <figure>, which can't live inside a <p>.
-              p: ({ node, children }) => {
-                const only = node?.children.length === 1 ? node.children[0] : undefined;
-                return only?.type === "element" && only.tagName === "img" ? <>{children}</> : <p>{children}</p>;
-              },
-              img: ({ src, alt, title }) =>
-                typeof src !== "string" ? null : src.startsWith("scene:") ? (
-                  sequences[src.slice("scene:".length)] ? (
-                    <SceneSequence id={src.slice("scene:".length)} />
-                  ) : (
-                    <SceneFigure id={src.slice("scene:".length)} caption={title} />
-                  )
-                ) : (
-                  <Figure src={src} alt={alt ?? ""} caption={title} />
-                ),
-            }}
-          >
-            {body}
-          </Markdown>
-        </div>
-
-        <div className="mt-8">
-          <VisitLink project={project} />
-        </div>
-
-        <WorkNav project={project} group={group} />
-      </article>
-
-      <Contact />
+        <CaseStudy project={project} body={getWorkMarkdown(slug)} variant={HERO} group={group} />
+        <Contact />
       </main>
     </>
-  );
-}
-
-function Meta({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex flex-col gap-1">
-      <span className="font-mono text-[11px] uppercase tracking-wide text-(--text-label)">{label}</span>
-      <span className="text-sm">{value}</span>
-    </div>
   );
 }
