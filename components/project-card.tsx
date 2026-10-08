@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { MediaMotion, MediaTreatment, Project } from "@/content/projects";
+import type { MediaMotion, MediaPalette, MediaTreatment, Project } from "@/content/projects";
 import type { SceneData } from "@/content/scenes";
 import ProjectMedia from "./project-media";
 
@@ -13,6 +13,7 @@ export default function ProjectCard({
   imageSrc,
   shotRatio,
   scene,
+  palette,
 }: {
   project: Project;
   feature?: boolean;
@@ -22,6 +23,7 @@ export default function ProjectCard({
   imageSrc?: string;
   shotRatio?: number;
   scene?: SceneData;
+  palette?: MediaPalette;
 }) {
   const inner = (
     <>
@@ -33,6 +35,7 @@ export default function ProjectCard({
         imageSrc={imageSrc}
         shotRatio={shotRatio}
         scene={scene}
+        palette={palette}
       />
       <div className={"flex flex-col gap-2.5 p-5 md:gap-3" + (feature ? "" : " flex-1")}>
         <h3

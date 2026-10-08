@@ -225,7 +225,9 @@
 
 /* Project media — grid-card and case-study cover images. The look is driven by
    CSS variables so the dev-only lab (app/lab) can tune it live; chosen values
-   get baked into content/projects.ts. Ground is the deep green in both themes
+   get baked into content/projects.ts. A project's own colors arrive as
+   --media-from / --media-to / --media-glow (media.palette); without them the
+   greens below apply. Ground is the deep green in both themes
    (the shots are dark UI), so text on it uses --highlight, not --signature. */
 .media {
   position: relative;
@@ -234,7 +236,7 @@
   overflow: hidden;
   overflow: clip;
   aspect-ratio: var(--media-ar, 16 / 10);
-  background: var(--deep-2);
+  background: var(--media-to, var(--deep-2));
 }
 @media (min-width: 80rem) {
   /* From xl the feature card spans two grid rows; its media absorbs the extra height. */
@@ -257,8 +259,8 @@
 }
 .media[data-treatment="frame"] {
   background:
-    radial-gradient(120% 90% at 15% 0%, color-mix(in srgb, var(--action) calc(var(--media-tint, 22) * 1%), transparent), transparent 70%),
-    var(--deep-2);
+    radial-gradient(120% 90% at 15% 0%, color-mix(in srgb, var(--media-glow, var(--action)) calc(var(--media-tint, 22) * 1%), transparent), transparent 70%),
+    linear-gradient(135deg, var(--media-from, var(--deep-2)), var(--media-to, var(--deep-2)));
 }
 .media[data-treatment="frame"] .media-inner {
   /* Shots are 16:10; centre one in the panel instead of cropping it, so a tall
@@ -275,7 +277,7 @@
 .media-type {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, var(--deep-1), var(--deep-2));
+  background: linear-gradient(135deg, var(--media-from, var(--deep-1)), var(--media-to, var(--deep-2)));
 }
 .media-mark {
   position: absolute;
@@ -292,8 +294,8 @@
 .media[data-treatment="scene"] {
   container-type: size;
   background:
-    radial-gradient(110% 80% at 85% 0%, color-mix(in srgb, var(--action) 20%, transparent), transparent 65%),
-    linear-gradient(135deg, var(--deep-1), var(--deep-2));
+    radial-gradient(110% 80% at 85% 0%, color-mix(in srgb, var(--media-glow, var(--action)) 20%, transparent), transparent 65%),
+    linear-gradient(135deg, var(--media-from, var(--deep-1)), var(--media-to, var(--deep-2)));
 }
 .media[data-variant="figure"] {
   border: 1px solid var(--hairline);

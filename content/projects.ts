@@ -20,8 +20,16 @@ export interface ProjectImage {
   alt: string;
 }
 
+/** Hex colors behind a project's image: a from→to wash and a soft glow. Defaults are the deep greens. */
+export interface MediaPalette {
+  from: string;
+  to: string;
+  glow?: string;
+}
+
 export interface ProjectMedia {
   treatment: MediaTreatment;
+  palette?: MediaPalette;
   motion?: MediaMotion;
   /** Frame treatment only: crop the shot to this width ÷ height, from the top (default 1.6 = uncropped). */
   shotRatio?: number;

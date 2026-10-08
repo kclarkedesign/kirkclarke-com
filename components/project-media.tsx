@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import type { PointerEvent } from "react";
-import type { MediaMotion, MediaTreatment, Project } from "@/content/projects";
+import type { MediaMotion, MediaPalette, MediaTreatment, Project } from "@/content/projects";
 import { scenes, type SceneData } from "@/content/scenes";
 import Mark from "./mark";
 import Scene from "./scene";
@@ -25,6 +25,7 @@ export default function ProjectMedia({
   imageSrc,
   shotRatio,
   scene,
+  palette,
 }: {
   project: Project;
   variant: MediaVariant;
@@ -34,6 +35,7 @@ export default function ProjectMedia({
   imageSrc?: string;
   shotRatio?: number;
   scene?: SceneData;
+  palette?: MediaPalette;
 }) {
   const media = project.media;
   const image = variant === "cover" ? media?.cover : (media?.card ?? media?.cover);
@@ -45,6 +47,11 @@ export default function ProjectMedia({
   const kind: MediaTreatment = wanted === "scene" && sceneData ? "scene" : src && wanted !== "type" ? (wanted === "scene" ? "bleed" : wanted) : "type";
   const mode = motion ?? media?.motion ?? "none";
   const shot = shotRatio ?? media?.shotRatio;
+  const colors = palette ?? media?.palette;
+  const style = {
+    ...(shot ? { "--media-shot-ar": shot } : {}),
+    ...(colors ? { "--media-from": colors.from, "--media-to": colors.to, ...(colors.glow ? { "--media-glow": colors.glow } : {}) } : {}),
+  } as React.CSSProperties;
 
   // Pointer tilt: two CSS variables, no re-render (the transform lives in CSS).
   const tilt = mode === "tilt" && kind !== "scene";
@@ -64,7 +71,7 @@ export default function ProjectMedia({
       data-treatment={kind}
       data-motion={mode}
       data-variant={variant}
-      style={shot ? ({ "--media-shot-ar": shot } as React.CSSProperties) : undefined}
+      style={Object.keys(style).length ? style : undefined}
       onPointerMove={tilt ? onMove : undefined}
       onPointerLeave={tilt ? onLeave : undefined}
     >

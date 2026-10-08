@@ -13,6 +13,8 @@ const POSITIONS = ["top left", "top center", "center", "bottom left"];
 const SCENE_IDS = Object.keys(scenes);
 const SEQUENCE_IDS = Object.keys(sequences);
 const VIEWS = ["media (cards and cover)", "pinned sequence"];
+// The greens every card uses until a project picks its own colors (see .media in globals.css).
+const DEFAULT_COLORS = { from: "#1e5a38", to: "#0f3521", glow: "#4bc57d" };
 // Scroll per step as the page ships it (--len in app/globals.css, in svh).
 const DEFAULT_LEN = 75;
 
@@ -26,6 +28,11 @@ export default function Lab({ project, images }: { project: Project; images: str
   const [zoom, setZoom] = useState(1.04);
   const [shot, setShot] = useState(project.media?.shotRatio ?? 1.6);
   const [pos, setPos] = useState(POSITIONS[0]!);
+  // Card colors: off means the project's own palette, or the default greens.
+  const [customColors, setCustomColors] = useState(!!project.media?.palette);
+  const [from, setFrom] = useState(project.media?.palette?.from ?? DEFAULT_COLORS.from);
+  const [to, setTo] = useState(project.media?.palette?.to ?? DEFAULT_COLORS.to);
+  const [glow, setGlow] = useState(project.media?.palette?.glow ?? DEFAULT_COLORS.glow);
 
   // Scene editor: layers are copied into state so sliders can move them.
   const initialScene = project.media?.scene && scenes[project.media.scene] ? project.media.scene : SCENE_IDS[0]!;
@@ -76,12 +83,14 @@ export default function Lab({ project, images }: { project: Project; images: str
     "--media-zoom": zoom,
     "--media-pos": pos,
   } as React.CSSProperties;
-  const common = { treatment, motion, imageSrc: img, shotRatio: shot, scene: sceneData };
+  const palette = customColors ? { from, to, glow } : undefined;
+  const common = { treatment, motion, imageSrc: img, shotRatio: shot, scene: sceneData, palette };
+  const paletteLine = palette ? `\n  palette: { from: "${from}", to: "${to}", glow: "${glow}" },` : "";
   const isScene = treatment === "scene";
 
   // Whole layer objects, so the snippet can replace a scene in content/scenes.ts as-is.
   const sceneSnippet = layers.map((l) => `    ${JSON.stringify(l).replace(/"(\w+)":/g, "$1: ").replace(/,/g, ", ").replace(/\{/g, "{ ").replace(/\}/g, " }")},`).join("\n");
-  const mediaSnippet = `// content/projects.ts\nmedia: {\n  treatment: "scene",\n  scene: "${sceneId}",\n  motion: "${motion}",\n},`;
+  const mediaSnippet = `// content/projects.ts\nmedia: {\n  treatment: "scene",\n  scene: "${sceneId}",\n  motion: "${motion}",${paletteLine}\n},`;
   const stepLines = steps
     .map((s) => `    { scene: ${JSON.stringify(s.scene)}, title: ${JSON.stringify(s.title)}, caption: ${JSON.stringify(s.caption)} },`)
     .join("\n");
@@ -90,7 +99,7 @@ export default function Lab({ project, images }: { project: Project; images: str
     ? sequenceSnippet
     : isScene
     ? `${mediaSnippet}\n\n// content/scenes.ts → "${sceneId}"\nratio: ${ratio},\nlayers: [\n${sceneSnippet}\n],`
-    : `// content/projects.ts\nmedia: {\n  treatment: "${treatment}",\n  motion: "${motion}",\n  shotRatio: ${shot},\n  // radius ${radius} · pad ${pad} · tint ${tint} · zoom ${zoom} · anchor ${pos}\n},`;
+    : `// content/projects.ts\nmedia: {\n  treatment: "${treatment}",\n  motion: "${motion}",\n  shotRatio: ${shot},${paletteLine}\n  // radius ${radius} · pad ${pad} · tint ${tint} · zoom ${zoom} · anchor ${pos}\n},`;
 
   return (
     <div style={vars} className="grid gap-8 lg:grid-cols-[280px_1fr]">
@@ -130,6 +139,20 @@ export default function Lab({ project, images }: { project: Project; images: str
         ) : (
           <>
           <Select label="Treatment" value={treatment} options={TREATMENTS} onChange={(v) => setTreatment(v as MediaTreatment)} />
+          <fieldset className="m-0 flex flex-col gap-3 rounded-lg border border-(--hairline) p-3">
+            <legend className="px-1 text-(--text-label)">Card colors</legend>
+            <label className="flex items-center gap-2 text-(--text)">
+              <input type="checkbox" checked={customColors} onChange={(e) => setCustomColors(e.target.checked)} />
+              Custom colors
+            </label>
+            {customColors && (
+              <>
+                <ColorInput label="From" value={from} onChange={setFrom} />
+                <ColorInput label="To" value={to} onChange={setTo} />
+                <ColorInput label="Glow" value={glow} onChange={setGlow} />
+              </>
+            )}
+          </fieldset>
 
           {isScene ? (
             <>
@@ -212,6 +235,23 @@ function Snippet({ text }: { text: string }) {
       </div>
       <pre className="m-0 max-h-[28rem] overflow-auto p-3 font-mono text-xs leading-relaxed">{text}</pre>
     </div>
+  );
+}
+
+function ColorInput({ label, value, onChange }: { label: string; value: string; onChange: (v: string) => void }) {
+  return (
+    <label className="flex items-center justify-between gap-3 text-(--text-label)">
+      {label}
+      <span className="flex items-center gap-2 font-mono text-xs text-(--text)">
+        {value}
+        <input
+          type="color"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          className="h-8 w-12 cursor-pointer rounded border border-(--hairline) bg-transparent p-0"
+        />
+      </span>
+    </label>
   );
 }
 
