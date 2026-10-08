@@ -1,6 +1,7 @@
 import Markdown, { defaultUrlTransform } from "react-markdown";
 import type { Project } from "@/content/projects";
 import { sequences } from "@/content/scenes";
+import CompareFigure from "./compare-figure";
 import Figure from "./figure";
 import ProjectMedia from "./project-media";
 import SceneFigure from "./scene-figure";
@@ -50,8 +51,8 @@ export default function CaseStudy({
 
       <div className="case-study-body cs-body">
         <Markdown
-          // Let our own scene: references through; everything else keeps the default sanitizing.
-          urlTransform={(url) => (url.startsWith("scene:") ? url : defaultUrlTransform(url))}
+          // Let our own scene: and compare: references through; everything else keeps the default sanitizing.
+          urlTransform={(url) => (url.startsWith("scene:") || url.startsWith("compare:") ? url : defaultUrlTransform(url))}
           components={{
             // A lone image becomes a <figure>, which can't live inside a <p>.
             p: ({ node, children }) => {
@@ -59,7 +60,9 @@ export default function CaseStudy({
               return only?.type === "element" && only.tagName === "img" ? <>{children}</> : <p>{children}</p>;
             },
             img: ({ src, alt, title }) =>
-              typeof src !== "string" ? null : src.startsWith("scene:") ? (
+              typeof src !== "string" ? null : src.startsWith("compare:") ? (
+                <CompareFigure id={src.slice("compare:".length)} caption={title} />
+              ) : src.startsWith("scene:") ? (
                 sequences[src.slice("scene:".length)] ? (
                   <SceneSequence id={src.slice("scene:".length)} />
                 ) : (

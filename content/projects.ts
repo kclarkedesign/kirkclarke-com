@@ -131,7 +131,19 @@ export const projects: Project[] = [
     outcomes: [
       "Designed in Figma with Claude Design in the loop, built in Wix",
       "One site carrying a concert, an album release, and booking inquiries without feeling bolted together",
+      "A single dense bio section became four strips, each with one primary action",
     ],
+    // Plum from her own Figma styles; glow and the rest are starting values for the lab.
+    media: {
+      treatment: "frame",
+      motion: "tilt",
+      shotRatio: 1.9,
+      palette: { from: "#200024", to: "#3b1745", glow: "#d27cf6" },
+      cover: {
+        src: "/images/work/daniella-rabbani/desktop-after.webp",
+        alt: "The top of Daniella Rabbani's redesigned homepage: a dark plum page with her portrait, her name, a short line about her new album and two buttons.",
+      },
+    },
     live: "https://www.daniellarabbani.com",
     liveLabel: "Visit the site",
     role: "Design and build, start to finish",
