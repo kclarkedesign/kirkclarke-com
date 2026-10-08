@@ -411,7 +411,8 @@
   }
 }
 /* Pinned sequences (components/scene-sequence.tsx). Default: the steps stack as ordinary
-   scene figures. Where the page can pin them (scroll timelines, motion allowed) they share
+   scene figures. Where the page can pin them (scroll timelines, motion allowed, a screen
+   bigger than a phone) they share
    one sticky frame inside a tall wrapper and swap as it scrolls. One view timeline (--seq)
    on the wrapper drives everything; each step owns a slice of it, --len tall, starting
    --pin into the wrapper's cover range — the point where the frame sticks. */
@@ -476,13 +477,15 @@
   from { scale: 0 1; }
   to { scale: 1 1; }
 }
-@media (prefers-reduced-motion: no-preference) {
+/* Pinning also needs room: phones (and a phone held sideways, which is wide but short) keep
+   the stacked figures, whose scenes still animate on their own scroll timelines. */
+@media (prefers-reduced-motion: no-preference) and (min-width: 40rem) and (min-height: 38rem) {
   @supports (animation-timeline: view()) {
     .seq {
       /* Just under the nav; --pin is what is left of the viewport below it. */
       --seq-top: 5.5rem;
       --pin: calc(100svh - var(--seq-top));
-      --len: 80svh;
+      --len: 75svh;
       view-timeline: --seq block;
       height: calc(var(--pin) + var(--n) * var(--len));
       /* Wider than the text column: the article is a size container (@container in the

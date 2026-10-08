@@ -14,7 +14,7 @@ const SCENE_IDS = Object.keys(scenes);
 const SEQUENCE_IDS = Object.keys(sequences);
 const VIEWS = ["media (cards and cover)", "pinned sequence"];
 // Scroll per step as the page ships it (--len in app/globals.css, in svh).
-const DEFAULT_LEN = 80;
+const DEFAULT_LEN = 75;
 
 export default function Lab({ project, images }: { project: Project; images: string[] }) {
   const [treatment, setTreatment] = useState<MediaTreatment>(project.media?.treatment ?? "bleed");
