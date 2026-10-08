@@ -76,12 +76,14 @@ export const projects: Project[] = [
       "Dashboard redesign direction: a unified sidebar, a four-step view builder, and per-view Data / Settings / Takeaways tabs",
     ],
     // Stylized renders of the Koto dashboard redesign (a design direction, not the
-    // shipped UI) — captions in content/work/koto.md say so.
+    // shipped UI) — captions in content/work/koto.md say so. Card and cover are one framed
+    // shot with pointer tilt (Kirk's lab picks, 2026-10-07: radius 8, pad 16, tint 22). The
+    // layered scenes below are kept: set treatment back to "scene" to use them again.
     media: {
-      treatment: "scene",
+      treatment: "frame",
       scene: "koto-hero",
       cardScene: "koto-card",
-      motion: "zoom",
+      motion: "tilt",
       shotRatio: 1.9,
       cover: {
         src: "/images/work/koto/cover.webp",
@@ -244,7 +246,9 @@ export const projects: Project[] = [
     tags: ["design", "ux", "engineering"],
     outcomes: [],
     media: {
-      treatment: "bleed",
+      treatment: "frame",
+      motion: "tilt",
+      shotRatio: 1.9,
       card: { src: "/images/thumb-product-finder.jpg", alt: "The 92nd Street Y class finder: a keyword filter and type checkboxes beside a list of classes." },
     },
     href: "https://www.92y.org/classes",
@@ -259,7 +263,9 @@ export const projects: Project[] = [
     tags: ["design", "wordpress"],
     outcomes: [],
     media: {
-      treatment: "bleed",
+      treatment: "frame",
+      motion: "tilt",
+      shotRatio: 1.9,
       card: { src: "/images/thumb-joanieleeds.jpg", alt: "The About page on JoanieLeeds.com: a bio beside a portrait of the musician holding a Grammy." },
     },
     href: "https://joanieleeds.com/",
@@ -274,7 +280,9 @@ export const projects: Project[] = [
     tags: ["engineering", "wordpress"],
     outcomes: [],
     media: {
-      treatment: "bleed",
+      treatment: "frame",
+      motion: "tilt",
+      shotRatio: 1.9,
       card: { src: "/images/thumb-cpp-wp-plugin.jpg", alt: "The plugin's icon: a white gear inside a green circle." },
     },
     href: "https://wordpress.org/plugins/customize-private-protected/",
