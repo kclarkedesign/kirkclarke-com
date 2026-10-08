@@ -88,13 +88,15 @@ export const projects: Project[] = [
     // Stylized renders of the Koto dashboard redesign (a design direction, not the
     // shipped UI) — captions in content/work/koto.md say so. The cover is one framed shot
     // with pointer tilt (Kirk's lab picks, 2026-10-07: radius 8, pad 16, tint 22). The grid
-    // card keeps the layered scene (cardScene), because a framed shot leaves a near-square
-    // card half empty (Kirk, 2026-10-08).
+    // card uses a scene (cardScene), because a framed shot leaves a near-square card half
+    // empty (Kirk, 2026-10-08). The layered "koto-card" read as confusing at that size, so
+    // cardScene is the loop of close-ups for now; the lab compares the other prototypes
+    // (koto-card-context / -close / -macro / -pushin) and the pick gets baked here.
     media: {
       treatment: "frame",
       cardTreatment: "scene",
       scene: "koto-hero",
-      cardScene: "koto-card",
+      cardScene: "koto-card-loop",
       motion: "tilt",
       shotRatio: 1.9,
       cover: {

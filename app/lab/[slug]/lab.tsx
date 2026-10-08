@@ -44,12 +44,16 @@ export default function Lab({ project, images }: { project: Project; images: str
   const [sceneId, setSceneId] = useState(initialScene);
   const [layers, setLayers] = useState<SceneLayer[]>(scenes[initialScene]!.layers);
   const [ratio, setRatio] = useState(scenes[initialScene]!.ratio);
-  const sceneData = { ...scenes[sceneId]!, ratio, layers };
+  const [loop, setLoop] = useState<number | undefined>(scenes[initialScene]!.loop);
+  const [ground, setGround] = useState(scenes[initialScene]!.ground);
+  const sceneData = { ...scenes[sceneId]!, ratio, layers, loop, ground };
 
   function pickScene(id: string) {
     setSceneId(id);
     setLayers(scenes[id]!.layers);
     setRatio(scenes[id]!.ratio);
+    setLoop(scenes[id]!.loop);
+    setGround(scenes[id]!.ground);
   }
   function patch(id: string, change: Partial<SceneLayer>) {
     setLayers((ls) => ls.map((l) => (l.id === id ? { ...l, ...change } : l)));
@@ -106,7 +110,7 @@ export default function Lab({ project, images }: { project: Project; images: str
   const snippet = isSequence
     ? sequenceSnippet
     : isScene
-    ? `${mediaSnippet}\n\n// content/scenes.ts → "${sceneId}"\nratio: ${ratio},\nlayers: [\n${sceneSnippet}\n],`
+    ? `${mediaSnippet}\n\n// content/scenes.ts → "${sceneId}"\nratio: ${ratio},${loop ? `\nloop: ${loop},` : ""}${ground ? `\nground: { from: "${ground.from}", to: "${ground.to}", glow: "${ground.glow ?? ground.to}" },` : ""}\nlayers: [\n${sceneSnippet}\n],`
     : `// content/projects.ts\nmedia: {\n  treatment: "${treatment}",${cardLine}\n  motion: "${motion}",\n  shotRatio: ${shot},${paletteLine}\n  // radius ${radius} · pad ${pad} · tint ${tint} · zoom ${zoom} · anchor ${pos}\n},`;
 
   return (
@@ -184,6 +188,25 @@ export default function Lab({ project, images }: { project: Project; images: str
             <>
               <Select label="Scene" value={sceneId} options={SCENE_IDS} onChange={pickScene} />
               <Range label="Stage ratio (w÷h)" value={ratio} min={1} max={2.4} step={0.05} onChange={setRatio} />
+              <Range label="Loop: seconds per slot (0 = none)" value={loop ?? 0} min={0} max={10} step={0.5} onChange={(v) => setLoop(v || undefined)} />
+              <fieldset className="m-0 flex flex-col gap-3 rounded-lg border border-(--hairline) p-3">
+                <legend className="px-1 text-(--text-label)">Scene ground</legend>
+                <label className="flex items-center gap-2 text-(--text)">
+                  <input
+                    type="checkbox"
+                    checked={!!ground}
+                    onChange={(e) => setGround(e.target.checked ? { from: "#c9f7de", to: "#4bc57d", glow: "#ffffff" } : undefined)}
+                  />
+                  Own ground
+                </label>
+                {ground && (
+                  <>
+                    <ColorInput label="From" value={ground.from} onChange={(v) => setGround({ ...ground, from: v })} />
+                    <ColorInput label="To" value={ground.to} onChange={(v) => setGround({ ...ground, to: v })} />
+                    <ColorInput label="Glow" value={ground.glow ?? ground.to} onChange={(v) => setGround({ ...ground, glow: v })} />
+                  </>
+                )}
+              </fieldset>
               {layers.map((l) => (
                 <fieldset key={l.id} className="m-0 flex flex-col gap-2 rounded-lg border border-(--hairline) p-3">
                   <legend className="px-1 font-mono text-xs text-(--text-label)">
@@ -194,6 +217,23 @@ export default function Lab({ project, images }: { project: Project; images: str
                   <Range label="y" value={l.y} min={-30} max={110} step={0.5} onChange={(v) => patch(l.id, { y: v })} />
                   <Range label="width" value={l.w} min={5} max={120} step={0.5} onChange={(v) => patch(l.id, { w: v })} />
                   <Range label="depth" value={l.depth ?? 0} min={-2} max={2} step={0.1} onChange={(v) => patch(l.id, { depth: v })} />
+                  <Range label="corner radius (cqw)" value={l.radius ?? 1.1} min={0} max={12} step={0.5} onChange={(v) => patch(l.id, { radius: v })} />
+                  <Select label="loop slot" value={String(l.slot ?? "none")} options={["none", "0", "1", "2"]} onChange={(v) => patch(l.id, { slot: v === "none" ? undefined : Number(v) })} />
+                  <label className="flex items-center gap-2 text-(--text)">
+                    <input
+                      type="checkbox"
+                      checked={!!l.dof}
+                      onChange={(e) => patch(l.id, { dof: e.target.checked ? { x: 50, y: 50, blur: 1.6 } : undefined })}
+                    />
+                    Depth of field
+                  </label>
+                  {l.dof && (
+                    <>
+                      <Range label="focus x (%)" value={l.dof.x} min={0} max={100} step={1} onChange={(v) => patch(l.id, { dof: { ...l.dof!, x: v } })} />
+                      <Range label="focus y (%)" value={l.dof.y} min={0} max={100} step={1} onChange={(v) => patch(l.id, { dof: { ...l.dof!, y: v } })} />
+                      <Range label="blur (cqw)" value={l.dof.blur} min={0.4} max={4} step={0.1} onChange={(v) => patch(l.id, { dof: { ...l.dof!, blur: v } })} />
+                    </>
+                  )}
                 </fieldset>
               ))}
             </>

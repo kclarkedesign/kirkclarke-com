@@ -30,6 +30,15 @@ export interface SceneLayer {
   /** Pushed back: darkened so the layer in front reads first. */
   dim?: boolean;
   marks?: SceneMark[];
+  /**
+   * Depth of field: a blurred copy of the image, masked so only the point (x, y, as % of this
+   * layer) stays sharp and everything toward the edges falls into soft focus. blur is in cqw.
+   */
+  dof?: { x: number; y: number; blur: number };
+  /** Corner radius in cqw. The default suits a screen; a macro-scale layer wants a bigger one. */
+  radius?: number;
+  /** Which turn this layer takes when the scene loops (SceneData.loop). No slot = always there. */
+  slot?: number;
 }
 
 export interface SceneData {
@@ -38,6 +47,10 @@ export interface SceneData {
   /** One description for the whole composition; the layers themselves are decorative. */
   alt: string;
   layers: SceneLayer[];
+  /** Seconds each slot is on screen. Layers with a `slot` take turns; slot 0 is the resting state. */
+  loop?: number;
+  /** A ground painted behind the layers (colors are hex), for scenes that want their own backdrop. */
+  ground?: { from: string; to: string; glow?: string };
 }
 
 // A pinned sequence: the frame stays put while the page scrolls, and each step swaps in
@@ -58,6 +71,11 @@ export interface SequenceData {
 }
 
 const K = "/images/work/koto";
+
+// Shared pieces of the card prototypes below.
+const MINT = { from: "#c9f7de", to: "#4bc57d", glow: "#ffffff" };
+const CLOSE: SceneLayer = { id: "close", src: `${K}/crops/takeaway-close.webp`, ratio: 1.261, x: -38, y: -6, w: 140, z: 0, depth: 0, radius: 0, dof: { x: 63, y: 41, blur: 1.6 } };
+const MACRO: SceneLayer = { id: "macro", src: `${K}/crops/takeaway-corner.webp`, ratio: 1.533, x: -16, y: -10, w: 108, z: 0, depth: 0, radius: 6, dof: { x: 52, y: 74, blur: 1.8 } };
 
 // Every layer is a render of the Koto dashboard redesign (a design direction, not the
 // shipped UI); the zoom-ins are crops of those same renders, so they stay sharp.
@@ -223,6 +241,53 @@ export const scenes: Record<string, SceneData> = {
       },
       { id: "pub", src: `${K}/crops/published.webp`, ratio: 6.345, x: 30, y: 46, w: 68, z: 2, depth: 1.0, zoom: true },
       { id: "hist", src: `${K}/crops/history-row.webp`, ratio: 8, x: 22, y: 70, w: 74, z: 3, depth: 1.5, zoom: true },
+    ],
+  },
+
+  // ------------------------------------------------------------------
+  // Card prototypes (stage 1:1). The subject stays in the middle band so a 16:10 crop of the
+  // stage keeps it. Close-ups use depth of field: only the point named in `dof` stays sharp.
+  // ------------------------------------------------------------------
+  "koto-card-context": {
+    ratio: 1,
+    alt: "Koto's redesigned Takeaways tab, the whole screen on a pale mint ground: a published summary banner, the Brief and Detailed switch, a Regenerate button and a short history of summaries.",
+    ground: MINT,
+    layers: [{ id: "screen", src: `${K}/takeaways.webp`, ratio: 1.6, x: 3, y: 21, w: 94, z: 0, depth: 0, radius: 1.8 }],
+  },
+
+  "koto-card-close": {
+    ratio: 1,
+    alt: "A close-up of Koto's redesigned Takeaways tab: the Brief and Detailed switch and the Regenerate button in focus, with the Copy link and Preview buttons and the history rows softly out of focus around them.",
+    layers: [CLOSE],
+  },
+
+  "koto-card-macro": {
+    ratio: 1,
+    alt: "A macro of the corner of the Takeaways tab's summary card in Koto's redesign: the Brief and Detailed switch and the Regenerate button in focus, the rest softly blurred, and a strip of mint ground beyond the screen's edge.",
+    ground: MINT,
+    layers: [MACRO],
+  },
+
+  "koto-card-loop": {
+    ratio: 1,
+    loop: 4,
+    alt: "Three close-ups of Koto's redesign in turn: the AI takeaway with its Brief and Detailed switch and Regenerate button, the view builder's four-step progress above a field checklist, and the navigation rail expanded to show its labels.",
+    layers: [
+      { ...CLOSE, id: "takeaway", slot: 0 },
+      { id: "builder", src: `${K}/crops/builder-top.webp`, ratio: 1.556, x: -45, y: 3, w: 150, z: 1, depth: 0, radius: 0, slot: 1, dof: { x: 76, y: 36, blur: 1.6 } },
+      { id: "nav", src: `${K}/crops/rail-open.webp`, ratio: 1.333, x: 0, y: 1, w: 130, z: 2, depth: 0, radius: 0, slot: 2, dof: { x: 20, y: 40, blur: 1.4 } },
+    ],
+  },
+
+  "koto-card-pushin": {
+    ratio: 1,
+    loop: 4,
+    ground: MINT,
+    alt: "The AI takeaway in Koto's redesign at three distances in turn: the whole screen, a close-up of the Brief and Detailed switch and Regenerate button, and a macro of the summary card's corner.",
+    layers: [
+      { id: "context", src: `${K}/takeaways.webp`, ratio: 1.6, x: 3, y: 21, w: 94, z: 0, depth: 0, radius: 1.8, slot: 0 },
+      { ...CLOSE, id: "close", z: 1, slot: 1 },
+      { ...MACRO, id: "macro", z: 2, slot: 2 },
     ],
   },
 };

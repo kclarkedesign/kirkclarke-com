@@ -41,12 +41,27 @@ export default function Scene({ scene, mode }: { scene: SceneData; mode: SceneMo
   const index = new Map(scene.layers.map((l, i) => [l.id, i]));
 
   return (
-    <div className="scene" data-mode={mode} role="img" aria-label={scene.alt} style={{ "--scene-ratio": scene.ratio } as React.CSSProperties}>
+    <div
+      className="scene"
+      data-mode={mode}
+      data-loop={scene.loop ? "" : undefined}
+      data-ground={scene.ground ? "" : undefined}
+      role="img"
+      aria-label={scene.alt}
+      style={
+        {
+          "--scene-ratio": scene.ratio,
+          ...(scene.loop ? { "--loop": `${scene.loop}s` } : {}),
+          ...(scene.ground ? { "--g-from": scene.ground.from, "--g-to": scene.ground.to, "--g-glow": scene.ground.glow ?? scene.ground.to } : {}),
+        } as React.CSSProperties
+      }
+    >
       <div className="scene-stage">
         {scene.layers.map((layer, i) => (
           <div
             key={layer.id}
             className="layer"
+            data-slot={layer.slot}
             style={
               {
                 left: `${layer.x}%`,
@@ -55,12 +70,23 @@ export default function Scene({ scene, mode }: { scene: SceneData; mode: SceneMo
                 zIndex: layer.z ?? i,
                 "--depth": layer.depth ?? 0,
                 "--i": i,
+                ...(layer.slot !== undefined ? { "--slot": layer.slot } : {}),
                 ...(layer.zoom ? growFrom(scene, layer) : {}),
               } as React.CSSProperties
             }
           >
             <div className="layer-in" data-zoom={layer.zoom ? "" : undefined} data-base={layer.zoom ? undefined : ""}>
-              <div className="layer-img" data-dim={layer.dim ? "" : undefined} style={{ aspectRatio: layer.ratio }}>
+              <div
+                className="layer-img"
+                data-dim={layer.dim ? "" : undefined}
+                style={
+                  {
+                    aspectRatio: layer.ratio,
+                    ...(layer.radius !== undefined ? { "--r": `${layer.radius}cqw` } : {}),
+                    ...(layer.dof ? { "--dof": `${layer.dof.blur}cqw`, "--dx": `${layer.dof.x}%`, "--dy": `${layer.dof.y}%` } : {}),
+                  } as React.CSSProperties
+                }
+              >
                 <Image
                   src={layer.src}
                   alt=""
@@ -68,6 +94,10 @@ export default function Scene({ scene, mode }: { scene: SceneData; mode: SceneMo
                   sizes={layer.zoom ? "(min-width: 1024px) 560px, 80vw" : "(min-width: 1024px) 720px, 90vw"}
                   priority={mode === "intro" && !layer.zoom}
                 />
+                {layer.dof && (
+                  // The same file again, blurred and masked: only the focus point stays sharp. One request, decorative.
+                  <Image className="dof" src={layer.src} alt="" aria-hidden fill sizes="(min-width: 1024px) 720px, 90vw" />
+                )}
                 {layer.marks?.map((m) => (
                   <span
                     key={m.for}

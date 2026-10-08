@@ -324,13 +324,13 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  border-radius: 1.1cqw;
+  border-radius: var(--r, 1.1cqw);
   box-shadow:
     0 0 0 1px rgb(255 255 255 / 0.1),
     0 2.4cqw 5cqw rgb(0 0 0 / 0.5);
 }
 .layer-in[data-zoom] .layer-img {
-  border-radius: 0.9cqw;
+  border-radius: var(--r, 0.9cqw);
   box-shadow:
     0 0 0 1.5px var(--action),
     0 3cqw 6cqw rgb(0 0 0 / 0.6);
@@ -340,6 +340,22 @@
   position: absolute;
   inset: 0;
   background: rgb(0 0 0 / 0.45);
+}
+/* Depth of field: the blurred copy shows everywhere except around the focus point. Scaled up a
+   little so the blur's soft edge falls outside the clip instead of showing as a halo. */
+.layer-img .dof {
+  object-fit: cover;
+  filter: blur(var(--dof, 1.6cqw));
+  scale: 1.06;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(ellipse 62% 62% at var(--dx, 50%) var(--dy, 50%), transparent 0, transparent 34%, #000 82%);
+  mask-image: radial-gradient(ellipse 62% 62% at var(--dx, 50%) var(--dy, 50%), transparent 0, transparent 34%, #000 82%);
+}
+/* A scene's own backdrop, over the media's palette. */
+.scene[data-ground] {
+  background:
+    radial-gradient(110% 80% at 85% 0%, color-mix(in srgb, var(--g-glow) 40%, transparent), transparent 65%),
+    linear-gradient(135deg, var(--g-from), var(--g-to));
 }
 .mark {
   position: absolute;
@@ -366,11 +382,34 @@
   from { scale: 1.05; }
   to { scale: 1; }
 }
+/* Looping scenes: layers with a slot take turns, SceneData.loop seconds each. Slot 0 is the
+   resting state, so reduced motion (and anything without animation) shows the first moment.
+   ponytail: keyframes for three slots only; add another set for other counts. */
+.scene[data-loop] .layer[data-slot]:not([data-slot="0"]) {
+  opacity: 0;
+}
+@keyframes scene-slot-3 {
+  0% { opacity: 0; scale: 1; }
+  5% { opacity: 1; }
+  33.33% { opacity: 1; scale: 1.06; }
+  38.33% { opacity: 0; scale: 1.07; }
+  100% { opacity: 0; scale: 1; }
+}
 @keyframes scene-drift {
   from { translate: 0 calc(var(--depth, 0) * 2.4cqw); }
   to { translate: 0 calc(var(--depth, 0) * -2.4cqw); }
 }
 @media (prefers-reduced-motion: no-preference) {
+  .scene[data-loop] .layer[data-slot] {
+    animation: scene-slot-3 calc(var(--loop) * 3) linear infinite both;
+    animation-delay: calc(var(--slot) * var(--loop));
+    will-change: opacity, scale;
+  }
+  /* Hovering or focusing a card holds the moment on screen so it can be read. */
+  .work-card:hover .scene[data-loop] .layer[data-slot],
+  .work-card:focus-visible .scene[data-loop] .layer[data-slot] {
+    animation-play-state: paused;
+  }
   .work-card:hover .scene[data-mode="static"] .layer {
     translate: 0 calc(var(--depth, 0) * -0.9cqw);
   }
