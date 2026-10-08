@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import Markdown, { defaultUrlTransform } from "react-markdown";
 import { projects } from "@/content/projects";
 import { getWorkMarkdown } from "@/lib/content";
@@ -11,6 +10,7 @@ import SceneFigure from "@/components/scene-figure";
 import SceneSequence from "@/components/scene-sequence";
 import { sequences } from "@/content/scenes";
 import VisitLink from "@/components/visit-link";
+import WorkNav from "@/components/work-nav";
 
 export function generateStaticParams() {
   return projects.filter((p) => p.hasCaseStudy).map((p) => ({ slug: p.slug }));
@@ -23,11 +23,9 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
   const body = getWorkMarkdown(slug);
 
-  // "Next" stays within the same context group (plan's hard separation
-  // rule, §Context) — TWR work never links to independent work or back.
+  // Previous / Next / More work stay within the same context group (plan's hard
+  // separation rule, §Context) — TWR work never links to independent work or back.
   const group = projects.filter((p) => p.context === project.context && p.hasCaseStudy);
-  const index = group.findIndex((p) => p.slug === slug);
-  const next = group.length > 1 ? group[(index + 1) % group.length] : undefined;
 
   return (
     <>
@@ -81,17 +79,11 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           </Markdown>
         </div>
 
-        <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
+        <div className="mt-8">
           <VisitLink project={project} />
-          {next && (
-            <Link
-              href={`/work/${next.slug}`}
-              className="inline-block text-sm font-medium text-(--text-secondary) hover:text-(--text)"
-            >
-              Next: {next.title} →
-            </Link>
-          )}
         </div>
+
+        <WorkNav project={project} group={group} />
       </article>
 
       <Contact />
