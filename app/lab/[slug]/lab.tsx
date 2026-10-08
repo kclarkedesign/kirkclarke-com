@@ -9,6 +9,7 @@ import SceneSequence from "@/components/scene-sequence";
 import type { HeroVariant } from "@/components/case-study";
 
 const TREATMENTS: MediaTreatment[] = ["scene", "bleed", "frame", "type"];
+const SAME_AS_COVER = "same as cover";
 const MOTIONS: MediaMotion[] = ["none", "zoom", "tilt"];
 const POSITIONS = ["top left", "top center", "center", "bottom left"];
 const SCENE_IDS = Object.keys(scenes);
@@ -23,6 +24,8 @@ const DEFAULT_LEN = 75;
 export default function Lab({ project, images }: { project: Project; images: string[] }) {
   const [treatment, setTreatment] = useState<MediaTreatment>(project.media?.treatment ?? "bleed");
   const [motion, setMotion] = useState<MediaMotion>(project.media?.motion ?? "zoom");
+  // Grid cards can use a different treatment from the cover; SAME_AS_COVER means they don't.
+  const [cardTreatment, setCardTreatment] = useState<string>(project.media?.cardTreatment ?? SAME_AS_COVER);
   const [img, setImg] = useState(images[0]);
   const [radius, setRadius] = useState(8);
   const [pad, setPad] = useState(16);
@@ -89,11 +92,13 @@ export default function Lab({ project, images }: { project: Project; images: str
   const palette = customColors ? { from, to, glow } : undefined;
   const common = { treatment, motion, imageSrc: img, shotRatio: shot, scene: sceneData, palette };
   const paletteLine = palette ? `\n  palette: { from: "${from}", to: "${to}", glow: "${glow}" },` : "";
-  const isScene = treatment === "scene";
+  const cardKind = (cardTreatment === SAME_AS_COVER ? treatment : cardTreatment) as MediaTreatment;
+  const isScene = treatment === "scene" || cardKind === "scene";
 
   // Whole layer objects, so the snippet can replace a scene in content/scenes.ts as-is.
   const sceneSnippet = layers.map((l) => `    ${JSON.stringify(l).replace(/"(\w+)":/g, "$1: ").replace(/,/g, ", ").replace(/\{/g, "{ ").replace(/\}/g, " }")},`).join("\n");
-  const mediaSnippet = `// content/projects.ts\nmedia: {\n  treatment: "scene",\n  scene: "${sceneId}",\n  motion: "${motion}",${paletteLine}\n},`;
+  const cardLine = cardTreatment === SAME_AS_COVER ? "" : `\n  cardTreatment: "${cardTreatment}",`;
+  const mediaSnippet = `// content/projects.ts\nmedia: {\n  treatment: "${treatment}",${cardLine}\n  scene: "${sceneId}",\n  motion: "${motion}",${paletteLine}\n},`;
   const stepLines = steps
     .map((s) => `    { scene: ${JSON.stringify(s.scene)}, title: ${JSON.stringify(s.title)}, caption: ${JSON.stringify(s.caption)} },`)
     .join("\n");
@@ -102,7 +107,7 @@ export default function Lab({ project, images }: { project: Project; images: str
     ? sequenceSnippet
     : isScene
     ? `${mediaSnippet}\n\n// content/scenes.ts → "${sceneId}"\nratio: ${ratio},\nlayers: [\n${sceneSnippet}\n],`
-    : `// content/projects.ts\nmedia: {\n  treatment: "${treatment}",\n  motion: "${motion}",\n  shotRatio: ${shot},${paletteLine}\n  // radius ${radius} · pad ${pad} · tint ${tint} · zoom ${zoom} · anchor ${pos}\n},`;
+    : `// content/projects.ts\nmedia: {\n  treatment: "${treatment}",${cardLine}\n  motion: "${motion}",\n  shotRatio: ${shot},${paletteLine}\n  // radius ${radius} · pad ${pad} · tint ${tint} · zoom ${zoom} · anchor ${pos}\n},`;
 
   return (
     <div style={vars} className="grid gap-8 lg:grid-cols-[280px_1fr]">
@@ -158,7 +163,8 @@ export default function Lab({ project, images }: { project: Project; images: str
           </>
         ) : (
           <>
-          <Select label="Treatment" value={treatment} options={TREATMENTS} onChange={(v) => setTreatment(v as MediaTreatment)} />
+          <Select label="Treatment (cover)" value={treatment} options={TREATMENTS} onChange={(v) => setTreatment(v as MediaTreatment)} />
+          <Select label="Treatment (grid cards)" value={cardTreatment} options={[SAME_AS_COVER, ...TREATMENTS]} onChange={setCardTreatment} />
           <fieldset className="m-0 flex flex-col gap-3 rounded-lg border border-(--hairline) p-3">
             <legend className="px-1 text-(--text-label)">Card colors</legend>
             <label className="flex items-center gap-2 text-(--text)">
@@ -225,9 +231,9 @@ export default function Lab({ project, images }: { project: Project; images: str
       ) : (
         <div className="flex min-w-0 flex-col gap-8">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 min-[87.5rem]:grid-cols-4 md:gap-5">
-            <ProjectCard project={project} feature {...common} />
-            <ProjectCard project={project} {...common} />
-            <ProjectCard project={project} {...common} />
+            <ProjectCard project={project} feature {...common} treatment={cardKind} />
+            <ProjectCard project={project} {...common} treatment={cardKind} />
+            <ProjectCard project={project} {...common} treatment={cardKind} />
           </div>
           <div className="max-w-225">
             <ProjectMedia project={project} variant="cover" {...common} />

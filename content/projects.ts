@@ -29,6 +29,8 @@ export interface MediaPalette {
 
 export interface ProjectMedia {
   treatment: MediaTreatment;
+  /** Grid cards only: a different treatment from the case-study cover (defaults to `treatment`). */
+  cardTreatment?: MediaTreatment;
   palette?: MediaPalette;
   motion?: MediaMotion;
   /** Frame treatment only: crop the shot to this width ÷ height, from the top (default 1.6 = uncropped). */
@@ -84,11 +86,13 @@ export const projects: Project[] = [
       "Dashboard redesign direction: a unified sidebar, a four-step view builder, and per-view Data / Settings / Takeaways tabs",
     ],
     // Stylized renders of the Koto dashboard redesign (a design direction, not the
-    // shipped UI) — captions in content/work/koto.md say so. Card and cover are one framed
-    // shot with pointer tilt (Kirk's lab picks, 2026-10-07: radius 8, pad 16, tint 22). The
-    // layered scenes below are kept: set treatment back to "scene" to use them again.
+    // shipped UI) — captions in content/work/koto.md say so. The cover is one framed shot
+    // with pointer tilt (Kirk's lab picks, 2026-10-07: radius 8, pad 16, tint 22). The grid
+    // card keeps the layered scene (cardScene), because a framed shot leaves a near-square
+    // card half empty (Kirk, 2026-10-08).
     media: {
       treatment: "frame",
+      cardTreatment: "scene",
       scene: "koto-hero",
       cardScene: "koto-card",
       motion: "tilt",
@@ -131,7 +135,7 @@ export const projects: Project[] = [
     outcomes: [
       "Designed in Figma with Claude Design in the loop, built in Wix",
       "One site carrying a concert, an album release, and booking inquiries without feeling bolted together",
-      "A single dense bio section became four strips, each with one primary action",
+      "At launch, a single dense bio section became four strips, each with one primary action",
     ],
     // Plum from her own Figma styles; glow and the rest are starting values for the lab.
     media: {

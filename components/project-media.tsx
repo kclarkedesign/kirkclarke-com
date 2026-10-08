@@ -42,7 +42,8 @@ export default function ProjectMedia({
   const src = imageSrc ?? image?.src;
   const sceneKey = variant === "cover" ? media?.scene : (media?.cardScene ?? media?.scene);
   const sceneData = scene ?? (sceneKey ? scenes[sceneKey] : undefined);
-  const wanted = treatment ?? media?.treatment ?? "type";
+  // Cards may differ from the cover (media.cardTreatment); a lab override wins over both.
+  const wanted = treatment ?? (variant === "cover" ? media?.treatment : (media?.cardTreatment ?? media?.treatment)) ?? "type";
   // Fall back gracefully when the chosen treatment has nothing to show.
   const kind: MediaTreatment = wanted === "scene" && sceneData ? "scene" : src && wanted !== "type" ? (wanted === "scene" ? "bleed" : wanted) : "type";
   const mode = motion ?? media?.motion ?? "none";

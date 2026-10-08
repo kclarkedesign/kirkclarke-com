@@ -13,4 +13,4 @@ Kibi is an agentic knowledge base: paste or upload content, an AI extracts struc
 
 ## Where it stands
 
-Phase 1, built for a single user, live at usekibi.com.
+Phase 1, built for a single user.

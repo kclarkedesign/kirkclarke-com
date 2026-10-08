@@ -6,13 +6,13 @@ A site for Daniella Rabbani — performer, singer, and podcast host — that cou
 
 The site she had was one dark section: a long paragraph of credits beside a portrait, a single tickets link, and the contact routes underneath. Everything on it was true, and none of it was easy to find. Drag the divider to compare.
 
-![Daniella Rabbani's homepage on a desktop, before and after.](compare:daniella-desktop "Before: one section, one paragraph, one link. After: the portrait leads, and each thing she does gets its own strip. Both are the top of the page on a desktop.")
+![Daniella Rabbani's homepage on a desktop, before and after.](compare:daniella-desktop "Before: one section, one paragraph, one link. After, at launch in September 2026: the portrait leads, and each thing she does gets its own strip. Both are the top of the page on a desktop.")
 
-![The same two homepages on a phone.](compare:daniella-mobile "The same pair on a phone.")
+![The same two homepages on a phone.](compare:daniella-mobile "The same pair on a phone, again with the launch version as the after.")
 
 ## What I built
 
-Designed in Figma, with Claude Design in the loop for direction and prototyping, then built in Wix. Design and build, start to finish.
+Designed in Figma, with Claude Design in the loop for direction and prototyping, then built in Wix. Design and build, start to finish. The list below is the site at launch; it has been trimmed since, and today it is the hero and the album with the signup and contacts below.
 
 - **A dark, portrait-led hero** with the album as the one primary button, and a short line instead of the paragraph of credits.
 - **Four practices, four strips.** Acting and the album, the concert, the film, and the podcast each get their own ground color and one action: get concert tickets, watch on Prime, listen on Spotify. A small mono label names the practice and the one date that matters.
@@ -29,7 +29,7 @@ Designed in Figma, with Claude Design in the loop for direction and prototyping,
 
 ## A fuller version, proposed and not built
 
-After the first version I proposed a fuller homepage and prototyped it: a textured hero with the portrait in a circle, a row for what is happening this month, one door into each practice, and a slot for her Instagram posts. It wasn't built; cost put it out of scope for now.
+After the first version I proposed a fuller homepage and prototyped it: a textured hero with the portrait in a circle, a row for what is happening this month, one door into each practice, and a slot for her Instagram posts. It's the next phase and hasn't been built yet.
 
 ![The hero of the proposed homepage: a purple, grainy ground, a large serif headline, the portrait in a circle, and a ticker of credits.](/images/work/daniella-rabbani/proposal-hero.webp "Proposed, not built. The hero of a homepage concept I prototyped for the next phase. The switcher at the bottom left is part of the prototype, not the site.")
 
@@ -37,4 +37,4 @@ After the first version I proposed a fuller homepage and prototyped it: a textur
 
 ## What this taught me
 
-A site that serves four audiences is mostly a question of order: what gets the first screen this month, and what waits. The version that shipped answers it with strips in a fixed order. The proposal answers it with a row that changes with the calendar.
+A site that serves four audiences is mostly a question of order: what gets the first screen this month, and what waits. The version that launched answered it with strips in a fixed order. The proposal answers it with a row that changes with the calendar.
