@@ -105,7 +105,9 @@ export default function Lab({ project, images }: { project: Project; images: str
   const sceneSnippet = layers.map((l) => `    ${JSON.stringify(l).replace(/"(\w+)":/g, "$1: ").replace(/,/g, ", ").replace(/\{/g, "{ ").replace(/\}/g, " }")},`).join("\n");
   const cardLine =
     (cardTreatment === SAME_AS_COVER ? "" : `\n  cardTreatment: "${cardTreatment}",`) + (cardMotion === SAME_AS_COVER ? "" : `\n  cardMotion: "${cardMotion}",`);
-  const mediaSnippet = `// content/projects.ts\nmedia: {\n  treatment: "${treatment}",${cardLine}\n  scene: "${sceneId}",\n  motion: "${motion}",${paletteLine}\n},`;
+  // A scene used only by the grid cards belongs under cardScene; otherwise it is the cover's scene.
+  const sceneLine = treatment !== "scene" && cardKind === "scene" ? `cardScene: "${sceneId}"` : `scene: "${sceneId}"`;
+  const mediaSnippet = `// content/projects.ts\nmedia: {\n  treatment: "${treatment}",${cardLine}\n  ${sceneLine},\n  motion: "${motion}",${paletteLine}\n},`;
   const stepLines = steps
     .map((s) => `    { scene: ${JSON.stringify(s.scene)}, title: ${JSON.stringify(s.title)}, caption: ${JSON.stringify(s.caption)} },`)
     .join("\n");

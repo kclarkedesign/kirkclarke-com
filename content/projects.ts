@@ -88,19 +88,18 @@ export const projects: Project[] = [
       "Dashboard redesign direction: a unified sidebar, a four-step view builder, and per-view Data / Settings / Takeaways tabs",
     ],
     // Stylized renders of the Koto dashboard redesign (a design direction, not the
-    // shipped UI) — captions in content/work/koto.md say so. The cover is one framed shot
-    // with pointer tilt (Kirk's lab picks, 2026-10-07: radius 8, pad 16, tint 22). The grid
-    // card uses a scene (cardScene), because a framed shot leaves a near-square card half
-    // empty (Kirk, 2026-10-08). The layered "koto-card" read as confusing at that size, so
-    // cardScene is the loop of close-ups for now; the lab compares the other prototypes
-    // (koto-card-context / -close / -macro / -pushin) and the pick gets baked here.
+    // shipped UI) — captions in content/work/koto.md say so. The cover is one framed shot with
+    // pointer tilt (Kirk's lab picks, 2026-10-07: radius 8, pad 16, tint 22). The grid card is a
+    // scene instead, because a framed shot leaves a near-square card half empty: a macro of the
+    // Takeaways card's corner on mint, pushing in slowly, with a hover zoom (Kirk, 2026-10-08).
     media: {
       treatment: "frame",
       cardTreatment: "scene",
-      cardMotion: "none",
+      cardMotion: "zoom",
       scene: "koto-hero",
-      cardScene: "koto-card-loop",
+      cardScene: "koto-card-macro-move",
       motion: "tilt",
+      palette: { from: "#1e5a38", to: "#0f3521", glow: "#4bc57d" },
       shotRatio: 1.9,
       cover: {
         src: "/images/work/koto/cover.webp",

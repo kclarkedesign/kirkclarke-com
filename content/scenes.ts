@@ -78,12 +78,6 @@ export interface SequenceData {
 
 const K = "/images/work/koto";
 
-// Shared pieces of the card prototypes below.
-const LIVE = "/images/work/koto/live";
-const MINT = { from: "#c9f7de", to: "#4bc57d", glow: "#ffffff" };
-const CLOSE: SceneLayer = { id: "close", src: `${K}/crops/takeaway-close.webp`, ratio: 1.261, x: -38, y: -6, w: 140, z: 0, depth: 0, radius: 0, dof: { x: 63, y: 41, blur: 1.6 } };
-const MACRO: SceneLayer = { id: "macro", src: `${K}/crops/takeaway-corner.webp`, ratio: 1.533, x: -16, y: -10, w: 108, z: 0, depth: 0, radius: 6, dof: { x: 52, y: 74, blur: 1.8 } };
-
 // Every layer is a render of the Koto dashboard redesign (a design direction, not the
 // shipped UI); the zoom-ins are crops of those same renders, so they stay sharp.
 export const scenes: Record<string, SceneData> = {
@@ -120,50 +114,6 @@ export const scenes: Record<string, SceneData> = {
       { id: "regen", src: `${K}/crops/regenerate.webp`, ratio: 4.046, x: 64, y: 6, w: 34, z: 2, depth: 0.9, zoom: true },
       { id: "row", src: `${K}/crops/view-row.webp`, ratio: 4.966, x: 18, y: 70, w: 58, z: 3, depth: 1.1, zoom: true },
       { id: "copy", src: `${K}/crops/copy-link.webp`, ratio: 2.437, x: 70, y: 44, w: 22, z: 3, depth: 1.5, zoom: true },
-    ],
-  },
-
-  // Grid cards: a tighter stage whose key pieces sit in the middle, so the cover-fit crop to a
-  // card's shape (wide on small cards, near-square on the feature card) never cuts them off.
-  "koto-card": {
-    // Square, so the near-square feature card is filled edge to edge. On the small wide
-    // cards the stage is cropped top and bottom to the Views screen in the middle band.
-    ratio: 1,
-    alt: "Layered views of Koto's redesigned dashboard: the Views list with one view's row and its Copy link button zoomed in, and the Takeaways tab behind it.",
-    layers: [
-      {
-        id: "tk",
-        src: `${K}/takeaways.webp`,
-        ratio: 1.6,
-        x: 14,
-        y: -6,
-        w: 84,
-        z: 0,
-        depth: -0.7,
-        dim: true,
-        marks: [
-          { x: 63.1, y: 27, w: 32, h: 12.6, for: "regen" },
-          { x: 10.4, y: 44.3, w: 57.5, h: 11.5, for: "hist" },
-        ],
-      },
-      {
-        id: "views",
-        src: `${K}/cover.webp`,
-        ratio: 1.6,
-        x: 2,
-        y: 18,
-        w: 96,
-        z: 1,
-        depth: 0,
-        marks: [
-          { x: 10.4, y: 14, w: 39.3, h: 12.6, for: "row" },
-          { x: 75.8, y: 14, w: 19.3, h: 12.6, for: "copy" },
-        ],
-      },
-      { id: "regen", src: `${K}/crops/regenerate.webp`, ratio: 4.046, x: 44, y: 2, w: 52, z: 2, depth: 0.9, zoom: true },
-      { id: "copy", src: `${K}/crops/copy-link.webp`, ratio: 2.437, x: 66, y: 38, w: 30, z: 3, depth: 1.5, zoom: true },
-      { id: "row", src: `${K}/crops/view-row.webp`, ratio: 4.966, x: 3, y: 64, w: 64, z: 3, depth: 1.1, zoom: true },
-      { id: "hist", src: `${K}/crops/history-row.webp`, ratio: 8, x: 22, y: 84, w: 74, z: 2, depth: 0.8, zoom: true },
     ],
   },
 
@@ -251,104 +201,17 @@ export const scenes: Record<string, SceneData> = {
     ],
   },
 
-  // ------------------------------------------------------------------
-  // Card prototypes (stage 1:1). The subject stays in the middle band so a 16:10 crop of the
-  // stage keeps it. Close-ups use depth of field: only the point named in `dof` stays sharp.
-  // ------------------------------------------------------------------
-  "koto-card-context": {
-    ratio: 1,
-    alt: "Koto's redesigned Takeaways tab, the whole screen on a pale mint ground: a published summary banner, the Brief and Detailed switch, a Regenerate button and a short history of summaries.",
-    ground: MINT,
-    layers: [{ id: "screen", src: `${K}/takeaways.webp`, ratio: 1.6, x: 3, y: 21, w: 94, z: 0, depth: 0, radius: 1.8 }],
-  },
-
-  "koto-card-close": {
-    ratio: 1,
-    alt: "A close-up of Koto's redesigned Takeaways tab: the Brief and Detailed switch and the Regenerate button in focus, with the Copy link and Preview buttons and the history rows softly out of focus around them.",
-    layers: [CLOSE],
-  },
-
-  "koto-card-macro": {
-    ratio: 1,
-    alt: "A macro of the corner of the Takeaways tab's summary card in Koto's redesign: the Brief and Detailed switch and the Regenerate button in focus, the rest softly blurred, and a strip of mint ground beyond the screen's edge.",
-    ground: MINT,
-    layers: [MACRO],
-  },
-
-  "koto-card-loop": {
-    ratio: 1,
-    loop: 4,
-    alt: "Three close-ups of Koto's redesign in turn: the AI takeaway with its Brief and Detailed switch and Regenerate button, the view builder's four-step progress above a field checklist, and the navigation rail expanded to show its labels.",
-    layers: [
-      { ...CLOSE, id: "takeaway", slot: 0 },
-      { id: "builder", src: `${K}/crops/builder-top.webp`, ratio: 1.556, x: -45, y: 3, w: 150, z: 1, depth: 0, radius: 0, slot: 1, dof: { x: 76, y: 36, blur: 1.6 } },
-      { id: "nav", src: `${K}/crops/rail-open.webp`, ratio: 1.333, x: 0, y: 1, w: 130, z: 2, depth: 0, radius: 0, slot: 2, dof: { x: 20, y: 40, blur: 1.4 } },
-    ],
-  },
-
-  "koto-card-pushin": {
-    ratio: 1,
-    loop: 4,
-    ground: MINT,
-    alt: "The AI takeaway in Koto's redesign at three distances in turn: the whole screen, a close-up of the Brief and Detailed switch and Regenerate button, and a macro of the summary card's corner.",
-    layers: [
-      { id: "context", src: `${K}/takeaways.webp`, ratio: 1.6, x: 3, y: 21, w: 94, z: 0, depth: 0, radius: 1.8, slot: 0 },
-      { ...CLOSE, id: "close", z: 1, slot: 1 },
-      { ...MACRO, id: "macro", z: 2, slot: 2 },
-    ],
-  },
-
-  // ------------------------------------------------------------------
-  // More macros and motion (Kirk, 2026-10-08). The "live" images are the shipped product's shared
-  // Takeaways view (sample data); everything else is the redesign concept.
-  // ------------------------------------------------------------------
-  "koto-macro-views": {
-    ratio: 1,
-    alt: "A macro of the top right of Koto's redesigned Views screen: the All views and By source switch, the New view button and a view's Copy link button in focus, on a mint ground.",
-    ground: MINT,
-    layers: [{ id: "views", src: `${K}/crops/views-corner.webp`, ratio: 1.889, x: 0, y: 16, w: 96, z: 0, depth: 0, radius: 5, dof: { x: 52, y: 66, blur: 1.6 } }],
-  },
-
-  "koto-macro-stepper": {
-    ratio: 1,
-    alt: "A macro of the view builder's four-step progress in Koto's redesign: Source and Object done, Fields in focus, Review ahead, on a mint ground.",
-    ground: MINT,
-    layers: [{ id: "stepper", src: `${K}/crops/builder-top.webp`, ratio: 1.556, x: -50, y: 15, w: 150, z: 0, depth: 0, radius: 5, dof: { x: 76, y: 36, blur: 1.6 } }],
-  },
-
-  "koto-macro-live-bars": {
-    ratio: 1,
-    alt: "A macro of a chart from the live product's shared Takeaways view: a bar chart of contact counts by title level, with sample data, in mint green on a dark card.",
-    ground: MINT,
-    layers: [{ id: "bars", src: `${LIVE}/live-bars.webp`, ratio: 1.435, x: -18, y: 8, w: 112, z: 0, depth: 0, radius: 4, dof: { x: 35, y: 55, blur: 1.4 } }],
-  },
-
-  "koto-macro-live-donut": {
-    ratio: 1,
-    alt: "A macro of a chart from the live product's shared Takeaways view: a donut chart of contacts by department, with sample data, in shades of mint green on a dark card.",
-    ground: MINT,
-    layers: [{ id: "donut", src: `${LIVE}/live-donut.webp`, ratio: 1.418, x: -6, y: 11, w: 112, z: 0, depth: 0, radius: 4, dof: { x: 50, y: 48, blur: 1.4 } }],
-  },
-
-  "koto-macro-live-tabs": {
-    ratio: 1,
-    alt: "A macro of the live product's shared view: the Data and Takeaways switch with Takeaways selected in green, above an AI-written Executive Summary with a highlighted figure, on a mint ground.",
-    ground: MINT,
-    layers: [{ id: "tabs", src: `${LIVE}/live-tabs.webp`, ratio: 2.373, x: 5, y: 31, w: 150, z: 0, depth: 0, radius: 4, dof: { x: 30, y: 27, blur: 1.4 } }],
-  },
-
-  // Close-up and macro with the camera moving: a slow push in, and focus pulled from one control to another.
-  "koto-card-close-move": {
-    ratio: 1,
-    alt: "A close-up of Koto's redesigned Takeaways tab with the focus slowly moving from the Brief and Detailed switch and Regenerate button down to the Open and Unpublish buttons in the history, as the view creeps in.",
-    layers: [{ ...CLOSE, id: "close", move: { push: 0.1, rack: { x: 80, y: 66 }, seconds: 7 } }],
-  },
-
+  // The grid card (Kirk's pick, 2026-10-08): a macro of the Takeaways summary card's corner on a
+  // mint ground, creeping in slowly. The stage is square and the subject sits in the middle band,
+  // so a 16:10 crop on small screens keeps it. It has no `dof`, so the picture is sharp and the
+  // `rack` (a focus pull between two points) only runs if depth of field is added back.
   "koto-card-macro-move": {
     ratio: 1,
-    alt: "A macro of the corner of the Takeaways tab's summary card in Koto's redesign, with the focus slowly moving from the Regenerate button to the Brief and Detailed switch, on a mint ground.",
-    ground: MINT,
-    layers: [{ ...MACRO, id: "macro", move: { push: 0.08, rack: { x: 26, y: 76 }, seconds: 7 } }],
+    alt: "A macro of the corner of the Takeaways tab's summary card in Koto's redesign: the Brief and Detailed switch and the Regenerate button, slowly pushing in, on a mint ground.",
+    ground: { from: "#c9f7de", to: "#4bc57d", glow: "#ffffff" },
+    layers: [
+      { id: "macro", src: `${K}/crops/takeaway-corner.webp`, ratio: 1.533, x: -14, y: 23, w: 90, z: 0, depth: 0, radius: 6, move: { push: 0.07, rack: { x: 26, y: 70 }, seconds: 5 } },
+    ],
   },
 };
 
