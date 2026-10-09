@@ -24,6 +24,7 @@ const DEFAULT_LEN = 75;
 export default function Lab({ project, images }: { project: Project; images: string[] }) {
   const [treatment, setTreatment] = useState<MediaTreatment>(project.media?.treatment ?? "bleed");
   const [motion, setMotion] = useState<MediaMotion>(project.media?.motion ?? "zoom");
+  const [cardMotion, setCardMotion] = useState<string>(project.media?.cardMotion ?? SAME_AS_COVER);
   // Grid cards can use a different treatment from the cover; SAME_AS_COVER means they don't.
   const [cardTreatment, setCardTreatment] = useState<string>(project.media?.cardTreatment ?? SAME_AS_COVER);
   const [img, setImg] = useState(images[0]);
@@ -97,11 +98,13 @@ export default function Lab({ project, images }: { project: Project; images: str
   const common = { treatment, motion, imageSrc: img, shotRatio: shot, scene: sceneData, palette };
   const paletteLine = palette ? `\n  palette: { from: "${from}", to: "${to}", glow: "${glow}" },` : "";
   const cardKind = (cardTreatment === SAME_AS_COVER ? treatment : cardTreatment) as MediaTreatment;
+  const cardMotionKind = (cardMotion === SAME_AS_COVER ? motion : cardMotion) as MediaMotion;
   const isScene = treatment === "scene" || cardKind === "scene";
 
   // Whole layer objects, so the snippet can replace a scene in content/scenes.ts as-is.
   const sceneSnippet = layers.map((l) => `    ${JSON.stringify(l).replace(/"(\w+)":/g, "$1: ").replace(/,/g, ", ").replace(/\{/g, "{ ").replace(/\}/g, " }")},`).join("\n");
-  const cardLine = cardTreatment === SAME_AS_COVER ? "" : `\n  cardTreatment: "${cardTreatment}",`;
+  const cardLine =
+    (cardTreatment === SAME_AS_COVER ? "" : `\n  cardTreatment: "${cardTreatment}",`) + (cardMotion === SAME_AS_COVER ? "" : `\n  cardMotion: "${cardMotion}",`);
   const mediaSnippet = `// content/projects.ts\nmedia: {\n  treatment: "${treatment}",${cardLine}\n  scene: "${sceneId}",\n  motion: "${motion}",${paletteLine}\n},`;
   const stepLines = steps
     .map((s) => `    { scene: ${JSON.stringify(s.scene)}, title: ${JSON.stringify(s.title)}, caption: ${JSON.stringify(s.caption)} },`)
@@ -169,6 +172,8 @@ export default function Lab({ project, images }: { project: Project; images: str
           <>
           <Select label="Treatment (cover)" value={treatment} options={TREATMENTS} onChange={(v) => setTreatment(v as MediaTreatment)} />
           <Select label="Treatment (grid cards)" value={cardTreatment} options={[SAME_AS_COVER, ...TREATMENTS]} onChange={setCardTreatment} />
+          <Select label="Motion (cover)" value={motion} options={MOTIONS} onChange={(v) => setMotion(v as MediaMotion)} />
+          <Select label="Motion (grid cards)" value={cardMotion} options={[SAME_AS_COVER, ...MOTIONS]} onChange={setCardMotion} />
           <fieldset className="m-0 flex flex-col gap-3 rounded-lg border border-(--hairline) p-3">
             <legend className="px-1 text-(--text-label)">Card colors</legend>
             <label className="flex items-center gap-2 text-(--text)">
@@ -234,13 +239,39 @@ export default function Lab({ project, images }: { project: Project; images: str
                       <Range label="blur (cqw)" value={l.dof.blur} min={0.4} max={4} step={0.1} onChange={(v) => patch(l.id, { dof: { ...l.dof!, blur: v } })} />
                     </>
                   )}
+                  <Range
+                    label="camera push (0 = still)"
+                    value={l.move?.push ?? 0}
+                    min={0}
+                    max={0.3}
+                    step={0.01}
+                    onChange={(v) => patch(l.id, { move: tidyMove({ ...l.move, push: v || undefined }) })}
+                  />
+                  {l.dof && (
+                    <label className="flex items-center gap-2 text-(--text)">
+                      <input
+                        type="checkbox"
+                        checked={!!l.move?.rack}
+                        onChange={(e) => patch(l.id, { move: tidyMove({ ...l.move, rack: e.target.checked ? { x: Math.min(95, l.dof!.x + 20), y: Math.min(95, l.dof!.y + 20) } : undefined }) })}
+                      />
+                      Rack focus to another point
+                    </label>
+                  )}
+                  {l.move?.rack && (
+                    <>
+                      <Range label="rack to x (%)" value={l.move.rack.x} min={0} max={100} step={1} onChange={(v) => patch(l.id, { move: { ...l.move, rack: { ...l.move!.rack!, x: v } } })} />
+                      <Range label="rack to y (%)" value={l.move.rack.y} min={0} max={100} step={1} onChange={(v) => patch(l.id, { move: { ...l.move, rack: { ...l.move!.rack!, y: v } } })} />
+                    </>
+                  )}
+                  {l.move && (
+                    <Range label="seconds each way" value={l.move.seconds ?? 8} min={3} max={20} step={1} onChange={(v) => patch(l.id, { move: { ...l.move, seconds: v } })} />
+                  )}
                 </fieldset>
               ))}
             </>
           ) : (
             <>
               <Select label="Image" value={img ?? ""} options={images} onChange={setImg} />
-              <Select label="Motion" value={motion} options={MOTIONS} onChange={(v) => setMotion(v as MediaMotion)} />
               <Select label="Crop anchor (bleed)" value={pos} options={POSITIONS} onChange={setPos} />
               <Range label="Shot crop (w÷h, from top)" value={shot} min={1.6} max={2.6} step={0.05} onChange={setShot} />
               <Range label="Frame radius" value={radius} min={0} max={28} step={1} onChange={setRadius} />
@@ -271,9 +302,9 @@ export default function Lab({ project, images }: { project: Project; images: str
       ) : (
         <div className="flex min-w-0 flex-col gap-8">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 min-[87.5rem]:grid-cols-4 md:gap-5">
-            <ProjectCard project={project} feature {...common} treatment={cardKind} />
-            <ProjectCard project={project} {...common} treatment={cardKind} />
-            <ProjectCard project={project} {...common} treatment={cardKind} />
+            <ProjectCard project={project} feature {...common} treatment={cardKind} motion={cardMotionKind} />
+            <ProjectCard project={project} {...common} treatment={cardKind} motion={cardMotionKind} />
+            <ProjectCard project={project} {...common} treatment={cardKind} motion={cardMotionKind} />
           </div>
           <div className="max-w-225">
             <ProjectMedia project={project} variant="cover" {...common} />
@@ -307,6 +338,11 @@ function Snippet({ text }: { text: string }) {
       <pre className="m-0 max-h-[28rem] overflow-auto p-3 font-mono text-xs leading-relaxed">{text}</pre>
     </div>
   );
+}
+
+// A move with nothing in it is no move: keeps the snippet free of empty objects.
+function tidyMove(m: SceneLayer["move"]): SceneLayer["move"] {
+  return m && (m.push || m.rack) ? m : undefined;
 }
 
 function ColorInput({ label, value, onChange }: { label: string; value: string; onChange: (v: string) => void }) {

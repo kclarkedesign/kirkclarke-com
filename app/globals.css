@@ -351,6 +351,10 @@
   -webkit-mask-image: radial-gradient(ellipse 62% 62% at var(--dx, 50%) var(--dy, 50%), transparent 0, transparent 34%, #000 82%);
   mask-image: radial-gradient(ellipse 62% 62% at var(--dx, 50%) var(--dy, 50%), transparent 0, transparent 34%, #000 82%);
 }
+/* Rack focus: a second blurred copy masked around the other focus point; the two crossfade. */
+.layer-img[data-rack] .dof-b {
+  opacity: 0;
+}
 /* A scene's own backdrop, over the media's palette. */
 .scene[data-ground] {
   background:
@@ -388,6 +392,15 @@
 .scene[data-loop] .layer[data-slot]:not([data-slot="0"]) {
   opacity: 0;
 }
+@keyframes scene-push {
+  to { scale: var(--push); }
+}
+@keyframes scene-fade-in {
+  to { opacity: 1; }
+}
+@keyframes scene-fade-out {
+  to { opacity: 0; }
+}
 @keyframes scene-slot-3 {
   0% { opacity: 0; scale: 1; }
   5% { opacity: 1; }
@@ -404,6 +417,23 @@
     animation: scene-slot-3 calc(var(--loop) * 3) linear infinite both;
     animation-delay: calc(var(--slot) * var(--loop));
     will-change: opacity, scale;
+  }
+  /* Camera moves (SceneLayer.move): creep toward the focus; pull focus between two points. */
+  .layer-img[data-push] {
+    transform-origin: var(--ox, 50%) var(--oy, 50%);
+    animation: scene-push var(--move-s, 8s) ease-in-out infinite alternate;
+  }
+  .layer-img[data-rack] .dof-a {
+    animation: scene-fade-out var(--move-s, 8s) ease-in-out infinite alternate;
+  }
+  .layer-img[data-rack] .dof-b {
+    animation: scene-fade-in var(--move-s, 8s) ease-in-out infinite alternate;
+  }
+  .work-card:hover .layer-img[data-push],
+  .work-card:hover .layer-img[data-rack] .dof,
+  .work-card:focus-visible .layer-img[data-push],
+  .work-card:focus-visible .layer-img[data-rack] .dof {
+    animation-play-state: paused;
   }
   /* Hovering or focusing a card holds the moment on screen so it can be read. */
   .work-card:hover .scene[data-loop] .layer[data-slot],
@@ -649,6 +679,17 @@
   }
   .work-card:hover .media[data-motion="zoom"] .media-img {
     transform: scale(var(--media-zoom, 1.04));
+  }
+  /* Scenes take the same hover zoom and pointer tilt as the other treatments. */
+  .media[data-treatment="scene"] .scene {
+    transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), scale 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .work-card:hover .media[data-treatment="scene"][data-motion="zoom"] .scene {
+    scale: var(--media-zoom, 1.04);
+  }
+  .media[data-treatment="scene"][data-motion="tilt"] .scene {
+    scale: 1.06;
+    transform: perspective(900px) rotateX(calc(var(--ty, 0) * -3deg)) rotateY(calc(var(--tx, 0) * 3deg));
   }
   .media[data-motion="tilt"] .media-inner {
     transform: perspective(900px) rotateX(calc(var(--ty, 0) * -3deg)) rotateY(calc(var(--tx, 0) * 3deg));

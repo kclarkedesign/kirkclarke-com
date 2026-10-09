@@ -79,11 +79,21 @@ export default function Scene({ scene, mode }: { scene: SceneData; mode: SceneMo
               <div
                 className="layer-img"
                 data-dim={layer.dim ? "" : undefined}
+                data-push={layer.move?.push ? "" : undefined}
+                data-rack={layer.dof && layer.move?.rack ? "" : undefined}
                 style={
                   {
                     aspectRatio: layer.ratio,
                     ...(layer.radius !== undefined ? { "--r": `${layer.radius}cqw` } : {}),
                     ...(layer.dof ? { "--dof": `${layer.dof.blur}cqw`, "--dx": `${layer.dof.x}%`, "--dy": `${layer.dof.y}%` } : {}),
+                    ...(layer.move
+                      ? {
+                          "--push": 1 + (layer.move.push ?? 0),
+                          "--ox": `${layer.dof?.x ?? 50}%`,
+                          "--oy": `${layer.dof?.y ?? 50}%`,
+                          "--move-s": `${layer.move.seconds ?? 8}s`,
+                        }
+                      : {}),
                   } as React.CSSProperties
                 }
               >
@@ -96,7 +106,19 @@ export default function Scene({ scene, mode }: { scene: SceneData; mode: SceneMo
                 />
                 {layer.dof && (
                   // The same file again, blurred and masked: only the focus point stays sharp. One request, decorative.
-                  <Image className="dof" src={layer.src} alt="" aria-hidden fill sizes="(min-width: 1024px) 720px, 90vw" />
+                  <Image className="dof dof-a" src={layer.src} alt="" aria-hidden fill sizes="(min-width: 1024px) 720px, 90vw" />
+                )}
+                {layer.dof && layer.move?.rack && (
+                  // A second blurred copy masked around the other focus point; the two crossfade to pull focus.
+                  <Image
+                    className="dof dof-b"
+                    src={layer.src}
+                    alt=""
+                    aria-hidden
+                    fill
+                    sizes="(min-width: 1024px) 720px, 90vw"
+                    style={{ "--dx": `${layer.move.rack.x}%`, "--dy": `${layer.move.rack.y}%` } as React.CSSProperties}
+                  />
                 )}
                 {layer.marks?.map((m) => (
                   <span

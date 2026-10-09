@@ -31,6 +31,8 @@ export interface ProjectMedia {
   treatment: MediaTreatment;
   /** Grid cards only: a different treatment from the case-study cover (defaults to `treatment`). */
   cardTreatment?: MediaTreatment;
+  /** Grid cards only: a different hover or pointer motion from the cover (defaults to `motion`). */
+  cardMotion?: MediaMotion;
   palette?: MediaPalette;
   motion?: MediaMotion;
   /** Frame treatment only: crop the shot to this width ÷ height, from the top (default 1.6 = uncropped). */
@@ -95,6 +97,7 @@ export const projects: Project[] = [
     media: {
       treatment: "frame",
       cardTreatment: "scene",
+      cardMotion: "none",
       scene: "koto-hero",
       cardScene: "koto-card-loop",
       motion: "tilt",

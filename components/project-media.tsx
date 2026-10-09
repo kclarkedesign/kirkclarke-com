@@ -46,7 +46,7 @@ export default function ProjectMedia({
   const wanted = treatment ?? (variant === "cover" ? media?.treatment : (media?.cardTreatment ?? media?.treatment)) ?? "type";
   // Fall back gracefully when the chosen treatment has nothing to show.
   const kind: MediaTreatment = wanted === "scene" && sceneData ? "scene" : src && wanted !== "type" ? (wanted === "scene" ? "bleed" : wanted) : "type";
-  const mode = motion ?? media?.motion ?? "none";
+  const mode = motion ?? (variant === "cover" ? media?.motion : (media?.cardMotion ?? media?.motion)) ?? "none";
   const shot = shotRatio ?? media?.shotRatio;
   const colors = palette ?? media?.palette;
   const style = {
@@ -55,7 +55,7 @@ export default function ProjectMedia({
   } as React.CSSProperties;
 
   // Pointer tilt: two CSS variables, no re-render (the transform lives in CSS).
-  const tilt = mode === "tilt" && kind !== "scene";
+  const tilt = mode === "tilt";
   const onMove = (e: PointerEvent<HTMLDivElement>) => {
     const r = e.currentTarget.getBoundingClientRect();
     e.currentTarget.style.setProperty("--tx", String(((e.clientX - r.left) / r.width - 0.5) * 2));
