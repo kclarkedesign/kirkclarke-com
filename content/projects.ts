@@ -183,17 +183,15 @@ export const projects: Project[] = [
       "The doctor bird on the cover: sketched by hand, redrawn in Figma, and delivered as a vector",
       "Published in hardcover, paperback, and Kindle",
     ],
-    // The book's own artwork (hardcover wrap, interior spreads, the vector doctor bird). Scene and frame
-    // candidates for Kirk to pick in /lab/words-of-wisdom; see content/scenes.ts.
+    // The book's own artwork (hardcover wrap, interior spreads, the front cover), composed as one scene that
+    // serves the cover and the grid cards (cover-fit, so the card crops it a little). Kirk's lab pick, 2026-10-09.
     media: {
       treatment: "scene",
       cardTreatment: "scene",
       cardMotion: "zoom",
       scene: "wow-hero",
-      cardScene: "wow-card-cover",
       motion: "tilt",
       palette: { from: "#0e3c28", to: "#0a2a1c", glow: "#e3b53e" },
-      shotRatio: 1.34,
       cover: {
         src: "/images/work/words-of-wisdom/wrap.webp",
         alt: "The hardcover jacket of Words of Wisdom laid flat: the back cover with a quotation and description, the spine, and the green and gold front cover with a cream doctor bird medallion.",

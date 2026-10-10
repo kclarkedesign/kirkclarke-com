@@ -14,9 +14,9 @@ Editing, design, and the doctor bird illustration. The real problem was structur
 
 I drew the doctor bird by hand first: poses, an eye, a circle for where it would sit, a few variations, and some ideas that went nowhere. Then I redrew and refined the one I kept in Figma and exported it as a vector.
 
-![Left, a notebook page of pen sketches: hummingbirds perched and in flight, an eye, a circle and a small boxy variation. Right, a close pencil sketch of one bird with its wing raised and its long tail streaming down.](/images/work/words-of-wisdom/bird-sketches.webp "The first pass, by hand: a notebook page of poses, variations, and scratch ideas, and the pose I kept.")
+![Left, a notebook page of pen sketches: hummingbirds perched and in flight, an eye, a circle and a small boxy variation. Right, a close pencil sketch of one bird with its wing raised and its long tail streaming down.](/images/work/words-of-wisdom/bird-notebook.webp "The first pass, by hand: a notebook page of poses, variations, and scratch ideas, and the pose I kept.")
 
-![The finished doctor bird mark: a cream disc with a hummingbird cut out of it, wing raised and a long tail streaming down, on the deep green of the cover.](/images/work/words-of-wisdom/bird-vector.webp "Redrawn and refined in Figma, then exported as a vector. The bird is cut out of the disc, so on the cover it takes the green behind it.")
+![The finished doctor bird mark: a cream disc with a hummingbird cut out of it, wing raised and a long tail streaming down, on the deep green of the cover.](/images/work/words-of-wisdom/bird-mark.webp "Redrawn and refined in Figma, then exported as a vector. The bird is cut out of the disc, so on the cover it takes the green behind it.")
 
 ## The cover
 

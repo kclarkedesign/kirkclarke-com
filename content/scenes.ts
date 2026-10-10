@@ -216,42 +216,18 @@ export const scenes: Record<string, SceneData> = {
   },
 
   // ------------------------------------------------------------------
-  // Words of Wisdom. Every layer is real artwork from the book: the hardcover wrap, a spread of the
-  // interior, and a 24x render of the doctor bird from the vector cover. Candidates for Kirk to pick in
-  // the lab (2026-10-09); the losers get deleted after he does.
+  // Words of Wisdom (Kirk's lab pick, 2026-10-09). Every layer is real artwork from the book: an open
+  // spread of the interior, and the front cover from the hardcover wrap standing in front of it, on the
+  // book's green. One scene serves the case-study cover and the grid cards (cover-fit, so a 16:10 card
+  // crops the sides a little; both layers stay inside what a card shows).
   // ------------------------------------------------------------------
-
-  // Hero candidate: an open spread with the front cover standing in front of it, on the book's green.
-  // (The flat wrap, wrap.webp, is the other candidate: pick `frame` for the cover treatment in the lab.)
   "wow-hero": {
     ratio: 1.9,
     alt: "An open spread of Words of Wisdom, with a saying on the left and a lined page to write on at the right, and the green and gold front cover with a cream doctor bird medallion standing in front of it.",
     ground: { from: "#0a2a1c", to: "#14513a", glow: "#e3b53e" },
     layers: [
-      { id: "spread", src: `${W}/spread-week-1-flat.webp`, ratio: 1.3333, x: 12, y: 20, w: 48, z: 0, depth: -0.4 },
-      { id: "front", src: `${W}/front.webp`, ratio: 0.6667, x: 54, y: 10, w: 26, z: 1, depth: 0.9 },
-    ],
-  },
-
-  // Card candidate A: the front cover standing against a spread, on cream and gold (the book's palette
-  // inverted, so the green cover reads first). The square stage keeps both in the middle band.
-  "wow-card-cover": {
-    ratio: 1,
-    alt: "The green and gold front cover of Words of Wisdom standing in front of an open spread of the journal, on a cream and gold ground.",
-    ground: { from: "#f6efdf", to: "#e3b53e", glow: "#ffffff" },
-    layers: [
-      { id: "spread", src: `${W}/spread-week-1-flat.webp`, ratio: 1.3333, x: 6, y: 31, w: 62, z: 0, depth: -0.4 },
-      { id: "front", src: `${W}/front.webp`, ratio: 0.6667, x: 52, y: 20, w: 38, z: 1, depth: 0.8 },
-    ],
-  },
-
-  // Card candidate B: a macro of the doctor bird against the gold ring, creeping in slowly (Koto's recipe).
-  "wow-card-bird": {
-    ratio: 1,
-    alt: "A close-up of the doctor bird on the cover of Words of Wisdom: a dark green hummingbird with a long beak and swept wing against a cream disc, with the edge of the gold ring top right, slowly pushing in.",
-    ground: { from: "#0a2a1c", to: "#1f6b45", glow: "#e3b53e" },
-    layers: [
-      { id: "bird", src: `${W}/bird-head.webp`, ratio: 1.5009, x: -14, y: 21, w: 90, z: 0, depth: 0, radius: 6, move: { push: 0.07, seconds: 5 } },
+      { id: "spread", src: `${W}/spread-week-1-flat.webp`, ratio: 1.3333, x: 18, y: 20, w: 48, z: 0, depth: -0.4 },
+      { id: "front", src: `${W}/front.webp`, ratio: 0.6667, x: 56.5, y: 8.5, w: 26, z: 1, depth: 0.9 },
     ],
   },
 };
