@@ -144,6 +144,11 @@ export const projects: Project[] = [
     // Plum from her own Figma styles; glow and the rest are starting values for the lab.
     media: {
       treatment: "frame",
+      // Grid card: a macro scene like Koto's. Candidates daniella-card-text / -buttons / -swatches; Kirk
+      // picks and tunes in /lab/daniella-rabbani.
+      cardTreatment: "scene",
+      cardMotion: "zoom",
+      cardScene: "daniella-card-text",
       motion: "tilt",
       shotRatio: 1.9,
       palette: { from: "#200024", to: "#3b1745", glow: "#d27cf6" },
@@ -161,16 +166,34 @@ export const projects: Project[] = [
   {
     slug: "words-of-wisdom",
     title: "Words of Wisdom",
-    tagline: "Jamaican Sayings, Their Meanings, and the Lessons of a Lifetime — by K.L. Craigie, his mother.",
+    tagline: "A 52-week journal of Jamaican sayings and what they mean, by K.L. Craigie, my mother.",
     context: "independent",
     year: "2026",
     tags: ["design"],
     outcomes: [
-      "55 sayings, each carrying a patois original, a plain-English meaning, and a full weekly journaling page",
+      "55 sayings — 52 for the weeks of a year, plus 3 bonus — each with its plain-English meaning and a page to write on",
+      "The doctor bird on the cover: sketched by hand, redrawn in Figma, and delivered as a vector",
+      "Published in hardcover, paperback, and Kindle",
     ],
+    // The book's own artwork (hardcover wrap, interior spreads, the vector doctor bird). Scene and frame
+    // candidates for Kirk to pick in /lab/words-of-wisdom; see content/scenes.ts.
+    media: {
+      treatment: "scene",
+      cardTreatment: "scene",
+      cardMotion: "zoom",
+      scene: "wow-hero",
+      cardScene: "wow-card-cover",
+      motion: "tilt",
+      palette: { from: "#0e3c28", to: "#0a2a1c", glow: "#e3b53e" },
+      shotRatio: 1.34,
+      cover: {
+        src: "/images/work/words-of-wisdom/wrap.webp",
+        alt: "The hardcover jacket of Words of Wisdom laid flat: the back cover with a quotation and description, the spine, and the green and gold front cover with a cream doctor bird medallion.",
+      },
+    },
     live: "https://www.amazon.com/dp/B0HBJ125P3",
     liveLabel: "View on Amazon",
-    role: "Design and editing",
+    role: "Editing, design, and the doctor bird illustration",
     hasCaseStudy: true,
   },
   {
