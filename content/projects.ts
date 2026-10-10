@@ -13,6 +13,8 @@ export type ProjectContext = "independent" | "twr" | "archive";
  */
 export type MediaTreatment = "scene" | "bleed" | "frame" | "type";
 export type MediaMotion = "none" | "zoom" | "tilt";
+/** Where a "bleed" shot is anchored when the card crops it. */
+export type MediaAnchor = "top left" | "top center" | "center" | "bottom left";
 
 export interface ProjectImage {
   /** Path under /public. All figures are 16:10 so no dimensions are stored. */
@@ -34,6 +36,10 @@ export interface ProjectMedia {
   /** Grid cards only: a different hover or pointer motion from the cover (defaults to `motion`). */
   cardMotion?: MediaMotion;
   palette?: MediaPalette;
+  /** Frame treatment: how strongly the palette's glow tints the backdrop, 0-50 (default 22). */
+  tint?: number;
+  /** Bleed treatment: which part of the shot stays in view when it is cropped (default top left). */
+  anchor?: MediaAnchor;
   motion?: MediaMotion;
   /** Frame treatment only: crop the shot to this width ÷ height, from the top (default 1.6 = uncropped). */
   shotRatio?: number;
@@ -142,16 +148,18 @@ export const projects: Project[] = [
       "At launch, a single dense bio section became four strips, each with one primary action",
     ],
     // Plum from her own Figma styles; glow and the rest are starting values for the lab.
+    // Kirk's lab picks, 2026-10-09: the cover is the framed shot with tilt on her plum (tint 50, radius 8,
+    // pad 16, zoom 1.04); the grid card is the same shot bleeding to the edges, centered, with a hover zoom.
+    // (He tried macro scenes like Koto's and went with this; they are in git at 0f31bf0.)
     media: {
       treatment: "frame",
-      // Grid card: a macro scene like Koto's. Candidates daniella-card-text / -buttons / -swatches; Kirk
-      // picks and tunes in /lab/daniella-rabbani.
-      cardTreatment: "scene",
+      cardTreatment: "bleed",
       cardMotion: "zoom",
-      cardScene: "daniella-card-text",
       motion: "tilt",
       shotRatio: 1.9,
       palette: { from: "#200024", to: "#3b1745", glow: "#d27cf6" },
+      tint: 50,
+      anchor: "center",
       cover: {
         src: "/images/work/daniella-rabbani/desktop-after.webp",
         alt: "The top of Daniella Rabbani's redesigned homepage: a dark plum page with her portrait, her name, a short line about her new album and two buttons.",

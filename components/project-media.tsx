@@ -52,6 +52,8 @@ export default function ProjectMedia({
   const style = {
     ...(shot ? { "--media-shot-ar": shot } : {}),
     ...(colors ? { "--media-from": colors.from, "--media-to": colors.to, ...(colors.glow ? { "--media-glow": colors.glow } : {}) } : {}),
+    ...(media?.tint !== undefined ? { "--media-tint": media.tint } : {}),
+    ...(media?.anchor ? { "--media-pos": media.anchor } : {}),
   } as React.CSSProperties;
 
   // Pointer tilt: two CSS variables, no re-render (the transform lives in CSS).

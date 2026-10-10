@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { MediaMotion, MediaTreatment, Project } from "@/content/projects";
+import type { MediaAnchor, MediaMotion, MediaTreatment, Project } from "@/content/projects";
 import { scenes, sequences, type SceneLayer, type SequenceStep } from "@/content/scenes";
 import ProjectCard from "@/components/project-card";
 import ProjectMedia from "@/components/project-media";
@@ -11,7 +11,7 @@ import type { HeroVariant } from "@/components/case-study";
 const TREATMENTS: MediaTreatment[] = ["scene", "bleed", "frame", "type"];
 const SAME_AS_COVER = "same as cover";
 const MOTIONS: MediaMotion[] = ["none", "zoom", "tilt"];
-const POSITIONS = ["top left", "top center", "center", "bottom left"];
+const POSITIONS: MediaAnchor[] = ["top left", "top center", "center", "bottom left"];
 const SCENE_IDS = Object.keys(scenes);
 const SEQUENCE_IDS = Object.keys(sequences);
 const VIEWS = ["media (cards and cover)", "pinned sequence", "case-study hero"];
@@ -30,10 +30,10 @@ export default function Lab({ project, images }: { project: Project; images: str
   const [img, setImg] = useState(images[0]);
   const [radius, setRadius] = useState(8);
   const [pad, setPad] = useState(16);
-  const [tint, setTint] = useState(22);
+  const [tint, setTint] = useState(project.media?.tint ?? 22);
   const [zoom, setZoom] = useState(1.04);
   const [shot, setShot] = useState(project.media?.shotRatio ?? 1.6);
-  const [pos, setPos] = useState(POSITIONS[0]!);
+  const [pos, setPos] = useState<MediaAnchor>(project.media?.anchor ?? POSITIONS[0]!);
   // Card colors: off means the project's own palette, or the default greens.
   const [customColors, setCustomColors] = useState(!!project.media?.palette);
   const [from, setFrom] = useState(project.media?.palette?.from ?? DEFAULT_COLORS.from);
@@ -97,6 +97,11 @@ export default function Lab({ project, images }: { project: Project; images: str
   const palette = customColors ? { from, to, glow } : undefined;
   const common = { treatment, motion, imageSrc: img, shotRatio: shot, scene: sceneData, palette };
   const paletteLine = palette ? `\n  palette: { from: "${from}", to: "${to}", glow: "${glow}" },` : "";
+  // Tint and anchor are per-project fields; the sliders override a baked value because the cards below
+  // get this copy of the project. (Radius, pad and zoom are global CSS defaults, so they stay a comment.)
+  const labProject: Project = project.media ? { ...project, media: { ...project.media, tint, anchor: pos } } : project;
+  const tintLine = tint !== 22 ? `\n  tint: ${tint},` : "";
+  const anchorLine = pos !== POSITIONS[0] ? `\n  anchor: "${pos}",` : "";
   const cardKind = (cardTreatment === SAME_AS_COVER ? treatment : cardTreatment) as MediaTreatment;
   const cardMotionKind = (cardMotion === SAME_AS_COVER ? motion : cardMotion) as MediaMotion;
   const isScene = treatment === "scene" || cardKind === "scene";
@@ -116,7 +121,7 @@ export default function Lab({ project, images }: { project: Project; images: str
     ? sequenceSnippet
     : isScene
     ? `${mediaSnippet}\n\n// content/scenes.ts → "${sceneId}"\nratio: ${ratio},${loop ? `\nloop: ${loop},` : ""}${ground ? `\nground: { from: "${ground.from}", to: "${ground.to}", glow: "${ground.glow ?? ground.to}" },` : ""}\nlayers: [\n${sceneSnippet}\n],`
-    : `// content/projects.ts\nmedia: {\n  treatment: "${treatment}",${cardLine}\n  motion: "${motion}",\n  shotRatio: ${shot},${paletteLine}\n  // radius ${radius} · pad ${pad} · tint ${tint} · zoom ${zoom} · anchor ${pos}\n},`;
+    : `// content/projects.ts\nmedia: {\n  treatment: "${treatment}",${cardLine}\n  motion: "${motion}",\n  shotRatio: ${shot},${paletteLine}${tintLine}${anchorLine}\n  // radius ${radius} · pad ${pad} · tint ${tint} · zoom ${zoom} · anchor ${pos}\n},`;
 
   return (
     <div style={vars} className="grid gap-8 lg:grid-cols-[280px_1fr]">
@@ -274,7 +279,7 @@ export default function Lab({ project, images }: { project: Project; images: str
           ) : (
             <>
               <Select label="Image" value={img ?? ""} options={images} onChange={setImg} />
-              <Select label="Crop anchor (bleed)" value={pos} options={POSITIONS} onChange={setPos} />
+              <Select label="Crop anchor (bleed)" value={pos} options={POSITIONS} onChange={(v) => setPos(v as MediaAnchor)} />
               <Range label="Shot crop (w÷h, from top)" value={shot} min={1.6} max={2.6} step={0.05} onChange={setShot} />
               <Range label="Frame radius" value={radius} min={0} max={28} step={1} onChange={setRadius} />
               <Range label="Frame padding" value={pad} min={0} max={40} step={1} onChange={setPad} />
@@ -304,12 +309,12 @@ export default function Lab({ project, images }: { project: Project; images: str
       ) : (
         <div className="flex min-w-0 flex-col gap-8">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 min-[87.5rem]:grid-cols-4 md:gap-5">
-            <ProjectCard project={project} feature {...common} treatment={cardKind} motion={cardMotionKind} />
-            <ProjectCard project={project} {...common} treatment={cardKind} motion={cardMotionKind} />
-            <ProjectCard project={project} {...common} treatment={cardKind} motion={cardMotionKind} />
+            <ProjectCard project={labProject} feature {...common} treatment={cardKind} motion={cardMotionKind} />
+            <ProjectCard project={labProject} {...common} treatment={cardKind} motion={cardMotionKind} />
+            <ProjectCard project={labProject} {...common} treatment={cardKind} motion={cardMotionKind} />
           </div>
           <div className="max-w-225">
-            <ProjectMedia project={project} variant="cover" {...common} />
+            <ProjectMedia project={labProject} variant="cover" {...common} />
           </div>
           <Snippet text={snippet} />
         </div>

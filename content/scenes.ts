@@ -78,7 +78,6 @@ export interface SequenceData {
 
 const K = "/images/work/koto";
 const W = "/images/work/words-of-wisdom";
-const D = "/images/work/daniella-rabbani/crops";
 
 // Every layer is a render of the Koto dashboard redesign (a design direction, not the
 // shipped UI); the zoom-ins are crops of those same renders, so they stay sharp.
@@ -253,36 +252,6 @@ export const scenes: Record<string, SceneData> = {
     ground: { from: "#0a2a1c", to: "#1f6b45", glow: "#e3b53e" },
     layers: [
       { id: "bird", src: `${W}/bird-head.webp`, ratio: 1.5009, x: -14, y: 21, w: 90, z: 0, depth: 0, radius: 6, move: { push: 0.07, seconds: 5 } },
-    ],
-  },
-
-  // ------------------------------------------------------------------
-  // Daniella Rabbani grid-card candidates (Kirk, 2026-10-09: "a similar treatment as Koto"). Each is a
-  // macro of real material, on a ground that contrasts with the plum site, slowly pushing in. Crops come
-  // from the launch screenshot's hero, above any contact details, and from her Figma styles frame.
-  // ------------------------------------------------------------------
-  "daniella-card-text": {
-    ratio: 1,
-    alt: "A close-up of the top of Daniella Rabbani's homepage at launch: a citron line reading actor, singer, filmmaker, podcaster, her name in a large serif, the line Yiddish music for right now, a short paragraph about her album, and a citron Klezmerette button beside an IMDb button, on a dark plum panel over a cream and citron ground.",
-    ground: { from: "#fffae3", to: "#d9f103", glow: "#ffffff" },
-    layers: [
-      { id: "text", src: `${D}/hero-text.webp`, ratio: 1.6, x: 4, y: 22, w: 92, z: 0, depth: 0, radius: 5, move: { push: 0.07, seconds: 5 } },
-    ],
-  },
-  "daniella-card-buttons": {
-    ratio: 1,
-    alt: "A close-up of the album paragraph and the two buttons on Daniella Rabbani's homepage at launch: a citron Klezmerette button beside an outlined IMDb button, on a dark plum panel over an orchid ground.",
-    ground: { from: "#f3e2ff", to: "#d27cf6", glow: "#ffffff" },
-    layers: [
-      { id: "buttons", src: `${D}/hero-buttons.webp`, ratio: 2.885, x: 3, y: 33, w: 94, z: 0, depth: 0, radius: 5, move: { push: 0.07, seconds: 5 } },
-    ],
-  },
-  "daniella-card-swatches": {
-    ratio: 1,
-    alt: "A corner of the color styles Daniella Rabbani's site was designed from in Figma: five plums from near black to a dusty violet and five orchids from deep to pale, each labeled with its hex value, on a deep plum ground.",
-    ground: { from: "#200024", to: "#3b1745", glow: "#d27cf6" },
-    layers: [
-      { id: "swatches", src: `${D}/swatches.webp`, ratio: 1.613, x: 4, y: 22, w: 92, z: 0, depth: 0, radius: 5, move: { push: 0.07, seconds: 5 } },
     ],
   },
 };
